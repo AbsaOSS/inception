@@ -1,0 +1,64 @@
+<mat-card class="flex flex-column flex-auto">
+  <div class="select-user-directory-container" [hidden]="userDirectories.length < 2">
+    <span class="mat-header-label" i18n="@@security_groups_component_user_directory">User Directory :</span>
+    <mat-form-field class="mat-form-field-slim">
+      <mat-select #userDirectorySelect required="true" i18n-placeholder="@@security_groups_component_placeholder_select_a_user_directory" placeholder="Select a user directory">
+        <mat-option *ngFor="let userDirectory of userDirectories" [value]="userDirectory.id">
+          {{userDirectory.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="mat-table-header">
+    <button *hasAuthority="['ROLE_Administrator', 'FUNCTION_Security.GroupAdministration']" mat-flat-button color="primary" [disabled]="!(enableNewButton$ | async)" (click)="newGroup()" i18n="@@security_groups_component_button_new">New</button>
+    <table-filter></table-filter>
+  </div>
+  <mat-table [dataSource]="dataSource" class="flex-fill" style="min-height: 550px;" matSort matSortActive="name" matSortDirection="asc" matSortDisableClear>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell mat-sort-header *matHeaderCellDef i18n="@@security_groups_component_table_header_name">Name</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.name}}</mat-cell>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell class="mat-one-action" *matHeaderCellDef i18n="@@security_groups_component_table_header_actions" [hidden]="!(enableActionsMenu$ | async)">Actions</mat-header-cell>
+      <mat-cell class="mat-one-action" *matCellDef="let row" [hidden]="!(enableActionsMenu$ | async)">
+        <button mat-icon-button [matMenuTriggerFor]="actionsMenu" [matMenuTriggerData]="{groupName: row.name}">
+          <i class="fas fa-ellipsis-v"></i>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Header and Row Declarations -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
+  <mat-paginator [length]="dataSource.total$ | async" [pageSize]="10" [hidePageSize]="true" [showFirstLastButtons]="true" ></mat-paginator>
+
+  <mat-menu class="mat-action-menu" #actionsMenu="matMenu" >
+    <ng-template matMenuContent let-groupName="groupName">
+      <button mat-menu-item (click)="editGroup(groupName)">
+        <i class="fas fa-edit"></i>
+        <span i18n="@@security_groups_component_menu_item_edit">Edit</span>
+      </button>
+      <button mat-menu-item (click)="groupMembers(groupName)">
+        <i class="fas fa-users"></i>
+        <span i18n="@@security_groups_component_menu_item_group_members">Group Members</span>
+      </button>
+      <button mat-menu-item (click)="groupRoles(groupName)">
+        <i class="fas fa-user-tag"></i>
+        <span i18n="@@security_groups_component_menu_item_group_roles">Roles</span>
+      </button>
+      <button mat-menu-item (click)="deleteGroup(groupName)">
+        <i class="far fa-trash-alt"></i>
+        <span i18n="@@security_groups_component_menu_item_delete">Delete</span>
+      </button>
+    </ng-template>
+  </mat-menu>
+
+</mat-card>
+
+

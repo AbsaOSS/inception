@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+  <property name="blob_type" value="bytea" dbms="h2"/>
+  <property name="blob_type" value="bytea" dbms="postgresql"/>
+  <property name="blob_type" value="blob" dbms="oracle"/>
+  <property name="blob_type" value="varbinary(max)" dbms="mssql"/>
+  <property name="now" value="now()" dbms="h2"/>
+  <property name="now" value="now()" dbms="postgresql"/>
+  <property name="now" value="sysdate" dbms="oracle"/>
+  <property name="now" value="CURRENT_TIMESTAMP" dbms="mssql"/>
+
+  <changeSet id="demo-1.0.0" author="Marcus Portmann">
+    <comment>Demo - 1.0.0</comment>
+    <sql dbms="h2" endDelimiter=";">
+      CREATE SCHEMA IF NOT EXISTS demo
+    </sql>
+    <sql dbms="postgresql" endDelimiter=";">
+      CREATE SCHEMA IF NOT EXISTS demo
+    </sql>
+    <sql dbms="mssql" endDelimiter=";">
+      CREATE SCHEMA demo
+    </sql>
+
+    <createTable schemaName="demo" tableName="data" remarks="Data">
+      <column name="id" type="bigint" remarks="The ID for the data">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="integer_value" type="int" remarks="The integer value for the data"/>
+      <column name="string_value" type="nvarchar(4000)" remarks="The string value for the data"/>
+      <column name="date_value" type="date" remarks="The date value for the data"/>
+      <column name="timestamp_value" type="timestamp" remarks="The timestamp value for the data"/>
+    </createTable>
+
+    <createTable schemaName="demo" tableName="vehicles" remarks="Vehicles">
+      <column name="created" type="timestamp" remarks="The date and time the vehicle was created">
+        <constraints nullable="false"/>
+      </column>
+      <column name="id" type="uuid" remarks="The Universally Unique Identifier (UUID) for the vehicle">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="name" type="nvarchar(100)" remarks="The name of the vehicle">
+        <constraints nullable="false"/>
+      </column>
+      <column name="type" type="nvarchar(30)" remarks="The code for the vehicle type">
+        <constraints nullable="false"/>
+      </column>
+      <column name="updated" type="timestamp" remarks="The date and time the vehicle was last updated"/>
+    </createTable>
+    <createIndex indexName="vehicles_type_ix" schemaName="demo" tableName="vehicles">
+      <column name="type"/>
+    </createIndex>
+
+    <createTable schemaName="demo" tableName="cars" remarks="Cars">
+      <column name="id" type="uuid" remarks="The Universally Unique Identifier (UUID) for the car">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="number_of_doors" type="int" remarks="The number of doors for the car">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <addForeignKeyConstraint constraintName="cars_vehicle_fk"
+      baseTableSchemaName="demo" baseTableName="cars" baseColumnNames="id"
+      referencedTableSchemaName="demo" referencedTableName="vehicles"
+      referencedColumnNames="id"/>
+
+    <createTable schemaName="demo" tableName="vehicle_attribute_types" remarks="Vehicle Attribute Types">
+      <column name="code" type="nvarchar(30)" remarks="The code for the vehicle attribute type">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="name" type="nvarchar(50)" remarks="The name of the vehicle attribute type">
+        <constraints nullable="false"/>
+      </column>
+      <column name="description" type="nvarchar(200)" defaultValue="" remarks="The description for the vehicle attribute type">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+
+    <createTable schemaName="demo" tableName="vehicle_attributes" remarks="Vehicle Attributes">
+      <column name="created" type="timestamp" remarks="The date and time the vehicle attribute was created">
+        <constraints nullable="false"/>
+      </column>
+      <column name="vehicle_id" type="uuid" remarks="The Universally Unique Identifier (UUID) for the vehicle the vehicle attribute is associated with">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="type" type="nvarchar(30)" remarks="The code for the vehicle attribute type">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="updated" type="timestamp" remarks="The date and time the vehicle attribute was updated"/>
+      <column name="value" type="nvarchar(100)" remarks="The value for the vehicle attribute">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <addForeignKeyConstraint constraintName="vehicle_attributes_vehicle_fk"
+      baseTableSchemaName="demo" baseTableName="vehicle_attributes" baseColumnNames="vehicle_id"
+      referencedTableSchemaName="demo" referencedTableName="vehicles"
+      referencedColumnNames="id"/>
+    <addForeignKeyConstraint constraintName="vehicle_attributes_vehicle_attribute_type_fk"
+      baseTableSchemaName="demo" baseTableName="vehicle_attributes" baseColumnNames="type"
+      referencedTableSchemaName="demo" referencedTableName="vehicle_attribute_types"
+      referencedColumnNames="code"/>
+
+  </changeSet>
+
+</databaseChangeLog>
+
+

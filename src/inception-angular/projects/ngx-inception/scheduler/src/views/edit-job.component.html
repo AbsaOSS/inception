@@ -1,0 +1,122 @@
+<form [formGroup]="editJobForm" autocomplete="off" class="d-flex flex-column flex-fill" validatedForm>
+  <mat-card class="flex flex-column flex-auto">
+    <mat-card-content class="d-flex flex-column flex-fill">
+      <div class="row">
+        <div class="col-sm">
+          <mat-form-field>
+            <mat-label i18n="@@scheduler_edit_job_component_label_id">ID</mat-label>
+            <input type="text" matInput formControlName="id" required="true" autofocus>
+            <mat-error *ngIf="idFormControl.errors && !idFormControl.untouched">
+              <span *ngIf="idFormControl.errors?.required" i18n="@@scheduler_edit_job_component_error_id_required">An ID is required.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <mat-form-field>
+            <mat-label i18n="@@scheduler_edit_job_component_label_name">Name</mat-label>
+            <input type="text" matInput formControlName="name" required="true">
+            <mat-error *ngIf="nameFormControl.errors && !nameFormControl.untouched">
+              <span *ngIf="nameFormControl.errors?.required" i18n="@@scheduler_edit_job_component_error_name_required">A name is required.</span>
+              <span *ngIf="nameFormControl.errors?.maxlength" i18n="@@scheduler_edit_job_component_error_name_maxlength">Name must not exceed 100 characters.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <mat-form-field>
+            <mat-label i18n="@@scheduler_edit_job_component_label_job_class">Job Class</mat-label>
+            <input type="text" matInput formControlName="jobClass" required="true">
+            <mat-error *ngIf="jobClassFormControl.errors && !jobClassFormControl.untouched">
+              <span *ngIf="jobClassFormControl.errors?.required" i18n="@@scheduler_edit_job_component_error_job_class_required">A job class is required.</span>
+              <span *ngIf="jobClassFormControl.errors?.maxlength" i18n="@@scheduler_edit_job_component_error_job_class_maxlength">Job class must not exceed 1000 characters.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <mat-form-field>
+            <mat-label i18n="@@scheduler_edit_job_component_label_scheduling_pattern">Scheduling Pattern</mat-label>
+            <input type="text" matInput formControlName="schedulingPattern" required="true">
+            <mat-error *ngIf="schedulingPatternFormControl.errors && !schedulingPatternFormControl.untouched">
+              <span *ngIf="schedulingPatternFormControl.errors?.required" i18n="@@scheduler_edit_job_component_error_scheduling_pattern_required">A scheduling pattern is required.</span>
+              <span *ngIf="schedulingPatternFormControl.errors?.maxlength" i18n="@@scheduler_edit_job_component_error_scheduling_pattern_maxlength">Scheduling pattern must not exceed 100 characters.</span>
+              <span *ngIf="schedulingPatternFormControl.errors?.pattern" i18n="@@scheduler_edit_job_component_error_scheduling_pattern_pattern">A valid cron statement is required.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <mat-form-field>
+            <mat-label i18n="@@scheduler_edit_job_component_label_content_type">Enabled</mat-label>
+            <mat-select formControlName="enabled" required="true">
+              <mat-option [value]="true" i18n="@@scheduler_edit_job_component_enabled_yes">Yes</mat-option>
+              <mat-option [value]="false" i18n="@@scheduler_edit_job_component_enabled_no">No</mat-option>
+            </mat-select>
+            <mat-error *ngIf="enabledFormControl.errors && !enabledFormControl.untouched">
+              <span *ngIf="enabledFormControl.errors?.required" i18n="@@scheduler_edit_job_component_error_enabled_required">Select whether the job is enabled.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <mat-form-field>
+            <mat-label i18n="@@scheduler_edit_job_component_label_status">Status</mat-label>
+            <mat-select formControlName="status" required="true">
+              <mat-option *ngFor="let jobStatus of jobStatuses" [value]="jobStatus">
+                {{ getJobStatusDescription(jobStatus) }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="statusFormControl.errors && !statusFormControl.untouched">
+              <span *ngIf="statusFormControl.errors?.required" i18n="@@scheduler_edit_job_component_error_status_required">A status is required.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <div class="mat-nested-table-header mt-2">
+            Parameters
+            <div class="mat-two-actions">
+              <button mat-icon-button (click)="newJobParameter()">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+          </div>
+          <table class="mat-nested-table flex-fill">
+            <tr class="mat-nested-header-row">
+              <th class="mat-nested-header-cell" i18n="@@scheduler_edit_job_component_job_parameters_table_header_name">Name</th>
+              <th class="mat-nested-header-cell" i18n="@@scheduler_edit_job_component_job_parameters_table_header_value">Value</th>
+              <th class="mat-nested-header-cell mat-two-actions" i18n="@@scheduler_edit_job_component_job_parameters_table_header_actions">Actions</th>
+            </tr>
+            <tr class="mat-nested-row" *ngFor="let jobParameter of jobParameters; index as index">
+              <td class="mat-nested-cell">
+                {{jobParameter.name}}
+              </td>
+              <td class="mat-nested-cell">
+                {{jobParameter.value}}
+              </td>
+              <td class="mat-nested-cell mat-two-actions">
+                <button mat-icon-button (click)="editJobParameter(jobParameter)">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button mat-icon-button (click)="deleteJobParameter(jobParameter)">
+                  <i class="far fa-trash-alt"></i>
+                </button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="align-right">
+      <button type="button" mat-flat-button color="link" (click)="cancel()" i18n="@@scheduler_edit_job_component_button_cancel">Cancel</button>
+      <button type="button" mat-flat-button color="primary" [disabled]="!editJobForm.valid" (click)="ok()" i18n="@@scheduler_edit_job_component_button_ok">OK</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

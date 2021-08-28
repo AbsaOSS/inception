@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+  <property name="blob_type" value="bytea" dbms="h2"/>
+  <property name="blob_type" value="bytea" dbms="postgresql"/>
+  <property name="blob_type" value="blob" dbms="oracle"/>
+  <property name="blob_type" value="varbinary(max)" dbms="mssql"/>
+  <property name="now" value="now()" dbms="h2"/>
+  <property name="now" value="now()" dbms="postgresql"/>
+  <property name="now" value="sysdate" dbms="oracle"/>
+  <property name="now" value="CURRENT_TIMESTAMP" dbms="mssql"/>
+
+  <changeSet id="inception-config-1.0.0" author="Marcus Portmann">
+    <comment>Inception - Configuration - 1.0.0</comment>
+    <sql dbms="h2" endDelimiter=";">
+      CREATE SCHEMA IF NOT EXISTS config
+    </sql>
+    <sql dbms="postgresql" endDelimiter=";">
+      CREATE SCHEMA IF NOT EXISTS config
+    </sql>
+    <sql dbms="mssql" endDelimiter=";">
+      CREATE SCHEMA config
+    </sql>
+
+    <createTable schemaName="config" tableName="config" remarks="Config">
+      <column name="key" type="nvarchar(100)" remarks="The key for the config">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="value" type="nvarchar(4000)" remarks="The value for the config">
+        <constraints nullable="false"/>
+      </column>
+      <column name="description" type="nvarchar(100)" remarks="The description for the config">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created" type="timestamp" remarks="The date and time the config was created">
+        <constraints nullable="false"/>
+      </column>
+      <column name="updated" type="timestamp" remarks="The date and time the config was last updated"/>
+    </createTable>
+  </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,42 @@
+<form [formGroup]="newCodeCategoryForm" autocomplete="off" class="d-flex flex-column flex-fill" validatedForm>
+  <mat-card class="flex flex-column flex-auto">
+    <mat-card-content class="d-flex flex-column flex-fill">
+      <div class="row">
+        <div class="col-sm">
+          <mat-form-field>
+            <mat-label i18n="@@codes_new_code_category_component_label_id">ID</mat-label>
+            <input type="text" matInput formControlName="id" required="true" autofocus>
+            <mat-error *ngIf="idFormControl.errors && !idFormControl.untouched">
+              <span *ngIf="idFormControl.errors?.required" i18n="@@codes_new_code_category_component_error_id_required">An ID is required.</span>
+              <span *ngIf="idFormControl.errors?.maxlength" i18n="@@codes_new_code_category_component_error_id_maxlength">ID must not exceed 100 characters.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <mat-form-field>
+            <mat-label i18n="@@codes_new_code_category_component_label_name">Name</mat-label>
+            <input type="text" matInput formControlName="name" required="true">
+            <mat-error *ngIf="nameFormControl.errors && !nameFormControl.untouched">
+              <span *ngIf="nameFormControl.errors?.required" i18n="@@codes_new_code_category_component_error_name_required">A name is required.</span>
+              <span *ngIf="nameFormControl.errors?.maxlength" i18n="@@codes_new_code_category_component_error_name_maxlength">Name must not exceed 100 characters.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field>
+            <mat-label i18n="@@codes_new_code_category_component_label_data">Data</mat-label>
+            <textarea matInput formControlName="data" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="4" cdkAutosizeMaxRows="4"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="align-right">
+      <button type="button" mat-flat-button color="link" (click)="cancel()" i18n="@@codes_new_code_category_component_button_cancel">Cancel</button>
+      <button type="button" mat-flat-button color="primary" [disabled]="!newCodeCategoryForm.valid" (click)="ok()" i18n="@@codes_new_code_category_component_button_ok">OK</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

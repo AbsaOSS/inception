@@ -1,0 +1,72 @@
+<form [formGroup]="userProfileForm" autocomplete="off" class="d-flex flex-column flex-fill" validatedForm>
+  <mat-card class="flex flex-column flex-auto">
+    <mat-card-content class="d-flex flex-column flex-fill">
+      <div class="row">
+        <div class="col-sm">
+          <mat-form-field class="static">
+            <mat-label i18n="@@security_user_profile_component_label_username">Username</mat-label>
+            <input type="text" matInput formControlName="username">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <mat-form-field>
+            <mat-label i18n="@@security_user_profile_component_label_name">Name</mat-label>
+            <input type="text" matInput formControlName="name" required="true">
+            <mat-error *ngIf="nameFormControl.errors && !nameFormControl.untouched">
+              <span *ngIf="nameFormControl.errors?.required" i18n="@@security_user_profile_component_error_name_required">A name is required.</span>
+              <span *ngIf="nameFormControl.errors?.maxlength" i18n="@@security_user_profile_component_error_name_maxlength">Name must not exceed 100 characters.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm">
+          <mat-form-field>
+            <mat-label i18n="@@security_user_profile_component_label_preferred_name">Preferred Name</mat-label>
+            <input type="text" matInput formControlName="preferredName">
+            <mat-error *ngIf="preferredNameFormControl.errors && !preferredNameFormControl.untouched">
+              <span *ngIf="preferredNameFormControl.errors?.maxlength" i18n="@@security_user_profile_component_error_preferred_name_maxlength">Preferred name must not exceed 100 characters.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <mat-form-field>
+            <mat-label i18n="@@security_user_profile_component_label_email">E-mail</mat-label>
+            <input type="text" matInput formControlName="email">
+            <mat-error *ngIf="emailFormControl.errors && !emailFormControl.untouched">
+              <span *ngIf="emailFormControl.errors?.maxlength" i18n="@@security_user_profile_component_error_email_maxlength">E-mail must not exceed 100 characters.</span>
+              <span *ngIf="emailFormControl.errors?.pattern" i18n="@@security_user_profile_component_error_email_pattern">A valid e-mail is required.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <mat-form-field>
+            <mat-label i18n="@@security_user_profile_component_label_phone_number">Phone Number</mat-label>
+            <input type="text" matInput formControlName="phoneNumber">
+            <mat-error *ngIf="phoneNumberFormControl.errors && !phoneNumberFormControl.untouched">
+              <span *ngIf="phoneNumberFormControl.errors?.maxlength" i18n="@@security_user_profile_component_error_phone_number_maxlength">Phone number must not exceed 100 characters.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm">
+          <mat-form-field>
+            <mat-label i18n="@@security_user_profile_component_label_mobile_number">Mobile Number</mat-label>
+            <input type="text" matInput formControlName="mobileNumber">
+            <mat-error *ngIf="mobileNumberFormControl.errors && !mobileNumberFormControl.untouched">
+              <span *ngIf="mobileNumberFormControl.errors?.maxlength" i18n="@@security_user_profile_component_error_mobile_number_maxlength">Mobile number must not exceed 100 characters.</span>
+              <span *ngIf="mobileNumberFormControl.errors?.pattern" i18n="@@security_user_profile_component_error_mobile_number_pattern">A valid international format mobile number is required.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="align-right">
+      <button type="button" mat-flat-button color="link" (click)="cancel()" i18n="@@security_user_profile_component_button_cancel">Cancel</button>
+      <button type="button" mat-flat-button color="primary" [disabled]="!userProfileForm.valid" (click)="ok()" i18n="@@security_user_profile_component_button_ok">OK</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

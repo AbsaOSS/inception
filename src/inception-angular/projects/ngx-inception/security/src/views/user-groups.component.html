@@ -1,0 +1,41 @@
+<mat-card class="flex flex-column flex-auto">
+  <div class="add-user-to-group-container">
+    <span class="mat-header-label" i18n="@@security_user_groups_component_new_group">New Group :</span>
+    <mat-form-field class="mat-form-field-slim">
+      <mat-select [(ngModel)]="selectedGroupName" i18n-placeholder="@@security_user_groups_component_placeholder_select_a_group" placeholder="Select a group">
+        <mat-option *ngFor="let availableGroupName of availableGroupNames$ | async" [value]="availableGroupName">
+          {{availableGroupName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-flat-button color="primary" [disabled]="!selectedGroupName" (click)="addUserToGroup()" i18n="@@security_user_groups_component_button_add">Add</button>
+  </div>
+
+  <mat-table [dataSource]="dataSource" class="flex-fill" style="min-height: 550px;">
+
+    <!-- Existing Group Name Column -->
+    <ng-container matColumnDef="existingGroupName">
+      <mat-header-cell *matHeaderCellDef i18n="@@security_user_groups_component_table_header_existing_group">Existing Group</mat-header-cell>
+      <mat-cell *matCellDef="let existingGroupName">{{existingGroupName}}</mat-cell>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell class="mat-one-action" *matHeaderCellDef>Actions</mat-header-cell>
+      <mat-cell class="mat-one-action" *matCellDef="let existingGroupName">
+        <button mat-icon-button (click)="removeUserFromGroup(existingGroupName)">
+          <i class="far fa-trash-alt"></i>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Header and Row Declarations -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSize]="10" [hidePageSize]="true" [showFirstLastButtons]="true" ></mat-paginator>
+
+</mat-card>
+
+

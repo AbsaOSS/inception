@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+  <property name="blob_type" value="bytea" dbms="h2"/>
+  <property name="blob_type" value="bytea" dbms="postgresql"/>
+  <property name="blob_type" value="blob" dbms="oracle"/>
+  <property name="blob_type" value="varbinary(max)" dbms="mssql"/>
+  <property name="now" value="now()" dbms="h2"/>
+  <property name="now" value="now()" dbms="postgresql"/>
+  <property name="now" value="sysdate" dbms="oracle"/>
+  <property name="now" value="CURRENT_TIMESTAMP" dbms="mssql"/>
+
+  <changeSet id="inception-application-1.0.0" author="Marcus Portmann">
+    <comment>Inception - Application - 1.0.0</comment>
+    <sql dbms="h2" endDelimiter=";">
+      CREATE SCHEMA IF NOT EXISTS service_registry
+    </sql>
+    <sql dbms="postgresql" endDelimiter=";">
+      CREATE SCHEMA IF NOT EXISTS service_registry
+    </sql>
+    <sql dbms="mssql" endDelimiter=";">
+      CREATE SCHEMA service_registry
+    </sql>
+
+    <createTable schemaName="service_registry" tableName="service_registry" remarks="Service Registry">
+      <column name="name" type="nvarchar(100)" remarks="The name of the web service">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="security_type" type="int" remarks="The type of security implemented by the web service i.e. 0 = None, 1 = Mutual SSL, etc">
+        <constraints nullable="false"/>
+      </column>
+      <column name="supports_compression" type="boolean" remarks="Does the web service support compression">
+        <constraints nullable="false"/>
+      </column>
+      <column name="endpoint" type="nvarchar(1000)" remarks="The endpoint for the web service">
+        <constraints nullable="false"/>
+      </column>
+      <column name="service_class" type="nvarchar(1000)" remarks="The fully qualified name of the Java service class">
+        <constraints nullable="false"/>
+      </column>
+      <column name="wsdl_location" type="nvarchar(1000)" remarks="The location of the WSDL defining the web service on the classpath">
+        <constraints nullable="false"/>
+      </column>
+      <column name="username" type="nvarchar(100)" remarks="The username to use created accessing a web service with username-password security enabled"/>
+      <column name="password" type="nvarchar(100)" remarks="The password to use created accessing a web service with username-password security enabled"/>
+    </createTable>
+  </changeSet>
+
+</databaseChangeLog>

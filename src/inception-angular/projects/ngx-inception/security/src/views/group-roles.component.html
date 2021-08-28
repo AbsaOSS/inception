@@ -1,0 +1,41 @@
+<mat-card class="flex flex-column flex-auto">
+  <div class="add-role-to-group-container">
+    <span class="mat-header-label" i18n="@@security_group_roles_component_new_role">New Role :</span>
+    <mat-form-field class="mat-form-field-slim">
+      <mat-select [(ngModel)]="selectedRole" i18n-placeholder="@@security_group_roles_component_placeholder_select_a_role" placeholder="Select a role">
+        <mat-option *ngFor="let availableRole of availableRoles$ | async" [value]="availableRole">
+          {{availableRole.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-flat-button color="primary" [disabled]="!selectedRole" (click)="addRoleToGroup()" i18n="@@security_group_roles_component_button_add">Add</button>
+  </div>
+
+  <mat-table [dataSource]="dataSource" class="flex-fill" style="min-height: 550px;">
+
+    <!-- Existing Role Name Column -->
+    <ng-container matColumnDef="existingRoleName">
+      <mat-header-cell *matHeaderCellDef i18n="@@security_group_roles_component_table_header_existing_role">Existing Role</mat-header-cell>
+      <mat-cell *matCellDef="let existingGroupRole">{{roleCodeToName(existingGroupRole.roleCode)}}</mat-cell>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell class="mat-one-action" *matHeaderCellDef>Actions</mat-header-cell>
+      <mat-cell class="mat-one-action" *matCellDef="let existingGroupRole">
+        <button mat-icon-button (click)="removeRoleFromGroup(existingGroupRole.roleCode)">
+          <i class="far fa-trash-alt"></i>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Header and Row Declarations -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSize]="10" [hidePageSize]="true" [showFirstLastButtons]="true" ></mat-paginator>
+
+</mat-card>
+
+

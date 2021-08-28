@@ -1,0 +1,64 @@
+<mat-card class="flex flex-column flex-auto">
+  <div class="mat-table-header">
+    <button mat-flat-button color="primary" (click)="newJob()" i18n="@@scheduler_jobs_component_button_new">New</button>
+    <table-filter (changed)="applyFilter($event)"></table-filter>
+  </div>
+  <mat-table [dataSource]="dataSource" class="flex-fill" style="min-height: 550px;" matSort matSortActive="name" matSortDirection="asc" matSortDisableClear>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@scheduler_jobs_component_table_header_name">Name</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
+    </ng-container>
+
+    <!-- Status Column -->
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@scheduler_jobs_component_table_header_status">Status</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ getJobStatusDescription(row.status) }}</mat-cell>
+    </ng-container>
+
+    <!-- Execution Attempts Column -->
+    <ng-container matColumnDef="executionAttempts">
+      <mat-header-cell class="d-none d-md-table-cell text-center" *matHeaderCellDef mat-sort-header i18n="@@scheduler_jobs_component_table_header_execution_attempts">Execution Attempts</mat-header-cell>
+      <mat-cell class="d-none d-md-table-cell text-center" *matCellDef="let row">{{ (!!row.executionAttempts) ? row.executionAttempts : '-' }}</mat-cell>
+    </ng-container>
+
+    <!-- Next Execution Column -->
+    <ng-container matColumnDef="nextExecution">
+      <mat-header-cell class="d-none d-md-table-cell" *matHeaderCellDef mat-sort-header i18n="@@scheduler_jobs_component_table_header_next_execution">Next Execution</mat-header-cell>
+      <mat-cell class="d-none d-md-table-cell" *matCellDef="let row">{{ row.nextExecution | date:'yyyy-MM-dd HH:mm:ss' }}</mat-cell>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell class="mat-one-action" *matHeaderCellDef i18n="@@scheduler_jobs_component_table_header_actions">Actions</mat-header-cell>
+      <mat-cell class="mat-one-action" *matCellDef="let row">
+        <button mat-icon-button [matMenuTriggerFor]="actionsMenu" [matMenuTriggerData]="{jobId: row.id}">
+          <i class="fas fa-ellipsis-v"></i>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Header and Row Declarations -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSize]="10" [hidePageSize]="true" [showFirstLastButtons]="true" ></mat-paginator>
+
+  <mat-menu class="mat-action-menu" #actionsMenu="matMenu" >
+    <ng-template matMenuContent let-jobId="jobId">
+      <button mat-menu-item (click)="editJob(jobId)">
+        <i class="fas fa-edit"></i>
+        <span i18n="@@scheduler_jobs_component_menu_item_edit">Edit</span>
+      </button>
+      <button mat-menu-item (click)="deleteJob(jobId)">
+        <i class="far fa-trash-alt"></i>
+        <span i18n="@@scheduler_jobs_component_menu_item_delete">Delete</span>
+      </button>
+    </ng-template>
+  </mat-menu>
+
+</mat-card>
+
+

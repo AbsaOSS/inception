@@ -1,0 +1,25 @@
+.add-role-to-group-container
+{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #c2cfd6;
+  padding: 8px !important;
+}
+
+.add-role-to-group-container > span
+{
+  white-space: nowrap;
+  flex: 0;
+  padding-right: 8px;
+}
+
+.add-role-to-group-container > .mat-form-field
+{
+  flex: 1;
+}
+
+.add-role-to-group-container > button
+{
+  margin-left: 8px;
+}

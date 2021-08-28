@@ -1,0 +1,40 @@
+<mat-card class="flex flex-column flex-auto">
+  <div class="add-user-directory-to-tenant-container">
+    <span class="mat-header-label" i18n="@@security_tenant_user_directories_component_new_user_directory">New User Directory :</span>
+    <mat-form-field floatLabel="never" class="mat-form-field-slim">
+      <input type="text" matInput autocompleteSelectionRequired [formControl]="newUserDirectoryFormControl" [matAutocomplete]="auto" i18n-placeholder="@@security_tenant_user_directories_component_placeholder_select_a_user_directory" placeholder="Select a user directory">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayUserDirectory">
+        <mat-option *ngFor="let filteredUserDirectory of filteredUserDirectories$ | async" [value]="filteredUserDirectory">
+          {{filteredUserDirectory.name}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <button mat-flat-button color="primary" [disabled]="!isUserDirectorySelected()" (click)="addUserDirectoryToTenant()" i18n="@@security_tenant_user_directories_component_button_add">Add</button>
+  </div>
+
+  <mat-table [dataSource]="dataSource" class="flex-fill" style="min-height: 550px;">
+
+    <!-- Existing User Directory Name Column -->
+    <ng-container matColumnDef="existingUserDirectoryName">
+      <mat-header-cell *matHeaderCellDef i18n="@@security_tenant_user_directories_component_table_header_existing_user_directory_name">Existing User Directory Name</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.name}}</mat-cell>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell class="mat-one-action" *matHeaderCellDef>Actions</mat-header-cell>
+      <mat-cell class="mat-one-action" *matCellDef="let userDirectorySummary">
+        <button mat-icon-button (click)="removeUserDirectoryFromTenant(userDirectorySummary.id)">
+          <i class="far fa-trash-alt"></i>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Header and Row Declarations -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSize]="10" [hidePageSize]="true" [showFirstLastButtons]="true" ></mat-paginator>
+
+</mat-card>

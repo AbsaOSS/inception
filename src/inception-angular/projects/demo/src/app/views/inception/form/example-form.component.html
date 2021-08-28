@@ -1,0 +1,176 @@
+<form [formGroup]="exampleForm" autocomplete="off" class="d-flex flex-column flex-auto" validatedForm>
+  <mat-card class="d-flex flex-column flex-auto">
+    <mat-card-content class="d-flex flex-column flex-auto">
+      <div class="row">
+        <div class="col">
+          <h6 class="mb-0">Disabled Form Fields</h6>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <mat-form-field class="static">
+            <mat-label>Static</mat-label>
+            <input matInput value="Static Value" disabled>
+          </mat-form-field>
+        </div>
+        <div class="col-sm">
+          <mat-form-field>
+            <mat-label>Disabled input</mat-label>
+            <input matInput disabled>
+          </mat-form-field>
+        </div>
+        <div class="col-sm">
+          <mat-form-field>
+            <mat-label>Disabled select</mat-label>
+            <mat-select disabled>
+              <mat-option value="1">Option #1</mat-option>
+              <mat-option value="2">Option #2</mat-option>
+              <mat-option value="3">Option #3</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <h6 class="mb-0 mt-3">Personal Information</h6>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input type="text" matInput formControlName="name" required="true" autofocus>
+            <mat-hint>The name.</mat-hint>
+            <mat-error *ngIf="exampleForm.controls['name'].errors && !exampleForm.controls['name'].untouched">
+              <span *ngIf="exampleForm.controls['name'].errors?.required">A name is required.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm">
+          <mat-form-field>
+            <mat-label>Preferred name</mat-label>
+            <input type="text" matInput formControlName="preferredName" required="true">
+            <mat-error *ngIf="exampleForm.controls['preferredName'].errors && !exampleForm.controls['preferredName'].untouched">
+              <span *ngIf="exampleForm.controls['preferredName'].errors?.required">A preferred name is required.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <mat-form-field>
+            <mat-label>Date of birth</mat-label>
+            <input matInput [matDatepicker]="datePicker" (focus)="datePicker.open()" formControlName="dateOfBirth" required="true" readonly>
+            <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+            <mat-datepicker #datePicker></mat-datepicker>
+            <mat-error *ngIf="exampleForm.controls['dateOfBirth'].errors && !exampleForm.controls['dateOfBirth'].untouched">
+              <span *ngIf="exampleForm.controls['dateOfBirth'].errors?.required">A date of birth is required.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm">
+          <mat-form-field>
+            <mat-label>Title</mat-label>
+            <mat-select formControlName="title" required="true">
+              <mat-option *ngFor="let title of titles" [value]="title.value">
+                {{title.name}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="exampleForm.controls['title'].errors && !exampleForm.controls['title'].untouched">
+              <span *ngIf="exampleForm.controls['title'].errors?.required">A title is required.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input type="password" matInput formControlName="password" required="true">
+            <mat-error *ngIf="exampleForm.controls['password'].errors && !exampleForm.controls['password'].untouched">
+              <span *ngIf="exampleForm.controls['password'].errors?.required">A password is required.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm">
+          <mat-form-field>
+            <mat-label>Confirm Password</mat-label>
+            <input type="password" matInput formControlName="confirmPassword" required="true">
+            <mat-error *ngIf="exampleForm.controls['confirmPassword'].errors && !exampleForm.controls['confirmPassword'].untouched">
+              <span *ngIf="exampleForm.controls['confirmPassword'].errors?.required">Password confirmation is required.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <h6 class="mb-0 mt-4">Other Information</h6>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <mat-form-field>
+            <mat-label>Favorite country</mat-label>
+            <input type="text" matInput autocompleteSelectionRequired [formControl]="exampleForm.get('favoriteCountry')" required="true" [matAutocomplete]="favoriteCountryAutocomplete">
+            <mat-autocomplete autoActiveFirstOption #favoriteCountryAutocomplete="matAutocomplete" [displayWith]="displayCountry">
+              <mat-option *ngFor="let country of filteredCountries$ | async" [value]="country">
+                {{country.shortName}}
+              </mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="exampleForm.controls['favoriteCountry'].errors && !exampleForm.controls['favoriteCountry'].untouched">
+              <span *ngIf="exampleForm.controls['favoriteCountry'].errors?.required">A favorite country is required.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm">
+          <mat-form-field>
+            <mat-label>Gross income</mat-label>
+            <input matInput formControlName="grossIncome" type="number" class="text-right">
+            <span matPrefix>R&nbsp;</span>
+            <span matSuffix>.00</span>
+            <mat-error *ngIf="exampleForm.controls['grossIncome'].errors && !exampleForm.controls['grossIncome'].untouched">
+              <span *ngIf="exampleForm.controls['grossIncome'].errors?.required">The gross income is required.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <group-form-field>
+            <mat-label>Favorite color</mat-label>
+            <mat-radio-group formControlName="favoriteColor" required="true">
+              <mat-radio-button value="1">Red</mat-radio-button>
+              <mat-radio-button value="2">Green</mat-radio-button>
+              <mat-radio-button value="3">Blue</mat-radio-button>
+            </mat-radio-group>
+            <mat-hint>Select a favorite color.</mat-hint>
+            <mat-error *ngIf="exampleForm.controls['favoriteColor'].errors && !exampleForm.controls['favoriteColor'].untouched">
+              <span *ngIf="exampleForm.controls['favoriteColor'].errors?.required">A favorite colour is required.</span>
+            </mat-error>
+          </group-form-field>
+        </div>
+        <div class="col-sm">
+          <group-form-field>
+            <mat-label>Favorite pet</mat-label>
+            <mat-checkbox formControlName="favoritePetDog">Dog</mat-checkbox>
+            <mat-checkbox formControlName="favoritePetCat">Cat</mat-checkbox>
+            <mat-checkbox formControlName="favoritePetFish">Fish</mat-checkbox>
+            <mat-hint>Select your favorite pet(s).</mat-hint>
+          </group-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field>
+            <mat-label>Notes</mat-label>
+            <textarea matInput formControlName="notes" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="2" cdkAutosizeMaxRows="5"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="align-right">
+      <button type="button" mat-flat-button color="link">Cancel</button>
+      <button type="button" mat-flat-button color="primary" [disabled]="!exampleForm.valid">OK</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

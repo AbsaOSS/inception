@@ -1,0 +1,52 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <artifactId>inception-oauth2-authorization-server</artifactId>
+  <name>inception-oauth2-authorization-server</name>
+
+  <parent>
+    <artifactId>inception</artifactId>
+    <groupId>africa.absa</groupId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
+
+  <dependencies>
+    <!-- Inception Dependencies -->
+    <dependency>
+      <artifactId>inception-core</artifactId>
+      <groupId>africa.absa</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>inception-security</artifactId>
+      <groupId>africa.absa</groupId>
+    </dependency>
+
+    <!-- Dependencies -->
+    <dependency>
+      <artifactId>jackson-databind</artifactId>
+      <groupId>com.fasterxml.jackson.core</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>spring-security-oauth2-jose</artifactId>
+      <groupId>org.springframework.security</groupId>
+    </dependency>
+
+    <!-- Provided Dependencies -->
+    <dependency>
+      <artifactId>javax.servlet-api</artifactId>
+      <groupId>javax.servlet</groupId>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- Test Dependencies -->
+    <dependency>
+      <artifactId>inception-test</artifactId>
+      <groupId>africa.absa</groupId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  <modelVersion>4.0.0</modelVersion>
+
+</project>
+

@@ -1,0 +1,323 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <repositories>
+    <repository>
+      <id>jaspersoft-third-party</id>
+      <url>https://jaspersoft.jfrog.io/jaspersoft/third-party-ce-artifacts/</url>
+    </repository>
+  </repositories>
+
+  <artifactId>inception-reporting</artifactId>
+  <name>inception-reporting</name>
+
+  <parent>
+    <groupId>africa.absa</groupId>
+    <artifactId>inception</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
+
+  <dependencies>
+    <!-- Inception Dependencies -->
+    <dependency>
+      <groupId>africa.absa</groupId>
+      <artifactId>inception-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>africa.absa</groupId>
+      <artifactId>inception-jpa</artifactId>
+    </dependency>
+
+    <!-- Dependencies -->
+    <dependency>
+      <groupId>net.sf.jasperreports</groupId>
+      <artifactId>jasperreports</artifactId>
+      <version>${jasperreports.version}</version>
+      <exclusions>
+        <!-- Optional -->
+        <exclusion>
+          <groupId>antlr</groupId>
+          <artifactId>antlr</artifactId>
+        </exclusion>
+        <!-- Optional -->
+        <exclusion>
+          <groupId>com.adobe.xmp</groupId>
+          <artifactId>xmpcore</artifactId>
+        </exclusion>
+        <!-- TODO: Check these 3 dependencies required for JSON support -->
+        <exclusion>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-annotations</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-core</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-databind</artifactId>
+        </exclusion>
+        <!-- TODO: CHECK THIS -->
+        <exclusion>
+          <groupId>om.google.zxing</groupId>
+          <artifactId>core</artifactId>
+        </exclusion>
+        <!-- Optional -->
+        <exclusion>
+          <groupId>commons-javaflow</groupId>
+          <artifactId>commons-javaflow</artifactId>
+        </exclusion>
+        <!--
+        <exclusion>
+          <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
+        </exclusion>
+        -->
+        <!-- Optional -->
+        <exclusion>
+          <groupId>javax.persistence</groupId>
+          <artifactId>persistence-api</artifactId>
+        </exclusion>
+        <!-- Optional -->
+        <exclusion>
+          <groupId>jaxen</groupId>
+          <artifactId>jaxen</artifactId>
+        </exclusion>
+        <!-- Optional -->
+        <exclusion>
+          <groupId>mondrian</groupId>
+          <artifactId>mondrian</artifactId>
+        </exclusion>
+        <!-- Optional -->
+        <exclusion>
+          <groupId>net.sf.barcode4j</groupId>
+          <artifactId>barcode4j</artifactId>
+        </exclusion>
+        <!-- Optional -->
+        <exclusion>
+          <groupId>net.sourceforge.barbecue</groupId>
+          <artifactId>barbecue</artifactId>
+        </exclusion>
+        <!-- Optional -->
+        <exclusion>
+          <groupId>net.sourceforge.jexcelapi</groupId>
+          <artifactId>jxl</artifactId>
+        </exclusion>
+        <!-- Optional -->
+        <exclusion>
+          <groupId>org.apache.ant</groupId>
+          <artifactId>ant</artifactId>
+        </exclusion>
+        <!-- Optional -->
+        <exclusion>
+          <groupId>org.apache.commons</groupId>
+          <artifactId>commons-pool2</artifactId>
+        </exclusion>
+        <!-- Optional -->
+        <exclusion>
+          <groupId>org.apache.httpcomponents</groupId>
+          <artifactId>httpclient</artifactId>
+        </exclusion>
+        <!-- TODO: Check these 3 dependencies required for full-text indexing -->
+        <exclusion>
+          <groupId>org.apache.lucene</groupId>
+          <artifactId>lucene-core</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.lucene</groupId>
+          <artifactId>lucene-analyzers-common</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.lucene</groupId>
+          <artifactId>lucene-queryparser</artifactId>
+        </exclusion>
+        <!-- Optional -->
+        <exclusion>
+          <groupId>org.apache.poi</groupId>
+          <artifactId>poi</artifactId>
+        </exclusion>
+        <!-- Optional -->
+        <exclusion>
+          <groupId>org.apache.poi</groupId>
+          <artifactId>poi-ooxml</artifactId>
+        </exclusion>
+        <!-- Optional -->
+        <exclusion>
+          <groupId>org.apache.velocity</groupId>
+          <artifactId>velocity</artifactId>
+        </exclusion>
+        <!-- Optional -->
+        <exclusion>
+          <groupId>org.apache.xmlgraphics</groupId>
+          <artifactId>batik-bridge</artifactId>
+        </exclusion>
+        <!-- Optional -->
+        <exclusion>
+          <groupId>org.apache.xmlgraphics</groupId>
+          <artifactId>batik-svggen</artifactId>
+        </exclusion>
+        <!-- Optional -->
+        <exclusion>
+          <groupId>org.beanshell</groupId>
+          <artifactId>bsh</artifactId>
+        </exclusion>
+        <!-- TODO: CHECK THIS -->
+        <exclusion>
+          <groupId>org.codehaus.castor</groupId>
+          <artifactId>castor-xml</artifactId>
+        </exclusion>
+        <!-- Optional -->
+        <exclusion>
+          <groupId>org.codehaus.groovy</groupId>
+          <artifactId>groovy-all</artifactId>
+        </exclusion>
+        <!-- TODO: CHECK THIS -->
+        <exclusion>
+          <groupId>org.eclipse.jdt.core.compiler</groupId>
+          <artifactId>ecj</artifactId>
+        </exclusion>
+        <!-- Optional -->
+        <exclusion>
+          <groupId>org.hibernate</groupId>
+          <artifactId>hibernate-core</artifactId>
+        </exclusion>
+        <!-- Optional -->
+        <exclusion>
+          <groupId>org.mozilla</groupId>
+          <artifactId>rhino</artifactId>
+        </exclusion>
+        <!-- TODO: CHECK THIS -->
+        <exclusion>
+          <groupId>org.olap4j</groupId>
+          <artifactId>olap4j</artifactId>
+        </exclusion>
+        <!-- Optional -->
+        <exclusion>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-beans</artifactId>
+        </exclusion>
+        <!-- Optional -->
+        <exclusion>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-core</artifactId>
+        </exclusion>
+        <!-- Optional -->
+        <exclusion>
+          <groupId>xalan</groupId>
+          <artifactId>xalan</artifactId>
+        </exclusion>
+
+        <!-- Exclude Bouncy Castle Dependencies from com.lowagie:itext -->
+        <exclusion>
+          <groupId>bouncycastle</groupId>
+          <artifactId>bcmail-jdk14</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>bouncycastle</groupId>
+          <artifactId>bcprov-jdk14</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.bouncycastle</groupId>
+          <artifactId>bctsp-jdk14</artifactId>
+        </exclusion>
+
+        <!--
+        <exclusion>
+          <groupId>bouncycastle</groupId>
+          <artifactId>bcmail-jdk14</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>bouncycastle</groupId>
+          <artifactId>bcprov-jdk14</artifactId>
+        </exclusion>
+        -->
+
+        <!--
+        <exclusion>
+          <groupId>com.keypoint</groupId>
+          <artifactId>png-encoder</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>javax.xml.soap</groupId>
+          <artifactId>saaj-api</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>net.sourceforge.jexcelapi</groupId>
+          <artifactId>jxl</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.xmlgraphics</groupId>
+          <artifactId>batik-awt-util</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.xmlgraphics</groupId>
+          <artifactId>batik-css</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.xmlgraphics</groupId>
+          <artifactId>batik-dom</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.xmlgraphics</groupId>
+          <artifactId>batik-gvt</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.xmlgraphics</groupId>
+          <artifactId>batik-script</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.xmlgraphics</groupId>
+          <artifactId>batik-svg-dom</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.xmlgraphics</groupId>
+          <artifactId>batik-util</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-context</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>eclipse</groupId>
+          <artifactId>jdtcore</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>jakarta-regexp</groupId>
+          <artifactId>jakarta-regexp</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>xml-apis</groupId>
+          <artifactId>xml-apis</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>xmlpull</groupId>
+          <artifactId>xmlpull</artifactId>
+        </exclusion>
+        -->
+
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.groovy</groupId>
+      <artifactId>groovy</artifactId>
+    </dependency>
+
+    <!-- Provided Dependencies -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- Test Dependencies -->
+    <dependency>
+      <groupId>africa.absa</groupId>
+      <artifactId>inception-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+</project>
+

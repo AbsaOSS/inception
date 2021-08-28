@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+  <property name="blob_type" value="bytea" dbms="h2"/>
+  <property name="blob_type" value="bytea" dbms="postgresql"/>
+  <property name="blob_type" value="blob" dbms="oracle"/>
+  <property name="blob_type" value="varbinary(max)" dbms="mssql"/>
+  <property name="now" value="now()" dbms="h2"/>
+  <property name="now" value="now()" dbms="postgresql"/>
+  <property name="now" value="sysdate" dbms="oracle"/>
+  <property name="now" value="CURRENT_TIMESTAMP" dbms="mssql"/>
+
+  <changeSet id="inception-reporting-1.0.0" author="Marcus Portmann">
+    <comment>Inception - Reporting - 1.0.0</comment>
+    <sql dbms="h2" endDelimiter=";">
+      CREATE SCHEMA IF NOT EXISTS reporting
+    </sql>
+    <sql dbms="postgresql" endDelimiter=";">
+      CREATE SCHEMA IF NOT EXISTS reporting
+    </sql>
+    <sql dbms="mssql" endDelimiter=";">
+      CREATE SCHEMA reporting
+    </sql>
+
+    <createTable schemaName="reporting" tableName="report_definitions" remarks="Report Definitions">
+      <column name="id" type="nvarchar(100)" remarks="The ID for the report definition">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="name" type="nvarchar(100)" remarks="The name of the report definition">
+        <constraints nullable="false"/>
+      </column>
+      <column name="template" type="${blob_type}" remarks="The JasperReports template for the report definition">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created" type="timestamp" remarks="The date and time the report definition was created">
+        <constraints nullable="false"/>
+      </column>
+      <column name="updated" type="timestamp" remarks="The date and time the report definition was last updated"/>
+    </createTable>
+  </changeSet>
+
+</databaseChangeLog>

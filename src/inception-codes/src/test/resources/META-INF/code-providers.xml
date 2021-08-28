@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE codeProviders SYSTEM "code-providers.dtd">
+<codeProviders>
+  <codeProvider>
+    <name>Test Code Provider</name>
+    <class>africa.absa.inception.codes.test.TestCodeProvider</class>
+  </codeProvider>
+</codeProviders>

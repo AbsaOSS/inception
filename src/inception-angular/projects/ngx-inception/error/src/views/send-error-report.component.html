@@ -1,0 +1,48 @@
+<div class="app flex-row align-items-center" >
+  <div class="container simple-container">
+    <div class="row justify-content-center">
+      <form [formGroup]="sendErrorReportForm" autocomplete="off" validatedForm>
+        <mat-card>
+          <div class="d-flex justify-content-center pt-4 pb-2 mat-error">
+            <i class="far fa-4x fa-times-circle"></i>
+          </div>
+          <mat-card-content>
+            <p i18n="@@error_send_error_component_an_error_occurred">
+              An error occurred while processing your request.
+            </p>
+            <p class="mat-error">
+              <ng-container *ngIf="error">
+              {{error.message}}
+              </ng-container>
+            </p>
+            <p i18n="@@error_send_error_component_provide_feedback">
+              Please provide a detailed description of what you were doing when the problem occurred.
+            </p>
+            <div class="row">
+              <div class="col">
+                <mat-form-field>
+                  <mat-label i18n="@@error_send_error_component_label_email_address">E-mail address</mat-label>
+                  <input type="text" matInput formControlName="email">
+                  <mat-error *ngIf="emailFormControl.errors && !emailFormControl.untouched">
+                    <span *ngIf="emailFormControl.errors?.email" i18n="@@error_send_error_component_error_email_invalid">A valid e-mail address is required.</span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <mat-form-field>
+                  <mat-label i18n="@@error_send_error_component_label_feedback">Feedback</mat-label>
+                  <textarea matInput formControlName="feedback" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="10"></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+          </mat-card-content>
+          <mat-card-actions align="right">
+            <button type="button" (click)="sendErrorReport()" mat-flat-button color="warn" i18n="@@error_send_error_component_button_send_error_report">Send Error Report</button>
+          </mat-card-actions>
+        </mat-card>
+      </form>
+    </div>
+  </div>
+</div>

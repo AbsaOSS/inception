@@ -1,0 +1,50 @@
+<mat-card class="flex flex-column flex-fill">
+  <div class="mat-table-header">
+    <button mat-flat-button color="primary">New User</button>
+    <table-filter (changed)="applyFilter($event)"></table-filter>
+  </div>
+  <mat-table [dataSource]="dataSource" class="flex-fill" matSort>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.name}}</mat-cell>
+    </ng-container>
+
+    <!-- Preferred Name Column -->
+    <ng-container matColumnDef="preferredName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Preferred Name</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.preferredName}}</mat-cell>
+    </ng-container>
+
+    <!-- E-Mail Column -->
+    <ng-container matColumnDef="email">
+      <mat-header-cell class="d-none d-sm-inline-block" *matHeaderCellDef mat-sort-header>E-mail</mat-header-cell>
+      <mat-cell class="d-none d-sm-inline-block" *matCellDef="let row">{{row.email}}</mat-cell>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell class="mat-three-actions" *matHeaderCellDef>Actions</mat-header-cell>
+      <mat-cell class="mat-three-actions" *matCellDef="let row">
+        <span>
+        <button mat-icon-button>
+          <i class="fas fa-user-edit"></i>
+        </button>
+        <button mat-icon-button>
+          <i class="fas fa-users"></i>
+        </button>
+        <button mat-icon-button>
+          <i class="fas fa-user-times"></i>
+        </button>
+        </span>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Header and Row Declarations -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSize]="10" [hidePageSize]="true" [showFirstLastButtons]="true"></mat-paginator>
+</mat-card>

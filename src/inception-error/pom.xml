@@ -1,0 +1,41 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>inception-error</artifactId>
+  <name>inception-error</name>
+
+  <parent>
+    <groupId>africa.absa</groupId>
+    <artifactId>inception</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
+
+  <dependencies>
+    <!-- Inception Dependencies -->
+    <dependency>
+      <groupId>africa.absa</groupId>
+      <artifactId>inception-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>africa.absa</groupId>
+      <artifactId>inception-jpa</artifactId>
+    </dependency>
+
+    <!-- Dependencies -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+    </dependency>
+
+    <!-- Test Dependencies -->
+    <dependency>
+      <groupId>africa.absa</groupId>
+      <artifactId>inception-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+</project>
+

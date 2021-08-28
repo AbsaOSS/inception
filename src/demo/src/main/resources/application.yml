@@ -1,0 +1,117 @@
+# To generate the application keystore:
+#   keytool -genkeypair -keystore demo.p12 -storetype pkcs12 -storepass demo -alias demo -keyalg RSA -keysize 2048 -keypass demo -validity 7300 -dname "CN=demo" -ext san=dns:demo.local,dns:localhost,ip:127.0.0.1
+#
+# To generate an RSA PKCS8 key-pair to sign JWTs, execute the following commands:
+#   openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -pkeyopt rsa_keygen_pubexp:65537 | openssl pkcs8 -topk8 -nocrypt -outform pem > rsa-2048-private-key.p8
+#   openssl pkey -pubout -inform pem -outform pem -in rsa-2048-private-key.p8 -out rsa-2048-public-key.p8
+
+server:
+  port: 8080
+
+  ssl:
+    enabled: false
+    key-store: classpath:META-INF/demo.p12
+    key-store-type: pkcs12
+    key-store-password: Password1
+    key-password: Password1
+    key-alias: demo
+    protocol: TLS
+#    trust-store: classpath:META-INF/demo.p12
+#    trust-store-type: pkcs12
+#    trust-store-password: Password1
+
+#  security:
+#    keyStore:
+#      type: pkcs12
+#      path: classpath:META-INF/demo.p12
+#      alias: demo
+#      password: Password1
+#    trustStore:
+#      type: pkcs12
+#      path: classpath:META-INF/demo.jks
+#      password: Password1
+
+
+inception:
+  #  api:
+  #    security:
+  #      enabled: false
+
+  debug:
+    enabled: true
+
+  application:
+    data-source:
+      class-name: org.h2.jdbcx.JdbcDataSource
+      url: jdbc:h2:mem:application;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;DATABASE_TO_LOWER=TRUE;CASE_INSENSITIVE_IDENTIFIERS=TRUE
+      min-pool-size: 1
+      max-pool-size: 5
+#    data-source:
+#      class-name: org.postgresql.xa.PGXADataSource
+#      url: jdbc:postgresql://localhost:5432/demo
+#      username: demo
+#      password: demo
+#      min-pool-size: 5
+#      max-pool-size: 10
+#    data-source:
+#      class-name: com.microsoft.sqlserver.jdbc.SQLServerXADataSource
+#      url: jdbc:sqlserver://192.168.185.130:1433;databaseName=Demo;user=Demo;password=Password1
+#      min-pool-size: 5
+#      max-pool-size: 10
+
+  cache:
+    hazelcast:
+      server:
+        enabled: true
+        port-auto-increment: true
+        cluster:
+          port: 15000
+          name: demo-cluster
+          password: YROTLEYO6Z05WAXbCuK4
+          members:
+        caches:
+          - cache:
+            name: demo-cache
+            max-size-policy: PER_NODE
+            maxSize: 10000
+            in-memory-format: OBJECT
+            eviction-policy: LRU
+            statistics-enabled: true
+            max-idle-seconds: 300
+            backup-count: 0
+            async-backup-count: 0
+            read-backup-data: false
+
+  oauth2:
+    authorization-server:
+      jwt:
+        rsa-private-key-location: classpath:META-INF/oauth2-jwt-key
+        rsa-public-key-location: classpath:META-INF/oauth2-jwt-key.pub
+    resource-server:
+      jwt:
+        rsa-public-key-location: classpath:META-INF/oauth2-jwt-key.pub
+
+  persistence:
+    entity-packages: demo
+
+spring:
+  application:
+    name: demo
+  mail:
+    default-encoding: UTF-8
+    protocol: smtp
+    host: localhost
+    port: 2500
+    username: demo
+    password: demo
+
+#springdoc:
+#  swagger-ui:
+#    operationsSorter: alpha
+#    tagsSorter: alpha
+
+springdoc:
+  writer-with-order-by-keys: true
+  api-docs:
+    groups:
+      enabled: true

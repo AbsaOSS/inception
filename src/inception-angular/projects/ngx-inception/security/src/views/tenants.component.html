@@ -1,0 +1,48 @@
+<mat-card class="flex flex-column flex-auto">
+  <div class="mat-table-header">
+    <button mat-flat-button color="primary" (click)="newTenant()" i18n="@@security_tenants_component_button_new">New</button>
+    <table-filter></table-filter>
+  </div>
+  <mat-table [dataSource]="dataSource" class="flex-fill" style="min-height: 550px;" matSort matSortActive="name" matSortDirection="asc" matSortDisableClear>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@security_tenants_component_table_header_name">Name</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.name}}</mat-cell>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell class="mat-one-action" *matHeaderCellDef i18n="@@security_tenants_component_table_header_actions">Actions</mat-header-cell>
+      <mat-cell class="mat-one-action" *matCellDef="let row">
+        <button mat-icon-button [matMenuTriggerFor]="actionsMenu" [matMenuTriggerData]="{tenantId: row.id}">
+          <i class="fas fa-ellipsis-v"></i>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Header and Row Declarations -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
+  <mat-paginator [length]="dataSource.total$ | async" [pageSize]="10" [hidePageSize]="true" [showFirstLastButtons]="true" ></mat-paginator>
+
+  <mat-menu class="mat-action-menu" #actionsMenu="matMenu" >
+    <ng-template matMenuContent let-tenantId="tenantId">
+      <button mat-menu-item (click)="editTenant(tenantId)">
+        <i class="fas fa-edit"></i>
+        <span i18n="@@security_tenants_component_menu_item_edit">Edit</span>
+      </button>
+      <button mat-menu-item (click)="tenantUserDirectories(tenantId)">
+        <i class="fas fa-sitemap"></i>
+        <span i18n="@@security_tenants_component_menu_item_user_directories">User Directories</span>
+      </button>
+      <button mat-menu-item (click)="deleteTenant(tenantId)">
+        <i class="far fa-trash-alt"></i>
+        <span i18n="@@security_tenants_component_menu_item_delete">Delete</span>
+      </button>
+    </ng-template>
+  </mat-menu>
+
+</mat-card>

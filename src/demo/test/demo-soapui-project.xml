@@ -1,0 +1,1584 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="1f7f7cff-9b37-4313-af94-adcbee38de5d" activeEnvironment="Default" name="demo" resourceRoot="" soapui-version="5.5.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="bd32a266-b4fe-43bd-9932-b9f0f5b85d43" wsaVersion="NONE" name="CodesServiceSoapBinding" type="wsdl" bindingName="{http://codes.inception.digital}CodesServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/service/CodesService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/service/CodesService?wsdl"><con:part><con:url>http://localhost:8080/service/CodesService?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="CodesService" targetNamespace="http://codes.inception.digital" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://codes.inception.digital" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://validation.inception.digital">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://validation.inception.digital" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://validation.inception.digital">
+      <xs:element name="InvalidArgumentError" type="tns:InvalidArgumentError"/>
+      <xs:element name="ValidationError" type="tns:ValidationError"/>
+      <xs:element name="ValidationErrorAttribute" type="tns:ValidationErrorAttribute"/>
+      <xs:complexType name="InvalidArgumentError">
+        <xs:sequence>
+          <xs:element name="When" type="xs:dateTime"/>
+          <xs:element name="Message" type="xs:string"/>
+          <xs:element name="Name" type="xs:string"/>
+          <xs:element name="Detail" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="ValidationErrors" type="tns:ValidationError"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ValidationError">
+        <xs:sequence>
+          <xs:element name="Property" type="xs:string"/>
+          <xs:element name="Message" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="Attributes" type="tns:ValidationErrorAttribute"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ValidationErrorAttribute">
+        <xs:sequence>
+          <xs:element name="Name" type="xs:string"/>
+          <xs:element minOccurs="0" name="Value" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="InvalidArgumentException" nillable="true" type="tns:InvalidArgumentError"/>
+    </xs:schema>
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://core.inception.digital" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://core.inception.digital" xmlns:core="http://core.inception.digital">
+      <xs:element name="ServiceError" type="tns:ServiceError"/>
+      <xs:complexType name="ServiceError">
+        <xs:sequence>
+          <xs:element name="When" type="xs:dateTime"/>
+          <xs:element name="Message" type="xs:string"/>
+          <xs:element name="Detail" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://codes.inception.digital" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:validation="http://validation.inception.digital" xmlns:core="http://core.inception.digital" xmlns:codes="http://codes.inception.digital">
+      <xs:element name="Code" type="codes:Code"/>
+      <xs:element name="CodeCategory" type="codes:CodeCategory"/>
+      <xs:element name="CodeCategorySummary" type="codes:CodeCategorySummary"/>
+      <xs:element name="CreateCode" type="codes:CreateCode"/>
+      <xs:element name="CreateCodeCategory" type="codes:CreateCodeCategory"/>
+      <xs:element name="CreateCodeCategoryResponse" type="codes:CreateCodeCategoryResponse"/>
+      <xs:element name="CreateCodeResponse" type="codes:CreateCodeResponse"/>
+      <xs:element name="DeleteCode" type="codes:DeleteCode"/>
+      <xs:element name="DeleteCodeCategory" type="codes:DeleteCodeCategory"/>
+      <xs:element name="DeleteCodeCategoryResponse" type="codes:DeleteCodeCategoryResponse"/>
+      <xs:element name="DeleteCodeResponse" type="codes:DeleteCodeResponse"/>
+      <xs:element name="GetCode" type="codes:GetCode"/>
+      <xs:element name="GetCodeCategories" type="codes:GetCodeCategories"/>
+      <xs:element name="GetCodeCategoriesResponse" type="codes:GetCodeCategoriesResponse"/>
+      <xs:element name="GetCodeCategory" type="codes:GetCodeCategory"/>
+      <xs:element name="GetCodeCategoryCodes" type="codes:GetCodeCategoryCodes"/>
+      <xs:element name="GetCodeCategoryCodesResponse" type="codes:GetCodeCategoryCodesResponse"/>
+      <xs:element name="GetCodeCategoryData" type="codes:GetCodeCategoryData"/>
+      <xs:element name="GetCodeCategoryDataResponse" type="codes:GetCodeCategoryDataResponse"/>
+      <xs:element name="GetCodeCategoryResponse" type="codes:GetCodeCategoryResponse"/>
+      <xs:element name="GetCodeCategorySummaries" type="codes:GetCodeCategorySummaries"/>
+      <xs:element name="GetCodeCategorySummariesResponse" type="codes:GetCodeCategorySummariesResponse"/>
+      <xs:element name="GetCodeCategoryUpdated" type="codes:GetCodeCategoryUpdated"/>
+      <xs:element name="GetCodeCategoryUpdatedResponse" type="codes:GetCodeCategoryUpdatedResponse"/>
+      <xs:element name="GetCodeResponse" type="codes:GetCodeResponse"/>
+      <xs:element name="UpdateCode" type="codes:UpdateCode"/>
+      <xs:element name="UpdateCodeCategory" type="codes:UpdateCodeCategory"/>
+      <xs:element name="UpdateCodeCategoryResponse" type="codes:UpdateCodeCategoryResponse"/>
+      <xs:element name="UpdateCodeResponse" type="codes:UpdateCodeResponse"/>
+      <xs:complexType name="GetCodeCategories">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="GetCodeCategoriesResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="CodeCategory" type="codes:CodeCategory"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CodeCategory">
+        <xs:sequence>
+          <xs:element name="Id" type="xs:string"/>
+          <xs:element name="Name" type="xs:string"/>
+          <xs:element minOccurs="0" name="Data" type="xs:string"/>
+          <xs:element minOccurs="0" name="Updated" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetCode">
+        <xs:sequence>
+          <xs:element name="CodeCategoryId" type="xs:string"/>
+          <xs:element name="CodeId" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetCodeResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Code" type="codes:Code"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Code">
+        <xs:sequence>
+          <xs:element name="Id" type="xs:string"/>
+          <xs:element name="CodeCategoryId" type="xs:string"/>
+          <xs:element name="Name" type="xs:string"/>
+          <xs:element name="Value" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetCodeCategoryData">
+        <xs:sequence>
+          <xs:element name="CodeCategoryId" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetCodeCategoryDataResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CodeCategoryData" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DeleteCodeCategory">
+        <xs:sequence>
+          <xs:element name="CodeCategoryId" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DeleteCodeCategoryResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="UpdateCode">
+        <xs:sequence>
+          <xs:element name="Code" type="codes:Code"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="UpdateCodeResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="UpdateCodeCategory">
+        <xs:sequence>
+          <xs:element name="CodeCategory" type="codes:CodeCategory"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="UpdateCodeCategoryResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="CreateCode">
+        <xs:sequence>
+          <xs:element name="Code" type="codes:Code"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateCodeResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="CreateCodeCategory">
+        <xs:sequence>
+          <xs:element name="CodeCategory" type="codes:CodeCategory"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateCodeCategoryResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="DeleteCode">
+        <xs:sequence>
+          <xs:element name="CodeCategoryId" type="xs:string"/>
+          <xs:element name="CodeId" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DeleteCodeResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="GetCodeCategory">
+        <xs:sequence>
+          <xs:element name="CodeCategoryId" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetCodeCategoryResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CodeCategory" type="codes:CodeCategory"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetCodeCategorySummaries">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="GetCodeCategorySummariesResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="CodeCategorySummary" type="codes:CodeCategorySummary"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CodeCategorySummary">
+        <xs:sequence>
+          <xs:element name="Id" type="xs:string"/>
+          <xs:element name="Name" type="xs:string"/>
+          <xs:element minOccurs="0" name="Updated" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetCodeCategoryUpdated">
+        <xs:sequence>
+          <xs:element name="CodeCategoryId" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetCodeCategoryUpdatedResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CodeCategoryUpdated" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetCodeCategoryCodes">
+        <xs:sequence>
+          <xs:element name="CodeCategoryId" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetCodeCategoryCodesResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="Code" type="codes:Code"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="CodesServiceException" nillable="true" type="core:ServiceError"/>
+      <xs:element name="CodeNotFoundException" nillable="true" type="core:ServiceError"/>
+      <xs:element name="CodeCategoryNotFoundException" nillable="true" type="core:ServiceError"/>
+      <xs:element name="DuplicateCodeException" nillable="true" type="core:ServiceError"/>
+      <xs:element name="DuplicateCodeCategoryException" nillable="true" type="core:ServiceError"/>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="GetCodeCategorySummariesResponse">
+    <wsdl:part element="tns:GetCodeCategorySummariesResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CreateCodeResponse">
+    <wsdl:part element="tns:CreateCodeResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetCodeCategories">
+    <wsdl:part element="tns:GetCodeCategories" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UpdateCodeCategoryResponse">
+    <wsdl:part element="tns:UpdateCodeCategoryResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="InvalidArgumentException">
+    <wsdl:part element="ns1:InvalidArgumentException" name="InvalidArgumentException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CreateCodeCategoryResponse">
+    <wsdl:part element="tns:CreateCodeCategoryResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetCodeCategoriesResponse">
+    <wsdl:part element="tns:GetCodeCategoriesResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UpdateCode">
+    <wsdl:part element="tns:UpdateCode" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UpdateCodeCategory">
+    <wsdl:part element="tns:UpdateCodeCategory" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetCodeCategoryResponse">
+    <wsdl:part element="tns:GetCodeCategoryResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CreateCode">
+    <wsdl:part element="tns:CreateCode" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetCodeCategory">
+    <wsdl:part element="tns:GetCodeCategory" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CodeCategoryNotFoundException">
+    <wsdl:part element="tns:CodeCategoryNotFoundException" name="CodeCategoryNotFoundException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CodeNotFoundException">
+    <wsdl:part element="tns:CodeNotFoundException" name="CodeNotFoundException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetCodeResponse">
+    <wsdl:part element="tns:GetCodeResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetCodeCategoryDataResponse">
+    <wsdl:part element="tns:GetCodeCategoryDataResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DuplicateCodeException">
+    <wsdl:part element="tns:DuplicateCodeException" name="DuplicateCodeException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DeleteCodeResponse">
+    <wsdl:part element="tns:DeleteCodeResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetCodeCategoryCodesResponse">
+    <wsdl:part element="tns:GetCodeCategoryCodesResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetCode">
+    <wsdl:part element="tns:GetCode" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetCodeCategoryData">
+    <wsdl:part element="tns:GetCodeCategoryData" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DeleteCodeCategory">
+    <wsdl:part element="tns:DeleteCodeCategory" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetCodeCategoryUpdatedResponse">
+    <wsdl:part element="tns:GetCodeCategoryUpdatedResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CreateCodeCategory">
+    <wsdl:part element="tns:CreateCodeCategory" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DeleteCode">
+    <wsdl:part element="tns:DeleteCode" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UpdateCodeResponse">
+    <wsdl:part element="tns:UpdateCodeResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CodesServiceException">
+    <wsdl:part element="tns:CodesServiceException" name="CodesServiceException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetCodeCategorySummaries">
+    <wsdl:part element="tns:GetCodeCategorySummaries" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetCodeCategoryUpdated">
+    <wsdl:part element="tns:GetCodeCategoryUpdated" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DuplicateCodeCategoryException">
+    <wsdl:part element="tns:DuplicateCodeCategoryException" name="DuplicateCodeCategoryException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DeleteCodeCategoryResponse">
+    <wsdl:part element="tns:DeleteCodeCategoryResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetCodeCategoryCodes">
+    <wsdl:part element="tns:GetCodeCategoryCodes" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ICodesService">
+    <wsdl:operation name="GetCodeCategories">
+      <wsdl:input message="tns:GetCodeCategories" name="GetCodeCategories"></wsdl:input>
+      <wsdl:output message="tns:GetCodeCategoriesResponse" name="GetCodeCategoriesResponse"></wsdl:output>
+      <wsdl:fault message="tns:CodesServiceException" name="CodesServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetCode">
+      <wsdl:input message="tns:GetCode" name="GetCode"></wsdl:input>
+      <wsdl:output message="tns:GetCodeResponse" name="GetCodeResponse"></wsdl:output>
+      <wsdl:fault message="tns:InvalidArgumentException" name="InvalidArgumentException"></wsdl:fault>
+      <wsdl:fault message="tns:CodeNotFoundException" name="CodeNotFoundException"></wsdl:fault>
+      <wsdl:fault message="tns:CodesServiceException" name="CodesServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetCodeCategoryData">
+      <wsdl:input message="tns:GetCodeCategoryData" name="GetCodeCategoryData"></wsdl:input>
+      <wsdl:output message="tns:GetCodeCategoryDataResponse" name="GetCodeCategoryDataResponse"></wsdl:output>
+      <wsdl:fault message="tns:InvalidArgumentException" name="InvalidArgumentException"></wsdl:fault>
+      <wsdl:fault message="tns:CodeCategoryNotFoundException" name="CodeCategoryNotFoundException"></wsdl:fault>
+      <wsdl:fault message="tns:CodesServiceException" name="CodesServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCodeCategory">
+      <wsdl:input message="tns:DeleteCodeCategory" name="DeleteCodeCategory"></wsdl:input>
+      <wsdl:output message="tns:DeleteCodeCategoryResponse" name="DeleteCodeCategoryResponse"></wsdl:output>
+      <wsdl:fault message="tns:InvalidArgumentException" name="InvalidArgumentException"></wsdl:fault>
+      <wsdl:fault message="tns:CodeCategoryNotFoundException" name="CodeCategoryNotFoundException"></wsdl:fault>
+      <wsdl:fault message="tns:CodesServiceException" name="CodesServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCode">
+      <wsdl:input message="tns:UpdateCode" name="UpdateCode"></wsdl:input>
+      <wsdl:output message="tns:UpdateCodeResponse" name="UpdateCodeResponse"></wsdl:output>
+      <wsdl:fault message="tns:InvalidArgumentException" name="InvalidArgumentException"></wsdl:fault>
+      <wsdl:fault message="tns:CodeNotFoundException" name="CodeNotFoundException"></wsdl:fault>
+      <wsdl:fault message="tns:CodesServiceException" name="CodesServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCodeCategory">
+      <wsdl:input message="tns:UpdateCodeCategory" name="UpdateCodeCategory"></wsdl:input>
+      <wsdl:output message="tns:UpdateCodeCategoryResponse" name="UpdateCodeCategoryResponse"></wsdl:output>
+      <wsdl:fault message="tns:InvalidArgumentException" name="InvalidArgumentException"></wsdl:fault>
+      <wsdl:fault message="tns:CodeCategoryNotFoundException" name="CodeCategoryNotFoundException"></wsdl:fault>
+      <wsdl:fault message="tns:CodesServiceException" name="CodesServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCode">
+      <wsdl:input message="tns:CreateCode" name="CreateCode"></wsdl:input>
+      <wsdl:output message="tns:CreateCodeResponse" name="CreateCodeResponse"></wsdl:output>
+      <wsdl:fault message="tns:DuplicateCodeException" name="DuplicateCodeException"></wsdl:fault>
+      <wsdl:fault message="tns:InvalidArgumentException" name="InvalidArgumentException"></wsdl:fault>
+      <wsdl:fault message="tns:CodeCategoryNotFoundException" name="CodeCategoryNotFoundException"></wsdl:fault>
+      <wsdl:fault message="tns:CodesServiceException" name="CodesServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCodeCategory">
+      <wsdl:input message="tns:CreateCodeCategory" name="CreateCodeCategory"></wsdl:input>
+      <wsdl:output message="tns:CreateCodeCategoryResponse" name="CreateCodeCategoryResponse"></wsdl:output>
+      <wsdl:fault message="tns:InvalidArgumentException" name="InvalidArgumentException"></wsdl:fault>
+      <wsdl:fault message="tns:DuplicateCodeCategoryException" name="DuplicateCodeCategoryException"></wsdl:fault>
+      <wsdl:fault message="tns:CodesServiceException" name="CodesServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCode">
+      <wsdl:input message="tns:DeleteCode" name="DeleteCode"></wsdl:input>
+      <wsdl:output message="tns:DeleteCodeResponse" name="DeleteCodeResponse"></wsdl:output>
+      <wsdl:fault message="tns:InvalidArgumentException" name="InvalidArgumentException"></wsdl:fault>
+      <wsdl:fault message="tns:CodeNotFoundException" name="CodeNotFoundException"></wsdl:fault>
+      <wsdl:fault message="tns:CodesServiceException" name="CodesServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetCodeCategory">
+      <wsdl:input message="tns:GetCodeCategory" name="GetCodeCategory"></wsdl:input>
+      <wsdl:output message="tns:GetCodeCategoryResponse" name="GetCodeCategoryResponse"></wsdl:output>
+      <wsdl:fault message="tns:InvalidArgumentException" name="InvalidArgumentException"></wsdl:fault>
+      <wsdl:fault message="tns:CodeCategoryNotFoundException" name="CodeCategoryNotFoundException"></wsdl:fault>
+      <wsdl:fault message="tns:CodesServiceException" name="CodesServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetCodeCategorySummaries">
+      <wsdl:input message="tns:GetCodeCategorySummaries" name="GetCodeCategorySummaries"></wsdl:input>
+      <wsdl:output message="tns:GetCodeCategorySummariesResponse" name="GetCodeCategorySummariesResponse"></wsdl:output>
+      <wsdl:fault message="tns:CodesServiceException" name="CodesServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetCodeCategoryUpdated">
+      <wsdl:input message="tns:GetCodeCategoryUpdated" name="GetCodeCategoryUpdated"></wsdl:input>
+      <wsdl:output message="tns:GetCodeCategoryUpdatedResponse" name="GetCodeCategoryUpdatedResponse"></wsdl:output>
+      <wsdl:fault message="tns:InvalidArgumentException" name="InvalidArgumentException"></wsdl:fault>
+      <wsdl:fault message="tns:CodeCategoryNotFoundException" name="CodeCategoryNotFoundException"></wsdl:fault>
+      <wsdl:fault message="tns:CodesServiceException" name="CodesServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetCodeCategoryCodes">
+      <wsdl:input message="tns:GetCodeCategoryCodes" name="GetCodeCategoryCodes"></wsdl:input>
+      <wsdl:output message="tns:GetCodeCategoryCodesResponse" name="GetCodeCategoryCodesResponse"></wsdl:output>
+      <wsdl:fault message="tns:InvalidArgumentException" name="InvalidArgumentException"></wsdl:fault>
+      <wsdl:fault message="tns:CodeCategoryNotFoundException" name="CodeCategoryNotFoundException"></wsdl:fault>
+      <wsdl:fault message="tns:CodesServiceException" name="CodesServiceException"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CodesServiceSoapBinding" type="tns:ICodesService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="GetCodeCategories">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="GetCodeCategories">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetCodeCategoriesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="CodesServiceException">
+        <soap:fault name="CodesServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetCode">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="GetCode">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetCodeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InvalidArgumentException">
+        <soap:fault name="InvalidArgumentException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="CodeNotFoundException">
+        <soap:fault name="CodeNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="CodesServiceException">
+        <soap:fault name="CodesServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetCodeCategoryData">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="GetCodeCategoryData">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetCodeCategoryDataResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InvalidArgumentException">
+        <soap:fault name="InvalidArgumentException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="CodeCategoryNotFoundException">
+        <soap:fault name="CodeCategoryNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="CodesServiceException">
+        <soap:fault name="CodesServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCodeCategory">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="DeleteCodeCategory">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="DeleteCodeCategoryResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InvalidArgumentException">
+        <soap:fault name="InvalidArgumentException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="CodeCategoryNotFoundException">
+        <soap:fault name="CodeCategoryNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="CodesServiceException">
+        <soap:fault name="CodesServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCode">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="UpdateCode">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="UpdateCodeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InvalidArgumentException">
+        <soap:fault name="InvalidArgumentException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="CodeNotFoundException">
+        <soap:fault name="CodeNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="CodesServiceException">
+        <soap:fault name="CodesServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCodeCategory">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="UpdateCodeCategory">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="UpdateCodeCategoryResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InvalidArgumentException">
+        <soap:fault name="InvalidArgumentException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="CodeCategoryNotFoundException">
+        <soap:fault name="CodeCategoryNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="CodesServiceException">
+        <soap:fault name="CodesServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCode">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="CreateCode">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CreateCodeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DuplicateCodeException">
+        <soap:fault name="DuplicateCodeException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidArgumentException">
+        <soap:fault name="InvalidArgumentException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="CodeCategoryNotFoundException">
+        <soap:fault name="CodeCategoryNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="CodesServiceException">
+        <soap:fault name="CodesServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCodeCategory">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="CreateCodeCategory">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CreateCodeCategoryResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InvalidArgumentException">
+        <soap:fault name="InvalidArgumentException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="DuplicateCodeCategoryException">
+        <soap:fault name="DuplicateCodeCategoryException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="CodesServiceException">
+        <soap:fault name="CodesServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCode">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="DeleteCode">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="DeleteCodeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InvalidArgumentException">
+        <soap:fault name="InvalidArgumentException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="CodeNotFoundException">
+        <soap:fault name="CodeNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="CodesServiceException">
+        <soap:fault name="CodesServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetCodeCategory">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="GetCodeCategory">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetCodeCategoryResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InvalidArgumentException">
+        <soap:fault name="InvalidArgumentException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="CodeCategoryNotFoundException">
+        <soap:fault name="CodeCategoryNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="CodesServiceException">
+        <soap:fault name="CodesServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetCodeCategorySummaries">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="GetCodeCategorySummaries">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetCodeCategorySummariesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="CodesServiceException">
+        <soap:fault name="CodesServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetCodeCategoryUpdated">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="GetCodeCategoryUpdated">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetCodeCategoryUpdatedResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InvalidArgumentException">
+        <soap:fault name="InvalidArgumentException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="CodeCategoryNotFoundException">
+        <soap:fault name="CodeCategoryNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="CodesServiceException">
+        <soap:fault name="CodesServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetCodeCategoryCodes">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="GetCodeCategoryCodes">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetCodeCategoryCodesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InvalidArgumentException">
+        <soap:fault name="InvalidArgumentException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="CodeCategoryNotFoundException">
+        <soap:fault name="CodeCategoryNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="CodesServiceException">
+        <soap:fault name="CodesServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CodesService">
+    <wsdl:port binding="tns:CodesServiceSoapBinding" name="ICodesServicePort">
+      <soap:address location="http://localhost:8080/service/CodesService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/service/CodesService</con:endpoint></con:endpoints><con:operation id="9230a9a7-905e-4fc2-99d1-b539a8d8f73e" isOneWay="false" action="" name="CreateCode" bindingOperationName="CreateCode" type="Request-Response" outputName="CreateCodeResponse" inputName="CreateCode" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="42012574-c788-476f-afff-90f9216b5f2a" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/CodesService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cod="http://codes.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cod:CreateCode>
+         <Code>
+            <Id>?</Id>
+            <CodeCategoryId>?</CodeCategoryId>
+            <Name>?</Name>
+            <Value>?</Value>
+         </Code>
+      </cod:CreateCode>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://codes.inception.digital/ICodesService/CreateCode"/></con:call></con:operation><con:operation id="6c64da4e-eb09-4046-b1ff-b7b32ecfbac9" isOneWay="false" action="" name="CreateCodeCategory" bindingOperationName="CreateCodeCategory" type="Request-Response" outputName="CreateCodeCategoryResponse" inputName="CreateCodeCategory" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="b959fec8-7273-41f9-ae64-f2a139b55cdf" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/CodesService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cod="http://codes.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cod:CreateCodeCategory>
+         <CodeCategory>
+            <Id>?</Id>
+            <Name>?</Name>
+         </CodeCategory>
+      </cod:CreateCodeCategory>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://codes.inception.digital/ICodesService/CreateCodeCategory"/></con:call></con:operation><con:operation id="da22e7a0-80d9-4041-b95c-ded8cf20e002" isOneWay="false" action="" name="DeleteCode" bindingOperationName="DeleteCode" type="Request-Response" outputName="DeleteCodeResponse" inputName="DeleteCode" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="022f4e62-180b-4bce-b764-5b26dcfeb459" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/CodesService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cod="http://codes.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cod:DeleteCode>
+         <CodeCategoryId>?</CodeCategoryId>
+         <CodeId>?</CodeId>
+      </cod:DeleteCode>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://codes.inception.digital/ICodesService/DeleteCode"/></con:call></con:operation><con:operation id="f2516687-b589-458e-ab45-3ba88a2a9293" isOneWay="false" action="" name="DeleteCodeCategory" bindingOperationName="DeleteCodeCategory" type="Request-Response" outputName="DeleteCodeCategoryResponse" inputName="DeleteCodeCategory" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="188004f3-7076-4cbf-aa99-b14eadd48cb1" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/CodesService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cod="http://codes.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cod:DeleteCodeCategory>
+         <CodeCategoryId>?</CodeCategoryId>
+      </cod:DeleteCodeCategory>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://codes.inception.digital/ICodesService/DeleteCodeCategory"/></con:call></con:operation><con:operation id="e55a62cd-2582-4310-adab-7fd42a29dd77" isOneWay="false" action="" name="GetCode" bindingOperationName="GetCode" type="Request-Response" outputName="GetCodeResponse" inputName="GetCode" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="a7041c7e-0ea3-4d8b-9bf2-526c311e4296" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/CodesService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cod="http://codes.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cod:GetCode>
+         <CodeCategoryId>?</CodeCategoryId>
+         <CodeId>?</CodeId>
+      </cod:GetCode>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://codes.inception.digital/ICodesService/GetCode"/></con:call></con:operation><con:operation id="a6144a73-da71-4611-807a-3df628ec0788" isOneWay="false" action="" name="GetCodeCategories" bindingOperationName="GetCodeCategories" type="Request-Response" outputName="GetCodeCategoriesResponse" inputName="GetCodeCategories" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="76e65d1a-1732-43cf-a413-1080ef4a78ee" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/CodesService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cod="http://codes.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cod:GetCodeCategories/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://codes.inception.digital/ICodesService/GetCodeCategories"/></con:call></con:operation><con:operation id="fdc64301-0585-4c82-9109-13551d54ec49" isOneWay="false" action="" name="GetCodeCategory" bindingOperationName="GetCodeCategory" type="Request-Response" outputName="GetCodeCategoryResponse" inputName="GetCodeCategory" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="20a1505a-c310-4cd2-a521-2e06f944cc02" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/CodesService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cod="http://codes.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cod:GetCodeCategory>
+         <CodeCategoryId>?</CodeCategoryId>
+      </cod:GetCodeCategory>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://codes.inception.digital/ICodesService/GetCodeCategory"/></con:call></con:operation><con:operation id="bc44e19d-92de-4e61-b542-76d9092ce223" isOneWay="false" action="" name="GetCodeCategoryCodes" bindingOperationName="GetCodeCategoryCodes" type="Request-Response" outputName="GetCodeCategoryCodesResponse" inputName="GetCodeCategoryCodes" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="d3032005-ee77-4585-897a-e04ef7d876c8" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/CodesService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cod="http://codes.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cod:GetCodeCategoryCodes>
+         <CodeCategoryId>?</CodeCategoryId>
+      </cod:GetCodeCategoryCodes>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://codes.inception.digital/ICodesService/GetCodeCategoryCodes"/></con:call></con:operation><con:operation id="24861461-827f-4e01-9fcb-dde88264bd31" isOneWay="false" action="" name="GetCodeCategoryData" bindingOperationName="GetCodeCategoryData" type="Request-Response" outputName="GetCodeCategoryDataResponse" inputName="GetCodeCategoryData" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="ef664880-8f07-4fef-b316-ff4dc8cd0de2" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/CodesService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cod="http://codes.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cod:GetCodeCategoryData>
+         <CodeCategoryId>?</CodeCategoryId>
+      </cod:GetCodeCategoryData>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://codes.inception.digital/ICodesService/GetCodeCategoryData"/></con:call></con:operation><con:operation id="a8928467-dfa7-43c4-ab58-119ac59f6013" isOneWay="false" action="" name="GetCodeCategorySummaries" bindingOperationName="GetCodeCategorySummaries" type="Request-Response" outputName="GetCodeCategorySummariesResponse" inputName="GetCodeCategorySummaries" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="866b5ced-19e0-47a1-96e5-3c49e188aae6" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/CodesService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cod="http://codes.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cod:GetCodeCategorySummaries/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://codes.inception.digital/ICodesService/GetCodeCategorySummaries"/></con:call></con:operation><con:operation id="b23c678c-a357-4034-90b9-a85f79e190a5" isOneWay="false" action="" name="GetCodeCategoryUpdated" bindingOperationName="GetCodeCategoryUpdated" type="Request-Response" outputName="GetCodeCategoryUpdatedResponse" inputName="GetCodeCategoryUpdated" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="f517d4ea-e6ec-400e-b31d-93afc18408d2" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/CodesService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cod="http://codes.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cod:GetCodeCategoryUpdated>
+         <CodeCategoryId>?</CodeCategoryId>
+      </cod:GetCodeCategoryUpdated>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://codes.inception.digital/ICodesService/GetCodeCategoryUpdated"/></con:call></con:operation><con:operation id="dbc5aa74-b141-40c7-9ce4-63ecd6b1e17a" isOneWay="false" action="" name="UpdateCode" bindingOperationName="UpdateCode" type="Request-Response" outputName="UpdateCodeResponse" inputName="UpdateCode" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="837c965a-3b22-4ea6-a2dd-d84a84066f17" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/CodesService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cod="http://codes.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cod:UpdateCode>
+         <Code>
+            <Id>?</Id>
+            <CodeCategoryId>?</CodeCategoryId>
+            <Name>?</Name>
+            <Value>?</Value>
+         </Code>
+      </cod:UpdateCode>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://codes.inception.digital/ICodesService/UpdateCode"/></con:call></con:operation><con:operation id="5e036c48-3310-4a03-a318-210af541161e" isOneWay="false" action="" name="UpdateCodeCategory" bindingOperationName="UpdateCodeCategory" type="Request-Response" outputName="UpdateCodeCategoryResponse" inputName="UpdateCodeCategory" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="9c3b2354-a47d-4ce3-a36a-75687abeec21" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/CodesService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cod="http://codes.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cod:UpdateCodeCategory>
+         <CodeCategory>
+            <Id>?</Id>
+            <Name>?</Name>
+         </CodeCategory>
+      </cod:UpdateCodeCategory>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://codes.inception.digital/ICodesService/UpdateCodeCategory"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="49f63dfb-0f97-4b34-8d99-55dc151aa6a3" wsaVersion="NONE" name="SecurityServiceSoapBinding" type="wsdl" bindingName="{http://security.inception.digital}SecurityServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/service/SecurityService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/service/SecurityService?wsdl"><con:part><con:url>http://localhost:8080/service/SecurityService?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="SecurityService" targetNamespace="http://security.inception.digital" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://security.inception.digital" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://validation.inception.digital">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://validation.inception.digital" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://validation.inception.digital">
+      <xs:element name="InvalidArgumentError" type="tns:InvalidArgumentError"/>
+      <xs:element name="ValidationError" type="tns:ValidationError"/>
+      <xs:element name="ValidationErrorAttribute" type="tns:ValidationErrorAttribute"/>
+      <xs:complexType name="InvalidArgumentError">
+        <xs:sequence>
+          <xs:element name="When" type="xs:dateTime"/>
+          <xs:element name="Message" type="xs:string"/>
+          <xs:element name="Name" type="xs:string"/>
+          <xs:element name="Detail" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="ValidationErrors" type="tns:ValidationError"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ValidationError">
+        <xs:sequence>
+          <xs:element name="Property" type="xs:string"/>
+          <xs:element name="Message" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="Attributes" type="tns:ValidationErrorAttribute"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ValidationErrorAttribute">
+        <xs:sequence>
+          <xs:element name="Name" type="xs:string"/>
+          <xs:element minOccurs="0" name="Value" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="InvalidArgumentException" nillable="true" type="tns:InvalidArgumentError"/>
+    </xs:schema>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://security.inception.digital" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:validation="http://validation.inception.digital" xmlns:security="http://security.inception.digital" xmlns:core="http://core.inception.digital">
+      <xs:element name="CreateOrganization" type="security:CreateOrganization"/>
+      <xs:element name="CreateOrganizationResponse" type="security:CreateOrganizationResponse"/>
+      <xs:element name="DeleteOrganization" type="security:DeleteOrganization"/>
+      <xs:element name="DeleteOrganizationResponse" type="security:DeleteOrganizationResponse"/>
+      <xs:element name="GetOrganizations" type="security:GetOrganizations"/>
+      <xs:element name="GetOrganizationsResponse" type="security:GetOrganizationsResponse"/>
+      <xs:element name="GetUserDirectoriesForOrganization" type="security:GetUserDirectoriesForOrganization"/>
+      <xs:element name="GetUserDirectoriesForOrganizationResponse" type="security:GetUserDirectoriesForOrganizationResponse"/>
+      <xs:element name="Tenant" type="security:Tenant"/>
+      <xs:complexType name="GetUserDirectoriesForOrganization">
+        <xs:sequence>
+          <xs:element name="OrganizationId" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetUserDirectoriesForOrganizationResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="UserDirectory" type="security:userDirectory"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="userDirectory">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="configuration" type="xs:string"/>
+          <xs:element minOccurs="0" name="id" type="xs:string"/>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+          <xs:element name="parameters">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="entry">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element minOccurs="0" name="key" type="xs:string"/>
+                      <xs:element minOccurs="0" name="value" type="xs:string"/>
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="type" type="security:userDirectoryType"/>
+          <xs:element minOccurs="0" name="typeId" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="userDirectoryType">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="DeleteOrganization">
+        <xs:sequence>
+          <xs:element name="OrganizationId" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DeleteOrganizationResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="GetOrganizations">
+        <xs:sequence>
+          <xs:element name="Filter" type="xs:string"/>
+          <xs:element name="SortDirection" type="security:SortDirection"/>
+          <xs:element name="PageIndex" type="xs:int"/>
+          <xs:element name="PageSize" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetOrganizationsResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="Tenant" type="security:Tenant"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Tenant">
+        <xs:sequence>
+          <xs:element name="Id" type="xs:string"/>
+          <xs:element name="Name" type="xs:string"/>
+          <xs:element name="Status" type="security:TenantStatus"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateOrganization">
+        <xs:sequence>
+          <xs:element name="Tenant" type="security:Tenant"/>
+          <xs:element name="CreateUserDirectory" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CreateOrganizationResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:simpleType name="SortDirection">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Ascending"/>
+          <xs:enumeration value="Descending"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="TenantStatus">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Inactive"/>
+          <xs:enumeration value="Active"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="OrganizationNotFoundException" nillable="true" type="core:ServiceError"/>
+      <xs:element name="SecurityServiceException" nillable="true" type="core:ServiceError"/>
+      <xs:element name="DuplicateOrganizationException" nillable="true" type="core:ServiceError"/>
+    </xs:schema>
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://core.inception.digital" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://core.inception.digital" xmlns:core="http://core.inception.digital">
+      <xs:element name="ServiceError" type="tns:ServiceError"/>
+      <xs:complexType name="ServiceError">
+        <xs:sequence>
+          <xs:element name="When" type="xs:dateTime"/>
+          <xs:element name="Message" type="xs:string"/>
+          <xs:element name="Detail" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="CreateOrganizationResponse">
+    <wsdl:part element="tns:CreateOrganizationResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DeleteOrganization">
+    <wsdl:part element="tns:DeleteOrganization" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetUserDirectoriesForOrganizationResponse">
+    <wsdl:part element="tns:GetUserDirectoriesForOrganizationResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DeleteOrganizationResponse">
+    <wsdl:part element="tns:DeleteOrganizationResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetOrganizationsResponse">
+    <wsdl:part element="tns:GetOrganizationsResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CreateOrganization">
+    <wsdl:part element="tns:CreateOrganization" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DuplicateOrganizationException">
+    <wsdl:part element="tns:DuplicateOrganizationException" name="DuplicateOrganizationException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetUserDirectoriesForOrganization">
+    <wsdl:part element="tns:GetUserDirectoriesForOrganization" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetOrganizations">
+    <wsdl:part element="tns:GetOrganizations" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="InvalidArgumentException">
+    <wsdl:part element="ns1:InvalidArgumentException" name="InvalidArgumentException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="OrganizationNotFoundException">
+    <wsdl:part element="tns:OrganizationNotFoundException" name="OrganizationNotFoundException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SecurityServiceException">
+    <wsdl:part element="tns:SecurityServiceException" name="SecurityServiceException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ISecurityService">
+    <wsdl:operation name="GetUserDirectoriesForOrganization">
+      <wsdl:input message="tns:GetUserDirectoriesForOrganization" name="GetUserDirectoriesForOrganization"></wsdl:input>
+      <wsdl:output message="tns:GetUserDirectoriesForOrganizationResponse" name="GetUserDirectoriesForOrganizationResponse"></wsdl:output>
+      <wsdl:fault message="tns:OrganizationNotFoundException" name="OrganizationNotFoundException"></wsdl:fault>
+      <wsdl:fault message="tns:SecurityServiceException" name="SecurityServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteOrganization">
+      <wsdl:input message="tns:DeleteOrganization" name="DeleteOrganization"></wsdl:input>
+      <wsdl:output message="tns:DeleteOrganizationResponse" name="DeleteOrganizationResponse"></wsdl:output>
+      <wsdl:fault message="tns:OrganizationNotFoundException" name="OrganizationNotFoundException"></wsdl:fault>
+      <wsdl:fault message="tns:SecurityServiceException" name="SecurityServiceException"></wsdl:fault>
+      <wsdl:fault message="tns:InvalidArgumentException" name="InvalidArgumentException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrganizations">
+      <wsdl:input message="tns:GetOrganizations" name="GetOrganizations"></wsdl:input>
+      <wsdl:output message="tns:GetOrganizationsResponse" name="GetOrganizationsResponse"></wsdl:output>
+      <wsdl:fault message="tns:SecurityServiceException" name="SecurityServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrganization">
+      <wsdl:input message="tns:CreateOrganization" name="CreateOrganization"></wsdl:input>
+      <wsdl:output message="tns:CreateOrganizationResponse" name="CreateOrganizationResponse"></wsdl:output>
+      <wsdl:fault message="tns:SecurityServiceException" name="SecurityServiceException"></wsdl:fault>
+      <wsdl:fault message="tns:InvalidArgumentException" name="InvalidArgumentException"></wsdl:fault>
+      <wsdl:fault message="tns:DuplicateOrganizationException" name="DuplicateOrganizationException"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SecurityServiceSoapBinding" type="tns:ISecurityService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="GetUserDirectoriesForOrganization">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="GetUserDirectoriesForOrganization">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetUserDirectoriesForOrganizationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="OrganizationNotFoundException">
+        <soap:fault name="OrganizationNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SecurityServiceException">
+        <soap:fault name="SecurityServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteOrganization">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="DeleteOrganization">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="DeleteOrganizationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="OrganizationNotFoundException">
+        <soap:fault name="OrganizationNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SecurityServiceException">
+        <soap:fault name="SecurityServiceException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidArgumentException">
+        <soap:fault name="InvalidArgumentException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrganizations">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="GetOrganizations">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetOrganizationsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SecurityServiceException">
+        <soap:fault name="SecurityServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrganization">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="CreateOrganization">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CreateOrganizationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SecurityServiceException">
+        <soap:fault name="SecurityServiceException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidArgumentException">
+        <soap:fault name="InvalidArgumentException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="DuplicateOrganizationException">
+        <soap:fault name="DuplicateOrganizationException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SecurityService">
+    <wsdl:port binding="tns:SecurityServiceSoapBinding" name="ISecurityServicePort">
+      <soap:address location="http://localhost:8080/service/SecurityService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/service/SecurityService</con:endpoint></con:endpoints><con:operation id="45eb2b45-872e-4b2c-8155-9a747cf8f2d0" isOneWay="false" action="" name="CreateOrganization" bindingOperationName="CreateOrganization" type="Request-Response" outputName="CreateOrganizationResponse" inputName="CreateOrganization" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="cd98daa2-84f9-4ef0-9ace-8752a19e8a3a" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/SecurityService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sec="http://security.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sec:CreateOrganization>
+         <Tenant>
+            <Id>?</Id>
+            <Name>?</Name>
+            <Status>?</Status>
+         </Tenant>
+         <CreateUserDirectory>?</CreateUserDirectory>
+      </sec:CreateOrganization>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://security.inception.digital/ISecurityService/CreateOrganization"/></con:call></con:operation><con:operation id="0af1054b-28a8-4a48-b85d-3d11c7c3543f" isOneWay="false" action="" name="DeleteOrganization" bindingOperationName="DeleteOrganization" type="Request-Response" outputName="DeleteOrganizationResponse" inputName="DeleteOrganization" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="0f8ec40c-e245-431f-acb3-f6c18d48a43b" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/SecurityService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sec="http://security.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sec:DeleteOrganization>
+         <OrganizationId>?</OrganizationId>
+      </sec:DeleteOrganization>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://security.inception.digital/ISecurityService/DeleteOrganization"/></con:call></con:operation><con:operation id="f20ead93-a9da-42f5-8dda-cd1846081b90" isOneWay="false" action="" name="GetOrganizations" bindingOperationName="GetOrganizations" type="Request-Response" outputName="GetOrganizationsResponse" inputName="GetOrganizations" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="5c90b39b-67e2-4282-b6d2-49aec35ae7cf" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/SecurityService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sec="http://security.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sec:GetOrganizations>
+         <Filter>?</Filter>
+         <SortDirection>?</SortDirection>
+         <PageIndex>?</PageIndex>
+         <PageSize>?</PageSize>
+      </sec:GetOrganizations>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://security.inception.digital/ISecurityService/GetOrganizations"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="5a417fa3-406d-4214-8b68-3c976ce24948" isOneWay="false" action="" name="GetUserDirectoriesForOrganization" bindingOperationName="GetUserDirectoriesForOrganization" type="Request-Response" outputName="GetUserDirectoriesForOrganizationResponse" inputName="GetUserDirectoriesForOrganization" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="029d3008-85da-4b81-b7cf-e42ee221edca" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/SecurityService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sec="http://security.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sec:GetUserDirectoriesForOrganization>
+         <OrganizationId>?</OrganizationId>
+      </sec:GetUserDirectoriesForOrganization>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://security.inception.digital/ISecurityService/GetUserDirectoriesForOrganization"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="812b0a2b-717c-4b79-8861-b2fc5c758a3f" wsaVersion="NONE" name="ConfigurationServiceSoapBinding" type="wsdl" bindingName="{http://configuration.inception.digital}ConfigurationServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/service/ConfigurationService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/service/ConfigurationService?wsdl"><con:part><con:url>http://localhost:8080/service/ConfigurationService?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="ConfigurationService" targetNamespace="http://configuration.inception.digital" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://configuration.inception.digital" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://validation.inception.digital">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://validation.inception.digital" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://validation.inception.digital">
+      <xs:element name="InvalidArgumentError" type="tns:InvalidArgumentError"/>
+      <xs:element name="ValidationError" type="tns:ValidationError"/>
+      <xs:element name="ValidationErrorAttribute" type="tns:ValidationErrorAttribute"/>
+      <xs:complexType name="InvalidArgumentError">
+        <xs:sequence>
+          <xs:element name="When" type="xs:dateTime"/>
+          <xs:element name="Message" type="xs:string"/>
+          <xs:element name="Name" type="xs:string"/>
+          <xs:element name="Detail" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="ValidationErrors" type="tns:ValidationError"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ValidationError">
+        <xs:sequence>
+          <xs:element name="Property" type="xs:string"/>
+          <xs:element name="Message" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="Attributes" type="tns:ValidationErrorAttribute"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ValidationErrorAttribute">
+        <xs:sequence>
+          <xs:element name="Name" type="xs:string"/>
+          <xs:element minOccurs="0" name="Value" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="InvalidArgumentException" nillable="true" type="tns:InvalidArgumentError"/>
+    </xs:schema>
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://core.inception.digital" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://core.inception.digital" xmlns:core="http://core.inception.digital">
+      <xs:element name="ServiceError" type="tns:ServiceError"/>
+      <xs:complexType name="ServiceError">
+        <xs:sequence>
+          <xs:element name="When" type="xs:dateTime"/>
+          <xs:element name="Message" type="xs:string"/>
+          <xs:element name="Detail" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://configuration.inception.digital" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:validation="http://validation.inception.digital" xmlns:core="http://core.inception.digital" xmlns:configuration="http://configuration.inception.digital">
+      <xs:element name="Configuration" type="configuration:Configuration"/>
+      <xs:element name="DeleteConfiguration" type="configuration:DeleteConfiguration"/>
+      <xs:element name="DeleteConfigurationResponse" type="configuration:DeleteConfigurationResponse"/>
+      <xs:element name="GetConfiguration" type="configuration:GetConfiguration"/>
+      <xs:element name="GetConfigurationResponse" type="configuration:GetConfigurationResponse"/>
+      <xs:element name="GetConfigurationValue" type="configuration:GetConfigurationValue"/>
+      <xs:element name="GetConfigurationValueResponse" type="configuration:GetConfigurationValueResponse"/>
+      <xs:element name="GetConfigurations" type="configuration:GetConfigurations"/>
+      <xs:element name="GetConfigurationsResponse" type="configuration:GetConfigurationsResponse"/>
+      <xs:element name="SetConfiguration" type="configuration:SetConfiguration"/>
+      <xs:element name="SetConfigurationResponse" type="configuration:SetConfigurationResponse"/>
+      <xs:complexType name="SetConfiguration">
+        <xs:sequence>
+          <xs:element name="Configuration" type="configuration:Configuration"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Configuration">
+        <xs:sequence>
+          <xs:element name="Key" type="xs:string"/>
+          <xs:element name="Value" type="xs:string"/>
+          <xs:element name="Description" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="SetConfigurationResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="DeleteConfiguration">
+        <xs:sequence>
+          <xs:element name="Key" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DeleteConfigurationResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="GetConfiguration">
+        <xs:sequence>
+          <xs:element name="Key" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetConfigurationResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Configuration" type="configuration:Configuration"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetConfigurations">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="GetConfigurationsResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="Configuration" type="configuration:Configuration"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetConfigurationValue">
+        <xs:sequence>
+          <xs:element name="Key" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetConfigurationValueResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ConfigurationValue" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ConfigurationServiceException" nillable="true" type="core:ServiceError"/>
+      <xs:element name="ConfigurationNotFoundException" nillable="true" type="core:ServiceError"/>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="InvalidArgumentException">
+    <wsdl:part element="ns1:InvalidArgumentException" name="InvalidArgumentException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetConfiguration">
+    <wsdl:part element="tns:GetConfiguration" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SetConfigurationResponse">
+    <wsdl:part element="tns:SetConfigurationResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetConfigurationValue">
+    <wsdl:part element="tns:GetConfigurationValue" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SetConfiguration">
+    <wsdl:part element="tns:SetConfiguration" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DeleteConfigurationResponse">
+    <wsdl:part element="tns:DeleteConfigurationResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetConfigurationValueResponse">
+    <wsdl:part element="tns:GetConfigurationValueResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetConfigurationsResponse">
+    <wsdl:part element="tns:GetConfigurationsResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetConfigurations">
+    <wsdl:part element="tns:GetConfigurations" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ConfigurationServiceException">
+    <wsdl:part element="tns:ConfigurationServiceException" name="ConfigurationServiceException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DeleteConfiguration">
+    <wsdl:part element="tns:DeleteConfiguration" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ConfigurationNotFoundException">
+    <wsdl:part element="tns:ConfigurationNotFoundException" name="ConfigurationNotFoundException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetConfigurationResponse">
+    <wsdl:part element="tns:GetConfigurationResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="IConfigurationService">
+    <wsdl:operation name="SetConfiguration">
+      <wsdl:input message="tns:SetConfiguration" name="SetConfiguration"></wsdl:input>
+      <wsdl:output message="tns:SetConfigurationResponse" name="SetConfigurationResponse"></wsdl:output>
+      <wsdl:fault message="tns:InvalidArgumentException" name="InvalidArgumentException"></wsdl:fault>
+      <wsdl:fault message="tns:ConfigurationServiceException" name="ConfigurationServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteConfiguration">
+      <wsdl:input message="tns:DeleteConfiguration" name="DeleteConfiguration"></wsdl:input>
+      <wsdl:output message="tns:DeleteConfigurationResponse" name="DeleteConfigurationResponse"></wsdl:output>
+      <wsdl:fault message="tns:InvalidArgumentException" name="InvalidArgumentException"></wsdl:fault>
+      <wsdl:fault message="tns:ConfigurationServiceException" name="ConfigurationServiceException"></wsdl:fault>
+      <wsdl:fault message="tns:ConfigurationNotFoundException" name="ConfigurationNotFoundException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetConfiguration">
+      <wsdl:input message="tns:GetConfiguration" name="GetConfiguration"></wsdl:input>
+      <wsdl:output message="tns:GetConfigurationResponse" name="GetConfigurationResponse"></wsdl:output>
+      <wsdl:fault message="tns:InvalidArgumentException" name="InvalidArgumentException"></wsdl:fault>
+      <wsdl:fault message="tns:ConfigurationServiceException" name="ConfigurationServiceException"></wsdl:fault>
+      <wsdl:fault message="tns:ConfigurationNotFoundException" name="ConfigurationNotFoundException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetConfigurations">
+      <wsdl:input message="tns:GetConfigurations" name="GetConfigurations"></wsdl:input>
+      <wsdl:output message="tns:GetConfigurationsResponse" name="GetConfigurationsResponse"></wsdl:output>
+      <wsdl:fault message="tns:ConfigurationServiceException" name="ConfigurationServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetConfigurationValue">
+      <wsdl:input message="tns:GetConfigurationValue" name="GetConfigurationValue"></wsdl:input>
+      <wsdl:output message="tns:GetConfigurationValueResponse" name="GetConfigurationValueResponse"></wsdl:output>
+      <wsdl:fault message="tns:InvalidArgumentException" name="InvalidArgumentException"></wsdl:fault>
+      <wsdl:fault message="tns:ConfigurationServiceException" name="ConfigurationServiceException"></wsdl:fault>
+      <wsdl:fault message="tns:ConfigurationNotFoundException" name="ConfigurationNotFoundException"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ConfigurationServiceSoapBinding" type="tns:IConfigurationService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="SetConfiguration">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="SetConfiguration">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="SetConfigurationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InvalidArgumentException">
+        <soap:fault name="InvalidArgumentException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="ConfigurationServiceException">
+        <soap:fault name="ConfigurationServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteConfiguration">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="DeleteConfiguration">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="DeleteConfigurationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InvalidArgumentException">
+        <soap:fault name="InvalidArgumentException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="ConfigurationServiceException">
+        <soap:fault name="ConfigurationServiceException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="ConfigurationNotFoundException">
+        <soap:fault name="ConfigurationNotFoundException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetConfiguration">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="GetConfiguration">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetConfigurationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InvalidArgumentException">
+        <soap:fault name="InvalidArgumentException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="ConfigurationServiceException">
+        <soap:fault name="ConfigurationServiceException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="ConfigurationNotFoundException">
+        <soap:fault name="ConfigurationNotFoundException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetConfigurations">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="GetConfigurations">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetConfigurationsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ConfigurationServiceException">
+        <soap:fault name="ConfigurationServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetConfigurationValue">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="GetConfigurationValue">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetConfigurationValueResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InvalidArgumentException">
+        <soap:fault name="InvalidArgumentException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="ConfigurationServiceException">
+        <soap:fault name="ConfigurationServiceException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="ConfigurationNotFoundException">
+        <soap:fault name="ConfigurationNotFoundException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ConfigurationService">
+    <wsdl:port binding="tns:ConfigurationServiceSoapBinding" name="IConfigurationServicePort">
+      <soap:address location="http://localhost:8080/service/ConfigurationService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/service/ConfigurationService</con:endpoint></con:endpoints><con:operation id="8461e497-cb8b-4ea1-a9e0-8c39db6f10f9" isOneWay="false" action="" name="DeleteConfiguration" bindingOperationName="DeleteConfiguration" type="Request-Response" outputName="DeleteConfigurationResponse" inputName="DeleteConfiguration" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="e4ec2159-e9ad-4ac9-ba29-bc4b64852894" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/ConfigurationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://configuration.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <con:DeleteConfiguration>
+         <Key>?</Key>
+      </con:DeleteConfiguration>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://configuration.inception.digital/IConfigurationService/DeleteConfiguration"/></con:call></con:operation><con:operation id="0bb25fe7-1128-4729-b036-84cc80987fe6" isOneWay="false" action="" name="GetConfiguration" bindingOperationName="GetConfiguration" type="Request-Response" outputName="GetConfigurationResponse" inputName="GetConfiguration" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="b1d1ede9-1146-4515-8217-a38fcd7a5fae" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/ConfigurationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://configuration.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <con:GetConfiguration>
+         <Key>?</Key>
+      </con:GetConfiguration>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://configuration.inception.digital/IConfigurationService/GetConfiguration"/></con:call></con:operation><con:operation id="7de7d74d-e669-4463-b7c3-e735050e9294" isOneWay="false" action="" name="GetConfigurations" bindingOperationName="GetConfigurations" type="Request-Response" outputName="GetConfigurationsResponse" inputName="GetConfigurations" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="47fd4d1b-6cc4-49b1-8981-9a8439293849" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/ConfigurationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://configuration.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <con:GetConfigurations/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://configuration.inception.digital/IConfigurationService/GetConfigurations"/></con:call></con:operation><con:operation id="03ab467f-5171-41d5-b0c0-3318235be5fa" isOneWay="false" action="" name="GetConfigurationValue" bindingOperationName="GetConfigurationValue" type="Request-Response" outputName="GetConfigurationValueResponse" inputName="GetConfigurationValue" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="c9409275-140c-441f-82db-d466d3bb5afc" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/ConfigurationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://configuration.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <con:GetConfigurationValue>
+         <Key>?</Key>
+      </con:GetConfigurationValue>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://configuration.inception.digital/IConfigurationService/GetConfigurationValue"/></con:call></con:operation><con:operation id="351c4969-569d-4fe3-84df-968c2a3aa2dd" isOneWay="false" action="" name="SetConfiguration" bindingOperationName="SetConfiguration" type="Request-Response" outputName="SetConfigurationResponse" inputName="SetConfiguration" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="ec2a2b4d-b051-40f9-a1ff-065cb9ac0996" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/ConfigurationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://configuration.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <con:SetConfiguration>
+         <Configuration>
+            <Key>?</Key>
+            <Value>?</Value>
+            <Description>?</Description>
+         </Configuration>
+      </con:SetConfiguration>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://configuration.inception.digital/IConfigurationService/SetConfiguration"/></con:call></con:operation></con:interface><con:testSuite id="a70704a3-81b7-4498-9076-ceb8f1d9d943" name="Web Service Tests"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="89336825-143c-4abc-984d-84e5cf0945c7" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Codes Service Tests" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword=""><con:settings/><con:testStep type="request" name="Create Test Code Category" id="2390ed1b-de76-47ee-940d-23e7fb150137"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CodesServiceSoapBinding</con:interface><con:operation>CreateCodeCategory</con:operation><con:request name="Create Test Code Category" id="6c762aa2-06bc-4761-84e4-9c0b58d34377"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/CodesService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cod="http://codes.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cod:CreateCodeCategory>
+         <CodeCategory>
+            <Id>TestCodeCategoryId</Id>
+            <Name>Test Code Category Name</Name>
+            <Data>Test Code Category Data</Data>
+         </CodeCategory>
+      </cod:CreateCodeCategory>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="57b8d9b6-b4ac-4f74-8ed9-4fab06c5a44a"/><con:assertion type="Schema Compliance" id="fbf439f2-3ae1-40fe-9842-83bd05d67318"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="1494a9f9-eb99-4106-b923-a69a2231d6e7"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Get Test Code Category" id="b4e81493-88c8-47ab-8afb-bd077d154fe7"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CodesServiceSoapBinding</con:interface><con:operation>GetCodeCategory</con:operation><con:request name="Get Test Code Category" id="9a4c1cab-9a70-4f0d-9ed4-7180539fe3be"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/CodesService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cod="http://codes.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cod:GetCodeCategory>
+         <CodeCategoryId>TestCodeCategoryId</CodeCategoryId>
+      </cod:GetCodeCategory>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="71fbd44a-3b6d-4415-b7cf-47b36de5bf24"/><con:assertion type="Schema Compliance" id="3bbcec9e-98c2-420c-b19c-a65eed4dffce"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="4367cff0-97a2-420f-8896-f468f089259b"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Get Test Code Categories" id="0a522ec3-1544-40fe-af90-41122ec0a96f"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CodesServiceSoapBinding</con:interface><con:operation>GetCodeCategories</con:operation><con:request name="Get Test Code Categories" id="c29d64f6-352c-4e5c-9a64-ebcbfb93bbc2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/CodesService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cod="http://codes.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cod:GetCodeCategories/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="658dbaf0-b2c6-4d06-b084-8d343791e214"/><con:assertion type="Schema Compliance" id="a3510e5a-ee85-42a9-ac9e-da9cf3004023"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="5a6ba071-6100-4a56-8a86-97a012090c46"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Get Test Code Category Summaries" id="cf4ae56c-9f3b-4a79-b4d6-b2e66cf2bfb9"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CodesServiceSoapBinding</con:interface><con:operation>GetCodeCategorySummaries</con:operation><con:request name="Get Test Code Category Summaries" id="996b481c-d001-401f-b9ba-a0197df1ba9c"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/CodesService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cod="http://codes.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cod:GetCodeCategorySummaries/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="def4ae46-4ad1-4912-8d19-f1a706566828"/><con:assertion type="Schema Compliance" id="73a97cd0-3deb-4ab0-bb5b-7a8b2d6bb7a7"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="73eb5911-5826-4d4b-9944-e10c372690ca"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Get Test Code Category Data" id="7d823a05-c04c-45b9-ac34-b2bbe56d2b16"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CodesServiceSoapBinding</con:interface><con:operation>GetCodeCategoryData</con:operation><con:request name="Get Test Code Category Data" id="7d4fa5d0-c5c3-4811-b70c-0e1fe124d8ba"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/CodesService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cod="http://codes.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cod:GetCodeCategoryData>
+         <CodeCategoryId>TestCodeCategoryId</CodeCategoryId>
+      </cod:GetCodeCategoryData>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="75b15c37-42a7-4546-8be9-ea65942a09f6"/><con:assertion type="Schema Compliance" id="37b2cbee-da24-4a32-b7b2-1d300f4600d0"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="3741972e-add8-4b6b-ad0d-72b9ca386931"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Get Test Code Category Updated" id="62ca9243-5b39-4e9d-9606-075f549e26d5"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CodesServiceSoapBinding</con:interface><con:operation>GetCodeCategoryUpdated</con:operation><con:request name="Get Test Code Category Updated" id="9539b19b-a60c-4d4d-95dc-fb12f3cb5c95"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/CodesService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cod="http://codes.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cod:GetCodeCategoryUpdated>
+         <CodeCategoryId>TestCodeCategoryId</CodeCategoryId>
+      </cod:GetCodeCategoryUpdated>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="75778eb1-1802-4b34-9531-74543d0aada2"/><con:assertion type="Schema Compliance" id="df9d2edf-6dca-4ef5-9353-0521aaa4b7c2"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="6fe09fff-b3ba-4b85-a75e-e774ff853f15"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Update Test Code Category" id="c3fdffe8-aa3c-48c3-8b49-b6af8319a0a2"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CodesServiceSoapBinding</con:interface><con:operation>UpdateCodeCategory</con:operation><con:request name="Update Test Code Category" id="b7ddd9e0-fb24-4bef-ab86-e3b37ddf7ba3"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/CodesService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cod="http://codes.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cod:UpdateCodeCategory>
+         <CodeCategory>
+            <Id>TestCodeCategoryId</Id>
+            <Name>Updated Test Code Category Name</Name>
+            <Data>Updated Test Code Category Data</Data>
+         </CodeCategory>
+      </cod:UpdateCodeCategory>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="9bef3b5b-8b38-49da-93ac-6106f21c1f5a"/><con:assertion type="Schema Compliance" id="4c9a816b-a005-45b2-a440-444f3da991cf"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="d1f9c5bd-0d81-4fd0-937b-fe37586bef77"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Get Updated Test Code Category" id="86bc0de8-f0d3-4baf-8e97-db1a180301c8"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CodesServiceSoapBinding</con:interface><con:operation>GetCodeCategory</con:operation><con:request name="Get Updated Test Code Category" id="961ba6eb-ad70-4b4a-ae78-9ae6bee9b6c0"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/CodesService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cod="http://codes.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cod:GetCodeCategory>
+         <CodeCategoryId>TestCodeCategoryId</CodeCategoryId>
+      </cod:GetCodeCategory>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="0d2cd481-2cb6-49d0-808a-6288d1efcce6"/><con:assertion type="Schema Compliance" id="67d9359e-54ed-4b77-95db-ccaff9bf84ba"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="55939c98-fdb8-45f7-994d-c269792a62c3"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Create Test Code" id="9dc3eeb7-1be1-43ee-a65d-f01061727bbf"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CodesServiceSoapBinding</con:interface><con:operation>CreateCode</con:operation><con:request name="Create Test Code" id="a6be58bd-13bd-4bdd-9ff1-99de29a92e5c"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/CodesService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cod="http://codes.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cod:CreateCode>
+         <Code>
+            <Id>TestCodeId</Id>
+            <CodeCategoryId>TestCodeCategoryId</CodeCategoryId>
+            <Name>Test Code Name</Name>
+            <Value>Test Code Value</Value>
+         </Code>
+      </cod:CreateCode>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="5affe56f-01ee-4811-bacf-4dd81aad9f87"/><con:assertion type="Schema Compliance" id="57dd398a-0549-4e93-afe1-ff375391eb43"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="6cdd1b77-e912-4b4b-ad42-bb7d12038f8b"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Update Test Code" id="30b4cad3-1ebd-4944-958c-9f31463e9142"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CodesServiceSoapBinding</con:interface><con:operation>UpdateCode</con:operation><con:request name="Update Test Code" id="9a4f6e90-bfda-4daf-b7fc-8ce0ef142b98"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/CodesService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cod="http://codes.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cod:UpdateCode>
+         <Code>
+            <Id>TestCodeId</Id>
+            <CodeCategoryId>TestCodeCategoryId</CodeCategoryId>
+            <Name>Updated Test Code Name</Name>
+            <Value>Updated Test Code Value</Value>
+         </Code>
+      </cod:UpdateCode>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="55d5c628-4378-4cb7-9829-f2aaaf9d37cc"/><con:assertion type="Schema Compliance" id="71d93469-c0da-4e3d-99f4-20a40ceee463"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="bc8e9c89-9aca-4eae-bde9-3ba56b03ba38"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Get Test Code" id="64253c76-4e3c-4c03-bf8e-43da0cc66cdb"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CodesServiceSoapBinding</con:interface><con:operation>GetCode</con:operation><con:request name="Get Test Code" id="69f6c31c-307c-43f3-a3b8-445365d44f42"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/CodesService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cod="http://codes.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cod:GetCode>
+         <CodeCategoryId>TestCodeCategoryId</CodeCategoryId>
+         <CodeId>TestCodeId</CodeId>
+      </cod:GetCode>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="e1f8b113-0021-4738-8602-2624c90df8f2"/><con:assertion type="Schema Compliance" id="05c6ba77-116e-4048-a77e-9345b79a3ce2"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="f4bc54ac-51cb-48a2-b25b-8c59ae050842"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Get Test Code Category Codes" id="3d3f329c-6850-4c51-82e0-c70ab19f639c"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CodesServiceSoapBinding</con:interface><con:operation>GetCodeCategoryCodes</con:operation><con:request name="Get Test Code Category Codes" id="94dc30dc-5cfc-46b0-a2d0-950f3745f3a5"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/CodesService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cod="http://codes.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cod:GetCodeCategoryCodes>
+         <CodeCategoryId>TestCodeCategoryId</CodeCategoryId>
+      </cod:GetCodeCategoryCodes>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="5e2fd163-6cc1-4ac1-b576-b87ba4c6e28b"/><con:assertion type="Schema Compliance" id="059cd1c3-6608-4b4f-8e8e-33735b86e634"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="8b8df600-ffce-4f5d-b286-268219c511f9"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Delete Test Code" id="6b9ef696-dd17-41ce-abd0-ff879bc2105d"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CodesServiceSoapBinding</con:interface><con:operation>DeleteCode</con:operation><con:request name="Delete Test Code" id="6f13cd36-efaa-4cb2-8ce1-ff71cab9a1c4"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/CodesService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cod="http://codes.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cod:DeleteCode>
+         <CodeCategoryId>TestCodeCategoryId</CodeCategoryId>
+         <CodeId>TestCodeId</CodeId>
+      </cod:DeleteCode>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="fb64de49-2a6b-4890-87cb-894566a7f213"/><con:assertion type="Schema Compliance" id="27857822-5653-4641-8055-389b5316c1a8"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="0fe5831e-1186-4277-935d-5f24d9eb1d47"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Delete Test Code Category" id="cb6f738b-b36c-4c2f-b5f6-0f562e78ca68"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CodesServiceSoapBinding</con:interface><con:operation>DeleteCodeCategory</con:operation><con:request name="Delete Test Code Category" id="391990f5-0752-400a-a873-c598d8377b92"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/CodesService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cod="http://codes.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cod:DeleteCodeCategory>
+         <CodeCategoryId>TestCodeCategoryId</CodeCategoryId>
+      </cod:DeleteCodeCategory>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="1369a595-d33f-4029-9c5f-d835f0da5462"/><con:assertion type="Schema Compliance" id="92044bb7-0c4b-43a3-8382-ad69e7a1e955"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="8f681576-289c-483d-bb45-3774317539af"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Get Invalid Test Code Category" id="008bc8e0-60ae-442b-a8cb-9474625b27a4"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CodesServiceSoapBinding</con:interface><con:operation>GetCodeCategory</con:operation><con:request name="Get Invalid Test Code Category" id="62d80857-c44b-45e3-8847-306d70b47de0"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/CodesService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cod="http://codes.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cod:GetCodeCategory>
+         <CodeCategoryId>TestCodeCategoryId</CodeCategoryId>
+      </cod:GetCodeCategory>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="68a8b4d9-ce85-4eb2-9167-7edbc617ec3d"/><con:assertion type="Schema Compliance" id="74b49805-cd3a-4676-8b4a-77c89bb9c879"><con:configuration/></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="8c77c95c-4c5e-41f8-b742-ecc92ace3539" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Configuration Service Tests" searchProperties="true"><con:settings/><con:testStep type="request" name="Set Test Configuration" id="af92d947-199a-4466-946a-5ea84831bb50"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ConfigurationServiceSoapBinding</con:interface><con:operation>SetConfiguration</con:operation><con:request name="Set Test Configuration" id="5d1b4a7a-955c-4e98-a6e5-1fdc1afdace4"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/ConfigurationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://configuration.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <con:SetConfiguration>
+         <Configuration>
+            <Key>TestKey</Key>
+            <Value>TestValue</Value>
+            <Description>Test Description</Description>
+         </Configuration>
+      </con:SetConfiguration>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="4d3c7a00-cca8-4e7e-9da3-565640935ddf"/><con:assertion type="Schema Compliance" id="9d6bfb3a-4387-4450-9bb4-c5127f03e948"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="91bcd71f-ad1f-4767-bc37-1658a69154a8"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Get Test Configuration" id="e0346748-07c0-4b89-80b5-63102cbb227a"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ConfigurationServiceSoapBinding</con:interface><con:operation>GetConfiguration</con:operation><con:request name="Get Test Configuration" id="73d7d3a7-c958-4733-a7a8-dc83993bebcc"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/ConfigurationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://configuration.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <con:GetConfiguration>
+         <Key>TestKey</Key>
+      </con:GetConfiguration>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="a1b2e130-27b6-4a97-80fc-e8c09f1a67e3"/><con:assertion type="Schema Compliance" id="02883711-791d-4afd-906e-4ee99d957a2b"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="7b9024e0-2893-4c4a-b930-5e58d3e9d32d"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Get Test Configuration Value" id="30a8cd7b-9cf4-4971-a9f7-f968b80faf5e"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ConfigurationServiceSoapBinding</con:interface><con:operation>GetConfigurationValue</con:operation><con:request name="Get Test Configuration Value" id="edcf3a21-23d5-4e17-8de4-3452a72c4d85"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/ConfigurationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://configuration.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <con:GetConfigurationValue>
+         <Key>TestKey</Key>
+      </con:GetConfigurationValue>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="731c2e4d-bf13-4cfb-a06c-3762918aaa92"/><con:assertion type="Schema Compliance" id="2bf8f679-ce4a-4b61-91f5-def0261d38c6"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="eebd74e9-357d-4c42-b6f5-d4577140016a"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Get Test Configurations" id="3299b2db-9293-4cf4-be64-bb62af665dbf"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ConfigurationServiceSoapBinding</con:interface><con:operation>GetConfigurations</con:operation><con:request name="Get Test Configurations" id="1dfded63-48ec-428b-a97e-ab967dad4d62"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/ConfigurationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://configuration.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <con:GetConfigurations/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="0c93adb7-6b07-4f20-a57f-a279ad257205"/><con:assertion type="Schema Compliance" id="6eeb148d-6b7b-47c8-b9d5-b87cecc158c7"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="adebe61f-d104-407d-9938-8387a16a612a"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Set Updated Test Configuration" id="762616bd-4ec7-490b-bf27-840a33373418"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ConfigurationServiceSoapBinding</con:interface><con:operation>SetConfiguration</con:operation><con:request name="Set Updated Test Configuration" id="26e7ff56-753b-4e20-95b3-b8cf4beed629"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/ConfigurationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://configuration.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <con:SetConfiguration>
+         <Configuration>
+            <Key>TestKey</Key>
+            <Value>UpdatedTestValue</Value>
+            <Description>Updated Test Description</Description>
+         </Configuration>
+      </con:SetConfiguration>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="13cdb402-d271-4ffe-b3bc-12d1929f61e6"/><con:assertion type="Schema Compliance" id="1b1886c6-afc6-42d6-a2b2-cb94726a3401"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="76815a32-14bb-40f3-9c78-8616509df453"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Get Updated Test Configuration" id="0923f945-f8c4-4c13-8415-8b94a1b73459"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ConfigurationServiceSoapBinding</con:interface><con:operation>GetConfiguration</con:operation><con:request name="Get Updated Test Configuration" id="b6e11b32-716d-42a3-9fd4-a4d975e2ca8a"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/ConfigurationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://configuration.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <con:GetConfiguration>
+         <Key>TestKey</Key>
+      </con:GetConfiguration>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="96095b9e-5f18-45b5-ba37-5ffc46c696e1"/><con:assertion type="Schema Compliance" id="0389e5b0-a736-443b-872d-cbe3c870715c"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="34929776-5629-4203-8eeb-33160e3d805c"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Get Updated Test Configuration Value" id="0750f198-0472-414a-834f-72581018d388"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ConfigurationServiceSoapBinding</con:interface><con:operation>GetConfigurationValue</con:operation><con:request name="Get Updated Test Configuration Value" id="3c509593-6f9a-4d1b-9a53-244d314d6880"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/ConfigurationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://configuration.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <con:GetConfigurationValue>
+         <Key>TestKey</Key>
+      </con:GetConfigurationValue>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="2d629105-5b64-44f5-b64d-6af5b44959e2"/><con:assertion type="Schema Compliance" id="58752046-18f3-4e7b-842e-75a22005a3c2"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="7c8ed393-1cc5-4b42-bd48-7e3fd0a2252d"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Delete Test Configuration" id="6f9c1741-a97e-4fae-b42a-f69bed48b2d9"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ConfigurationServiceSoapBinding</con:interface><con:operation>DeleteConfiguration</con:operation><con:request name="Delete Test Configuration" id="b1301d8d-65b9-430c-82c6-7fd1bbd7dbe9"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/ConfigurationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://configuration.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <con:DeleteConfiguration>
+         <Key>TestKey</Key>
+      </con:DeleteConfiguration>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="6b093303-6f37-4627-bee7-37c72294771a"/><con:assertion type="Schema Compliance" id="8279c94a-13dd-4a56-bfb8-52c6c1ddc218"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="603778b1-781a-4bdb-8dd7-21478c437035"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Get Invalid Test Configuration" id="50635245-d7c9-4078-a3bf-22b690b44a9d"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ConfigurationServiceSoapBinding</con:interface><con:operation>GetConfiguration</con:operation><con:request name="Get Invalid Test Configuration" id="4219d4b3-7cab-4066-8dc1-25100ad63b6a"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/ConfigurationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://configuration.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <con:GetConfiguration>
+         <Key>TestKey</Key>
+      </con:GetConfiguration>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="a91d9eee-e884-486b-8320-63c5cb83630c"/><con:assertion type="Schema Compliance" id="91bb1a0b-8ba1-4f12-b9db-db6781ecdd21"><con:configuration/></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="f8d1b965-8317-4421-91c1-e12634159c1f" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Security Service Tests" searchProperties="true"><con:settings/><con:testStep type="request" name="Create Test Tenant" id="c0a76043-f63f-4f91-8b4e-e6ded20214ad"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SecurityServiceSoapBinding</con:interface><con:operation>CreateOrganization</con:operation><con:request name="Create Test Tenant" id="ce89d290-1f9b-448e-a90e-78214d1c0d94"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/SecurityService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sec="http://security.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sec:CreateOrganization>
+         <Tenant>
+            <Id>05ca6d8a-5257-4cd0-8dc6-f4980b9b79ad</Id>
+            <Name>Test Tenant</Name>
+            <Status>Active</Status>
+         </Tenant>
+         <CreateUserDirectory>true</CreateUserDirectory>
+      </sec:CreateOrganization>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="5aadd43b-cba2-4502-8bd4-e44a858112ab"/><con:assertion type="Schema Compliance" id="41077a4c-afba-45f0-be0b-a5e0da87b3df"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="6f458fe5-aa43-4c8b-9dca-08a87aee5001"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Get Test Tenants" id="5f2966c8-55d9-40b9-bae7-4c57f48614c7"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SecurityServiceSoapBinding</con:interface><con:operation>GetOrganizations</con:operation><con:request name="Get Test Tenants" id="6a56d0ef-9c58-4626-b14d-edac219acbd6"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/SecurityService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sec="http://security.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sec:GetOrganizations>
+         <Filter></Filter>
+         <SortDirection>Ascending</SortDirection>
+         <PageIndex>0</PageIndex>
+         <PageSize>100</PageSize>
+      </sec:GetOrganizations>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="9dbbfe09-5c45-4084-a5d9-da9761ae5967"/><con:assertion type="Schema Compliance" id="b721176e-e357-4591-a83d-5af0bcd7b8cd"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="8281689c-9ef3-4a18-b976-6a4e041fcb09"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Get User Directories For Test Tenant" id="6dccc92a-2494-4f09-aeab-67227b27dd8d"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SecurityServiceSoapBinding</con:interface><con:operation>GetUserDirectoriesForOrganization</con:operation><con:request name="Get User Directories For Test Tenant" id="2c3f0890-eb4e-4d5a-8e27-374fa6c718ee"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/SecurityService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sec="http://security.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sec:GetUserDirectoriesForOrganization>
+         <OrganizationId>05ca6d8a-5257-4cd0-8dc6-f4980b9b79ad</OrganizationId>
+      </sec:GetUserDirectoriesForOrganization>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="7e6ddc40-bfe1-42b1-a773-572b27f492fe"/><con:assertion type="Schema Compliance" id="ed9e9cbf-0145-4b40-9d9f-a5ce508349f9"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="40e7b4cb-89a5-48f4-9d7c-82bd61d24958"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Delete Test Tenant" id="ded56959-3bf4-4cad-a506-f20da09adf1f"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SecurityServiceSoapBinding</con:interface><con:operation>DeleteOrganization</con:operation><con:request name="Delete Test Tenant" id="c02c1d56-c248-4f8b-8e7c-d4ff95b4db80"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/service/SecurityService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sec="http://security.inception.digital">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sec:DeleteOrganization>
+         <OrganizationId>05ca6d8a-5257-4cd0-8dc6-f4980b9b79ad</OrganizationId>
+      </sec:DeleteOrganization>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="65be1c22-608a-46fc-bfed-6e3fdc3b75e6"/><con:assertion type="Schema Compliance" id="30a57367-8d83-460c-b2af-abfaa86c2cd8"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" id="10805a6e-0c07-4f7a-b410-a4de0c65b964"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

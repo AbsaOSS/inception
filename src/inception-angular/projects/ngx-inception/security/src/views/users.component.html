@@ -1,0 +1,81 @@
+<mat-card class="flex flex-column flex-auto">
+  <div class="select-user-directory-container" [hidden]="userDirectories.length < 2">
+    <span class="mat-header-label" i18n="@@security_users_component_user_directory">User Directory :</span>
+    <mat-form-field class="mat-form-field-slim">
+      <mat-select #userDirectorySelect required="true" i18n-placeholder="@@security_users_component_placeholder_select_a_user_directory" placeholder="Select a user directory">
+        <mat-option *ngFor="let userDirectory of userDirectories" [value]="userDirectory.id">
+          {{userDirectory.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="mat-table-header">
+    <button *hasAuthority="['ROLE_Administrator', 'FUNCTION_Security.TenantAdministration', 'FUNCTION_Security.UserAdministration']" mat-flat-button color="primary" [disabled]="!(enableNewButton$ | async)" (click)="newUser()" i18n="@@security_users_component_button_new">New</button>
+    <div></div>
+    <table-filter></table-filter>
+  </div>
+  <mat-table [dataSource]="dataSource" class="flex-fill" style="min-height: 550px;" matSort matSortActive="name" matSortDirection="asc" matSortDisableClear>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@security_users_component_table_header_name">Name</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.name}}</mat-cell>
+    </ng-container>
+
+    <!-- Username Column -->
+    <ng-container matColumnDef="username">
+      <mat-header-cell class="d-none d-md-table-cell" *matHeaderCellDef mat-sort-header i18n="@@security_users_component_table_header_username">Username</mat-header-cell>
+      <mat-cell class="d-none d-md-table-cell" *matCellDef="let row">{{row.username}}</mat-cell>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell class="mat-one-action" *matHeaderCellDef i18n="@@security_users_component_table_header_actions" [hidden]="!(enableActionsMenu$ | async)">Actions</mat-header-cell>
+      <mat-cell class="mat-one-action" *matCellDef="let row" [hidden]="!(enableActionsMenu$ | async)">
+        <ng-container>
+          <button [matMenuTriggerFor]="actionsMenu" [matMenuTriggerData]="{username: row.username}" mat-icon-button>
+            <i class="fas fa-ellipsis-v"></i>
+          </button>
+        </ng-container>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Header and Row Declarations -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
+  <mat-paginator [length]="dataSource.total$ | async" [pageSize]="10" [hidePageSize]="true" [showFirstLastButtons]="true" ></mat-paginator>
+
+  <mat-menu class="mat-action-menu" #actionsMenu="matMenu" >
+    <ng-template matMenuContent let-username="username" *ngIf="(userDirectoryCapabilities$ | async) as userDirectoryCapabilities">
+      <ng-container *ngIf="userDirectoryCapabilities.supportsUserAdministration">
+        <button *hasAuthority="['ROLE_Administrator', 'FUNCTION_Security.TenantAdministration', 'FUNCTION_Security.UserAdministration']" mat-menu-item (click)="editUser(username)">
+          <i class="fas fa-edit"></i>
+          <span i18n="@@security_users_component_menu_item_edit">Edit</span>
+        </button>
+      </ng-container>
+      <ng-container *ngIf="userDirectoryCapabilities.supportsGroupAdministration">
+        <button *hasAuthority="['ROLE_Administrator', 'FUNCTION_Security.TenantAdministration', 'FUNCTION_Security.UserAdministration']" mat-menu-item (click)="userGroups(username)">
+          <i class="fas fa-users"></i>
+          <span i18n="@@security_users_component_menu_item_groups">Groups</span>
+        </button>
+      </ng-container>
+      <ng-container *ngIf="userDirectoryCapabilities.supportsAdminChangePassword">
+        <button *hasAuthority="['ROLE_Administrator', 'FUNCTION_Security.TenantAdministration', 'FUNCTION_Security.UserAdministration', 'FUNCTION_Security.ResetUserPassword']" mat-menu-item (click)="resetUserPassword(username)">
+          <i class="fas fa-unlock-alt"></i>
+          <span i18n="@@security_users_component_menu_item_reset_user_password">Reset User Password</span>
+        </button>
+      </ng-container>
+      <ng-container *ngIf="userDirectoryCapabilities.supportsUserAdministration">
+        <button *hasAuthority="['ROLE_Administrator', 'FUNCTION_Security.TenantAdministration', 'FUNCTION_Security.UserAdministration']" mat-menu-item (click)="deleteUser(username)">
+          <i class="far fa-trash-alt"></i>
+          <span i18n="@@security_users_component_menu_item_delete">Delete</span>
+        </button>
+      </ng-container>
+    </ng-template>
+  </mat-menu>
+
+</mat-card>
+
+

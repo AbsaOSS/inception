@@ -1,0 +1,38 @@
+<mat-card class="flex flex-column flex-auto">
+  <div class="mat-table-header">
+    <div></div>
+    <button mat-flat-button color="primary" [hidden]="true" (click)="addMemberToGroup()" i18n="@@security_group_members_component_button_add">Add</button>
+    <table-filter></table-filter>
+  </div>
+  <mat-table [dataSource]="dataSource" class="flex-fill" style="min-height: 550px;" matSort matSortActive="memberName" matSortDirection="asc" matSortDisableClear>
+
+    <!-- Member Name Column -->
+    <ng-container matColumnDef="memberName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@security_group_members_component_table_header_member_name">Member Name</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.memberName}}</mat-cell>
+    </ng-container>
+
+    <!-- Member Type Column -->
+    <ng-container matColumnDef="memberType">
+      <mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@security_group_members_component_table_header_member_type">Member Type</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{groupMemberTypeName(row.memberType)}}</mat-cell>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell class="mat-one-action" *matHeaderCellDef>Actions</mat-header-cell>
+      <mat-cell class="mat-one-action" *matCellDef="let groupMember">
+        <button mat-icon-button (click)="removeMemberFromGroup(groupMember)">
+          <i class="far fa-trash-alt"></i>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Header and Row Declarations -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
+  <mat-paginator [length]="dataSource.total$ | async" [pageSize]="10" [hidePageSize]="true" [showFirstLastButtons]="true" ></mat-paginator>
+
+</mat-card>

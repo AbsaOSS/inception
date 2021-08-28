@@ -1,0 +1,33 @@
+<mat-card class="flex flex-column flex-fill">
+  <mat-table [dataSource]="dataSource" class="flex-fill" matSort>
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <mat-header-cell class="position-column" *matHeaderCellDef mat-sort-header>Position</mat-header-cell>
+      <mat-cell class="position-column" *matCellDef="let row">{{row.position}}</mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.name}}</mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="weight">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Weight</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.weight}}</mat-cell>
+    </ng-container>
+
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="symbol">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Symbol</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.symbol}}</mat-cell>
+    </ng-container>
+
+    <!-- Header and Row Declarations -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+</mat-card>

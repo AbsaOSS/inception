@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+  <property name="blob_type" value="bytea" dbms="h2"/>
+  <property name="blob_type" value="bytea" dbms="postgresql"/>
+  <property name="blob_type" value="blob" dbms="oracle"/>
+  <property name="blob_type" value="varbinary(max)" dbms="mssql"/>
+  <property name="now" value="now()" dbms="h2"/>
+  <property name="now" value="now()" dbms="postgresql"/>
+  <property name="now" value="sysdate" dbms="oracle"/>
+  <property name="now" value="CURRENT_TIMESTAMP" dbms="mssql"/>
+
+  <changeSet id="inception-reporting-test-1.0.0" author="Marcus Portmann" context="test">
+    <comment>Inception - Reporting - Test - 1.0.0</comment>
+    <sql dbms="h2" endDelimiter=";">
+      CREATE SCHEMA IF NOT EXISTS test
+    </sql>
+    <sql dbms="postgresql" endDelimiter=";">
+      CREATE SCHEMA IF NOT EXISTS test
+    </sql>
+    <sql dbms="mssql" endDelimiter=";">
+      CREATE SCHEMA test
+    </sql>
+
+    <createTable schemaName="test" tableName="test_data" remarks="Test Data">
+      <column name="id" type="nvarchar(100)" remarks="The ID for the test data">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="name" type="nvarchar(100)" remarks="The name for the test data">
+        <constraints nullable="false"/>
+      </column>
+      <column name="value" type="nvarchar(4000)" remarks="The value for the test data">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+
+    <insert schemaName="test" tableName="test_data">
+      <column name="id" value="1"/>
+      <column name="name" value="Sample Name 1"/>
+      <column name="value" value="Sample Value 1"/>
+    </insert>
+    <insert schemaName="test" tableName="test_data">
+      <column name="id" value="2"/>
+      <column name="name" value="Sample Name 2"/>
+      <column name="value" value="Sample Value 2"/>
+    </insert>
+    <insert schemaName="test" tableName="test_data">
+      <column name="id" value="3"/>
+      <column name="name" value="Sample Name 3"/>
+      <column name="value" value="Sample Value 3"/>
+    </insert>
+    <insert schemaName="test" tableName="test_data">
+      <column name="id" value="4"/>
+      <column name="name" value="Sample Name 4"/>
+      <column name="value" value="Sample Value 4"/>
+    </insert>
+    <insert schemaName="test" tableName="test_data">
+      <column name="id" value="5"/>
+      <column name="name" value="Sample Name 5"/>
+      <column name="value" value="Sample Value 5"/>
+    </insert>
+    <insert schemaName="test" tableName="test_data">
+      <column name="id" value="6"/>
+      <column name="name" value="Sample Name 6"/>
+      <column name="value" value="Sample Value 6"/>
+    </insert>
+    <insert schemaName="test" tableName="test_data">
+      <column name="id" value="7"/>
+      <column name="name" value="Sample Name 7"/>
+      <column name="value" value="Sample Value 7"/>
+    </insert>
+    <insert schemaName="test" tableName="test_data">
+      <column name="id" value="8"/>
+      <column name="name" value="Sample Name 8"/>
+      <column name="value" value="Sample Value 8"/>
+    </insert>
+    <insert schemaName="test" tableName="test_data">
+      <column name="id" value="9"/>
+      <column name="name" value="Sample Name 9"/>
+      <column name="value" value="Sample Value 9"/>
+    </insert>
+
+  </changeSet>
+
+</databaseChangeLog>
+
+

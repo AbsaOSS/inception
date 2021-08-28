@@ -1,0 +1,39 @@
+<div class="row mb-3">
+  <div class="col">
+    <mat-card>
+      <mat-card-title>Fixed height grid-list</mat-card-title>
+      <mat-card-subtitle>
+        <code class="bg-light">&lt;mat-grid-list&gt;</code> is a two-dimensional list view that arranges cells into grid-based layout.
+      </mat-card-subtitle>
+      <mat-card-content>
+        <mat-grid-list cols="4" rowHeight="100px">
+          <mat-grid-tile
+            *ngFor="let tile of tiles"
+            [colspan]="tile.cols"
+            [rowspan]="tile.rows"
+            [style.background]="tile.color">
+            {{tile.text}}
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <mat-card>
+      <mat-card-title>Basic grid-list</mat-card-title>
+      <mat-card-subtitle>
+        <code class="bg-light">&lt;mat-grid-list&gt;</code> is a two-dimensional list view that arranges cells into grid-based layout.
+      </mat-card-subtitle>
+      <mat-card-content>
+        <mat-grid-list cols="2" rowHeight="2:1">
+          <mat-grid-tile style="background-color: lightblue;">1</mat-grid-tile>
+          <mat-grid-tile style="background-color: lightblue;">2</mat-grid-tile>
+          <mat-grid-tile style="background-color: lightblue;">3</mat-grid-tile>
+          <mat-grid-tile style="background-color: lightblue;">4</mat-grid-tile>
+        </mat-grid-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

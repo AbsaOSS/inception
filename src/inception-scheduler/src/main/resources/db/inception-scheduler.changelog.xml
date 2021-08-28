@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+  <property name="blob_type" value="bytea" dbms="h2"/>
+  <property name="blob_type" value="bytea" dbms="postgresql"/>
+  <property name="blob_type" value="blob" dbms="oracle"/>
+  <property name="blob_type" value="varbinary(max)" dbms="mssql"/>
+  <property name="now" value="now()" dbms="h2"/>
+  <property name="now" value="now()" dbms="postgresql"/>
+  <property name="now" value="sysdate" dbms="oracle"/>
+  <property name="now" value="CURRENT_TIMESTAMP" dbms="mssql"/>
+
+  <changeSet id="inception-scheduler-1.0.0" author="Marcus Portmann">
+    <comment>Inception - Scheduler - 1.0.0</comment>
+    <sql dbms="h2" endDelimiter=";">
+      CREATE SCHEMA IF NOT EXISTS scheduler
+    </sql>
+    <sql dbms="postgresql" endDelimiter=";">
+      CREATE SCHEMA IF NOT EXISTS scheduler
+    </sql>
+    <sql dbms="mssql" endDelimiter=";">
+      CREATE SCHEMA scheduler
+    </sql>
+
+    <createTable schemaName="scheduler" tableName="jobs" remarks="Jobs">
+      <column name="id" type="nvarchar(100)" remarks="The ID for the job">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="name" type="nvarchar(100)" remarks="The name of the job">
+        <constraints nullable="false"/>
+      </column>
+      <column name="scheduling_pattern" type="nvarchar(100)" remarks="The cron-style scheduling pattern for the job">
+        <constraints nullable="false"/>
+      </column>
+      <column name="job_class" type="nvarchar(1000)" remarks="The fully qualified name of the Java class that implements the job">
+        <constraints nullable="false"/>
+      </column>
+      <column name="enabled" type="boolean" remarks="Is the job enabled for execution">
+        <constraints nullable="false"/>
+      </column>
+      <column name="status" type="int" remarks="The status of the job">
+        <constraints nullable="false"/>
+      </column>
+      <column name="execution_attempts" type="int" defaultValue="0" remarks="The number of times the current execution of the job has been attempted">
+        <constraints nullable="false"/>
+      </column>
+      <column name="lock_name" type="nvarchar(100)" remarks="The name of the entity that has locked the job for execution"/>
+      <column name="last_executed" type="timestamp" remarks="The date and time the job was last executed"/>
+      <column name="next_execution" type="timestamp" remarks="The date and time the job will next be executed"/>
+      <column name="created" type="timestamp" remarks="The date and time the job was created">
+        <constraints nullable="false"/>
+      </column>
+      <column name="updated" type="timestamp" remarks="The date and time the job was last updated"/>
+    </createTable>
+
+    <createTable schemaName="scheduler" tableName="job_parameters" remarks="Job Parameters">
+      <column name="job_id" type="nvarchar(100)" remarks="The ID for the job">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="name" type="nvarchar(100)" remarks="The name of the job parameter">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="value" type="nvarchar(4000)" remarks="The value of the job parameter">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created" type="timestamp" remarks="The date and time the job parameter was created">
+        <constraints nullable="false"/>
+      </column>
+      <column name="updated" type="timestamp" remarks="The date and time the job parameter was last updated"/>
+    </createTable>
+    <addForeignKeyConstraint constraintName="job_parameters_job_fk" baseTableSchemaName="scheduler"
+      baseTableName="job_parameters" baseColumnNames="job_id" referencedTableSchemaName="scheduler"
+      referencedTableName="jobs" referencedColumnNames="id" onDelete="CASCADE"/>
+    <createIndex indexName="job_parameters_job_id_ix" schemaName="scheduler"
+      tableName="job_parameters">
+      <column name="job_id"/>
+    </createIndex>
+    <createIndex indexName="job_parameters_name_ix" schemaName="scheduler"
+      tableName="job_parameters">
+      <column name="name"/>
+    </createIndex>
+  </changeSet>
+
+</databaseChangeLog>

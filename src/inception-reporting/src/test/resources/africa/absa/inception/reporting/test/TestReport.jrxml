@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TestReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e1ff656a-3188-46cf-be1d-1a133bb6c336">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT TD.NAME AS DATA_NAME, TD.VALUE AS DATA_VALUE FROM TEST.TEST_DATA TD ORDER BY TD.NAME]]>
+	</queryString>
+	<field name="data_name" class="java.lang.String"/>
+	<field name="data_value" class="java.lang.String"/>
+	<title>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="440" height="50" uuid="218bfb6a-5f4a-43b1-9757-8518a47396fb"/>
+				<textElement verticalAlignment="Middle">
+					<font size="18"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<text><![CDATA[Test Report]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="277" height="20" forecolor="#FFFFFF" backcolor="#0965A8" uuid="35c2a192-ff4e-4b70-9522-1e3dc524081e"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#0965A8"/>
+					<topPen lineWidth="0.5" lineColor="#0965A8"/>
+					<leftPen lineWidth="0.5" lineColor="#0965A8"/>
+					<bottomPen lineWidth="0.5" lineColor="#0965A8"/>
+					<rightPen lineWidth="0.5" lineColor="#0965A8"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<text><![CDATA[Data Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="278" y="0" width="276" height="20" forecolor="#FFFFFF" backcolor="#0965A8" uuid="4ec03a8b-fb5e-4ada-8592-91c533b79e9f"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#0965A8"/>
+					<topPen lineWidth="0.5" lineColor="#0965A8"/>
+					<leftPen lineWidth="0.5" lineColor="#0965A8"/>
+					<bottomPen lineWidth="0.5" lineColor="#0965A8"/>
+					<rightPen lineWidth="0.5" lineColor="#0965A8"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<text><![CDATA[Data Value]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="277" height="20" uuid="030bb00f-6468-4549-b93e-301ccceb9e0c"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+					<topPen lineWidth="0.5" lineColor="#999999"/>
+					<leftPen lineWidth="0.5" lineColor="#999999"/>
+					<bottomPen lineWidth="0.5" lineColor="#999999"/>
+					<rightPen lineWidth="0.5" lineColor="#999999"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{data_name}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="277" y="0" width="277" height="20" uuid="2c68f332-5be8-4bf7-97ad-0162b56a810f"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+					<topPen lineWidth="0.5" lineColor="#999999"/>
+					<leftPen lineWidth="0.5" lineColor="#999999"/>
+					<bottomPen lineWidth="0.5" lineColor="#999999"/>
+					<rightPen lineWidth="0.5" lineColor="#999999"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{data_value}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

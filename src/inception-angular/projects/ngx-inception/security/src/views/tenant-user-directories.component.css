@@ -1,0 +1,25 @@
+.add-user-directory-to-tenant-container
+{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #c2cfd6;
+  padding: 8px !important;
+}
+
+.add-user-directory-to-tenant-container > span
+{
+  white-space: nowrap;
+  flex: 0;
+  padding-right: 8px;
+}
+
+.add-user-directory-to-tenant-container > .mat-form-field
+{
+  flex: 1;
+}
+
+.add-user-directory-to-tenant-container > button
+{
+  margin-left: 8px;
+}

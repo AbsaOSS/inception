@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+  <property name="blob_type" value="bytea" dbms="h2"/>
+  <property name="blob_type" value="bytea" dbms="postgresql"/>
+  <property name="blob_type" value="blob" dbms="oracle"/>
+  <property name="blob_type" value="varbinary(max)" dbms="mssql"/>
+  <property name="now" value="now()" dbms="h2"/>
+  <property name="now" value="now()" dbms="postgresql"/>
+  <property name="now" value="sysdate" dbms="oracle"/>
+  <property name="now" value="CURRENT_TIMESTAMP" dbms="mssql"/>
+
+  <changeSet id="inception-error-1.0.0" author="Marcus Portmann">
+    <comment>Inception - Error - 1.0.0</comment>
+    <sql dbms="h2" endDelimiter=";">
+      CREATE SCHEMA IF NOT EXISTS error
+    </sql>
+    <sql dbms="postgresql" endDelimiter=";">
+      CREATE SCHEMA IF NOT EXISTS error
+    </sql>
+    <sql dbms="mssql" endDelimiter=";">
+      CREATE SCHEMA error
+    </sql>
+
+    <createTable schemaName="error" tableName="error_reports" remarks="Error Reports">
+      <column name="id" type="uuid" remarks="The Universally Unique Identifier (UUID) for the error report">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="application_id" type="nvarchar(200)" remarks="The ID for the application that generated the error report">
+        <constraints nullable="false"/>
+      </column>
+      <column name="application_version" type="nvarchar(50)" remarks="The version of the application that generated the error report">
+        <constraints nullable="false"/>
+      </column>
+      <column name="description" type="nvarchar(4000)" remarks="The description of the error">
+        <constraints nullable="false"/>
+      </column>
+      <column name="detail" type="clob" remarks="The error detail e.g. a stack trace">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created" type="timestamp" remarks="The date and time the error report was created">
+        <constraints nullable="false"/>
+      </column>
+      <column name="who" type="nvarchar(100)" remarks="The optional username for the user associated with the error report"/>
+      <column name="device_id" type="uuid" remarks="The optional Universally Unique Identifier (UUID) for the device the error report originated from"/>
+      <column name="feedback" type="nvarchar(4000)" remarks="The optional feedback provided by the user for the error"/>
+      <column name="data" type="clob" remarks="The optional base-64 encoded data associated with the error report"/>
+    </createTable>
+    <createIndex indexName="error_reports_application_id_ix" schemaName="error"
+      tableName="error_reports">
+      <column name="application_id"/>
+    </createIndex>
+    <createIndex indexName="error_reports_created_ix" schemaName="error" tableName="error_reports">
+      <column name="created"/>
+    </createIndex>
+    <createIndex indexName="error_reports_who_ix" schemaName="error" tableName="error_reports">
+      <column name="who"/>
+    </createIndex>
+  </changeSet>
+
+</databaseChangeLog>

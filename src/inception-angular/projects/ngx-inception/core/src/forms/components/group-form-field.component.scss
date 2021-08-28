@@ -1,0 +1,31 @@
+.mat-form-field {
+  .mat-checkbox:not(:last-child) {
+    margin-right: 0.8em !important;
+  }
+
+  .mat-radio-group {
+    .mat-radio-button:not(:last-child) {
+      .mat-radio-label-content {
+        padding-right: 0.8em !important;
+      }
+    }
+    .mat-radio-button .mat-radio-label .mat-radio-label-content {
+      line-height: 1.5rem;
+    }
+  }
+
+  //// Single error message displayed beneath the form field underline.
+  //.mat-error {
+  //  display: block;
+  //}
+}
+
+.mat-form-field.mat-form-field-invalid {
+  .mat-radio-outer-circle {
+    border-color: #f44336;
+  }
+
+  .mat-radio-label-content {
+    color: #f44336;
+  }
+}

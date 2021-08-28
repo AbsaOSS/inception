@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+  <property name="blob_type" value="bytea" dbms="h2"/>
+  <property name="blob_type" value="bytea" dbms="postgresql"/>
+  <property name="blob_type" value="blob" dbms="oracle"/>
+  <property name="blob_type" value="varbinary(max)" dbms="mssql"/>
+  <property name="now" value="now()" dbms="h2"/>
+  <property name="now" value="now()" dbms="postgresql"/>
+  <property name="now" value="sysdate" dbms="oracle"/>
+  <property name="now" value="CURRENT_TIMESTAMP" dbms="mssql"/>
+
+  <changeSet id="inception-mail-1.0.0" author="Marcus Portmann">
+    <comment>Inception - Mail - 1.0.0</comment>
+    <sql dbms="h2" endDelimiter=";">
+      CREATE SCHEMA IF NOT EXISTS mail
+    </sql>
+    <sql dbms="postgresql" endDelimiter=";">
+      CREATE SCHEMA IF NOT EXISTS mail
+    </sql>
+    <sql dbms="mssql" endDelimiter=";">
+      CREATE SCHEMA IF NOT EXISTS mail
+    </sql>
+
+    <createTable schemaName="mail" tableName="mail_templates" remarks="Mail Templates">
+      <column name="id" type="nvarchar(100)" remarks="The ID for the mail template">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="name" type="nvarchar(100)" remarks="The name of the mail template">
+        <constraints nullable="false"/>
+      </column>
+      <column name="content_type" type="int" remarks="The content type for the mail template">
+        <constraints nullable="false"/>
+      </column>
+      <column name="template" type="${blob_type}" remarks="The Apache FreeMarker template for the mail template"/>
+      <column name="created" type="timestamp" remarks="The date and time the mail template was created">
+        <constraints nullable="false"/>
+      </column>
+      <column name="updated" type="timestamp" remarks="The date and time the mail template was last updated"/>
+    </createTable>
+  </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,33 @@
+# Windows-specific files
+/**/Thumbs.db
+/**/desktop.ini
+
+# Mac-specific files
+/.DS_Store
+/**/.DS_Store/
+/**/.Spotlight-V100
+/**/.Trashes
+
+# Editors temporary files
+/**/*~
+
+# IntelliJ IDEA
+.idea
+.idea/
+/**/*.iml
+/**/*.ipr
+
+target
+.classpath
+.project
+.gradle/
+gradle/
+gradlew
+gradlew.bat
+.settings/
+/**/.factorypath
+/**/*.epoch
+*.lck
+*.log
+
+ObjectStore

@@ -1,0 +1,739 @@
+@use "sass:math";
+
+// IE10&11 Flexbox fix
+@media all and (-ms-high-contrast: none) {
+  html {
+    display: flex;
+    flex-direction: column;
+
+    body {
+      height: 100%;
+      -ms-overflow-x: hidden;
+      overflow-x: hidden;
+      -ms-overflow-y: scroll;
+      overflow-y: scroll;
+
+      admin-container {
+        .admin-body {
+          -ms-overflow-style: none;
+          -ms-overflow-y: hidden;
+          min-height: calc(100vh - #{$admin-header-height} - #{$admin-footer-height});
+        }
+      }
+    }
+  }
+}
+
+// stylelint-disable selector-type-no-unknown, no-duplicate-selectors, selector-no-qualifying-type
+// admin-dashboard and admin-root are Angular2+ selectors. You can add here your own selectors if you need.
+.app,
+admin-container,
+admin-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.admin-header {
+  position: relative;
+  display: flex;
+  flex: 0 0 $admin-header-height;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  height: $admin-header-height;;
+  padding: 0;
+  margin: 0;
+  background-color: $admin-header-bg;
+  @include borders($admin-header-border);
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: $admin-header-brand-width;
+    height: $admin-header-height;
+    padding: 0;
+    margin-right: 0;
+    background-color: $admin-header-brand-bg;
+    @include borders($admin-header-brand-border);
+
+    .brand-minimized {
+      display: none;
+    }
+  }
+
+  .toggler {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: transparent;
+    border: none;
+
+    .toggler-icon {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      background-size: 100% 100%;
+      background-image: $admin-header-toggler-icon;
+
+      &:hover {
+        background-image: $admin-header-toggler-icon-hover;
+      }
+    }
+
+    &:focus {
+      outline: none!important;
+    }
+  }
+
+  .nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    align-items: center;
+    list-style: none;
+
+    margin: 0;
+    padding: 0;
+
+    .nav-item {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      .nav-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: $admin-header-height;
+
+        color: $admin-header-color;
+
+        padding: 0.5rem 1rem;
+
+        > i {
+          font-size: 16px;
+        }
+
+        .login-icon {
+          display: inline-block;
+          width: 22px;
+          height: 22px;
+          background-size: 100% 100%;
+          background-image: $admin-header-login-icon;
+        }
+
+        .login {
+          display: inline-block;
+          color: $admin-header-color;
+          padding-left: 6px;
+          height: 24px;
+          line-height: 24px;
+        }
+
+        &:hover .login-icon {
+          background-image: $admin-header-login-icon-hover;
+          cursor: pointer;
+        }
+
+        &:hover .login {
+          color: $admin-header-hover-color;
+          cursor: pointer;
+        }
+
+        .user-icon  {
+          display: inline-block;
+          width: 24px;
+          height: 24px;
+          background-size: 100% 100%;
+          background-image: $admin-header-user-icon;
+        }
+
+        .user-name {
+          display: inline-block;
+          color: $admin-header-color;
+          padding-left: 6px;
+          height: 24px;
+          line-height: 24px;
+        }
+
+        &:hover .user-icon {
+          background-image: $admin-header-user-icon-hover;
+          cursor: pointer;
+        }
+
+        &:hover .user-name {
+          color: $admin-header-hover-color;
+          cursor: pointer;
+        }
+
+        .badge {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          margin-top: -16px;
+          margin-left: 0px;
+          border-radius: 10rem;
+          padding-right: 0.6em;
+          padding-left: 0.6em;
+        }
+      }
+    }
+  }
+}
+
+.admin-body {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+
+  .main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+
+    .title-bar {
+      border-bottom: 1px solid $border-color;
+      cursor: pointer;
+    }
+
+    .breadcrumb {
+      @include borders($breadcrumb-borders);
+      background-color: $breadcrumb-bg;
+
+      .breadcrumb-item {
+        max-width: 300px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .breadcrumb-item + .breadcrumb-item {
+        padding-left: 0.4rem;
+      }
+
+      .breadcrumb-item + .breadcrumb-item::before {
+        padding-right: 0.4rem !important;
+      }
+    }
+
+    .container-fluid {
+      display: flex;
+      flex-direction: column;
+      flex: auto;
+
+      padding: 16px;
+
+      ng-component {
+        display: flex;
+        flex-direction: column;
+        flex: auto;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .admin-header {
+    .brand {
+      flex: 1;
+    }
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .admin-brand-minimized {
+    .admin-header {
+      .brand {
+        width: $admin-header-brand-minimized-width;
+        background-color: $admin-header-brand-minimized-bg;
+        @include borders($admin-header-brand-minimized-border);
+
+        .brand-full {
+          display: none;
+        }
+
+        .brand-minimized {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+.admin-footer {
+  display: flex;
+  flex: 0 0 $admin-footer-height;
+  flex-wrap: wrap;
+  height: $admin-footer-height;
+  align-items: center;
+  padding: 0 $spacer;
+  color: $admin-footer-color;
+  background: $admin-footer-bg;
+  @include borders($admin-footer-borders);
+}
+
+.sidebar {
+  // $sidebar-width is the width of the columns
+  flex: 0 0 $sidebar-width;
+  // put the nav on the left
+  order: -1;
+
+  margin-left: - $sidebar-width;
+
+  sidebar-nav-item {
+    font-size: $sidebar-font-size;
+  }
+}
+
+.title-bar {
+  background-color: $title-bar-bg;
+  color: $title-bar-color;
+  padding: 0 15px;
+
+  .back {
+    position: absolute;
+    x: 0;
+    y: 0;
+    color: $title-bar-back-color;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: $title-bar-back-font-size;
+    line-height: $title-bar-height;
+  }
+
+  .title {
+    text-align: center;
+    white-space: nowrap;
+    line-height: $title-bar-height;
+  }
+}
+
+.title-bar-fixed {
+  .main {
+    padding-top: $title-bar-height;
+  }
+
+  .title-bar {
+    $title-bar-top: $admin-header-height;
+    position: fixed;
+    top: $title-bar-top;
+    left:  0;
+    right: 0;
+    z-index: $zindex-sticky - 3;
+  }
+}
+
+//
+// Breadcrumb
+//
+.breadcrumb {
+  font-size: $breadcrumb-font-size;
+  padding: 0 15px;
+
+  .breadcrumb-item {
+    line-height: $breadcrumb-height;
+  }
+}
+
+.breadcrumbs-fixed {
+  .main {
+    padding-top: $breadcrumb-height;
+  }
+
+  .breadcrumb {
+    $breadcrumb-top: $admin-header-height;
+    position: fixed;
+    top: $breadcrumb-top;
+    left: 0;
+    right: 0;
+    z-index: $zindex-sticky - 3;
+  }
+}
+
+.breadcrumbs-fixed.title-bar-fixed {
+  .main {
+    padding-top: $title-bar-height + $breadcrumb-height;
+  }
+
+  .breadcrumb {
+    $breadcrumb-top: $admin-header-height + $title-bar-height;
+    top: $breadcrumb-top;
+    margin-top: 1px;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  //
+  // Header
+  //
+  .admin-header-fixed {
+    .admin-header {
+      position: fixed;
+      z-index: $zindex-sticky;
+      width: 100%;
+    }
+    .admin-body {
+      margin-top: $admin-header-height;
+    }
+  }
+  //
+  // Sidebar
+  //
+  .sidebar-fixed {
+    .sidebar {
+      position: fixed;
+      z-index: $zindex-sticky - 1;
+      width: $sidebar-width;
+      height: 100vh;
+    }
+  }
+  .sidebar-fixed {
+    .admin-header + .admin-body .sidebar {
+      height: calc(100vh - #{$admin-header-height});
+    }
+
+    .admin-header + .admin-body {
+      min-height: calc(100vh - #{$admin-header-height}  - #{$admin-footer-height});
+    }
+  }
+
+  .sidebar-fixed.admin-footer-fixed {
+    .admin-header + .admin-body .sidebar {
+    }
+
+    .admin-header + .admin-body {
+      min-height: calc(100vh - #{$admin-header-height} - #{$admin-footer-height});
+    }
+  }
+
+  .sidebar-compact {
+    .sidebar {
+      flex: 0 0 $sidebar-compact-width;
+    }
+
+    &.sidebar-fixed {
+      .sidebar {
+        width: $sidebar-compact-width;
+      }
+    }
+    .sidebar-minimizer {
+      display: none;
+    }
+  }
+
+  .sidebar-minimized {
+    .sidebar {
+      flex: 0 0 $sidebar-minimized-width;
+    }
+
+    &.sidebar-fixed {
+      .sidebar {
+        width: $sidebar-minimized-width;
+      }
+    }
+  }
+
+  .sidebar-off-canvas {
+    .sidebar {
+      position: fixed;
+      z-index: $zindex-sticky - 1;
+      height: 100%;
+    }
+  }
+
+  .sidebar-off-canvas {
+    .admin-header + .admin-body .sidebar {
+      height: calc(100vh - #{$admin-header-height});
+    }
+  }
+
+  .sidebar-compact {
+    .sidebar {
+      margin-left: - $sidebar-compact-width;
+    }
+  }
+  .sidebar-minimized {
+    .sidebar {
+      margin-left: - $sidebar-minimized-width;
+    }
+  }
+}
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+    .sidebar#{$infix}-show {
+      .sidebar {
+        margin-left: 0;
+      }
+
+      @include media-breakpoint-up(lg) {
+        &.sidebar-fixed {
+          .main,
+          .admin-footer {
+            margin-left: $sidebar-width;
+          }
+
+          &.sidebar-compact {
+            .main,
+            .admin-footer {
+              margin-left: $sidebar-compact-width;
+            }
+          }
+          &.sidebar-minimized {
+            .main,
+            .admin-footer {
+              margin-left: $sidebar-minimized-width;
+            }
+          }
+        }
+        .breadcrumb {
+          left: $sidebar-width;
+        }
+        .title-bar {
+          left: $sidebar-width;
+        }
+        &.sidebar-minimized {
+          .title-bar {
+            left: $sidebar-minimized-width;
+          }
+        }
+        &.breadcrumbs-fixed {
+          .breadcrumb {
+            left: $sidebar-width;
+          }
+          &.sidebar-compact {
+            .breadcrumb {
+              left: $sidebar-compact-width;
+            }
+          }
+          &.sidebar-minimized {
+            .breadcrumb {
+              left: $sidebar-minimized-width;
+            }
+          }
+        }
+        &.title-bar-fixed {
+          .title-bar {
+            left: $sidebar-width;
+          }
+          &.sidebar-compact {
+            .title-bar {
+              left: $sidebar-compact-width;
+            }
+          }
+          &.sidebar-minimized {
+            .title-bar {
+              left: $sidebar-minimized-width;
+            }
+          }
+        }
+      }
+    }
+
+    .sidebar#{$infix}-show {
+      @keyframes opacity {
+        0%   { opacity: 0; }
+        100% { opacity: 1; }
+      }
+
+      // Changed xs to md
+      @include media-breakpoint-down(md) {
+        .main {
+          position: relative;
+          &::before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: $zindex-sticky - 2;
+            width: 100%;
+            height: 100%;
+            content: "";
+            background: rgba(0, 0, 0, .7);
+            animation: opacity $layout-transition-speed;
+          }
+        }
+      }
+    }
+  }
+}
+
+//
+// Footer
+//
+.admin-footer-fixed {
+  .admin-footer {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: $zindex-sticky;
+    height: $admin-footer-height;
+  }
+
+  .admin-body {
+    margin-bottom: $admin-footer-height;
+  }
+}
+
+//
+// Animations
+//
+.admin-header,
+.admin-footer,
+.sidebar,
+.main {
+  transition: margin-left $layout-transition-speed, margin-right $layout-transition-speed, width $layout-transition-speed, flex $layout-transition-speed;
+}
+.sidebar-nav {
+  transition: width $layout-transition-speed;
+}
+.breadcrumb {
+  transition: left $layout-transition-speed, right $layout-transition-speed, width $layout-transition-speed;
+}
+
+//
+// Dialogs
+//
+.form-dialog-panel {
+
+}
+
+//
+// Mobile layout
+//
+
+@include media-breakpoint-down(md) {
+  .admin-header {
+    position: fixed;
+    z-index: $zindex-sticky;
+    width: 100%;
+    text-align: center;
+    @if $admin-header-brand-bg == transparent {
+      background-color: $admin-header-bg;
+    } @else {
+      background-color: $admin-header-brand-bg;
+    }
+    @include borders($admin-header-brand-border);
+
+    .navbar-toggler {
+      @if (lightness( $admin-header-brand-bg ) > 40) {
+        color: $admin-header-color;
+      } @else {
+        color: #fff;
+      }
+    }
+
+    .navbar-brand {
+      position: absolute;
+      left: 50%;
+      margin-left: - (math.div($admin-header-brand-width, 2) + 24);
+    }
+  }
+
+
+
+  .admin-body {
+    margin-top: $admin-header-height;
+  }
+
+  .title-bar {
+    left: 0;
+  }
+
+  .breadcrumb {
+    display: none !important;
+  }
+
+  .sidebar {
+    position: fixed;
+    z-index: $zindex-sticky - 1;
+    width: $sidebar-width;
+    height: calc(100vh - #{$admin-header-height});
+  }
+
+  .sidebar-minimizer {
+    display: none;
+  }
+
+  .main {
+    padding-top: $title-bar-height !important;
+  }
+}
+
+@include media-breakpoint-down(xs) {
+  .admin-body {
+    margin-top: $admin-header-height;
+  }
+}
+
+// Sidebar needs to be bigger on mobile devices
+@include media-breakpoint-down(sm) {
+  .sidebar {
+    flex: 0 0 $mobile-sidebar-width !important;
+    width: $mobile-sidebar-width !important;
+
+    margin-left: -$mobile-sidebar-width;
+
+    .sidebar-nav {
+      width: $mobile-sidebar-width !important;
+    }
+
+    .nav {
+      width: $mobile-sidebar-width !important;
+    }
+  }
+}
+
+.background-image-container {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+
+  .background-image {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+}
+
+simple-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  ng-component {
+    display: flex;
+  }
+}
+
+@include media-breakpoint-down(xs) {
+  simple-container .container .mat-card {
+    min-width: 300px !important;
+    max-width: 300px !important;
+    margin-bottom: 0 !important;
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  simple-container .container .mat-card {
+    min-width: 400px !important;
+    max-width: 400px !important;
+    margin-bottom: 0 !important;
+  }
+}
+
+
+
+
+

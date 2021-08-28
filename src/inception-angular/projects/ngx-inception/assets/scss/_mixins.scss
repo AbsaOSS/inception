@@ -1,0 +1,174 @@
+@mixin button-social-size($padding-y, $padding-x, $font-size, $line-height, $border-radius) {
+  padding: $padding-y $padding-x;
+  font-size: $font-size;
+  line-height: $line-height;
+  border: 0;
+  @include border-radius($border-radius);
+
+  &::before {
+    width: ($padding-y * 2) + ($font-size * $line-height);
+    height: ($padding-y * 2) + ($font-size * $line-height);
+    padding: $padding-y 0;
+    font-size: $font-size;
+    line-height: $line-height;
+    @include border-radius($border-radius);
+  }
+
+  span {
+    margin-left: ($padding-y * 2) + ($font-size * $line-height);
+  }
+
+  &.icon {
+    width: ($padding-y * 2) + ($font-size * $line-height);
+    height: ($padding-y * 2) + ($font-size * $line-height);
+  }
+}
+
+@mixin borders($borders) {
+  @each $border in $borders {
+    $direction: nth($border, 1);
+    @if $direction == "all" {
+      $size: map-get(map-get($borders, $direction), size);
+      $style: map-get(map-get($borders, $direction), style);
+      $color: map-get(map-get($borders, $direction), color);
+      border: $size $style $color;
+    } @else if $direction == "top" {
+      $size: map-get(map-get($borders, $direction), size);
+      $style: map-get(map-get($borders, $direction), style);
+      $color: map-get(map-get($borders, $direction), color);
+      border-top: $size $style $color;
+    } @else if $direction == "right" {
+      $size: map-get(map-get($borders, $direction), size);
+      $style: map-get(map-get($borders, $direction), style);
+      $color: map-get(map-get($borders, $direction), color);
+      border-right: $size $style $color;
+    } @else if $direction == "bottom" {
+      $size: map-get(map-get($borders, $direction), size);
+      $style: map-get(map-get($borders, $direction), style);
+      $color: map-get(map-get($borders, $direction), color);
+      border-bottom: $size $style $color;
+    } @else if $direction == "left" {
+      $size: map-get(map-get($borders, $direction), size);
+      $style: map-get(map-get($borders, $direction), style);
+      $color: map-get(map-get($borders, $direction), color);
+      border-left: $size $style $color;
+    }
+  }
+}
+
+@mixin sidebar-width($borders, $width) {
+  $sidebar-width: $width;
+
+  @each $border in $borders {
+    $direction: nth($border, 1);
+    @if $direction == "all" {
+      $size: map-get(map-get($borders, $direction), size);
+      $sidebar-width: ($sidebar-width - (2 * $size));
+    } @else if $direction == "right" {
+      $size: map-get(map-get($borders, $direction), size);
+      $sidebar-width: $sidebar-width - $size;
+    } @else if $direction == "left" {
+      $size: map-get(map-get($borders, $direction), size);
+      $sidebar-width: $sidebar-width - $size;
+    }
+    width: $sidebar-width;
+  }
+}
+
+@mixin bg-variant($parent, $color) {
+  #{$parent} {
+    @include border-radius($card-border-radius-inner $card-border-radius-inner $card-border-radius-inner $card-border-radius-inner);
+    color: #fff !important;
+    background-color: $color !important;
+  }
+  a#{$parent} {
+    @include hover-focus {
+      background-color: darken($color, 10%);
+    }
+  }
+}
+
+@mixin card-accent-variant($color) {
+  border-top-width: 2px;
+  border-top-color: $color;
+}
+
+@mixin switch-size($width, $height, $font-size, $handle-margin) {
+  width: $width;
+  height: $height;
+
+  .switch-slider {
+    font-size: $font-size;
+
+    &::before {
+      width: $height - ($handle-margin * 2) - ($border-width * 2);
+      height: $height - ($handle-margin * 2) - ($border-width * 2);
+    }
+    &::after {
+      font-size: $font-size;
+    }
+  }
+
+  .switch-input:checked ~ .switch-slider {
+    &::before {
+      transform: translateX($width - $height);
+    }
+  }
+}
+
+@mixin switch-3d-size($width, $height) {
+  width: $width;
+  height: $height;
+
+  .switch-slider::before {
+    width: $height;
+    height: $height;
+  }
+
+  .switch-input:checked ~ .switch-slider {
+    &::before {
+      transform: translateX($width - $height);
+    }
+  }
+}
+
+@mixin switch-variant($color) {
+  .switch-input:checked + .switch-slider {
+    background-color: $color;
+    border-color: darken($color, 10%);
+
+    &::before {
+      border-color: darken($color, 10%);
+    }
+  }
+}
+
+@mixin switch-outline-variant($color) {
+  .switch-input:checked + .switch-slider {
+    background-color: $switch-bg;
+    border-color: $color;
+
+    &::before {
+      border-color: $color;
+    }
+    &::after {
+      color: $color;
+    }
+  }
+}
+
+@mixin switch-outline-variant-alt($color) {
+  .switch-input:checked + .switch-slider {
+    background-color: $switch-bg;
+    border-color: $color;
+
+    &::before {
+      background-color: $color;
+      border-color: $color;
+    }
+    &::after {
+      color: $color;
+    }
+  }
+}
+
