@@ -64,7 +64,7 @@ Complete the following steps to setup a development environment on MacOS.
 12. Install the Angular CLI 11 globally by executing the following command in a Terminal
     window.
     ```
-    npm install -g @angular/cli@11
+    npm install -g @angular/cli@12
     ```
 13. Execute the following command to change to the more conservative tilde (~) patch
     update approach for dependencies for npm.
@@ -159,7 +159,7 @@ Complete the following steps to checkout and build the Absa Inception Framework 
 5. Install the Angular CLI 11 globally by executing the following command in a Git Bash
    window.
    ```
-   npm install -g @angular/cli@11
+   npm install -g @angular/cli@12
    ```
 6. Execute the following command to change to the more conservative tilde (~) patch
    update approach for dependencies for npm.
