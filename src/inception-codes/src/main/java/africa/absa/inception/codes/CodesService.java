@@ -110,7 +110,6 @@ public class CodesService implements ICodesService, InitializingBean {
     this.codeRepository = codeRepository;
   }
 
-  /** Initialize the Codes Service. */
   @Override
   public void afterPropertiesSet() {
     logger.info("Initializing the Codes Service");
@@ -128,12 +127,6 @@ public class CodesService implements ICodesService, InitializingBean {
     }
   }
 
-  /**
-   * Check whether the code category exists.
-   *
-   * @param codeCategoryId the ID for the code category
-   * @return <b>true</b> if the code category exists or <b>false</b> otherwise
-   */
   @Override
   public boolean codeCategoryExists(String codeCategoryId)
       throws InvalidArgumentException, ServiceUnavailableException {
@@ -149,13 +142,6 @@ public class CodesService implements ICodesService, InitializingBean {
     }
   }
 
-  /**
-   * Check whether the code exists.
-   *
-   * @param codeCategoryId the ID for the code category the code is associated with
-   * @param codeId the ID for the code
-   * @return <b>true</b> if the code exists or <b>false</b> otherwise
-   */
   @Override
   public boolean codeExists(String codeCategoryId, String codeId)
       throws InvalidArgumentException, ServiceUnavailableException {
@@ -180,11 +166,6 @@ public class CodesService implements ICodesService, InitializingBean {
     }
   }
 
-  /**
-   * Create the new code.
-   *
-   * @param code the <b>Code</b> instance containing the information for the new code
-   */
   @Override
   @Transactional
   public void createCode(Code code)
@@ -215,12 +196,6 @@ public class CodesService implements ICodesService, InitializingBean {
     }
   }
 
-  /**
-   * Create the new code category.
-   *
-   * @param codeCategory the <b>CodeCategory</b> instance containing the information for the new
-   *     code category
-   */
   @Override
   @Transactional
   public void createCodeCategory(CodeCategory codeCategory)
@@ -241,12 +216,6 @@ public class CodesService implements ICodesService, InitializingBean {
     }
   }
 
-  /**
-   * Delete the code.
-   *
-   * @param codeCategoryId the ID for the code category the code is associated with
-   * @param codeId the ID for the code
-   */
   @Override
   @Transactional
   public void deleteCode(String codeCategoryId, String codeId)
@@ -280,11 +249,6 @@ public class CodesService implements ICodesService, InitializingBean {
     }
   }
 
-  /**
-   * Delete the code category.
-   *
-   * @param codeCategoryId the ID for the code category
-   */
   @Override
   @Transactional
   public void deleteCodeCategory(String codeCategoryId)
@@ -307,13 +271,6 @@ public class CodesService implements ICodesService, InitializingBean {
     }
   }
 
-  /**
-   * Retrieve the code.
-   *
-   * @param codeCategoryId the ID for the code category the code is associated with
-   * @param codeId the ID for the code
-   * @return the code
-   */
   @Override
   public Code getCode(String codeCategoryId, String codeId)
       throws InvalidArgumentException, CodeNotFoundException, ServiceUnavailableException {
@@ -353,11 +310,6 @@ public class CodesService implements ICodesService, InitializingBean {
     }
   }
 
-  /**
-   * Returns all the code categories.
-   *
-   * @return all the code categories
-   */
   @Override
   public List<CodeCategory> getCodeCategories() throws ServiceUnavailableException {
     try {
@@ -367,12 +319,6 @@ public class CodesService implements ICodesService, InitializingBean {
     }
   }
 
-  /**
-   * Retrieve the code category.
-   *
-   * @param codeCategoryId the ID for the code category
-   * @return the code category
-   */
   @Override
   public CodeCategory getCodeCategory(String codeCategoryId)
       throws InvalidArgumentException, CodeCategoryNotFoundException, ServiceUnavailableException {
@@ -403,15 +349,6 @@ public class CodesService implements ICodesService, InitializingBean {
     }
   }
 
-  /**
-   * Retrieve the XML or JSON data for the code category.
-   *
-   * <p>This will also attempt to retrieve the data from the appropriate code provider that has been
-   * registered with the Codes Service in the <b>META-INF/code-providers.xml</b> configuration file.
-   *
-   * @param codeCategoryId the ID for the code category
-   * @return the XML or JSON data for the code category
-   */
   @Override
   public String getCodeCategoryData(String codeCategoryId)
       throws InvalidArgumentException, CodeCategoryNotFoundException, ServiceUnavailableException {
@@ -444,16 +381,6 @@ public class CodesService implements ICodesService, InitializingBean {
     }
   }
 
-  /**
-   * Retrieve the XML or JSON data for the code category using the specified parameters.
-   *
-   * <p>This will also attempt to retrieve the data from the appropriate code provider that has been
-   * registered with the Codes Service in the <b>META-INF/code-providers.xml</b> configuration file.
-   *
-   * @param codeCategoryId the ID for the code category
-   * @param parameters the parameters
-   * @return the XML or JSON data for the code category
-   */
   @Override
   public String getCodeCategoryDataWithParameters(
       String codeCategoryId, Map<String, String> parameters)
@@ -488,12 +415,6 @@ public class CodesService implements ICodesService, InitializingBean {
     }
   }
 
-  /**
-   * Retrieve the name of the code category.
-   *
-   * @param codeCategoryId the ID for the code category
-   * @return the name of the code category
-   */
   @Override
   public String getCodeCategoryName(String codeCategoryId)
       throws InvalidArgumentException, CodeCategoryNotFoundException, ServiceUnavailableException {
@@ -524,11 +445,6 @@ public class CodesService implements ICodesService, InitializingBean {
     }
   }
 
-  /**
-   * Returns the summaries for all the code categories.
-   *
-   * @return the summaries for all the code categories
-   */
   @Override
   public List<CodeCategorySummary> getCodeCategorySummaries() throws ServiceUnavailableException {
     try {
@@ -539,12 +455,6 @@ public class CodesService implements ICodesService, InitializingBean {
     }
   }
 
-  /**
-   * Returns the date and time the code category was last updated.
-   *
-   * @param codeCategoryId the ID for the code category
-   * @return the date and time the code category was last updated
-   */
   @Override
   public LocalDateTime getCodeCategoryUpdated(String codeCategoryId)
       throws InvalidArgumentException, CodeCategoryNotFoundException, ServiceUnavailableException {
@@ -579,13 +489,6 @@ public class CodesService implements ICodesService, InitializingBean {
     }
   }
 
-  /**
-   * Retrieve the name of the code.
-   *
-   * @param codeCategoryId the ID for the code category the code is associated with
-   * @param codeId the ID for the code
-   * @return the name of the code
-   */
   @Override
   public String getCodeName(String codeCategoryId, String codeId)
       throws InvalidArgumentException, CodeNotFoundException, ServiceUnavailableException {
@@ -625,16 +528,6 @@ public class CodesService implements ICodesService, InitializingBean {
     }
   }
 
-  /**
-   * Retrieve the codes for the code category.
-   *
-   * <p>This will also attempt to retrieve the codes from the appropriate code provider that has
-   * been registered with the Codes Service in the <b>META-INF/code-providers.xml</b> configuration
-   * file.
-   *
-   * @param codeCategoryId the ID for the code category
-   * @return the codes for the code category
-   */
   @Override
   public List<Code> getCodesForCodeCategory(String codeCategoryId)
       throws InvalidArgumentException, CodeCategoryNotFoundException, ServiceUnavailableException {
@@ -663,17 +556,6 @@ public class CodesService implements ICodesService, InitializingBean {
     }
   }
 
-  /**
-   * Retrieve the codes for the code category using the specified parameters.
-   *
-   * <p>This will also attempt to retrieve the codes from the appropriate code provider that has
-   * been registered with the Codes Service in the <b>META-INF/code-providers.xml</b> configuration
-   * file.
-   *
-   * @param codeCategoryId the ID for the code category
-   * @param parameters the parameters
-   * @return the codes for the code category
-   */
   @Override
   public List<Code> getCodesForCodeCategoryWithParameters(
       String codeCategoryId, Map<String, String> parameters)
@@ -703,11 +585,6 @@ public class CodesService implements ICodesService, InitializingBean {
     }
   }
 
-  /**
-   * Update the existing code.
-   *
-   * @param code the <b>Code</b> instance containing the updated information for the code
-   */
   @Override
   public void updateCode(Code code)
       throws InvalidArgumentException, CodeNotFoundException, ServiceUnavailableException {
@@ -726,12 +603,6 @@ public class CodesService implements ICodesService, InitializingBean {
     }
   }
 
-  /**
-   * Update the existing code category.
-   *
-   * @param codeCategory the <b>CodeCategory</b> instance containing the updated information for the
-   *     code category
-   */
   @Override
   public void updateCodeCategory(CodeCategory codeCategory)
       throws InvalidArgumentException, CodeCategoryNotFoundException, ServiceUnavailableException {
@@ -751,12 +622,6 @@ public class CodesService implements ICodesService, InitializingBean {
     }
   }
 
-  /**
-   * Update the XML or JSON data for the code category.
-   *
-   * @param codeCategoryId the ID for the code category
-   * @param data the updated XML or JSON data
-   */
   @Override
   @Transactional
   public void updateCodeCategoryData(String codeCategoryId, String data)

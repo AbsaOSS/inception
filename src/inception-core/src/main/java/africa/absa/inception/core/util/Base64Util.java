@@ -30,16 +30,16 @@ public class Base64Util {
   /** Indicates error in encoding. */
   public static final byte BAD_ENCODING;
 
-  /** Specify that data should be compressed (value is <tt>true</tt>). */
+  /** Specify that data should be compressed (value is <b>true</b>). */
   public static final boolean COMPRESS = true;
 
-  /** Specify decoding (value is <tt>false</tt>). */
+  /** Specify decoding (value is <b>false</b>). */
   public static final boolean DECODE = false;
 
-  /** Specify that data should not be compressed (value is <tt>false</tt>). */
+  /** Specify that data should not be compressed (value is <b>false</b>). */
   public static final boolean DONT_COMPRESS = false;
 
-  /** Specify encoding (value is <tt>true</tt>). */
+  /** Specify encoding (value is <b>true</b>). */
   public static final boolean ENCODE = true;
 
   /** Indicates equals sign in encoding. */
@@ -348,7 +348,7 @@ public class Base64Util {
   }
 
   /**
-   * Attempts to decode Base64Util data and deserialize a Java Object within. Returns <tt>null if
+   * Attempts to decode Base64Util data and deserialize a Java Object within. Returns <b>null</b> if
    * there was an error.
    *
    * @param encodedObject the Base64Util data to decode

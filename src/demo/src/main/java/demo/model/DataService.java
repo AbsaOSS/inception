@@ -135,7 +135,7 @@ public class DataService implements IDataService {
   /**
    * Validate the data.
    *
-   * @return the validation errors
+   * @param data the data
    */
   @Override
   public void validateData(Data data) throws InvalidArgumentException, ServiceUnavailableException {

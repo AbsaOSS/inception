@@ -57,7 +57,7 @@ public interface IDataService {
   /**
    * Validate the data.
    *
-   * @return the validation errors
+   * @param data the data
    */
   void validateData(Data data) throws InvalidArgumentException, ServiceUnavailableException;
 }

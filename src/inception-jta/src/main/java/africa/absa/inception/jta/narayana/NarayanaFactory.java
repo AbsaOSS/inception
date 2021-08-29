@@ -75,6 +75,9 @@ public class NarayanaFactory {
   /**
    * Returns the Narayana transaction integration.
    *
+   * @param transactionManager the transaction manager
+   * @param transactionSynchronizationRegistry the transaction synchronization registry
+   * @param recoveryManager the recovery manager
    * @return the Narayana transaction integration
    */
   @Bean
@@ -99,6 +102,7 @@ public class NarayanaFactory {
   /**
    * Returns the Narayana JTA transaction synchronization registry.
    *
+   * @param transactionManager the transaction manager
    * @return the Narayana JTA transaction synchronization registry
    */
   @Bean
@@ -121,6 +125,8 @@ public class NarayanaFactory {
   /**
    * Returns the Spring JTA platform transaction manager.
    *
+   * @param userTransaction the user transaction
+   * @param transactionManager the transaction manager
    * @return the Spring JTA platform transaction manager
    */
   @Bean

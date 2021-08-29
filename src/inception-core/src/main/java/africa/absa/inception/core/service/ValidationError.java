@@ -136,6 +136,7 @@ public class ValidationError implements Serializable, Cloneable {
   /**
    * Helper method to convert a set of JSR 303 constraint violations to a set of validation errors.
    *
+   * @param <T> the type the constraint violations are associated with
    * @param constraintViolations the JSR 303 constraint violations to convert
    * @return the validation errors
    */
@@ -147,6 +148,7 @@ public class ValidationError implements Serializable, Cloneable {
   /**
    * Helper method to convert a set of JSR 303 constraint violations to a set of validation errors.
    *
+   * @param <T> the type the constraint violations are associated with
    * @param constraintViolations the JSR 303 constraint violations to convert
    * @param capitalizePropertyNames should the property names be capitilized
    * @return the validation errors

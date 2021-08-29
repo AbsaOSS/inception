@@ -77,6 +77,7 @@ public class CryptoUtil {
    * @param alias the alias for the key pair
    * @param password the password for the key
    * @return the key pair
+   * @throws GeneralSecurityException if the key pair could not be retrieved
    */
   public static KeyPair getKeyPair(KeyStore keyStore, String alias, String password)
       throws GeneralSecurityException {
@@ -110,6 +111,7 @@ public class CryptoUtil {
    * @param path the path to the key store
    * @param password the key store password
    * @return the key store that was loaded
+   * @throws GeneralSecurityException if the key store could not be loaded
    */
   public static KeyStore loadKeyStore(String type, String path, String password)
       throws GeneralSecurityException {
@@ -154,6 +156,7 @@ public class CryptoUtil {
    * @param password the key store password
    * @param alias the alias for the key pair in the key store that should be retrieved
    * @return the key store that was loaded
+   * @throws GeneralSecurityException if the key store could not be loaded
    */
   public static KeyStore loadKeyStore(String type, String path, String password, String alias)
       throws GeneralSecurityException {
@@ -229,6 +232,7 @@ public class CryptoUtil {
    * @param path the path to the trust store
    * @param password the trust store password
    * @return the trust store that was loaded
+   * @throws GeneralSecurityException if the trust store could not be loaded
    */
   public static KeyStore loadTrustStore(String type, String path, String password)
       throws GeneralSecurityException {

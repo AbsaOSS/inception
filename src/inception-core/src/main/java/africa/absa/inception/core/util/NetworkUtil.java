@@ -50,7 +50,8 @@ public class NetworkUtil {
    * <p>If this method cannot find a non-loopback address using this selection algorithm, it will
    * fall back to calling and returning the result of JDK method <b>InetAddress.getLocalHost</b>.
    *
-   * <p>
+   * @return the LAN IP address
+   * @throws UnknownHostException the LAN IP address could not be retrieved
    */
   public static InetAddress getLocalHostLANAddress() throws UnknownHostException {
     try {

@@ -125,6 +125,7 @@ public final class MobilePhoneNumberUtil {
    * Returns the MobilePhoneNumberUtil for the specified mobile phone number.
    *
    * @param mobilePhoneNumber the mobile phone number
+   * @param defaultInternationalPrefix the default international prefix
    * @return the MobilePhoneNumberUtil for the mobile phone number
    */
   public static String mobilePhoneNumberToMSISDN(

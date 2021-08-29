@@ -94,6 +94,7 @@ public class JDBCUtil {
    * @param connection the database connection to use
    * @param sql the SQL statement to execute
    * @return the row count
+   * @throws SQLException if the statement execution failed
    */
   public static int executeStatement(Connection connection, String sql) throws SQLException {
     try (Statement statement = connection.createStatement()) {
@@ -110,6 +111,7 @@ public class JDBCUtil {
    * @param connection the database connection to use
    * @param resourcePath the resource path to the file containing the SQL statements
    * @return the number of SQL statements successfully executed
+   * @throws SQLException if the statement execution failed
    */
   public static int executeStatements(Connection connection, String resourcePath)
       throws SQLException {
@@ -138,6 +140,7 @@ public class JDBCUtil {
    *
    * @param dataSource the data source
    * @return the schema separator for the database associated with the specified data source
+   * @throws SQLException if the schema separator could not be retrieved
    */
   public static String getSchemaSeparator(DataSource dataSource) throws SQLException {
     try (Connection connection = dataSource.getConnection()) {
@@ -160,6 +163,7 @@ public class JDBCUtil {
    * @param dataSource the data source
    * @return <b>true</b> if the database associated with the specified data source is an in-memory
    *     H2 database or <b>false</b> otherwise
+   * @throws SQLException if the check for an in-memory H2 database failed
    */
   public static boolean isInMemoryH2Database(DataSource dataSource) throws SQLException {
     try (Connection connection = dataSource.getConnection()) {
@@ -180,6 +184,7 @@ public class JDBCUtil {
    *
    * @param url the URL
    * @return the SQL statements loaded from the specified URL
+   * @throws IOException if the SQL statements could not be loaded from the specified URL
    */
   public static List<String> loadSQL(URL url) throws IOException {
     List<String> sqlStatements = new ArrayList<>();
@@ -256,6 +261,7 @@ public class JDBCUtil {
    * @param rs the result set
    * @param index the index of the column containing the blob
    * @return the binary data for the BLOB
+   * @throws SQLException if the blob could not be read
    */
   public static byte[] readBlob(ResultSet rs, int index) throws SQLException {
     try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -297,6 +303,7 @@ public class JDBCUtil {
    * @param catalog the catalog name or <b>null</b> if a catalog should not be used
    * @param schema the schema name
    * @return true if the schema exists or false otherwise
+   * @throws SQLException if the schema check failed
    */
   @SuppressWarnings("resource")
   public static boolean schemaExists(Connection connection, String catalog, String schema)
@@ -333,6 +340,7 @@ public class JDBCUtil {
    * @param catalog the catalog name or <b>null</b> if a catalog should not be used
    * @param schema the schema name
    * @return true if the schema exists or false otherwise
+   * @throws SQLException if the check for the existing schema failed
    */
   @SuppressWarnings("resource")
   public static boolean schemaExists(DataSource dataSource, String catalog, String schema)
@@ -353,6 +361,7 @@ public class JDBCUtil {
    * <p>The HSQLDB database associated with the data source will also be shutdown.
    *
    * @param connection the HSQLDB database connection
+   * @throws SQLException if the HSQLDB database could not be shutdown
    */
   public static void shutdownHsqlDatabase(Connection connection) throws SQLException {
     try (Statement statement = connection.createStatement()) {
@@ -370,6 +379,7 @@ public class JDBCUtil {
    * @param schema the schema name or <b>null</b> if a schema should not be used
    * @param table the name of the table
    * @return true if the table exists or false otherwise
+   * @throws SQLException if the check for the existing table failed
    */
   @SuppressWarnings("resource")
   public static boolean tableExists(
@@ -408,6 +418,7 @@ public class JDBCUtil {
    * @param schema the schema name or <b>null</b> if a schema should not be used
    * @param table the name of the table
    * @return true if the table exists or false otherwise
+   * @throws SQLException if the check for the existing table failed
    */
   @SuppressWarnings("resource")
   public static boolean tableExists(

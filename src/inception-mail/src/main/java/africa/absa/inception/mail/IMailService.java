@@ -142,7 +142,7 @@ public interface IMailService {
    *
    * @param mailTemplate the <b>MailTemplate</b> instance containing the updated information for the
    *     mail template
-   * @param the mail template
+   * @return the mail template
    */
   MailTemplate updateMailTemplate(MailTemplate mailTemplate)
       throws InvalidArgumentException, MailTemplateNotFoundException, ServiceUnavailableException;

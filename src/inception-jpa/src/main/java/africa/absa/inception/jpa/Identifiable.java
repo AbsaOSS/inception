@@ -23,7 +23,7 @@ import java.io.Serializable;
  * classes that have an ID that can be explicitly specified in place of an automatically generated
  * value for an identity column in the database.
  *
- * @param <T>
+ * @param <T> the ID type for the entity
  * @author Marcus Portmann
  */
 public interface Identifiable<T extends Serializable> {

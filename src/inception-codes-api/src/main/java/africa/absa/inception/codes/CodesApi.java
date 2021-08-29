@@ -75,6 +75,10 @@ public class CodesApi extends SecureApi {
    *
    * @param codeCategoryId the ID for the code category
    * @param code the code to create
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws DuplicateCodeException if the code already exists
+   * @throws CodeCategoryNotFoundException if the code category could not be found
+   * @throws ServiceUnavailableException if the code could not be created
    */
   @Operation(summary = "Create the code", description = "Create the code")
   @ApiResponses(
@@ -153,6 +157,9 @@ public class CodesApi extends SecureApi {
    * Create the code category.
    *
    * @param codeCategory the code category to create
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws DuplicateCodeCategoryException if the code category already exists
+   * @throws ServiceUnavailableException if the code category could not be created
    */
   @Operation(summary = "Create the code category", description = "Create the code category")
   @ApiResponses(
@@ -212,6 +219,9 @@ public class CodesApi extends SecureApi {
    *
    * @param codeCategoryId the ID for the code category
    * @param codeId the ID for the code
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws CodeNotFoundException if the code could not be found
+   * @throws ServiceUnavailableException if the code could not be deleted
    */
   @Operation(summary = "Delete the code", description = "Delete the code")
   @ApiResponses(
@@ -272,6 +282,9 @@ public class CodesApi extends SecureApi {
    * Delete the code category.
    *
    * @param codeCategoryId the ID for the code category
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws CodeCategoryNotFoundException if the code category could not be found
+   * @throws ServiceUnavailableException if the code category could not be deleted
    */
   @Operation(summary = "Delete the code category", description = "Delete the code category")
   @ApiResponses(
@@ -333,6 +346,9 @@ public class CodesApi extends SecureApi {
    * @param codeCategoryId the ID for the code category the code is associated with
    * @param codeId the ID for the code
    * @return the code
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws CodeNotFoundException if the code could not be found
+   * @throws ServiceUnavailableException if the code could not be retrieved
    */
   @Operation(summary = "Retrieve the code", description = "Retrieve the code")
   @ApiResponses(
@@ -390,9 +406,10 @@ public class CodesApi extends SecureApi {
   }
 
   /**
-   * Retrieve the code categories.
+   * Retrieve all the code categories.
    *
    * @return the code categories
+   * @throws ServiceUnavailableException if the code categories could not be retrieved
    */
   @Operation(summary = "Retrieve the code categories", description = "Retrieve the code categories")
   @ApiResponses(
@@ -423,6 +440,9 @@ public class CodesApi extends SecureApi {
    *
    * @param codeCategoryId the ID for the code category
    * @return the code category
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws CodeCategoryNotFoundException if the code category could not be found
+   * @throws ServiceUnavailableException if the code category could not be retrieved
    */
   @Operation(summary = "Retrieve the code category", description = "Retrieve the code category")
   @ApiResponses(
@@ -481,6 +501,9 @@ public class CodesApi extends SecureApi {
    *
    * @param codeCategoryId the ID for the code category
    * @return the XML or JSON data for the code category
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws CodeCategoryNotFoundException if the code category could not be found
+   * @throws ServiceUnavailableException if the code category data could not be retrieved
    */
   @Operation(
       summary = "Retrieve the XML or JSON data for a code category",
@@ -543,6 +566,9 @@ public class CodesApi extends SecureApi {
    *
    * @param codeCategoryId the ID for the code category
    * @return the name of the code category
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws CodeCategoryNotFoundException if the code category could not be found
+   * @throws ServiceUnavailableException if the code category name could not be retrieved
    */
   @Operation(
       summary = "Retrieve the name of the code category",
@@ -599,9 +625,10 @@ public class CodesApi extends SecureApi {
   }
 
   /**
-   * Retrieve the code category summaries.
+   * Retrieve the summaries for all the code categories.
    *
-   * @return the code category summaries
+   * @return the summaries for the code categories
+   * @throws ServiceUnavailableException if the code category summaries could not be retrieved
    */
   @Operation(
       summary = "Retrieve the code category summaries",
@@ -634,6 +661,10 @@ public class CodesApi extends SecureApi {
    *
    * @param codeCategoryId the ID for the code category
    * @return the date and time the code category was last updated
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws CodeCategoryNotFoundException if the code category could not be found
+   * @throws ServiceUnavailableException if the date and time the code category was last updated
+   *     could not be retrieved
    */
   @Operation(
       summary = "Retrieve the date and time the code category was last updated",
@@ -696,6 +727,9 @@ public class CodesApi extends SecureApi {
    * @param codeCategoryId the ID for the code category the code is associated with
    * @param codeId the ID for the code
    * @return the name of the code
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws CodeNotFoundException if the code could not be found
+   * @throws ServiceUnavailableException if the code name could not be retrieved
    */
   @Operation(
       summary = "Retrieve the name of the code",
@@ -759,6 +793,9 @@ public class CodesApi extends SecureApi {
    *
    * @param codeCategoryId the ID for the code category
    * @return the codes for the code category
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws CodeCategoryNotFoundException if the code category could not be found
+   * @throws ServiceUnavailableException if the codes for the code category could not be retrieved
    */
   @Operation(
       summary = "Retrieve the codes for a code category",
@@ -820,6 +857,9 @@ public class CodesApi extends SecureApi {
    * @param codeCategoryId the ID for the code category
    * @param codeId the ID for the code
    * @param code the code to create
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws CodeNotFoundException if the code could not be found
+   * @throws ServiceUnavailableException if the code could not be updated
    */
   @Operation(summary = "Update the code", description = "Update the code")
   @ApiResponses(
@@ -906,6 +946,9 @@ public class CodesApi extends SecureApi {
    *
    * @param codeCategoryId the ID for the code category
    * @param codeCategory the code category
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws CodeCategoryNotFoundException if the code category could not be found
+   * @throws ServiceUnavailableException if the code category could not be updated
    */
   @Operation(summary = "Update the code category", description = "Update the code category")
   @ApiResponses(

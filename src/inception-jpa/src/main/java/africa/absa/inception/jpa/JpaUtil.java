@@ -38,6 +38,7 @@ public class JpaUtil {
   /**
    * Create a new entity manager.
    *
+   * @param persistenceUnitName the name of the persistence unit
    * @param dataSource the data source
    * @param platformTransactionManager the Spring platform transaction manager
    * @param packagesToScan the packages to scan for entities

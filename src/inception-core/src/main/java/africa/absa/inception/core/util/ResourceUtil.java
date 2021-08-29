@@ -33,6 +33,7 @@ public final class ResourceUtil {
    * Confirms whether the resource with the specified path exists on the classpath using the context
    * class loader.
    *
+   * @param path the classpath path for the resource
    * @return <b>true</b> if the resource with the specified path exists on the classpath or
    *     <b>false</b> otherwise.
    */

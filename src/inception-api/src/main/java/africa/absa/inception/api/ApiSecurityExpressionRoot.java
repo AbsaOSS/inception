@@ -44,7 +44,7 @@ public class ApiSecurityExpressionRoot extends SecurityExpressionRoot
   private Object returnObject;
 
   /**
-   * Constructs a new <ApiSecurityExpressionRoot></b>.
+   * Constructs a new <b>ApiSecurityExpressionRoot</b>.
    *
    * @param authentication the authentication
    * @param applicationContext the Spring application context
