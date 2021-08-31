@@ -305,6 +305,16 @@
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
+        <artifactId>inception-reference</artifactId>
+        <version>${inception.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>africa.absa</groupId>
+        <artifactId>inception-reference-api</artifactId>
+        <version>${inception.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>africa.absa</groupId>
         <artifactId>inception-reporting</artifactId>
         <version>${inception.version}</version>
       </dependency>
@@ -365,6 +375,8 @@
     <module>inception-mail-api</module>
     <module>inception-oauth2-authorization-server</module>
     <module>inception-oauth2-resource-server</module>
+    <module>inception-reference</module>
+    <module>inception-reference-api</module>
     <module>inception-reporting</module>
     <module>inception-reporting-api</module>
     <module>inception-scheduler</module>

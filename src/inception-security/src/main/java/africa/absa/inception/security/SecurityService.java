@@ -163,20 +163,12 @@ public class SecurityService implements ISecurityService, InitializingBean {
     this.userRepository = userRepository;
   }
 
-  /**
-   * Add the group member to the group.
-   *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
-   * @param groupName the name of the group
-   * @param memberType the group member type
-   * @param memberName the group member name
-   */
   @Override
   @Transactional
   public void addMemberToGroup(
       UUID userDirectoryId, String groupName, GroupMemberType memberType, String memberName)
       throws InvalidArgumentException, UserDirectoryNotFoundException, GroupNotFoundException,
-          UserNotFoundException, ExistingGroupMemberException, ServiceUnavailableException {
+          UserNotFoundException, ServiceUnavailableException {
     if (userDirectoryId == null) {
       throw new InvalidArgumentException("userDirectoryId");
     }
@@ -202,18 +194,11 @@ public class SecurityService implements ISecurityService, InitializingBean {
     userDirectory.addMemberToGroup(groupName, memberType, memberName);
   }
 
-  /**
-   * Add the role to the group.
-   *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
-   * @param groupName the name of the group
-   * @param roleCode the code for the role
-   */
   @Override
   @Transactional
   public void addRoleToGroup(UUID userDirectoryId, String groupName, String roleCode)
       throws InvalidArgumentException, UserDirectoryNotFoundException, GroupNotFoundException,
-          RoleNotFoundException, ExistingGroupRoleException, ServiceUnavailableException {
+          RoleNotFoundException, ServiceUnavailableException {
     if (userDirectoryId == null) {
       throw new InvalidArgumentException("userDirectoryId");
     }
@@ -235,17 +220,11 @@ public class SecurityService implements ISecurityService, InitializingBean {
     userDirectory.addRoleToGroup(groupName, roleCode);
   }
 
-  /**
-   * Add the user directory to the tenant.
-   *
-   * @param tenantId the Universally Unique Identifier (UUID) for the tenant
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
-   */
   @Override
   @Transactional
   public void addUserDirectoryToTenant(UUID tenantId, UUID userDirectoryId)
       throws InvalidArgumentException, TenantNotFoundException, UserDirectoryNotFoundException,
-          ExistingTenantUserDirectoryException, ServiceUnavailableException {
+          ServiceUnavailableException {
     if (tenantId == null) {
       throw new InvalidArgumentException("tenantId");
     }
@@ -264,13 +243,11 @@ public class SecurityService implements ISecurityService, InitializingBean {
       }
 
       if (tenantRepository.countTenantUserDirectory(tenantId, userDirectoryId) > 0) {
-        throw new ExistingTenantUserDirectoryException(tenantId, userDirectoryId);
+        return;
       }
 
       tenantRepository.addUserDirectoryToTenant(tenantId, userDirectoryId);
-    } catch (TenantNotFoundException
-        | UserDirectoryNotFoundException
-        | ExistingTenantUserDirectoryException e) {
+    } catch (TenantNotFoundException | UserDirectoryNotFoundException e) {
       throw e;
     } catch (Throwable e) {
       throw new ServiceUnavailableException(
@@ -283,13 +260,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     }
   }
 
-  /**
-   * Add the user to the group.
-   *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
-   * @param groupName the name of the group
-   * @param username the username for the user
-   */
   @Override
   @Transactional
   public void addUserToGroup(UUID userDirectoryId, String groupName, String username)
@@ -316,17 +286,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     userDirectory.addUserToGroup(groupName, username);
   }
 
-  /**
-   * Administratively change the password for the user.
-   *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
-   * @param username the username for the user
-   * @param newPassword the new password
-   * @param expirePassword expire the user's password
-   * @param lockUser lock the user
-   * @param resetPasswordHistory reset the user's password history
-   * @param reason the reason for changing the password
-   */
   @Override
   @Transactional
   public void adminChangePassword(
@@ -361,7 +320,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
         username, newPassword, expirePassword, lockUser, resetPasswordHistory, reason);
   }
 
-  /** Initialize the Security Service. */
   @Override
   public void afterPropertiesSet() {
     try {
@@ -387,13 +345,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     }
   }
 
-  /**
-   * Authenticate the user.
-   *
-   * @param username the username for the user
-   * @param password the password being used to authenticate
-   * @return the Universally Unique Identifier (UUID) for the user directory
-   */
   @Override
   @Transactional
   public UUID authenticate(String username, String password)
@@ -460,14 +411,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     }
   }
 
-  /**
-   * Change the password for the user.
-   *
-   * @param username the username for the user
-   * @param password the password for the user that is used to authorise the operation
-   * @param newPassword the new password
-   * @return the Universally Unique Identifier (UUID) for the user directory
-   */
   @Override
   @Transactional
   public UUID changePassword(String username, String password, String newPassword)
@@ -538,11 +481,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     }
   }
 
-  /**
-   * Create the new authorised function.
-   *
-   * @param function the function
-   */
   @Override
   @Transactional
   public void createFunction(Function function)
@@ -563,11 +501,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     }
   }
 
-  /**
-   * Create the new group.
-   *
-   * @param group the group
-   */
   @Override
   @Transactional
   public void createGroup(Group group)
@@ -584,14 +517,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     userDirectory.createGroup(group);
   }
 
-  /**
-   * Create the new tenant.
-   *
-   * @param tenant the tenant
-   * @param createUserDirectory should a new internal user directory be created for the tenant
-   * @return an Optional containing the new internal user directory that was created for the tenant
-   *     or an empty Optional if no user directory was created
-   */
   @Override
   @Transactional
   public Optional<UserDirectory> createTenant(Tenant tenant, boolean createUserDirectory)
@@ -632,13 +557,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     }
   }
 
-  /**
-   * Create the new user.
-   *
-   * @param user the user
-   * @param expiredPassword create the user with its password expired
-   * @param userLocked create the user locked
-   */
   @Override
   @Transactional
   public void createUser(User user, boolean expiredPassword, boolean userLocked)
@@ -659,11 +577,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     userDirectory.createUser(user, expiredPassword, userLocked);
   }
 
-  /**
-   * Create the new user directory.
-   *
-   * @param userDirectory the user directory
-   */
   @Override
   @Transactional
   public void createUserDirectory(UserDirectory userDirectory)
@@ -696,11 +609,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     }
   }
 
-  /**
-   * Delete the authorised function.
-   *
-   * @param functionCode the code for the function
-   */
   @Override
   @Transactional
   public void deleteFunction(String functionCode)
@@ -723,12 +631,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     }
   }
 
-  /**
-   * Delete the group.
-   *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
-   * @param groupName the name of the group
-   */
   @Override
   @Transactional
   public void deleteGroup(UUID userDirectoryId, String groupName)
@@ -751,11 +653,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     userDirectory.deleteGroup(groupName);
   }
 
-  /**
-   * Delete the tenant.
-   *
-   * @param tenantId the Universally Unique Identifier (UUID) for the tenant
-   */
   @Override
   @Transactional
   public void deleteTenant(UUID tenantId)
@@ -777,12 +674,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     }
   }
 
-  /**
-   * Delete the user.
-   *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
-   * @param username the username for the user
-   */
   @Override
   @Transactional
   public void deleteUser(UUID userDirectoryId, String username)
@@ -805,11 +696,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     userDirectory.deleteUser(username);
   }
 
-  /**
-   * Delete the user directory.
-   *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
-   */
   @Override
   @Transactional
   public void deleteUserDirectory(UUID userDirectoryId)
@@ -838,13 +724,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     }
   }
 
-  /**
-   * Retrieve the users matching the user attribute criteria.
-   *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
-   * @param userAttributes the user attribute criteria used to select the users
-   * @return the users whose attributes match the user attribute criteria
-   */
   @Override
   public List<User> findUsers(UUID userDirectoryId, List<UserAttribute> userAttributes)
       throws InvalidArgumentException, UserDirectoryNotFoundException, InvalidAttributeException,
@@ -866,12 +745,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     return userDirectory.findUsers(userAttributes);
   }
 
-  /**
-   * Retrieve the authorised function.
-   *
-   * @param functionCode the code for the function
-   * @return the authorised function
-   */
   @Override
   public Function getFunction(String functionCode)
       throws InvalidArgumentException, FunctionNotFoundException, ServiceUnavailableException {
@@ -895,13 +768,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     }
   }
 
-  /**
-   * Retrieve the authorised function codes for the user.
-   *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
-   * @param username the username for the user
-   * @return the authorised function codes for the user
-   */
   @Override
   public List<String> getFunctionCodesForUser(UUID userDirectoryId, String username)
       throws InvalidArgumentException, UserDirectoryNotFoundException, UserNotFoundException,
@@ -923,11 +789,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     return userDirectory.getFunctionCodesForUser(username);
   }
 
-  /**
-   * Retrieve all the authorised functions.
-   *
-   * @return the authorised functions
-   */
   @Override
   public List<Function> getFunctions() throws ServiceUnavailableException {
     try {
@@ -937,13 +798,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     }
   }
 
-  /**
-   * Retrieve the group.
-   *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
-   * @param groupName the name of the group
-   * @return the group
-   */
   @Override
   public Group getGroup(UUID userDirectoryId, String groupName)
       throws InvalidArgumentException, UserDirectoryNotFoundException, GroupNotFoundException,
@@ -965,12 +819,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     return userDirectory.getGroup(groupName);
   }
 
-  /**
-   * Retrieve all the group names.
-   *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
-   * @return the group names
-   */
   @Override
   public List<String> getGroupNames(UUID userDirectoryId)
       throws InvalidArgumentException, UserDirectoryNotFoundException, ServiceUnavailableException {
@@ -987,13 +835,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     return userDirectory.getGroupNames();
   }
 
-  /**
-   * Retrieve the names of the groups the user is a member of.
-   *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
-   * @param username the username for the user
-   * @return the names of the groups the user is a member of
-   */
   @Override
   public List<String> getGroupNamesForUser(UUID userDirectoryId, String username)
       throws InvalidArgumentException, UserDirectoryNotFoundException, UserNotFoundException,
@@ -1015,12 +856,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     return userDirectory.getGroupNamesForUser(username);
   }
 
-  /**
-   * Retrieve all the groups.
-   *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
-   * @return the groups
-   */
   @Override
   public List<Group> getGroups(UUID userDirectoryId)
       throws InvalidArgumentException, UserDirectoryNotFoundException, ServiceUnavailableException {
@@ -1037,16 +872,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     return userDirectory.getGroups();
   }
 
-  /**
-   * Retrieve the groups.
-   *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
-   * @param filter the optional filter to apply to the groups
-   * @param sortDirection the optional sort direction to apply to the groups
-   * @param pageIndex the optional page index
-   * @param pageSize the optional page size
-   * @return the groups
-   */
   @Override
   public Groups getGroups(
       UUID userDirectoryId,
@@ -1076,13 +901,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     return userDirectory.getGroups(filter, sortDirection, pageIndex, pageSize);
   }
 
-  /**
-   * Retrieve the groups the user is a member of.
-   *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
-   * @param username the username for the user
-   * @return the groups the user is a member of
-   */
   @Override
   public List<Group> getGroupsForUser(UUID userDirectoryId, String username)
       throws InvalidArgumentException, UserDirectoryNotFoundException, UserNotFoundException,
@@ -1104,13 +922,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     return userDirectory.getGroupsForUser(username);
   }
 
-  /**
-   * Retrieve the group members for the group.
-   *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
-   * @param groupName the name of the group
-   * @return the group members for the group
-   */
   @Override
   public List<GroupMember> getMembersForGroup(UUID userDirectoryId, String groupName)
       throws InvalidArgumentException, UserDirectoryNotFoundException, GroupNotFoundException,
@@ -1132,17 +943,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     return userDirectory.getMembersForGroup(groupName);
   }
 
-  /**
-   * Retrieve the group members for the group.
-   *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
-   * @param groupName the name of the group
-   * @param filter the optional filter to apply to the group members
-   * @param sortDirection the optional sort direction to apply to the group members
-   * @param pageIndex the optional page index
-   * @param pageSize the optional page size
-   * @return the group members for the group
-   */
   @Override
   @Transactional
   public GroupMembers getMembersForGroup(
@@ -1179,13 +979,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     return userDirectory.getMembersForGroup(groupName, filter, sortDirection, pageIndex, pageSize);
   }
 
-  /**
-   * Retrieve the codes for the roles that have been assigned to the group.
-   *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
-   * @param groupName the name of the group
-   * @return the codes for the roles that have been assigned to the group
-   */
   @Override
   public List<String> getRoleCodesForGroup(UUID userDirectoryId, String groupName)
       throws InvalidArgumentException, UserDirectoryNotFoundException, GroupNotFoundException,
@@ -1207,13 +1000,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     return userDirectory.getRoleCodesForGroup(groupName);
   }
 
-  /**
-   * Retrieve the codes for the roles that the user has been assigned.
-   *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
-   * @param username the username for the user
-   * @return the codes for the roles that the user has been assigned
-   */
   @Override
   public List<String> getRoleCodesForUser(UUID userDirectoryId, String username)
       throws InvalidArgumentException, UserDirectoryNotFoundException, UserNotFoundException,
@@ -1235,11 +1021,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     return userDirectory.getRoleCodesForUser(username);
   }
 
-  /**
-   * Retrieve all the roles.
-   *
-   * @return the roles
-   */
   @Override
   public List<Role> getRoles() throws ServiceUnavailableException {
     try {
@@ -1249,13 +1030,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     }
   }
 
-  /**
-   * Retrieve the roles that have been assigned to the group.
-   *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
-   * @param groupName the name of the group
-   * @return the roles that have been assigned to the group
-   */
   @Override
   public List<GroupRole> getRolesForGroup(UUID userDirectoryId, String groupName)
       throws InvalidArgumentException, UserDirectoryNotFoundException, GroupNotFoundException,
@@ -1277,12 +1051,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     return userDirectory.getRolesForGroup(groupName);
   }
 
-  /**
-   * Retrieve the tenant.
-   *
-   * @param tenantId the Universally Unique Identifier (UUID) for the tenant
-   * @return the tenant
-   */
   @Override
   public Tenant getTenant(UUID tenantId)
       throws InvalidArgumentException, TenantNotFoundException, ServiceUnavailableException {
@@ -1305,14 +1073,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     }
   }
 
-  /**
-   * Retrieve the Universally Unique Identifiers (UUIDs) for the tenants the user directory is
-   * associated with.
-   *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
-   * @return the Universally Unique Identifiers (UUIDs) for the tenants the user directory is
-   *     associated with
-   */
   @Override
   public List<UUID> getTenantIdsForUserDirectory(UUID userDirectoryId)
       throws InvalidArgumentException, UserDirectoryNotFoundException, ServiceUnavailableException {
@@ -1337,12 +1097,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     }
   }
 
-  /**
-   * Retrieve the name of the tenant.
-   *
-   * @param tenantId the Universally Unique Identifier (UUID) for the tenant
-   * @return the name of the tenant
-   */
   @Override
   public String getTenantName(UUID tenantId)
       throws InvalidArgumentException, TenantNotFoundException, ServiceUnavailableException {
@@ -1366,11 +1120,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     }
   }
 
-  /**
-   * Retrieve the tenants.
-   *
-   * @return the tenants
-   */
   @Override
   public List<Tenant> getTenants() throws ServiceUnavailableException {
     try {
@@ -1380,15 +1129,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     }
   }
 
-  /**
-   * Retrieve the tenants.
-   *
-   * @param filter the optional filter to apply to the tenants
-   * @param sortDirection the optional sort direction to apply to the tenants
-   * @param pageIndex the optional page index
-   * @param pageSize the optional page size
-   * @return the tenants
-   */
   @Override
   public Tenants getTenants(
       String filter, SortDirection sortDirection, Integer pageIndex, Integer pageSize)
@@ -1445,9 +1185,7 @@ public class SecurityService implements ISecurityService, InitializingBean {
         message += String.format(" matching the filter \"%s\"", filter);
       }
 
-      if ((pageIndex != null) && (pageSize != null)) {
-        message += " for the page " + pageIndex + " using the page size " + pageSize;
-      }
+      message += " for the page " + pageIndex + " using the page size " + pageSize;
 
       message += ": ";
 
@@ -1457,12 +1195,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     }
   }
 
-  /**
-   * Retrieve the tenants the user directory is associated with.
-   *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
-   * @return the tenants the user directory is associated with
-   */
   @Override
   public List<Tenant> getTenantsForUserDirectory(UUID userDirectoryId)
       throws InvalidArgumentException, UserDirectoryNotFoundException, ServiceUnavailableException {
@@ -1487,13 +1219,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     }
   }
 
-  /**
-   * Retrieve the user.
-   *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
-   * @param username the username for the user
-   * @return the user
-   */
   @Override
   public User getUser(UUID userDirectoryId, String username)
       throws InvalidArgumentException, UserDirectoryNotFoundException, UserNotFoundException,
@@ -1515,11 +1240,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     return userDirectory.getUser(username);
   }
 
-  /**
-   * Retrieve the user directories.
-   *
-   * @return the user directories
-   */
   @Override
   public List<UserDirectory> getUserDirectories() throws ServiceUnavailableException {
     try {
@@ -1529,15 +1249,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     }
   }
 
-  /**
-   * Retrieve the user directories.
-   *
-   * @param filter the optional filter to apply to the user directories
-   * @param sortDirection the optional sort direction to apply to the user directories
-   * @param pageIndex the optional page index
-   * @param pageSize the optional page size
-   * @return the user directories
-   */
   @Override
   public UserDirectories getUserDirectories(
       String filter, SortDirection sortDirection, Integer pageIndex, Integer pageSize)
@@ -1594,12 +1305,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     }
   }
 
-  /**
-   * Retrieve the user directories the tenant is associated with.
-   *
-   * @param tenantId the Universally Unique Identifier (UUID) for the tenant
-   * @return the user directories the tenant is associated with
-   */
   @Override
   public List<UserDirectory> getUserDirectoriesForTenant(UUID tenantId)
       throws InvalidArgumentException, TenantNotFoundException, ServiceUnavailableException {
@@ -1622,12 +1327,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     }
   }
 
-  /**
-   * Retrieve the user directory.
-   *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
-   * @return the user directory
-   */
   @Override
   public UserDirectory getUserDirectory(UUID userDirectoryId)
       throws InvalidArgumentException, UserDirectoryNotFoundException, ServiceUnavailableException {
@@ -1652,12 +1351,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     }
   }
 
-  /**
-   * Retrieve the capabilities the user directory supports.
-   *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
-   * @return the capabilities the user directory supports
-   */
   @Override
   public UserDirectoryCapabilities getUserDirectoryCapabilities(UUID userDirectoryId)
       throws InvalidArgumentException, UserDirectoryNotFoundException, ServiceUnavailableException {
@@ -1674,15 +1367,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     return userDirectory.getCapabilities();
   }
 
-  /**
-   * Retrieve the Universally Unique Identifier (UUID) for the user directory that the user with the
-   * specified username is associated with.
-   *
-   * @param username the username for the user
-   * @return an Optional containing the Universally Unique Identifier (UUID) for the user directory
-   *     that the user with the specified username is associated with or an empty Optional if the
-   *     user cannot be found
-   */
   @Override
   public Optional<UUID> getUserDirectoryIdForUser(String username)
       throws InvalidArgumentException, ServiceUnavailableException {
@@ -1721,14 +1405,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     }
   }
 
-  /**
-   * Retrieve the Universally Unique Identifiers (UUIDs) for the user directories the tenant is
-   * associated with.
-   *
-   * @param tenantId the Universally Unique Identifier (UUID) for the tenant
-   * @return the Universally Unique Identifiers (UUIDs) for the user directories the tenant is
-   *     associated with
-   */
   @Override
   public List<UUID> getUserDirectoryIdsForTenant(UUID tenantId)
       throws InvalidArgumentException, TenantNotFoundException, ServiceUnavailableException {
@@ -1753,16 +1429,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     }
   }
 
-  /**
-   * Retrieve the Universally Unique Identifiers (UUIDs) for the user directories the user is
-   * associated with. Every user is associated with a user directory, which is in turn associated
-   * with one or more tenants, which are in turn associated with one or more user directories. The
-   * user is therefore associated indirectly with all these user directories.
-   *
-   * @param username the username for the user
-   * @return the Universally Unique Identifiers (UUIDs) for the user directories the user is
-   *     associated with
-   */
   @Override
   public List<UUID> getUserDirectoryIdsForUser(String username)
       throws InvalidArgumentException, UserNotFoundException, ServiceUnavailableException {
@@ -1808,12 +1474,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     }
   }
 
-  /**
-   * Retrieve the name of the user directory.
-   *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
-   * @return the name of the user directory
-   */
   @Override
   public String getUserDirectoryName(UUID userDirectoryId)
       throws InvalidArgumentException, UserDirectoryNotFoundException, ServiceUnavailableException {
@@ -1837,15 +1497,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     }
   }
 
-  /**
-   * Retrieve the summaries for the user directories.
-   *
-   * @param filter the optional filter to apply to the user directories
-   * @param sortDirection the optional sort direction to apply to the user directories
-   * @param pageIndex the optional page index
-   * @param pageSize the optional page size
-   * @return the summaries for the user directories
-   */
   @Override
   public UserDirectorySummaries getUserDirectorySummaries(
       String filter, SortDirection sortDirection, Integer pageIndex, Integer pageSize)
@@ -1905,12 +1556,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     }
   }
 
-  /**
-   * Retrieve the summaries for the user directories the tenant is associated with.
-   *
-   * @param tenantId the Universally Unique Identifier (UUID) for the tenant
-   * @return the summaries for the user directories the tenant is associated with
-   */
   @Override
   public List<UserDirectorySummary> getUserDirectorySummariesForTenant(UUID tenantId)
       throws InvalidArgumentException, TenantNotFoundException, ServiceUnavailableException {
@@ -1936,12 +1581,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     }
   }
 
-  /**
-   * Retrieve the user directory type for the user directory.
-   *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
-   * @return the user directory type for the user directory
-   */
   @Override
   public UserDirectoryType getUserDirectoryTypeForUserDirectory(UUID userDirectoryId)
       throws InvalidArgumentException, UserDirectoryNotFoundException,
@@ -1977,11 +1616,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     }
   }
 
-  /**
-   * Retrieve the user directory types.
-   *
-   * @return the user directory types
-   */
   @Override
   public List<UserDirectoryType> getUserDirectoryTypes() throws ServiceUnavailableException {
     try {
@@ -1991,13 +1625,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     }
   }
 
-  /**
-   * Retrieve the name of the user.
-   *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
-   * @param username the username for the user
-   * @return the name of the user
-   */
   @Override
   public String getUserName(UUID userDirectoryId, String username)
       throws InvalidArgumentException, UserDirectoryNotFoundException, UserNotFoundException,
@@ -2019,12 +1646,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     return userDirectory.getUserName(username);
   }
 
-  /**
-   * Retrieve all the users.
-   *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
-   * @return the users
-   */
   @Override
   public List<User> getUsers(UUID userDirectoryId)
       throws InvalidArgumentException, UserDirectoryNotFoundException, ServiceUnavailableException {
@@ -2041,17 +1662,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     return userDirectory.getUsers();
   }
 
-  /**
-   * Retrieve the users.
-   *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
-   * @param filter the optional filter to apply to the users
-   * @param sortBy the optional method used to sort the users e.g. by name
-   * @param sortDirection the optional sort direction to apply to the users
-   * @param pageIndex the optional page index
-   * @param pageSize the optional page size
-   * @return the users
-   */
   @Override
   public Users getUsers(
       UUID userDirectoryId,
@@ -2090,13 +1700,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     return userDirectory.getUsers(filter, sortBy, sortDirection, pageIndex, pageSize);
   }
 
-  /**
-   * Initiate the password reset process for the user.
-   *
-   * @param username the username for the user
-   * @param resetPasswordUrl the reset password URL
-   * @param sendEmail should the password reset e-mail be sent to the user
-   */
   @Override
   @Transactional
   public void initiatePasswordReset(String username, String resetPasswordUrl, boolean sendEmail)
@@ -2104,14 +1707,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     initiatePasswordReset(username, resetPasswordUrl, sendEmail, null);
   }
 
-  /**
-   * Initiate the password reset process for the user.
-   *
-   * @param username the username for the user
-   * @param resetPasswordUrl the reset password URL
-   * @param sendEmail should the password reset e-mail be sent to the user
-   * @param securityCode the pre-generated security code to use
-   */
   @Override
   @Transactional
   public void initiatePasswordReset(
@@ -2164,13 +1759,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     }
   }
 
-  /**
-   * Does the user with the specified username exist?
-   *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
-   * @param username the username for the user
-   * @return <b>true</b> if a user with specified username exists or <b>false</b> otherwise
-   */
   @Override
   public boolean isExistingUser(UUID userDirectoryId, String username)
       throws InvalidArgumentException, UserDirectoryNotFoundException, ServiceUnavailableException {
@@ -2191,14 +1779,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     return userDirectory.isExistingUser(username);
   }
 
-  /**
-   * Is the user in the group?
-   *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
-   * @param groupName the name of the group
-   * @param username the username for the user
-   * @return <b>true</b> if the user is a member of the group or <b>false</b> otherwise
-   */
   @Override
   public boolean isUserInGroup(UUID userDirectoryId, String groupName, String username)
       throws InvalidArgumentException, UserDirectoryNotFoundException, UserNotFoundException,
@@ -2224,7 +1804,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     return userDirectory.isUserInGroup(groupName, username);
   }
 
-  /** Reload the user directories. */
   @Override
   public void reloadUserDirectories() throws ServiceUnavailableException {
     try {
@@ -2315,14 +1894,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     }
   }
 
-  /**
-   * Remove the group member from the group.
-   *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
-   * @param groupName the name of the group
-   * @param memberType the group member type
-   * @param memberName the group member name
-   */
   @Override
   @Transactional
   public void removeMemberFromGroup(
@@ -2354,13 +1925,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     userDirectory.removeMemberFromGroup(groupName, memberType, memberName);
   }
 
-  /**
-   * Remove the role from the group.
-   *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
-   * @param groupName the name of the group
-   * @param roleCode the code for the role
-   */
   @Override
   @Transactional
   public void removeRoleFromGroup(UUID userDirectoryId, String groupName, String roleCode)
@@ -2387,12 +1951,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     userDirectory.removeRoleFromGroup(groupName, roleCode);
   }
 
-  /**
-   * Remove the user directory from the tenant.
-   *
-   * @param tenantId the Universally Unique Identifier (UUID) for the tenant
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
-   */
   @Override
   @Transactional
   public void removeUserDirectoryFromTenant(UUID tenantId, UUID userDirectoryId)
@@ -2429,13 +1987,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     }
   }
 
-  /**
-   * Remove the user from the group.
-   *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
-   * @param groupName the name of the group
-   * @param username the username for the user
-   */
   @Override
   @Transactional
   public void removeUserFromGroup(UUID userDirectoryId, String groupName, String username)
@@ -2462,13 +2013,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     userDirectory.removeUserFromGroup(groupName, username);
   }
 
-  /**
-   * Reset the password for the user.
-   *
-   * @param username the username for the user
-   * @param newPassword the new password
-   * @param securityCode the security code
-   */
   @Override
   @Transactional
   public void resetPassword(String username, String newPassword, String securityCode)
@@ -2518,11 +2062,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     }
   }
 
-  /**
-   * Update the authorised function.
-   *
-   * @param function the function
-   */
   @Override
   @Transactional
   public void updateFunction(Function function)
@@ -2543,11 +2082,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     }
   }
 
-  /**
-   * Update the group.
-   *
-   * @param group the group
-   */
   @Override
   @Transactional
   public void updateGroup(Group group)
@@ -2564,11 +2098,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     userDirectory.updateGroup(group);
   }
 
-  /**
-   * Update the tenant.
-   *
-   * @param tenant the tenant
-   */
   @Override
   @Transactional
   public void updateTenant(Tenant tenant)
@@ -2596,13 +2125,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     }
   }
 
-  /**
-   * Update the user.
-   *
-   * @param user the user
-   * @param expirePassword expire the user's password as part of the update
-   * @param lockUser lock the user as part of the update
-   */
   @Override
   @Transactional
   public void updateUser(User user, boolean expirePassword, boolean lockUser)
@@ -2619,11 +2141,6 @@ public class SecurityService implements ISecurityService, InitializingBean {
     userDirectory.updateUser(user, expirePassword, lockUser);
   }
 
-  /**
-   * Update the user directory.
-   *
-   * @param userDirectory the user directory
-   */
   @Override
   @Transactional
   public void updateUserDirectory(UserDirectory userDirectory)

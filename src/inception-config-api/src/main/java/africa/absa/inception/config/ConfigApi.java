@@ -50,7 +50,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/api/config")
 @CrossOrigin
 @SuppressWarnings({"unused"})
-// @el (isSecurityDisabled: digital.inception.api.ApiSecurityExpressionRoot.isSecurityEnabled)
+// @el (isSecurityDisabled: africa.absa.inception.api.ApiSecurityExpressionRoot.isSecurityEnabled)
 public class ConfigApi extends SecureApi {
 
   /** The Config Service. */
@@ -72,6 +72,9 @@ public class ConfigApi extends SecureApi {
    * Delete the config.
    *
    * @param key the key for the config
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws ConfigNotFoundException if the config could not be found
+   * @throws ServiceUnavailableException if the config could not be deleted
    */
   @Operation(summary = "Delete the config", description = "Delete the config")
   @ApiResponses(
@@ -127,6 +130,9 @@ public class ConfigApi extends SecureApi {
    *
    * @param key the key for the config
    * @return the config
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws ConfigNotFoundException if the config could not be found
+   * @throws ServiceUnavailableException if the config could not be retrieved
    */
   @Operation(summary = "Retrieve the config", description = "Retrieve the config")
   @ApiResponses(
@@ -181,6 +187,9 @@ public class ConfigApi extends SecureApi {
    *
    * @param key the key for the config
    * @return the config value
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws ConfigNotFoundException if the config could not be found
+   * @throws ServiceUnavailableException if the string config value could not be retrieved
    */
   @Operation(summary = "Retrieve the config value", description = "Retrieve the config value")
   @ApiResponses(
@@ -233,7 +242,8 @@ public class ConfigApi extends SecureApi {
   /**
    * Retrieve all the configs.
    *
-   * @return all the configs
+   * @return the configs
+   * @throws ServiceUnavailableException if the configs could not be retrieved
    */
   @Operation(summary = "Retrieve all the configs", description = "Retrieve all the configs")
   @ApiResponses(
@@ -259,6 +269,8 @@ public class ConfigApi extends SecureApi {
    * Set the config.
    *
    * @param config the config
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws ServiceUnavailableException if the config could not be set
    */
   @Operation(summary = "Set the config", description = "Set the config")
   @ApiResponses(

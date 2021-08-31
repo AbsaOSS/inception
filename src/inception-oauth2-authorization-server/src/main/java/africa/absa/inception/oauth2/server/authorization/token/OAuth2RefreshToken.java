@@ -53,10 +53,13 @@ public class OAuth2RefreshToken
   }
 
   /**
-   * Build a new <b>OAuthRefreshToken</b>.
+   * Build a new <b>OAuth2RefreshToken</b>.
    *
    * @param username the username for the user the token is being issued for
    * @param scopes the optional scope(s) associated to the token
+   * @param validFor the number of seconds the token should be valid for
+   * @param rsaPrivateKey the RSA private key used to sign the token
+   * @return the OAuth2 refresh token
    */
   public static OAuth2RefreshToken build(
       String username, Set<String> scopes, int validFor, RSAPrivateKey rsaPrivateKey) {

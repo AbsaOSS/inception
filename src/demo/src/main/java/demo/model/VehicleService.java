@@ -73,11 +73,6 @@ public class VehicleService implements IVehicleService {
     this.vehicleRepository = vehicleRepository;
   }
 
-  /**
-   * Create the new car.
-   *
-   * @param car the car
-   */
   @Override
   @Transactional
   public void createCar(Car car)
@@ -106,11 +101,6 @@ public class VehicleService implements IVehicleService {
     }
   }
 
-  /**
-   * Create the new vehicle.
-   *
-   * @param vehicle the vehicle
-   */
   @Override
   @Transactional
   public void createVehicle(Vehicle vehicle)
@@ -140,15 +130,6 @@ public class VehicleService implements IVehicleService {
     }
   }
 
-  /**
-   * Retrieve the cars.
-   *
-   * @param filter the optional filter to apply to the cars
-   * @param sortDirection the optional sort direction to apply to the cars
-   * @param pageIndex the optional page index
-   * @param pageSize the optional page size
-   * @return the cars
-   */
   @Override
   public Cars getCars(
       String filter, SortDirection sortDirection, Integer pageIndex, Integer pageSize)
@@ -187,15 +168,6 @@ public class VehicleService implements IVehicleService {
     }
   }
 
-  /**
-   * Retrieve the vehicles.
-   *
-   * @param filter the optional filter to apply to the vehicles
-   * @param sortDirection the optional sort direction to apply to the vehicles
-   * @param pageIndex the optional page index
-   * @param pageSize the optional page size
-   * @return the vehicles
-   */
   @Override
   public Vehicles getVehicles(
       String filter, SortDirection sortDirection, Integer pageIndex, Integer pageSize)

@@ -773,7 +773,7 @@ public class SecurityServiceTest {
     }
   }
 
-  /** Test the functionality to retrieve the authorised function codes for the user. */
+  /** Test the functionality to retrieve the function codes for the user. */
   @Test
   public void getFunctionCodesForUserTest() throws Exception {
     User user = getTestUserDetails(SecurityService.DEFAULT_USER_DIRECTORY_ID);

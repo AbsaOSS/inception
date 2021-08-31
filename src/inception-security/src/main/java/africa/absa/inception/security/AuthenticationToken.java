@@ -31,7 +31,7 @@ public class AuthenticationToken extends AbstractAuthenticationToken {
   /**
    * Constructs a new <b>AuthenticationToken</b>.
    *
-   * @param userDetails
+   * @param userDetails the user details
    */
   public AuthenticationToken(UserDetails userDetails) {
     super(userDetails.getAuthorities());

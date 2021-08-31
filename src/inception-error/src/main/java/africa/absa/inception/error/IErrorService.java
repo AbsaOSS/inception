@@ -35,6 +35,8 @@ public interface IErrorService {
    *
    * @param errorReport the <b>ErrorReport</b> instance containing the information for the error
    *     report
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws ServiceUnavailableException if the error report could not be created
    */
   void createErrorReport(ErrorReport errorReport)
       throws InvalidArgumentException, ServiceUnavailableException;
@@ -44,6 +46,9 @@ public interface IErrorService {
    *
    * @param errorReportId the Universally Unique Identifier (UUID) for the error report
    * @return the error report
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws ErrorReportNotFoundException if the error report could not be found
+   * @throws ServiceUnavailableException if the error report could not be retrieved
    */
   ErrorReport getErrorReport(UUID errorReportId)
       throws InvalidArgumentException, ErrorReportNotFoundException, ServiceUnavailableException;
@@ -57,6 +62,8 @@ public interface IErrorService {
    * @param pageIndex the optional page index
    * @param pageSize the optional page size
    * @return the error report summaries
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws ServiceUnavailableException if the error report summaries could not be retrieved
    */
   ErrorReportSummaries getErrorReportSummaries(
       String filter,
@@ -71,6 +78,9 @@ public interface IErrorService {
    *
    * @param errorReportId the Universally Unique Identifier (UUID) for the error report
    * @return the summary for the error report
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws ErrorReportNotFoundException if the error report could not be found
+   * @throws ServiceUnavailableException if the error report summary could not be retrieved
    */
   ErrorReportSummary getErrorReportSummary(UUID errorReportId)
       throws InvalidArgumentException, ErrorReportNotFoundException, ServiceUnavailableException;
@@ -81,6 +91,9 @@ public interface IErrorService {
    * @param maximumNumberOfEntries the maximum number of summaries for the most recent error reports
    *     to retrieve
    * @return the summaries for the most recent error reports
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws ServiceUnavailableException if the most recent error report summaries could not be
+   *     retrieved
    */
   List<ErrorReportSummary> getMostRecentErrorReportSummaries(int maximumNumberOfEntries)
       throws InvalidArgumentException, ServiceUnavailableException;

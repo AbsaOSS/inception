@@ -52,7 +52,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/api/codes")
 @CrossOrigin
 @SuppressWarnings({"unused"})
-// @el (isSecurityDisabled: digital.inception.api.ApiSecurityExpressionRoot.isSecurityEnabled)
+// @el (isSecurityDisabled: africa.absa.inception.api.ApiSecurityExpressionRoot.isSecurityEnabled)
 public class CodesApi extends SecureApi {
 
   /** The Codes Service. */
@@ -568,7 +568,7 @@ public class CodesApi extends SecureApi {
    * @return the name of the code category
    * @throws InvalidArgumentException if an argument is invalid
    * @throws CodeCategoryNotFoundException if the code category could not be found
-   * @throws ServiceUnavailableException if the code category name could not be retrieved
+   * @throws ServiceUnavailableException if the name of the code category could not be retrieved
    */
   @Operation(
       summary = "Retrieve the name of the code category",
@@ -729,7 +729,7 @@ public class CodesApi extends SecureApi {
    * @return the name of the code
    * @throws InvalidArgumentException if an argument is invalid
    * @throws CodeNotFoundException if the code could not be found
-   * @throws ServiceUnavailableException if the code name could not be retrieved
+   * @throws ServiceUnavailableException if the name of the code could not be retrieved
    */
   @Operation(
       summary = "Retrieve the name of the code",

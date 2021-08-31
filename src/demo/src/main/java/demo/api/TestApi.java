@@ -54,7 +54,11 @@ public class TestApi {
     this.webClientBuilder = webClientBuilder;
   }
 
-  /** Test the exception handling. */
+  /**
+   * Test the exception handling.
+   *
+   * @throws ServiceUnavailableException if an error occurred
+   */
   @RequestMapping(value = "/test-exception-handling", method = RequestMethod.GET)
   public void testExceptionHandling() throws ServiceUnavailableException {
     throw new ServiceUnavailableException("Testing 1.. 2.. 3..");
@@ -64,6 +68,7 @@ public class TestApi {
    * Test the local date time mapping.
    *
    * @param localDateTime the local date time
+   * @return the local date time
    */
   @Operation(
       summary = "Test the local date time serialization",
@@ -76,8 +81,7 @@ public class TestApi {
   public LocalDateTime testLocalDateTime(
       @Parameter(name = "localDateTime", description = "The local date time", required = true)
           @RequestParam("localDateTime")
-          LocalDateTime localDateTime)
-      throws ServiceUnavailableException {
+          LocalDateTime localDateTime) {
     System.out.println("localDateTime = " + localDateTime);
 
     return localDateTime;
@@ -87,6 +91,7 @@ public class TestApi {
    * Test the zoned date time mapping.
    *
    * @param zonedDateTime the zoned date time
+   * @return the zoned date time
    */
   @Operation(
       summary = "Test the zoned date time serialization",
@@ -99,8 +104,7 @@ public class TestApi {
   public ZonedDateTime testZonedDateTime(
       @Parameter(name = "zonedDateTime", description = "The zoned date time", required = true)
           @RequestParam("zonedDateTime")
-          ZonedDateTime zonedDateTime)
-      throws ServiceUnavailableException {
+          ZonedDateTime zonedDateTime) {
     System.out.println("zonedDateTime = " + zonedDateTime);
 
     return zonedDateTime;

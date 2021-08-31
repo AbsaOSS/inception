@@ -62,7 +62,7 @@ public interface ICodeProvider {
   /**
    * Returns all the code categories for the code provider.
    *
-   * @return all the code categories for the code provider
+   * @return the code categories for the code provider
    * @throws CodeProviderException if the code categories could not be retrieved
    */
   List<CodeCategory> getCodeCategories() throws CodeProviderException;
@@ -125,7 +125,7 @@ public interface ICodeProvider {
    * @param codeCategoryId the ID for the code category
    * @return the name of the code category
    * @throws CodeCategoryNotFoundException if the code category could not be found
-   * @throws CodeProviderException if the code category name could not be retrieved
+   * @throws CodeProviderException if the name of the code category could not be retrieved
    */
   String getCodeCategoryName(String codeCategoryId)
       throws CodeCategoryNotFoundException, CodeProviderException;
@@ -137,7 +137,7 @@ public interface ICodeProvider {
    * @param codeId the ID for the code
    * @return the name of code
    * @throws CodeNotFoundException if the code could not be found
-   * @throws CodeProviderException if the code name could not be retrieved
+   * @throws CodeProviderException if the name of the code could not be retrieved
    */
   String getCodeName(String codeCategoryId, String codeId)
       throws CodeNotFoundException, CodeProviderException;

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+  <property name="blob_type" value="bytea" dbms="h2"/>
+  <property name="blob_type" value="bytea" dbms="postgresql"/>
+  <property name="blob_type" value="blob" dbms="oracle"/>
+  <property name="blob_type" value="varbinary(max)" dbms="mssql"/>
+  <property name="now" value="now()" dbms="h2"/>
+  <property name="now" value="now()" dbms="postgresql"/>
+  <property name="now" value="sysdate" dbms="oracle"/>
+  <property name="now" value="CURRENT_TIMESTAMP" dbms="mssql"/>
+
+  <changeSet id="inception-reference-1.0.0" author="Marcus Portmann">
+    <comment>Inception - Reference - 1.0.0</comment>
+    <sql dbms="h2" endDelimiter=";">
+      CREATE SCHEMA IF NOT EXISTS reference
+    </sql>
+    <sql dbms="postgresql" endDelimiter=";">
+      CREATE SCHEMA IF NOT EXISTS reference
+    </sql>
+    <sql dbms="mssql" endDelimiter=";">
+      CREATE SCHEMA reference
+    </sql>
+
+    <createTable schemaName="reference" tableName="countries" remarks="Countries">
+      <column name="code" type="nchar(2)" remarks="The ISO 3166-1 alpha-2 code for the country">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="iso3_code" type="nchar(3)" remarks="The ISO 3166-1 alpha-3 code for the country">
+        <constraints nullable="false"/>
+      </column>
+      <column name="locale_id" type="nvarchar(10)" remarks="The Unicode locale identifier for the country">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="sort_index" type="int" remarks="The sort index for the country"/>
+      <column name="name" type="nvarchar(50)" remarks="The name of the country">
+        <constraints nullable="false"/>
+      </column>
+      <column name="short_name" type="nvarchar(30)" remarks="The short name for the country">
+        <constraints nullable="false"/>
+      </column>
+      <column name="description" type="nvarchar(200)" defaultValue="" remarks="The description for the country">
+        <constraints nullable="false"/>
+      </column>
+      <column name="sovereign_state" type="nchar(2)" remarks="The ISO 3166-1 alpha-2 code for the sovereign state the country is associated with">
+        <constraints nullable="false"/>
+      </column>
+      <column name="nationality" type="nvarchar(50)" remarks="The nationality for the country">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <createIndex indexName="countries_iso3_code_ix" schemaName="reference" tableName="countries">
+      <column name="iso3_code"/>
+    </createIndex>
+    <createIndex indexName="countries_locale_id_ix" schemaName="reference" tableName="countries">
+      <column name="locale_id"/>
+    </createIndex>
+
+    <createTable schemaName="reference" tableName="languages" remarks="Languages">
+      <column name="code" type="nvarchar(2)" remarks="The ISO 639-1 alpha-2 code for the language">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="iso3_code" type="nchar(3)" remarks="The ISO 639-2 alpha-3 code for the language">
+        <constraints nullable="false"/>
+      </column>
+      <column name="locale_id" type="nvarchar(10)" remarks="The Unicode locale identifier for the language">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="sort_index" type="int" remarks="The sort index for the language"/>
+      <column name="name" type="nvarchar(50)" remarks="The name of the language">
+        <constraints nullable="false"/>
+      </column>
+      <column name="short_name" type="nvarchar(30)" remarks="The short name for the language">
+        <constraints nullable="false"/>
+      </column>
+      <column name="description" type="nvarchar(200)" defaultValue="" remarks="The description for the language">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <createIndex indexName="languages_locale_id_ix" schemaName="reference" tableName="languages">
+      <column name="locale_id"/>
+    </createIndex>
+
+    <createTable schemaName="reference" tableName="measurement_systems" remarks="Measurement Systems">
+      <column name="code" type="nvarchar(30)" remarks="The code for the measurement system">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="locale_id" type="nvarchar(10)" remarks="The Unicode locale identifier for the measurement system">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="sort_index" type="int" remarks="The sort index for the measurement system"/>
+      <column name="name" type="nvarchar(50)" remarks="The name of the measurement system">
+        <constraints nullable="false"/>
+      </column>
+      <column name="description" type="nvarchar(200)" defaultValue="" remarks="The description for the measurement system">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <createIndex indexName="measurement_systems_locale_id_ix" schemaName="reference" tableName="measurement_systems">
+      <column name="locale_id"/>
+    </createIndex>
+
+    <createTable schemaName="reference" tableName="measurement_unit_types" remarks="Measurement Unit Types">
+      <column name="code" type="nvarchar(30)" remarks="The code for the measurement unit type">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="locale_id" type="nvarchar(10)" remarks="The Unicode locale identifier for the measurement unit type">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="sort_index" type="int" remarks="The sort index for the measurement unit type"/>
+      <column name="name" type="nvarchar(50)" remarks="The name of the measurement unit type">
+        <constraints nullable="false"/>
+      </column>
+      <column name="description" type="nvarchar(200)" defaultValue="" remarks="The description for the measurement unit type">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <createIndex indexName="measurement_unit_types_locale_id_ix" schemaName="reference" tableName="measurement_unit_types">
+      <column name="locale_id"/>
+    </createIndex>
+
+    <createTable schemaName="reference" tableName="measurement_units" remarks="Measurement Units">
+      <column name="code" type="nvarchar(30)" remarks="The code for the measurement unit">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="locale_id" type="nvarchar(10)" remarks="The Unicode locale identifier for the measurement unit">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="sort_index" type="int" remarks="The sort index for the measurement unit"/>
+      <column name="name" type="nvarchar(50)" remarks="The name of the measurement unit">
+        <constraints nullable="false"/>
+      </column>
+      <column name="description" type="nvarchar(200)" defaultValue="" remarks="The description for the measurement unit">
+        <constraints nullable="false"/>
+      </column>
+      <column name="system" type="nvarchar(30)" remarks="The code for the measurement system"/>
+      <column name="type" type="nvarchar(30)" remarks="The code for the measurement unit type"/>
+    </createTable>
+    <addForeignKeyConstraint constraintName="measurement_units_measurement_system_fk"
+      baseTableSchemaName="reference" baseTableName="measurement_units" baseColumnNames="system, locale_id"
+      referencedTableSchemaName="reference" referencedTableName="measurement_systems"
+      referencedColumnNames="code, locale_id" onDelete="CASCADE"/>
+    <addForeignKeyConstraint constraintName="measurement_units_measurement_unit_type_fk"
+      baseTableSchemaName="reference" baseTableName="measurement_units" baseColumnNames="type, locale_id"
+      referencedTableSchemaName="reference" referencedTableName="measurement_unit_types"
+      referencedColumnNames="code, locale_id" onDelete="CASCADE"/>
+    <createIndex indexName="measurement_units_locale_id_ix" schemaName="reference" tableName="measurement_units">
+      <column name="locale_id"/>
+    </createIndex>
+
+    <createTable schemaName="reference" tableName="regions" remarks="Regions">
+      <column name="country" type="nchar(2)" remarks="The ISO 3166-1 alpha-2 code for the country the region is associated with">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="code" type="nvarchar(30)" remarks="The code for the region">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="locale_id" type="nvarchar(10)" remarks="The Unicode locale identifier for the region">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="sort_index" type="int" remarks="The sort index for the region"/>
+      <column name="name" type="nvarchar(50)" remarks="The name of the region">
+        <constraints nullable="false"/>
+      </column>
+      <column name="description" type="nvarchar(200)" defaultValue="" remarks="The description for the region">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <addForeignKeyConstraint constraintName="regions_country_fk" baseTableSchemaName="reference"
+      baseTableName="regions" baseColumnNames="country,locale_id" referencedTableSchemaName="reference"
+      referencedTableName="countries" referencedColumnNames="code,locale_id" onDelete="CASCADE"/>
+    <createIndex indexName="regions_country_ix" schemaName="reference" tableName="regions">
+      <column name="country"/>
+    </createIndex>
+    <createIndex indexName="regions_locale_id_ix" schemaName="reference" tableName="regions">
+      <column name="locale_id"/>
+    </createIndex>
+  </changeSet>
+
+</databaseChangeLog>

@@ -95,17 +95,11 @@ public class SchedulerService implements ISchedulerService, InitializingBean {
     this.jobRepository = jobRepository;
   }
 
-  /** Initialize the Scheduler Service. */
   @Override
   public void afterPropertiesSet() {
     logger.info("Initializing the Scheduler Service (" + instanceName + ")");
   }
 
-  /**
-   * Create the new job.
-   *
-   * @param job the <b>Job</b> instance containing the information for the job
-   */
   @Override
   @Transactional
   public void createJob(Job job)
@@ -125,11 +119,6 @@ public class SchedulerService implements ISchedulerService, InitializingBean {
     }
   }
 
-  /**
-   * Delete the job
-   *
-   * @param jobId the ID for the job
-   */
   @Override
   @Transactional
   public void deleteJob(String jobId)
@@ -151,11 +140,6 @@ public class SchedulerService implements ISchedulerService, InitializingBean {
     }
   }
 
-  /**
-   * Execute the job.
-   *
-   * @param job the job
-   */
   @Override
   public void executeJob(Job job) throws InvalidArgumentException, ServiceUnavailableException {
     validateJob(job);
@@ -189,7 +173,7 @@ public class SchedulerService implements ISchedulerService, InitializingBean {
         throw new ServiceUnavailableException(
             "The job class ("
                 + job.getJobClass()
-                + ") does not implement the digital.inception.scheduler.IJob interface");
+                + ") does not implement the africa.absa.inception.scheduler.IJob interface");
       }
 
       jobImplementation = (IJob) jobObject;
@@ -221,12 +205,6 @@ public class SchedulerService implements ISchedulerService, InitializingBean {
     }
   }
 
-  /**
-   * Retrieve the filtered jobs.
-   *
-   * @param filter the filter to apply to the jobs
-   * @return the jobs
-   */
   @Override
   public List<Job> getFilteredJobs(String filter) throws ServiceUnavailableException {
     try {
@@ -241,12 +219,6 @@ public class SchedulerService implements ISchedulerService, InitializingBean {
     }
   }
 
-  /**
-   * Retrieve the job.
-   *
-   * @param jobId the ID for the job
-   * @return the job
-   */
   @Override
   public Job getJob(String jobId)
       throws InvalidArgumentException, JobNotFoundException, ServiceUnavailableException {
@@ -269,12 +241,6 @@ public class SchedulerService implements ISchedulerService, InitializingBean {
     }
   }
 
-  /**
-   * Retrieve the name of the job.
-   *
-   * @param jobId the ID for the job
-   * @return the name of the job
-   */
   @Override
   public String getJobName(String jobId)
       throws InvalidArgumentException, JobNotFoundException, ServiceUnavailableException {
@@ -298,11 +264,6 @@ public class SchedulerService implements ISchedulerService, InitializingBean {
     }
   }
 
-  /**
-   * Retrieve the jobs.
-   *
-   * @return the jobs
-   */
   @Override
   public List<Job> getJobs() throws ServiceUnavailableException {
     try {
@@ -312,24 +273,11 @@ public class SchedulerService implements ISchedulerService, InitializingBean {
     }
   }
 
-  /**
-   * Returns the maximum number of times execution will be attempted for a job.
-   *
-   * @return the maximum number of times execution will be attempted for a job
-   */
   @Override
   public int getMaximumJobExecutionAttempts() {
     return maximumJobExecutionAttempts;
   }
 
-  /**
-   * Retrieve the next job that is scheduled for execution.
-   *
-   * <p>The job will be locked to prevent duplicate processing.
-   *
-   * @return an Optional containing the next job that is scheduled for execution or an empty
-   *     Optional if no jobs are currently scheduled for execution
-   */
   @Override
   @Transactional(propagation = Propagation.REQUIRES_NEW)
   public Optional<Job> getNextJobScheduledForExecution() throws ServiceUnavailableException {
@@ -368,11 +316,6 @@ public class SchedulerService implements ISchedulerService, InitializingBean {
     }
   }
 
-  /**
-   * Retrieve the unscheduled jobs.
-   *
-   * @return the unscheduled jobs
-   */
   @Override
   public List<Job> getUnscheduledJobs() throws ServiceUnavailableException {
     try {
@@ -382,13 +325,6 @@ public class SchedulerService implements ISchedulerService, InitializingBean {
     }
   }
 
-  /**
-   * Reschedule the job for execution.
-   *
-   * @param jobId the ID for the job
-   * @param schedulingPattern the cron-style scheduling pattern for the job used to determine the
-   *     next execution time
-   */
   @Override
   @Transactional
   public void rescheduleJob(String jobId, String schedulingPattern)
@@ -411,16 +347,18 @@ public class SchedulerService implements ISchedulerService, InitializingBean {
     }
   }
 
-  /**
-   * Reset the job locks.
-   *
-   * @param status the current status of the jobs that have been locked
-   * @param newStatus the new status for the jobs that have been unlocked
-   */
   @Override
   @Transactional
   public void resetJobLocks(JobStatus status, JobStatus newStatus)
-      throws ServiceUnavailableException {
+      throws InvalidArgumentException, ServiceUnavailableException {
+    if (status == null) {
+      throw new InvalidArgumentException("status");
+    }
+
+    if (newStatus == null) {
+      throw new InvalidArgumentException("newStatus");
+    }
+
     try {
       jobRepository.resetJobLocks(status, newStatus, instanceName);
     } catch (Throwable e) {
@@ -434,11 +372,6 @@ public class SchedulerService implements ISchedulerService, InitializingBean {
     }
   }
 
-  /**
-   * Schedule the next unscheduled job for execution.
-   *
-   * @return <b>true</b> if a job was successfully scheduled for execution or <b>false</b> otherwise
-   */
   @Override
   @Transactional(propagation = Propagation.REQUIRES_NEW)
   public boolean scheduleNextUnscheduledJobForExecution() throws ServiceUnavailableException {
@@ -489,12 +422,6 @@ public class SchedulerService implements ISchedulerService, InitializingBean {
     }
   }
 
-  /**
-   * Set the status for the job.
-   *
-   * @param jobId the ID for the job
-   * @param status the new status for the job
-   */
   @Override
   @Transactional
   public void setJobStatus(String jobId, JobStatus status)
@@ -517,12 +444,6 @@ public class SchedulerService implements ISchedulerService, InitializingBean {
     }
   }
 
-  /**
-   * Unlock a locked job.
-   *
-   * @param jobId the ID for the job
-   * @param status the new status for the unlocked job
-   */
   @Override
   @Transactional
   public void unlockJob(String jobId, JobStatus status)
@@ -545,11 +466,6 @@ public class SchedulerService implements ISchedulerService, InitializingBean {
     }
   }
 
-  /**
-   * Update the job.
-   *
-   * @param job the <b>Job</b> instance containing the updated information for the job
-   */
   @Override
   public void updateJob(Job job)
       throws InvalidArgumentException, JobNotFoundException, ServiceUnavailableException {

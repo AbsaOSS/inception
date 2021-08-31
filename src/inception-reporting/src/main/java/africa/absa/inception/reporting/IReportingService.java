@@ -40,6 +40,9 @@ public interface IReportingService {
    *
    * @param reportDefinition the <b>ReportDefinition</b> instance containing the information for the
    *     new report definition
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws DuplicateReportDefinitionException if the report definition already exists
+   * @throws ServiceUnavailableException if the report definition could not be created
    */
   void createReportDefinition(ReportDefinition reportDefinition)
       throws InvalidArgumentException, DuplicateReportDefinitionException,
@@ -51,6 +54,9 @@ public interface IReportingService {
    * @param reportDefinitionId the ID for the report definition
    * @param parameters the parameters for the report
    * @return the PDF data for the report
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws ReportDefinitionNotFoundException if the report definition could not be found
+   * @throws ServiceUnavailableException if the report definition could not be created
    */
   byte[] createReportPDF(String reportDefinitionId, Map<String, Object> parameters)
       throws InvalidArgumentException, ReportDefinitionNotFoundException,
@@ -63,6 +69,9 @@ public interface IReportingService {
    * @param parameters the parameters for the report
    * @param connection the database connection used to retrieve the report data
    * @return the PDF data for the report
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws ReportDefinitionNotFoundException if the report definition could not be found
+   * @throws ServiceUnavailableException if the PDF for the report could not be created
    */
   byte[] createReportPDF(
       String reportDefinitionId, Map<String, Object> parameters, Connection connection)
@@ -76,6 +85,9 @@ public interface IReportingService {
    * @param parameters the parameters for the report
    * @param document the XML document containing the report data
    * @return the PDF data for the report
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws ReportDefinitionNotFoundException if the report definition could not be found
+   * @throws ServiceUnavailableException if the PDF for the report could not be created
    */
   byte[] createReportPDF(
       String reportDefinitionId, Map<String, Object> parameters, Document document)
@@ -86,6 +98,9 @@ public interface IReportingService {
    * Delete the existing report definition.
    *
    * @param reportDefinitionId the ID for the report definition
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws ReportDefinitionNotFoundException if the report definition could not be found
+   * @throws ServiceUnavailableException if the report definition could not be deleted
    */
   void deleteReportDefinition(String reportDefinitionId)
       throws InvalidArgumentException, ReportDefinitionNotFoundException,
@@ -103,6 +118,9 @@ public interface IReportingService {
    *
    * @param reportDefinitionId the ID for the report definition
    * @return the report definition
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws ReportDefinitionNotFoundException if the report definition could not be found
+   * @throws ServiceUnavailableException if the report definition could not be retrieved
    */
   ReportDefinition getReportDefinition(String reportDefinitionId)
       throws InvalidArgumentException, ReportDefinitionNotFoundException,
@@ -113,6 +131,9 @@ public interface IReportingService {
    *
    * @param reportDefinitionId the ID for the report definition
    * @return the name of the report definition
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws ReportDefinitionNotFoundException if the report definition could not be found
+   * @throws ServiceUnavailableException if the name of the report definition could not be retrieved
    */
   String getReportDefinitionName(String reportDefinitionId)
       throws InvalidArgumentException, ReportDefinitionNotFoundException,
@@ -122,6 +143,7 @@ public interface IReportingService {
    * Returns the summaries for all the report definitions.
    *
    * @return the summaries for all the report definitions
+   * @throws ServiceUnavailableException if the report definition summaries could not be retrieved
    */
   List<ReportDefinitionSummary> getReportDefinitionSummaries() throws ServiceUnavailableException;
 
@@ -130,6 +152,9 @@ public interface IReportingService {
    *
    * @param reportDefinitionId the ID for the report definition
    * @return the summary for the report definition
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws ReportDefinitionNotFoundException if the report definition could not be found
+   * @throws ServiceUnavailableException if the report definition summary could not be retrieved
    */
   ReportDefinitionSummary getReportDefinitionSummary(String reportDefinitionId)
       throws InvalidArgumentException, ReportDefinitionNotFoundException,
@@ -138,7 +163,8 @@ public interface IReportingService {
   /**
    * Returns all the report definitions.
    *
-   * @return all the report definitions
+   * @return the report definitions
+   * @throws ServiceUnavailableException if the report definitions could not be retrieved
    */
   List<ReportDefinition> getReportDefinitions() throws ServiceUnavailableException;
 
@@ -147,6 +173,8 @@ public interface IReportingService {
    *
    * @param reportDefinitionId the ID for the report definition
    * @return <b>true</b> if the report definition exists or <b>false</b> otherwise
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws ServiceUnavailableException if the check for the existing report definition failed
    */
   boolean reportDefinitionExists(String reportDefinitionId)
       throws InvalidArgumentException, ServiceUnavailableException;
@@ -164,6 +192,9 @@ public interface IReportingService {
    *
    * @param reportDefinition the <b>ReportDefinition</b> instance containing the updated information
    *     for the report definition
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws ReportDefinitionNotFoundException if the report definition could not be found
+   * @throws ServiceUnavailableException if the report definition could not be updated
    */
   void updateReportDefinition(ReportDefinition reportDefinition)
       throws InvalidArgumentException, ReportDefinitionNotFoundException,

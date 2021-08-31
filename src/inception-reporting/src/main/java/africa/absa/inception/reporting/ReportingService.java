@@ -89,12 +89,6 @@ public class ReportingService implements IReportingService {
     this.reportDefinitionSummaryRepository = reportDefinitionSummaryRepository;
   }
 
-  /**
-   * Create the new report definition.
-   *
-   * @param reportDefinition the <b>ReportDefinition</b> instance containing the information for the
-   *     new report definition
-   */
   @Override
   @Transactional
   public void createReportDefinition(ReportDefinition reportDefinition)
@@ -116,13 +110,6 @@ public class ReportingService implements IReportingService {
     }
   }
 
-  /**
-   * Create the PDF for the report using a connection retrieved from the application data source.
-   *
-   * @param reportDefinitionId the ID for the report definition
-   * @param parameters the parameters for the report
-   * @return the PDF data for the report
-   */
   @Override
   public byte[] createReportPDF(String reportDefinitionId, Map<String, Object> parameters)
       throws InvalidArgumentException, ReportDefinitionNotFoundException,
@@ -148,14 +135,6 @@ public class ReportingService implements IReportingService {
     }
   }
 
-  /**
-   * Create the PDF for the report.
-   *
-   * @param reportDefinitionId the ID for the report definition
-   * @param parameters the parameters for the report
-   * @param connection the database connection used to retrieve the report data
-   * @return the PDF data for the report
-   */
   @Override
   public byte[] createReportPDF(
       String reportDefinitionId, Map<String, Object> parameters, Connection connection)
@@ -209,14 +188,6 @@ public class ReportingService implements IReportingService {
     }
   }
 
-  /**
-   * Create the PDF for the report.
-   *
-   * @param reportDefinitionId the ID for the report definition
-   * @param parameters the parameters for the report
-   * @param document the XML document containing the report data
-   * @return the PDF data for the report
-   */
   @Override
   public byte[] createReportPDF(
       String reportDefinitionId, Map<String, Object> parameters, Document document)
@@ -269,11 +240,6 @@ public class ReportingService implements IReportingService {
     }
   }
 
-  /**
-   * Delete the existing report definition.
-   *
-   * @param reportDefinitionId the ID for the report definition
-   */
   @Override
   @Transactional
   public void deleteReportDefinition(String reportDefinitionId)
@@ -297,21 +263,11 @@ public class ReportingService implements IReportingService {
     }
   }
 
-  /**
-   * Returns the real path to the folder where the local Jasper reports are stored.
-   *
-   * @return the real path to the folder where the local Jasper reports are stored
-   */
+  @Override
   public String getLocalReportFolderPath() {
     return localReportFolderPath;
   }
 
-  /**
-   * Retrieve the report definition.
-   *
-   * @param reportDefinitionId the ID for the report definition
-   * @return the report definition
-   */
   @Override
   public ReportDefinition getReportDefinition(String reportDefinitionId)
       throws InvalidArgumentException, ReportDefinitionNotFoundException,
@@ -337,12 +293,6 @@ public class ReportingService implements IReportingService {
     }
   }
 
-  /**
-   * Retrieve the name of the report definition.
-   *
-   * @param reportDefinitionId the ID for the report definition
-   * @return the name of the report definition
-   */
   @Override
   public String getReportDefinitionName(String reportDefinitionId)
       throws InvalidArgumentException, ReportDefinitionNotFoundException,
@@ -367,11 +317,6 @@ public class ReportingService implements IReportingService {
     }
   }
 
-  /**
-   * Returns the summaries for all the report definitions.
-   *
-   * @return the summaries for all the report definitions
-   */
   @Override
   public List<ReportDefinitionSummary> getReportDefinitionSummaries()
       throws ServiceUnavailableException {
@@ -383,12 +328,6 @@ public class ReportingService implements IReportingService {
     }
   }
 
-  /**
-   * Retrieve the summary for the report definition.
-   *
-   * @param reportDefinitionId the ID for the report definition
-   * @return the summary for the report definition
-   */
   @Override
   public ReportDefinitionSummary getReportDefinitionSummary(String reportDefinitionId)
       throws InvalidArgumentException, ReportDefinitionNotFoundException,
@@ -415,11 +354,6 @@ public class ReportingService implements IReportingService {
     }
   }
 
-  /**
-   * Returns all the report definitions.
-   *
-   * @return all the report definitions
-   */
   @Override
   public List<ReportDefinition> getReportDefinitions() throws ServiceUnavailableException {
     try {
@@ -429,12 +363,6 @@ public class ReportingService implements IReportingService {
     }
   }
 
-  /**
-   * Check whether the report definition exists.
-   *
-   * @param reportDefinitionId the ID for the report definition
-   * @return <b>true</b> if the report definition exists or <b>false</b> otherwise
-   */
   @Override
   public boolean reportDefinitionExists(String reportDefinitionId)
       throws InvalidArgumentException, ServiceUnavailableException {
@@ -450,22 +378,11 @@ public class ReportingService implements IReportingService {
     }
   }
 
-  /**
-   * Set the real path to the folder where the local Jasper reports are stored.
-   *
-   * @param localReportFolderPath the real path to the folder where the local Jasper reports are
-   *     stored
-   */
+  @Override
   public void setLocalReportFolderPath(String localReportFolderPath) {
     this.localReportFolderPath = localReportFolderPath;
   }
 
-  /**
-   * Update the report definition.
-   *
-   * @param reportDefinition the <b>ReportDefinition</b> instance containing the updated information
-   *     for the report definition
-   */
   @Override
   @Transactional
   public void updateReportDefinition(ReportDefinition reportDefinition)

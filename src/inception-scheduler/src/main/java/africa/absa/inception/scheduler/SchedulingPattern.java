@@ -160,6 +160,7 @@ public class SchedulingPattern {
    * Builds a SchedulingPattern by parsing it from a string.
    *
    * @param pattern the pattern as a crontab-like string
+   * @throws InvalidSchedulingPatternException if the scheduling pattern is invalid
    */
   public SchedulingPattern(String pattern) throws InvalidSchedulingPatternException {
     this.asString = pattern;

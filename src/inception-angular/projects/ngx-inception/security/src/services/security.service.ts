@@ -33,11 +33,10 @@ import {PasswordChangeReason} from './password-change-reason';
 import {Role} from './role';
 import {
   AuthenticationFailedError, DuplicateGroupError, DuplicateTenantError, DuplicateUserDirectoryError,
-  DuplicateUserError, ExistingGroupMemberError, ExistingGroupMembersError, ExistingGroupRoleError,
-  ExistingPasswordError, ExistingTenantUserDirectoryError, GroupMemberNotFoundError,
-  GroupNotFoundError, GroupRoleNotFoundError, InvalidSecurityCodeError, RoleNotFoundError,
-  TenantNotFoundError, TenantUserDirectoryNotFoundError, UserDirectoryNotFoundError,
-  UserLockedError, UserNotFoundError
+  DuplicateUserError, ExistingGroupMembersError, ExistingPasswordError,
+  GroupMemberNotFoundError, GroupNotFoundError, GroupRoleNotFoundError, InvalidSecurityCodeError,
+  RoleNotFoundError, TenantNotFoundError, TenantUserDirectoryNotFoundError,
+  UserDirectoryNotFoundError, UserLockedError, UserNotFoundError
 } from './security.service.errors';
 import {Tenant} from './tenant';
 import {TenantUserDirectory} from './tenant-user-directory';
@@ -99,8 +98,6 @@ export class SecurityService {
         return throwError(new GroupNotFoundError(httpErrorResponse));
       } else if (ProblemDetails.isProblemDetails(httpErrorResponse, UserNotFoundError.TYPE)) {
         return throwError(new UserNotFoundError(httpErrorResponse));
-      } else if (ProblemDetails.isProblemDetails(httpErrorResponse, ExistingGroupMemberError.TYPE)) {
-        return throwError(new ExistingGroupMemberError(httpErrorResponse));
       } else if (AccessDeniedError.isAccessDeniedError(httpErrorResponse)) {
         return throwError(new AccessDeniedError(httpErrorResponse));
       } else if (CommunicationError.isCommunicationError(httpErrorResponse)) {
@@ -137,8 +134,6 @@ export class SecurityService {
         return throwError(new GroupNotFoundError(httpErrorResponse));
       } else if (ProblemDetails.isProblemDetails(httpErrorResponse, RoleNotFoundError.TYPE)) {
         return throwError(new RoleNotFoundError(httpErrorResponse));
-      } else if (ProblemDetails.isProblemDetails(httpErrorResponse, ExistingGroupRoleError.TYPE)) {
-        return throwError(new ExistingGroupRoleError(httpErrorResponse));
       } else if (AccessDeniedError.isAccessDeniedError(httpErrorResponse)) {
         return throwError(new AccessDeniedError(httpErrorResponse));
       } else if (CommunicationError.isCommunicationError(httpErrorResponse)) {
@@ -173,8 +168,6 @@ export class SecurityService {
         return throwError(new TenantNotFoundError(httpErrorResponse));
       } else if (ProblemDetails.isProblemDetails(httpErrorResponse, UserDirectoryNotFoundError.TYPE)) {
         return throwError(new UserDirectoryNotFoundError(httpErrorResponse));
-      } else if (ProblemDetails.isProblemDetails(httpErrorResponse, ExistingTenantUserDirectoryError.TYPE)) {
-        return throwError(new ExistingTenantUserDirectoryError(httpErrorResponse));
       } else if (AccessDeniedError.isAccessDeniedError(httpErrorResponse)) {
         return throwError(new AccessDeniedError(httpErrorResponse));
       } else if (CommunicationError.isCommunicationError(httpErrorResponse)) {

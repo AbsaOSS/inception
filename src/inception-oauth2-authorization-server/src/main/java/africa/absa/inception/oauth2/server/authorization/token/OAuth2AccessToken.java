@@ -104,6 +104,7 @@ public class OAuth2AccessToken extends org.springframework.security.oauth2.core.
    * @param issuer the optional issuer of the token, which can be <b>null</b>
    * @param validFor the number of seconds the token should be valid for
    * @param rsaPrivateKey the RSA private key used to sign the token
+   * @return the OAuth2 access token
    */
   public static OAuth2AccessToken build(
       User user,

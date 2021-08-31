@@ -63,11 +63,6 @@ public class ConfigService implements IConfigService {
     this.configSummaryRepository = configSummaryRepository;
   }
 
-  /**
-   * Remove the config with the specified key.
-   *
-   * @param key the key for the config
-   */
   @Override
   @Transactional
   public void deleteConfig(String key)
@@ -90,12 +85,6 @@ public class ConfigService implements IConfigService {
     }
   }
 
-  /**
-   * Retrieve the binary config.
-   *
-   * @param key the key for the config
-   * @return the binary config
-   */
   @Override
   public byte[] getBinary(String key)
       throws InvalidArgumentException, ConfigNotFoundException, ServiceUnavailableException {
@@ -119,13 +108,6 @@ public class ConfigService implements IConfigService {
     }
   }
 
-  /**
-   * Retrieve the binary config.
-   *
-   * @param key the key for the config
-   * @param defaultValue the default value to return if the config does not exist
-   * @return the binary config or the default value if the config does not exist
-   */
   @Override
   public byte[] getBinary(String key, byte[] defaultValue)
       throws InvalidArgumentException, ServiceUnavailableException {
@@ -143,12 +125,6 @@ public class ConfigService implements IConfigService {
     }
   }
 
-  /**
-   * Retrieve the <b>Boolean</b> config.
-   *
-   * @param key the key for the config
-   * @return the <b>Boolean</b> config
-   */
   @Override
   public boolean getBoolean(String key)
       throws InvalidArgumentException, ConfigNotFoundException, ServiceUnavailableException {
@@ -172,13 +148,6 @@ public class ConfigService implements IConfigService {
     }
   }
 
-  /**
-   * Retrieve the <b>Boolean</b> config.
-   *
-   * @param key the key for the config
-   * @param defaultValue the default value to return if the config does not exist
-   * @return the <b>Boolean</b> config or the default value if the config value does not exist
-   */
   @Override
   public boolean getBoolean(String key, boolean defaultValue)
       throws InvalidArgumentException, ServiceUnavailableException {
@@ -196,12 +165,6 @@ public class ConfigService implements IConfigService {
     }
   }
 
-  /**
-   * Retrieve the config.
-   *
-   * @param key the key for the config
-   * @return the config
-   */
   @Override
   public Config getConfig(String key)
       throws InvalidArgumentException, ConfigNotFoundException, ServiceUnavailableException {
@@ -225,11 +188,6 @@ public class ConfigService implements IConfigService {
     }
   }
 
-  /**
-   * Retrieve all the config summaries.
-   *
-   * @return all the config summaries
-   */
   @Override
   public List<ConfigSummary> getConfigSummaries() throws ServiceUnavailableException {
     try {
@@ -239,11 +197,6 @@ public class ConfigService implements IConfigService {
     }
   }
 
-  /**
-   * Retrieve all the configs.
-   *
-   * @return all the configs
-   */
   @Override
   public List<Config> getConfigs() throws ServiceUnavailableException {
     try {
@@ -253,12 +206,6 @@ public class ConfigService implements IConfigService {
     }
   }
 
-  /**
-   * Retrieve the <b>Double</b> config.
-   *
-   * @param key the key for the config
-   * @return the <b>Double</b> config
-   */
   @Override
   public Double getDouble(String key)
       throws InvalidArgumentException, ConfigNotFoundException, ServiceUnavailableException {
@@ -282,13 +229,6 @@ public class ConfigService implements IConfigService {
     }
   }
 
-  /**
-   * Retrieve the <b>Double</b> config.
-   *
-   * @param key the key for the config
-   * @param defaultValue the default value to return if the config does not exist
-   * @return the <b>Double</b> config or the default value if the config entry does not exist
-   */
   @Override
   public double getDouble(String key, double defaultValue)
       throws InvalidArgumentException, ServiceUnavailableException {
@@ -306,12 +246,6 @@ public class ConfigService implements IConfigService {
     }
   }
 
-  /**
-   * Retrieve the filtered config summaries.
-   *
-   * @param filter the filter to apply to the keys for the config summaries
-   * @return the filtered config summaries
-   */
   @Override
   public List<ConfigSummary> getFilteredConfigSummaries(String filter)
       throws ServiceUnavailableException {
@@ -327,12 +261,6 @@ public class ConfigService implements IConfigService {
     }
   }
 
-  /**
-   * Retrieve the filtered configs.
-   *
-   * @param filter the filter to apply to the keys for the configs
-   * @return the configs
-   */
   @Override
   public List<Config> getFilteredConfigs(String filter) throws ServiceUnavailableException {
     try {
@@ -347,12 +275,6 @@ public class ConfigService implements IConfigService {
     }
   }
 
-  /**
-   * Retrieve the <b>Integer</b> config.
-   *
-   * @param key the key for the config
-   * @return the <b>Integer</b> config
-   */
   @Override
   public Integer getInteger(String key)
       throws InvalidArgumentException, ConfigNotFoundException, ServiceUnavailableException {
@@ -376,13 +298,6 @@ public class ConfigService implements IConfigService {
     }
   }
 
-  /**
-   * Retrieve the <b>Integer</b> config.
-   *
-   * @param key the key for the config
-   * @param defaultValue the default value to return if the config does not exist
-   * @return the <b>Integer</b> config or the default value if the config entry does not exist
-   */
   @Override
   public int getInteger(String key, int defaultValue)
       throws InvalidArgumentException, ServiceUnavailableException {
@@ -400,12 +315,6 @@ public class ConfigService implements IConfigService {
     }
   }
 
-  /**
-   * Retrieve the <b>Long</b> config.
-   *
-   * @param key the key for the config
-   * @return the <b>Long</b> config
-   */
   @Override
   public Long getLong(String key)
       throws InvalidArgumentException, ConfigNotFoundException, ServiceUnavailableException {
@@ -429,13 +338,6 @@ public class ConfigService implements IConfigService {
     }
   }
 
-  /**
-   * Retrieve the <b>Long</b> config.
-   *
-   * @param key the key for the config
-   * @param defaultValue the default value to return if the config does not exist
-   * @return the <b>Long</b> config or the default value if the config entry does not exist
-   */
   @Override
   public long getLong(String key, long defaultValue)
       throws InvalidArgumentException, ServiceUnavailableException {
@@ -453,12 +355,6 @@ public class ConfigService implements IConfigService {
     }
   }
 
-  /**
-   * Retrieve the value for the <b>String</b> config.
-   *
-   * @param key the key for the config
-   * @return the value for the <b>String</b> config
-   */
   @Override
   public String getString(String key)
       throws InvalidArgumentException, ConfigNotFoundException, ServiceUnavailableException {
@@ -482,14 +378,6 @@ public class ConfigService implements IConfigService {
     }
   }
 
-  /**
-   * Retrieve the value for the <b>String</b> config.
-   *
-   * @param key the key for the config
-   * @param defaultValue the default value to return if the config does not exist
-   * @return the value for the <b>String</b> config or the default value if the config does not
-   *     exist
-   */
   @Override
   public String getString(String key, String defaultValue)
       throws InvalidArgumentException, ServiceUnavailableException {
@@ -507,12 +395,6 @@ public class ConfigService implements IConfigService {
     }
   }
 
-  /**
-   * Check if a config with the specified key exists.
-   *
-   * @param key the key for the config
-   * @return <b>true</b> if a config with the specified key exists or <b>false</b> otherwise
-   */
   @Override
   public boolean keyExists(String key)
       throws InvalidArgumentException, ServiceUnavailableException {
@@ -528,11 +410,6 @@ public class ConfigService implements IConfigService {
     }
   }
 
-  /**
-   * Set the config.
-   *
-   * @param config the config
-   */
   @Override
   @Transactional
   public void setConfig(Config config)
@@ -556,13 +433,6 @@ public class ConfigService implements IConfigService {
     }
   }
 
-  /**
-   * Set the config key to the specified value.
-   *
-   * @param key the key for the config
-   * @param value the value for the config
-   * @param description the description for the config
-   */
   @Override
   @Transactional
   public void setConfig(String key, Object value, String description)

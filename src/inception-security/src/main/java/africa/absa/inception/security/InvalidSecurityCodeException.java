@@ -35,7 +35,11 @@ public class InvalidSecurityCodeException extends ServiceException {
 
   private static final long serialVersionUID = 1000000;
 
-  /** Constructs a new <b>InvalidSecurityCodeException</b>. */
+  /**
+   * Constructs a new <b>InvalidSecurityCodeException</b>.
+   *
+   * @param username the username for the user
+   */
   public InvalidSecurityCodeException(String username) {
     super("Invalid security code for the user (" + username + ")");
   }

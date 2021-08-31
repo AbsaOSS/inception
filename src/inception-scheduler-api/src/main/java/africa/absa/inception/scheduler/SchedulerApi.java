@@ -51,7 +51,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/api/scheduler")
 @CrossOrigin
 @SuppressWarnings({"unused", "WeakerAccess"})
-// @el (isSecurityDisabled: digital.inception.api.ApiSecurityExpressionRoot.isSecurityEnabled)
+// @el (isSecurityDisabled: africa.absa.inception.api.ApiSecurityExpressionRoot.isSecurityEnabled)
 public class SchedulerApi extends SecureApi {
 
   /** The Scheduler Service. */
@@ -73,6 +73,9 @@ public class SchedulerApi extends SecureApi {
    * Create the new job.
    *
    * @param job the job to create
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws DuplicateJobException if the job already exists
+   * @throws ServiceUnavailableException if the job could not be created
    */
   @Operation(summary = "Create the job", description = "Create the job")
   @ApiResponses(
@@ -126,6 +129,9 @@ public class SchedulerApi extends SecureApi {
    * Delete the job.
    *
    * @param jobId the ID for the job
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws JobNotFoundException if the job could not be found
+   * @throws ServiceUnavailableException if the job could not be deleted
    */
   @Operation(summary = "Delete the job", description = "Delete the job")
   @ApiResponses(
@@ -180,6 +186,9 @@ public class SchedulerApi extends SecureApi {
    *
    * @param jobId the ID for the job
    * @return the job
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws JobNotFoundException if the job could not be found
+   * @throws ServiceUnavailableException if the job could not be retrieved
    */
   @Operation(summary = "Retrieve the job", description = "Retrieve the job")
   @ApiResponses(
@@ -234,6 +243,9 @@ public class SchedulerApi extends SecureApi {
    *
    * @param jobId the ID for the job
    * @return the name of the job
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws JobNotFoundException if the job could not be found
+   * @throws ServiceUnavailableException if the name of the job could not be retrieved
    */
   @Operation(summary = "Retrieve the name of the job", description = "Retrieve the name of the job")
   @ApiResponses(
@@ -287,6 +299,7 @@ public class SchedulerApi extends SecureApi {
    * Retrieve the jobs.
    *
    * @return the jobs
+   * @throws ServiceUnavailableException if the jobs could not be retrieved
    */
   @Operation(summary = "Retrieve the jobs", description = "Retrieve the jobs")
   @ApiResponses(
@@ -314,6 +327,9 @@ public class SchedulerApi extends SecureApi {
    *
    * @param jobId the ID for the job
    * @param job the job
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws JobNotFoundException if the job could not be found
+   * @throws ServiceUnavailableException if the job could not be updated
    */
   @Operation(summary = "Update the job", description = "Update the job")
   @ApiResponses(

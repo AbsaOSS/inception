@@ -53,7 +53,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/api/mail")
 @CrossOrigin
 @SuppressWarnings({"unused"})
-// @el (isSecurityDisabled: digital.inception.api.ApiSecurityExpressionRoot.isSecurityEnabled)
+// @el (isSecurityDisabled: africa.absa.inception.api.ApiSecurityExpressionRoot.isSecurityEnabled)
 public class MailApi extends SecureApi {
 
   /* Logger */
@@ -78,6 +78,9 @@ public class MailApi extends SecureApi {
    * Create the new mail template.
    *
    * @param mailTemplate the mail template to create
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws DuplicateMailTemplateException if the mail template already exists
+   * @throws ServiceUnavailableException if the mail template could not be created
    */
   @Operation(summary = "Create the mail template", description = "Create the mail template")
   @ApiResponses(
@@ -136,6 +139,9 @@ public class MailApi extends SecureApi {
    * Delete the mail template.
    *
    * @param mailTemplateId the ID for the mail template
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws MailTemplateNotFoundException if the mail template could not be found
+   * @throws ServiceUnavailableException if the mail template could not be deleted
    */
   @Operation(summary = "Delete the mail template", description = "Delete the mail template")
   @ApiResponses(
@@ -195,6 +201,10 @@ public class MailApi extends SecureApi {
    * Retrieve the mail template.
    *
    * @param mailTemplateId the ID for the mail template
+   * @return the mail template
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws MailTemplateNotFoundException if the mail template could not be found
+   * @throws ServiceUnavailableException if the mail template could not be retrieved
    */
   @Operation(summary = "Retrieve the mail template", description = "Retrieve the mail template")
   @ApiResponses(
@@ -253,6 +263,9 @@ public class MailApi extends SecureApi {
    *
    * @param mailTemplateId the ID for the mail template
    * @return the name of the mail template
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws MailTemplateNotFoundException if the mail template could not be found
+   * @throws ServiceUnavailableException if the name of the mail template could not be retrieved
    */
   @Operation(
       summary = "Retrieve the name of the mail template",
@@ -312,6 +325,7 @@ public class MailApi extends SecureApi {
    * Retrieve the mail template summaries.
    *
    * @return the mail template summaries
+   * @throws ServiceUnavailableException if the mail template summaries could not be retrieved
    */
   @Operation(
       summary = "Retrieve the mail template summaries",
@@ -343,6 +357,7 @@ public class MailApi extends SecureApi {
    * Retrieve the mail templates.
    *
    * @return the mail templates
+   * @throws ServiceUnavailableException if the mail templates could not be retrieved
    */
   @Operation(summary = "Retrieve the mail templates", description = "Retrieve the mail templates")
   @ApiResponses(
@@ -443,6 +458,9 @@ public class MailApi extends SecureApi {
    *
    * @param mailTemplateId the ID for the mail template
    * @param mailTemplate the mail template
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws MailTemplateNotFoundException if the mail template could not be found
+   * @throws ServiceUnavailableException if the mail template could not be updated
    */
   @Operation(summary = "Update the mail template", description = "Update the mail template")
   @ApiResponses(

@@ -172,7 +172,7 @@ public interface ICodesService {
    * @return the name of the code category
    * @throws InvalidArgumentException if an argument is invalid
    * @throws CodeCategoryNotFoundException if the code category could not be found
-   * @throws ServiceUnavailableException if the code category name could not be retrieved
+   * @throws ServiceUnavailableException if the name of the code category could not be retrieved
    */
   String getCodeCategoryName(String codeCategoryId)
       throws InvalidArgumentException, CodeCategoryNotFoundException, ServiceUnavailableException;
@@ -206,7 +206,7 @@ public interface ICodesService {
    * @return the name of the code
    * @throws InvalidArgumentException if an argument is invalid
    * @throws CodeNotFoundException if the code could not be found
-   * @throws ServiceUnavailableException if the code name could not be retrieved
+   * @throws ServiceUnavailableException if the name of the code could not be retrieved
    */
   String getCodeName(String codeCategoryId, String codeId)
       throws InvalidArgumentException, CodeNotFoundException, ServiceUnavailableException;

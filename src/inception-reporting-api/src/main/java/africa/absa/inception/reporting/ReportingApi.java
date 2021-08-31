@@ -63,7 +63,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/api/reporting")
 @CrossOrigin
 @SuppressWarnings({"unused"})
-// @el (isSecurityDisabled: digital.inception.api.ApiSecurityExpressionRoot.isSecurityEnabled)
+// @el (isSecurityDisabled: africa.absa.inception.api.ApiSecurityExpressionRoot.isSecurityEnabled)
 public class ReportingApi extends SecureApi {
 
   /** The data source used to provide connections to the application database. */
@@ -99,6 +99,9 @@ public class ReportingApi extends SecureApi {
    * Create the new report definition.
    *
    * @param reportDefinition the report definition to create
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws DuplicateReportDefinitionException if the report definition already exists
+   * @throws ServiceUnavailableException if the report definition could not be created
    */
   @Operation(summary = "Create the report definition", description = "Create the report definition")
   @ApiResponses(
@@ -158,6 +161,9 @@ public class ReportingApi extends SecureApi {
    * Delete the report definition.
    *
    * @param reportDefinitionId the ID for the report definition
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws ReportDefinitionNotFoundException if the report definition could not be found
+   * @throws ServiceUnavailableException if the report definition could not be deleted
    */
   @Operation(summary = "Delete the report definition", description = "Delete the report definition")
   @ApiResponses(
@@ -219,6 +225,9 @@ public class ReportingApi extends SecureApi {
    *
    * @param generateReportRequest the request to generate the PDF report
    * @return the PDF report
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws ReportDefinitionNotFoundException if the report definition could not be found
+   * @throws ServiceUnavailableException if the PDF report could not be generated
    */
   @Operation(summary = "Generate the PDF report", description = "Generate the PDF report")
   @ApiResponses(
@@ -317,6 +326,9 @@ public class ReportingApi extends SecureApi {
    *
    * @param reportDefinitionId the ID for the report definition
    * @return the report definition
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws ReportDefinitionNotFoundException if the report definition could not be found
+   * @throws ServiceUnavailableException if the report definition could not be retrieved
    */
   @Operation(
       summary = "Retrieve the report definition",
@@ -378,6 +390,9 @@ public class ReportingApi extends SecureApi {
    *
    * @param reportDefinitionId the ID for the report definition
    * @return the name of the report definition
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws ReportDefinitionNotFoundException if the report definition could not be found
+   * @throws ServiceUnavailableException if the name of the report definition could not be retrieved
    */
   @Operation(
       summary = "Retrieve the name of the report definition",
@@ -436,6 +451,7 @@ public class ReportingApi extends SecureApi {
    * Retrieve the report definition summaries.
    *
    * @return the report definition summaries
+   * @throws ServiceUnavailableException if the report definition summaries could not be retrieved
    */
   @Operation(
       summary = "Retrieve the report definition summaries",
@@ -468,6 +484,7 @@ public class ReportingApi extends SecureApi {
    * Retrieve the report definitions.
    *
    * @return the report definitions
+   * @throws ServiceUnavailableException if the report definitions could not be retrieved
    */
   @Operation(
       summary = "Retrieve the report definitions",
@@ -500,6 +517,9 @@ public class ReportingApi extends SecureApi {
    *
    * @param reportDefinitionId the ID for the report definition
    * @param reportDefinition the report definition
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws ReportDefinitionNotFoundException if the report definition could not be found
+   * @throws ServiceUnavailableException if the report definition could not be updated
    */
   @Operation(summary = "Update the report definition", description = "Update the report definition")
   @ApiResponses(

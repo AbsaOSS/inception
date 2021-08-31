@@ -51,7 +51,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/api/error")
 @CrossOrigin
 @SuppressWarnings({"unused"})
-// @el (isSecurityDisabled: digital.inception.api.ApiSecurityExpressionRoot.isSecurityEnabled)
+// @el (isSecurityDisabled: africa.absa.inception.api.ApiSecurityExpressionRoot.isSecurityEnabled)
 public class ErrorApi extends SecureApi {
 
   /** The Error Service. */
@@ -73,6 +73,8 @@ public class ErrorApi extends SecureApi {
    * Create the new error report.
    *
    * @param errorReport the error report
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws ServiceUnavailableException if the error report could not be created
    */
   @Operation(summary = "Create the error report", description = "Create the error report")
   @ApiResponses(
@@ -137,6 +139,8 @@ public class ErrorApi extends SecureApi {
    * @param pageIndex the optional page index
    * @param pageSize the optional page size
    * @return the error report summaries
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws ServiceUnavailableException if the error report summaries could not be retrieved
    */
   @Operation(
       summary = "Retrieve the error report summaries",

@@ -135,7 +135,7 @@ public class TestCodeProvider implements ICodeProvider {
   /**
    * Returns all the code categories for the code provider.
    *
-   * @return all the code categories for the code provider
+   * @return the code categories for the code provider
    */
   @Override
   public List<CodeCategory> getCodeCategories() throws CodeProviderException {

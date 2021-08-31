@@ -124,12 +124,6 @@ public class MailService implements IMailService, InitializingBean {
     }
   }
 
-  /**
-   * Create the new mail template.
-   *
-   * @param mailTemplate the <b>MailTemplate</b> instance containing the information for the new
-   *     mail template
-   */
   @Override
   @Transactional
   @CachePut(cacheNames = "mailTemplates", key = "#mailTemplate.id")
@@ -153,11 +147,6 @@ public class MailService implements IMailService, InitializingBean {
     }
   }
 
-  /**
-   * Delete the existing mail template.
-   *
-   * @param mailTemplateId the ID for the mail template
-   */
   @Override
   @Transactional
   @CacheEvict(cacheNames = "mailTemplates", key = "#mailTemplateId")
@@ -188,12 +177,6 @@ public class MailService implements IMailService, InitializingBean {
     }
   }
 
-  /**
-   * Retrieve the mail template.
-   *
-   * @param mailTemplateId the ID for the mail template
-   * @return the mail template
-   */
   @Override
   @Cacheable(cacheNames = "mailTemplates", key = "#mailTemplateId")
   public MailTemplate getMailTemplate(String mailTemplateId)
@@ -218,12 +201,6 @@ public class MailService implements IMailService, InitializingBean {
     }
   }
 
-  /**
-   * Retrieve the name of the mail template.
-   *
-   * @param mailTemplateId the ID for the mail template
-   * @return the name for the mail template
-   */
   @Override
   public String getMailTemplateName(String mailTemplateId)
       throws InvalidArgumentException, MailTemplateNotFoundException, ServiceUnavailableException {
@@ -247,11 +224,6 @@ public class MailService implements IMailService, InitializingBean {
     }
   }
 
-  /**
-   * Returns the summaries for all the mail templates.
-   *
-   * @return the summaries for all the mail templates
-   */
   @Override
   public List<MailTemplateSummary> getMailTemplateSummaries() throws ServiceUnavailableException {
     try {
@@ -262,12 +234,6 @@ public class MailService implements IMailService, InitializingBean {
     }
   }
 
-  /**
-   * Retrieve the summary for the mail template.
-   *
-   * @param mailTemplateId the ID for the mail template
-   * @return the summary for the mail template
-   */
   @Override
   public MailTemplateSummary getMailTemplateSummary(String mailTemplateId)
       throws InvalidArgumentException, MailTemplateNotFoundException, ServiceUnavailableException {
@@ -292,12 +258,6 @@ public class MailService implements IMailService, InitializingBean {
     }
   }
 
-  /**
-   * Returns the date and time the mail template was last updated.
-   *
-   * @param mailTemplateId the ID for the mail template
-   * @return the date and time the mail template was last updated
-   */
   @Override
   public LocalDateTime getMailTemplateUpdated(String mailTemplateId)
       throws InvalidArgumentException, MailTemplateNotFoundException, ServiceUnavailableException {
@@ -325,11 +285,6 @@ public class MailService implements IMailService, InitializingBean {
     }
   }
 
-  /**
-   * Returns all the mail templates.
-   *
-   * @return all the mail templates
-   */
   @Override
   public List<MailTemplate> getMailTemplates() throws ServiceUnavailableException {
     try {
@@ -339,12 +294,6 @@ public class MailService implements IMailService, InitializingBean {
     }
   }
 
-  /**
-   * Check whether the mail template exists.
-   *
-   * @param mailTemplateId the ID for the mail template
-   * @return <b>true</b> if the mail template exists or <b>false</b> otherwise
-   */
   @Override
   public boolean mailTemplateExists(String mailTemplateId)
       throws InvalidArgumentException, ServiceUnavailableException {
@@ -360,13 +309,6 @@ public class MailService implements IMailService, InitializingBean {
     }
   }
 
-  /**
-   * Process the mail template.
-   *
-   * @param mailTemplateId the ID for the mail template
-   * @param templateParameters the template parameters
-   * @return the output of processing the template
-   */
   @Override
   public String processMailTemplate(String mailTemplateId, Map<String, String> templateParameters)
       throws InvalidArgumentException, ServiceUnavailableException {
@@ -391,16 +333,6 @@ public class MailService implements IMailService, InitializingBean {
     }
   }
 
-  /**
-   * Send a mail.
-   *
-   * @param to the list of e-mail addresses to send the mail to
-   * @param subject the subject for the mail
-   * @param from the from e-mail address
-   * @param fromName the from e-mail name
-   * @param mailTemplateId the ID for the mail template
-   * @param mailTemplateParameters the parameters to apply to the mail template
-   */
   public void sendMail(
       List<String> to,
       String subject,
@@ -470,12 +402,6 @@ public class MailService implements IMailService, InitializingBean {
     }
   }
 
-  /**
-   * Update the mail template.
-   *
-   * @param mailTemplate the <b>MailTemplate</b> instance containing the updated information for the
-   *     mail template
-   */
   @Override
   @Transactional
   @CachePut(cacheNames = "mailTemplates", key = "#mailTemplate.id")

@@ -88,12 +88,6 @@ public class ErrorService implements IErrorService {
     this.errorReportSummaryRepository = errorReportSummaryRepository;
   }
 
-  /**
-   * Create the new error report.
-   *
-   * @param errorReport the <b>ErrorReport</b> instance containing the information for the error
-   *     report
-   */
   @Override
   @Transactional
   public void createErrorReport(ErrorReport errorReport)
@@ -166,12 +160,6 @@ public class ErrorService implements IErrorService {
     }
   }
 
-  /**
-   * Retrieve the error report.
-   *
-   * @param errorReportId the Universally Unique Identifier (UUID) for the error report
-   * @return the error report
-   */
   @Override
   public ErrorReport getErrorReport(UUID errorReportId)
       throws InvalidArgumentException, ErrorReportNotFoundException, ServiceUnavailableException {
@@ -195,16 +183,6 @@ public class ErrorService implements IErrorService {
     }
   }
 
-  /**
-   * Retrieve the error report summaries.
-   *
-   * @param filter the optional filter to apply to the error reports
-   * @param sortBy the optional method used to sort the error reports e.g. by who submitted them
-   * @param sortDirection the optional sort direction to apply to the error reports
-   * @param pageIndex the optional page index
-   * @param pageSize the optional page size
-   * @return the error report summaries
-   */
   @Override
   public ErrorReportSummaries getErrorReportSummaries(
       String filter,
@@ -285,12 +263,6 @@ public class ErrorService implements IErrorService {
     }
   }
 
-  /**
-   * Retrieve the summary for the error report.
-   *
-   * @param errorReportId the Universally Unique Identifier (UUID) for the error report
-   * @return the summary for the error report
-   */
   @Override
   public ErrorReportSummary getErrorReportSummary(UUID errorReportId)
       throws InvalidArgumentException, ErrorReportNotFoundException, ServiceUnavailableException {
@@ -315,13 +287,6 @@ public class ErrorService implements IErrorService {
     }
   }
 
-  /**
-   * Retrieve the summaries for the most recent error reports.
-   *
-   * @param maximumNumberOfEntries the maximum number of summaries for the most recent error reports
-   *     to retrieve
-   * @return the summaries for the most recent error reports
-   */
   @Override
   public List<ErrorReportSummary> getMostRecentErrorReportSummaries(int maximumNumberOfEntries)
       throws InvalidArgumentException, ServiceUnavailableException {

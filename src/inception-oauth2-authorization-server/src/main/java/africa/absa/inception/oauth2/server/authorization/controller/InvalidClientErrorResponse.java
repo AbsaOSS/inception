@@ -48,7 +48,7 @@ public class InvalidClientErrorResponse extends ErrorResponse {
    *     response
    * @param errorDescription the optional human-readable ASCII text description of the error
    */
-  public InvalidClientErrorResponse(HttpStatus status, String error, String errorDescription) {
+  public InvalidClientErrorResponse(HttpStatus status, String errorDescription) {
     super(status, ERROR_CODE, errorDescription);
   }
 }

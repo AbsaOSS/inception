@@ -113,25 +113,6 @@ export class DuplicateUserError extends Error {
 }
 
 /**
- * The ExistingGroupMemberError class holds the information for an existing group member error.
- *
- * @author Marcus Portmann
- */
-export class ExistingGroupMemberError extends Error {
-
-  static readonly TYPE = 'http://inception.digital/problems/security/existing-group-member';
-
-  /**
-   * Constructs a new ExistingGroupMemberError.
-   *
-   * @param cause The optional cause of the error.
-   */
-  constructor(cause?: ProblemDetails | HttpErrorResponse | HttpError) {
-    super($localize`:@@security_existing_group_member_error:The group member already exists.`, cause);
-  }
-}
-
-/**
  * The ExistingGroupMembersError class holds the information for an existing group members error.
  *
  * @author Marcus Portmann
@@ -185,26 +166,6 @@ export class ExistingPasswordError extends Error {
    */
   constructor(cause?: ProblemDetails | HttpErrorResponse | HttpError) {
     super($localize`:@@security_existing_password_error:The new password has been used recently and is not valid.`, cause);
-  }
-}
-
-/**
- * The ExistingTenantUserDirectoryError class holds the information for an existing
- * tenant user directory error.
- *
- * @author Marcus Portmann
- */
-export class ExistingTenantUserDirectoryError extends Error {
-
-  static readonly TYPE = 'http://inception.digital/problems/security/existing-tenant-user-directory';
-
-  /**
-   * Constructs a new ExistingTenantUserDirectoryError.
-   *
-   * @param cause The optional cause of the error.
-   */
-  constructor(cause?: ProblemDetails | HttpErrorResponse | HttpError) {
-    super($localize`:@@security_existing_tenant_user_directory_error:The tenant user directory already exists.`, cause);
   }
 }
 

@@ -33,6 +33,7 @@ public interface ITokenService {
    * @param username the username for the user
    * @param scopes the optional scope(s) for the access token
    * @return the OAuth2 access token
+   * @throws ServiceUnavailableException if the OAuth2 access token could not be issued for the user
    */
   OAuth2AccessToken issueOAuth2AccessToken(String username, Set<String> scopes)
       throws ServiceUnavailableException;
@@ -43,6 +44,8 @@ public interface ITokenService {
    * @param username the username for the user
    * @param scopes the optional scope(s) for the refresh token
    * @return the OAuth2 refresh token
+   * @throws ServiceUnavailableException if the OAuth2 refresh token could not be issued for the
+   *     user
    */
   OAuth2RefreshToken issueOAuth2RefreshToken(String username, Set<String> scopes)
       throws ServiceUnavailableException;
@@ -52,6 +55,9 @@ public interface ITokenService {
    *
    * @param encodedOAuth2RefreshToken the encoded OAuth2 refresh token
    * @return the refreshed tokens
+   * @throws InvalidOAuth2RefreshTokenException if the OAuth2 refresh token is invalid
+   * @throws ServiceUnavailableException if the OAuth2 access token and refresh token could not be
+   *     refreshed
    */
   RefreshedOAuth2Tokens refreshOAuth2Tokens(String encodedOAuth2RefreshToken)
       throws InvalidOAuth2RefreshTokenException, ServiceUnavailableException;

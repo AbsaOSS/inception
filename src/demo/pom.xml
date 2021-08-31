@@ -69,6 +69,10 @@
     </dependency>
     <dependency>
       <groupId>africa.absa</groupId>
+      <artifactId>inception-reference-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>africa.absa</groupId>
       <artifactId>inception-reporting-api</artifactId>
     </dependency>
     <dependency>

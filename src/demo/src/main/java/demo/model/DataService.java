@@ -56,11 +56,6 @@ public class DataService implements IDataService {
     this.validator = validator;
   }
 
-  /**
-   * Add the data.
-   *
-   * @param data the data
-   */
   @Override
   @Transactional
   public void createData(Data data) throws ServiceUnavailableException {
@@ -71,7 +66,6 @@ public class DataService implements IDataService {
     }
   }
 
-  /** Add the data. */
   @Override
   @Transactional
   public void createSampleData() throws ServiceUnavailableException {
@@ -88,11 +82,6 @@ public class DataService implements IDataService {
     }
   }
 
-  /**
-   * Returns the data.
-   *
-   * @return the data
-   */
   @Override
   @Transactional
   public List<Data> getAllData() throws ServiceUnavailableException {
@@ -105,12 +94,6 @@ public class DataService implements IDataService {
     }
   }
 
-  /**
-   * Returns the data.
-   *
-   * @param id the ID for the data
-   * @return the data
-   */
   @Override
   @Transactional
   public Data getData(long id) throws ServiceUnavailableException {
@@ -132,11 +115,6 @@ public class DataService implements IDataService {
     }
   }
 
-  /**
-   * Validate the data.
-   *
-   * @param data the data
-   */
   @Override
   public void validateData(Data data) throws InvalidArgumentException, ServiceUnavailableException {
     try {

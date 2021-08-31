@@ -32,10 +32,6 @@ import java.util.TimeZone;
  * <em>0 3 * jan-jun,sep-dec mon-fri</em>. You can predict the next <em>n</em> execution of the job
  * using a Predictor instance:
  *
- * <p>
- *
- * <p>
- *
  * <pre>
  * String pattern = &quot;0 3 * jan-jun,sep-dec mon-fri&quot;;
  * Predictor p = new Predictor(pattern);
@@ -72,6 +68,7 @@ public class Predictor {
    * Constructs a new <b>SchedulingPattern</b>.
    *
    * @param schedulingPattern the scheduling pattern on which the prediction will be based
+   * @throws InvalidSchedulingPatternException if the scheduling pattern is invalid
    */
   public Predictor(String schedulingPattern) throws InvalidSchedulingPatternException {
     this(schedulingPattern, System.currentTimeMillis());
@@ -103,6 +100,7 @@ public class Predictor {
    *
    * @param schedulingPattern the pattern on which the prediction will be based
    * @param start the start time of the prediction
+   * @throws InvalidSchedulingPatternException if the scheduling pattern is invalid
    */
   public Predictor(String schedulingPattern, Date start) throws InvalidSchedulingPatternException {
     this(schedulingPattern, start.getTime());
@@ -113,6 +111,7 @@ public class Predictor {
    *
    * @param schedulingPattern the pattern on which the prediction will be based
    * @param start the start time of the prediction
+   * @throws InvalidSchedulingPatternException if the scheduling pattern is invalid
    */
   public Predictor(String schedulingPattern, long start) throws InvalidSchedulingPatternException {
     this.schedulingPattern = new SchedulingPattern(schedulingPattern);

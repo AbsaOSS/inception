@@ -37,6 +37,9 @@ public interface IMailService {
    * @param mailTemplate the <b>MailTemplate</b> instance containing the information for the new
    *     mail template
    * @return the mail template
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws DuplicateMailTemplateException if the mail template already exists
+   * @throws ServiceUnavailableException if the mail template could not be created
    */
   MailTemplate createMailTemplate(MailTemplate mailTemplate)
       throws InvalidArgumentException, DuplicateMailTemplateException, ServiceUnavailableException;
@@ -45,6 +48,9 @@ public interface IMailService {
    * Delete the existing mail template.
    *
    * @param mailTemplateId the ID for the mail template
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws MailTemplateNotFoundException if the mail template could not be found
+   * @throws ServiceUnavailableException if the mail template could not be deleted
    */
   void deleteMailTemplate(String mailTemplateId)
       throws InvalidArgumentException, MailTemplateNotFoundException, ServiceUnavailableException;
@@ -54,6 +60,9 @@ public interface IMailService {
    *
    * @param mailTemplateId the ID for the mail template
    * @return the mail template
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws MailTemplateNotFoundException if the mail template could not be found
+   * @throws ServiceUnavailableException if the mail template could not be retrieved
    */
   MailTemplate getMailTemplate(String mailTemplateId)
       throws InvalidArgumentException, MailTemplateNotFoundException, ServiceUnavailableException;
@@ -63,6 +72,9 @@ public interface IMailService {
    *
    * @param mailTemplateId the ID for the mail template
    * @return the name of the mail template
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws MailTemplateNotFoundException if the mail template could not be found
+   * @throws ServiceUnavailableException if the name of the mail template could not be retrieved
    */
   String getMailTemplateName(String mailTemplateId)
       throws InvalidArgumentException, MailTemplateNotFoundException, ServiceUnavailableException;
@@ -71,6 +83,7 @@ public interface IMailService {
    * Returns the summaries for all the mail templates.
    *
    * @return the summaries for all the mail templates
+   * @throws ServiceUnavailableException if the mail template summaries could not be retrieved
    */
   List<MailTemplateSummary> getMailTemplateSummaries() throws ServiceUnavailableException;
 
@@ -79,6 +92,9 @@ public interface IMailService {
    *
    * @param mailTemplateId the ID for the mail template
    * @return the summary for the mail template
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws MailTemplateNotFoundException if the mail template could not be found
+   * @throws ServiceUnavailableException if the mail template summary could not be retrieved
    */
   MailTemplateSummary getMailTemplateSummary(String mailTemplateId)
       throws InvalidArgumentException, MailTemplateNotFoundException, ServiceUnavailableException;
@@ -88,6 +104,10 @@ public interface IMailService {
    *
    * @param mailTemplateId the ID for the mail template
    * @return the date and time the mail template was last updated
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws MailTemplateNotFoundException if the mail template could not be found
+   * @throws ServiceUnavailableException if the date and time the mail template was last updated
+   *     could not be retrieved
    */
   LocalDateTime getMailTemplateUpdated(String mailTemplateId)
       throws InvalidArgumentException, MailTemplateNotFoundException, ServiceUnavailableException;
@@ -95,7 +115,8 @@ public interface IMailService {
   /**
    * Returns all the mail templates.
    *
-   * @return all the mail templates
+   * @return the mail templates
+   * @throws ServiceUnavailableException if the mail templates could not be retrieved
    */
   List<MailTemplate> getMailTemplates() throws ServiceUnavailableException;
 
@@ -104,6 +125,8 @@ public interface IMailService {
    *
    * @param mailTemplateId the ID for the mail template
    * @return <b>true</b> if the mail template exists or <b>false</b> otherwise
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws ServiceUnavailableException if the check for the existing mail template failed
    */
   boolean mailTemplateExists(String mailTemplateId)
       throws InvalidArgumentException, ServiceUnavailableException;
@@ -114,6 +137,8 @@ public interface IMailService {
    * @param mailTemplateId the ID for the mail template
    * @param templateParameters the template parameters
    * @return the output of processing the template
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws ServiceUnavailableException if the mail template processing failed
    */
   String processMailTemplate(String mailTemplateId, Map<String, String> templateParameters)
       throws InvalidArgumentException, ServiceUnavailableException;
@@ -127,6 +152,9 @@ public interface IMailService {
    * @param fromName the from e-mail name
    * @param mailTemplateId the ID for the mail template
    * @param mailTemplateParameters the parameters to apply to the mail template
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws MailTemplateNotFoundException if the mail template could not be found
+   * @throws ServiceUnavailableException if the mail could not be sent
    */
   void sendMail(
       List<String> to,
@@ -143,6 +171,9 @@ public interface IMailService {
    * @param mailTemplate the <b>MailTemplate</b> instance containing the updated information for the
    *     mail template
    * @return the mail template
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws MailTemplateNotFoundException if the mail template could not be found
+   * @throws ServiceUnavailableException if the mail template could not be updated
    */
   MailTemplate updateMailTemplate(MailTemplate mailTemplate)
       throws InvalidArgumentException, MailTemplateNotFoundException, ServiceUnavailableException;

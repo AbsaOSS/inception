@@ -66,7 +66,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/api/security")
 @CrossOrigin
 @SuppressWarnings({"unused", "WeakerAccess"})
-// @el (isSecurityDisabled: digital.inception.api.ApiSecurityExpressionRoot.isSecurityEnabled)
+// @el (isSecurityDisabled: africa.absa.inception.api.ApiSecurityExpressionRoot.isSecurityEnabled)
 public class SecurityApi extends SecureApi {
 
   /* Logger */
@@ -101,6 +101,11 @@ public class SecurityApi extends SecureApi {
    * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
    * @param groupName the name of the group
    * @param groupMember the group member
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws UserDirectoryNotFoundException if the user directory could not be found
+   * @throws GroupNotFoundException if the group could not be found
+   * @throws UserNotFoundException if the user could not be found
+   * @throws ServiceUnavailableException if the group member could not be added to the group
    */
   @Operation(
       summary = "Add the group member to the group",
@@ -170,7 +175,7 @@ public class SecurityApi extends SecureApi {
           @RequestBody
           GroupMember groupMember)
       throws InvalidArgumentException, UserDirectoryNotFoundException, GroupNotFoundException,
-          UserNotFoundException, ExistingGroupMemberException, ServiceUnavailableException {
+          UserNotFoundException, ServiceUnavailableException {
     if (!hasAccessToUserDirectory(userDirectoryId)) {
       throw new AccessDeniedException(
           "Access denied to the user directory (" + userDirectoryId + ")");
@@ -209,6 +214,11 @@ public class SecurityApi extends SecureApi {
    * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
    * @param groupName the name of the group
    * @param groupRole the group role
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws UserDirectoryNotFoundException if the user directory could not be found
+   * @throws GroupNotFoundException if the group could not be found
+   * @throws RoleNotFoundException if the role could not be found
+   * @throws ServiceUnavailableException if the role could not be added to the group
    */
   @Operation(summary = "Add the role to the group", description = "Add the role to the group")
   @ApiResponses(
@@ -276,7 +286,7 @@ public class SecurityApi extends SecureApi {
           @RequestBody
           GroupRole groupRole)
       throws InvalidArgumentException, UserDirectoryNotFoundException, GroupNotFoundException,
-          RoleNotFoundException, ExistingGroupRoleException, ServiceUnavailableException {
+          RoleNotFoundException, ServiceUnavailableException {
     if (!hasAccessToUserDirectory(userDirectoryId)) {
       throw new AccessDeniedException(
           "Access denied to the user directory (" + userDirectoryId + ")");
@@ -325,6 +335,10 @@ public class SecurityApi extends SecureApi {
    *
    * @param tenantId the Universally Unique Identifier (UUID) for the tenant
    * @param tenantUserDirectory the tenant user directory
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws TenantNotFoundException if the tenant could not be found
+   * @throws UserDirectoryNotFoundException if the user directory could not be found
+   * @throws ServiceUnavailableException if the user directory could not be added to the tenant
    */
   @Operation(
       summary = "Add the user directory to the tenant",
@@ -391,7 +405,7 @@ public class SecurityApi extends SecureApi {
           @RequestBody
           TenantUserDirectory tenantUserDirectory)
       throws InvalidArgumentException, TenantNotFoundException, UserDirectoryNotFoundException,
-          ExistingTenantUserDirectoryException, ServiceUnavailableException {
+          ServiceUnavailableException {
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
     if (tenantId == null) {
@@ -427,6 +441,10 @@ public class SecurityApi extends SecureApi {
    * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
    * @param username the username for the user
    * @param passwordChange the password change
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws UserDirectoryNotFoundException if the user directory could not be found
+   * @throws UserNotFoundException if the user could not be found
+   * @throws ServiceUnavailableException if the password could not be administratively changed
    */
   @Operation(
       summary = "Administratively change the password for the user",
@@ -531,6 +549,14 @@ public class SecurityApi extends SecureApi {
    *
    * @param username the username for the user
    * @param passwordChange the password change
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws UserDirectoryNotFoundException if the user directory could not be found
+   * @throws UserNotFoundException if the user could not be found
+   * @throws AuthenticationFailedException if the authentication failed
+   * @throws InvalidSecurityCodeException if the security code is invalid
+   * @throws ExistingPasswordException if the user has previously used the new password
+   * @throws UserLockedException if the user is locked
+   * @throws ServiceUnavailableException if the password could not be changed
    */
   @Operation(
       summary = "Change the password for the user",
@@ -685,6 +711,10 @@ public class SecurityApi extends SecureApi {
    *
    * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
    * @param group the group
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws UserDirectoryNotFoundException if the user directory could not be found
+   * @throws DuplicateGroupException if the group already exists
+   * @throws ServiceUnavailableException if the group could not be created
    */
   @Operation(summary = "Create the group", description = "Create the group")
   @ApiResponses(
@@ -769,6 +799,9 @@ public class SecurityApi extends SecureApi {
    *
    * @param tenant the tenant
    * @param createUserDirectory should a new internal user directory be created for the tenant
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws DuplicateTenantException if the tenant already exists
+   * @throws ServiceUnavailableException if the tenant could not be created
    */
   @Operation(summary = "Create the tenant", description = "Create the tenant")
   @ApiResponses(
@@ -830,6 +863,10 @@ public class SecurityApi extends SecureApi {
    * @param user the user
    * @param expiredPassword create the user with its password expired
    * @param userLocked create the user locked
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws UserDirectoryNotFoundException if the user directory could not be found
+   * @throws DuplicateUserException if the user already exists
+   * @throws ServiceUnavailableException if the user could not be created
    */
   @Operation(summary = "Create the user", description = "Create the user")
   @ApiResponses(
@@ -922,6 +959,9 @@ public class SecurityApi extends SecureApi {
    * Create the new user directory.
    *
    * @param userDirectory the user directory
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws DuplicateUserDirectoryException if the user directory already exists
+   * @throws ServiceUnavailableException if the user directory could not be created
    */
   @Operation(summary = "Create the user directory", description = "Create the user directory")
   @ApiResponses(
@@ -982,6 +1022,11 @@ public class SecurityApi extends SecureApi {
    *
    * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
    * @param groupName the name of the group
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws UserDirectoryNotFoundException if the user directory could not be found
+   * @throws GroupNotFoundException if the group could not be found
+   * @throws ExistingGroupMembersException if the group has existing members
+   * @throws ServiceUnavailableException if the group could not be deleted
    */
   @Operation(summary = "Delete the group", description = "Delete the group")
   @ApiResponses(
@@ -1056,6 +1101,9 @@ public class SecurityApi extends SecureApi {
    * Delete the tenant.
    *
    * @param tenantId the Universally Unique Identifier (UUID) for the tenant
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws TenantNotFoundException if the tenant could not be found
+   * @throws ServiceUnavailableException if the tenant could not be deleted
    */
   @Operation(summary = "Delete the tenant", description = "Delete the tenant")
   @ApiResponses(
@@ -1114,6 +1162,10 @@ public class SecurityApi extends SecureApi {
    *
    * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
    * @param username the username for the user
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws UserDirectoryNotFoundException if the user directory could not be found
+   * @throws UserNotFoundException if the user could not be found
+   * @throws ServiceUnavailableException if the user could not be deleted
    */
   @Operation(summary = "Delete the user", description = "Delete the user")
   @ApiResponses(
@@ -1180,6 +1232,9 @@ public class SecurityApi extends SecureApi {
    * Delete the user directory.
    *
    * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws UserDirectoryNotFoundException if the user directory could not be found
+   * @throws ServiceUnavailableException if the user directory could not be deleted
    */
   @Operation(summary = "Delete the user directory", description = "Delete the user directory")
   @ApiResponses(
@@ -1241,6 +1296,10 @@ public class SecurityApi extends SecureApi {
    * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
    * @param groupName the name of the group
    * @return the group
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws UserDirectoryNotFoundException if the user directory could not be found
+   * @throws GroupNotFoundException if the group could not be found
+   * @throws ServiceUnavailableException if the group could not be retrieved
    */
   @Operation(summary = "Retrieve the group", description = "Retrieve the group")
   @ApiResponses(
@@ -1308,6 +1367,9 @@ public class SecurityApi extends SecureApi {
    *
    * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
    * @return the group names
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws UserDirectoryNotFoundException if the user directory could not be found
+   * @throws ServiceUnavailableException if the group names could not be retrieved
    */
   @Operation(summary = "Retrieve the group names", description = "Retrieve the group names")
   @ApiResponses(
@@ -1372,6 +1434,11 @@ public class SecurityApi extends SecureApi {
    * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
    * @param username the username for the user
    * @return the names of the groups the user is a member of
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws UserDirectoryNotFoundException if the user directory could not be found
+   * @throws UserNotFoundException if the user could not be found
+   * @throws ServiceUnavailableException if the names of the groups the user is a member of could
+   *     not be retrieved
    */
   @Operation(
       summary = "Retrieve the names of the groups the user is a member of",
@@ -1445,6 +1512,9 @@ public class SecurityApi extends SecureApi {
    * @param pageIndex the optional page index
    * @param pageSize the optional page size
    * @return the groups
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws UserDirectoryNotFoundException if the user directory could not be found
+   * @throws ServiceUnavailableException if the groups could not be retrieved
    */
   @Operation(summary = "Retrieve the groups", description = "Retrieve the groups")
   @ApiResponses(
@@ -1525,7 +1595,7 @@ public class SecurityApi extends SecureApi {
   }
 
   /**
-   * Retrieve the group members.
+   * Retrieve the group members for the group.
    *
    * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
    * @param groupName the name of the group
@@ -1533,6 +1603,11 @@ public class SecurityApi extends SecureApi {
    * @param sortDirection the optional sort direction to apply to the group members
    * @param pageIndex the optional page index
    * @param pageSize the optional page size
+   * @return the group members for the group
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws UserDirectoryNotFoundException if the user directory could not be found
+   * @throws GroupNotFoundException if the group could not be found
+   * @throws ServiceUnavailableException if the group members could not be retrieved for the group
    */
   @Operation(summary = "Retrieve the group members", description = "Retrieve the group members")
   @ApiResponses(
@@ -1623,6 +1698,11 @@ public class SecurityApi extends SecureApi {
    * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
    * @param groupName the name of the group
    * @return the codes for the roles that have been assigned to the group
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws UserDirectoryNotFoundException if the user directory could not be found
+   * @throws GroupNotFoundException if the group could not be found
+   * @throws ServiceUnavailableException if the codes for the roles assigned to the group could not
+   *     be retrieved
    */
   @Operation(
       summary = "Retrieve the codes for the roles that have been assigned to the group",
@@ -1691,6 +1771,7 @@ public class SecurityApi extends SecureApi {
    * Retrieve all the roles.
    *
    * @return the roles
+   * @throws ServiceUnavailableException if the roles could not be retrieved
    */
   @Operation(summary = "Retrieve all the roles", description = "Retrieve all the roles")
   @ApiResponses(
@@ -1719,6 +1800,11 @@ public class SecurityApi extends SecureApi {
    * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
    * @param groupName the name of the group
    * @return the roles that have been assigned to the group
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws UserDirectoryNotFoundException if the user directory could not be found
+   * @throws GroupNotFoundException if the group could not be found
+   * @throws ServiceUnavailableException if the codes for the roles assigned to the group could not
+   *     be retrieved
    */
   @Operation(
       summary = "Retrieve the roles that have been assigned to the group",
@@ -1788,6 +1874,9 @@ public class SecurityApi extends SecureApi {
    *
    * @param tenantId the Universally Unique Identifier (UUID) for the tenant
    * @return the tenant
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws TenantNotFoundException if the tenant could not be found
+   * @throws ServiceUnavailableException if the tenant could not be retrieved
    */
   @Operation(summary = "Retrieve the tenant", description = "Retrieve the tenant")
   @ApiResponses(
@@ -1846,6 +1935,9 @@ public class SecurityApi extends SecureApi {
    *
    * @param tenantId the Universally Unique Identifier (UUID) for the tenant
    * @return the name of the tenant
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws TenantNotFoundException if the tenant could not be found
+   * @throws ServiceUnavailableException if the name of the tenant could not be retrieved
    */
   @Operation(
       summary = "Retrieve the name of tenant",
@@ -1909,6 +2001,8 @@ public class SecurityApi extends SecureApi {
    * @param pageIndex the optional page index
    * @param pageSize the optional page size
    * @return the tenants
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws ServiceUnavailableException if the tenants could not be retrieved
    */
   @Operation(summary = "Retrieve the tenants", description = "Retrieve the tenants")
   @ApiResponses(
@@ -1972,6 +2066,10 @@ public class SecurityApi extends SecureApi {
    *
    * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
    * @return the tenants the user directory is associated with
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws UserDirectoryNotFoundException if the user directory could not be found
+   * @throws ServiceUnavailableException if the tenants could not be retrieved for the user
+   *     directory
    */
   @Operation(
       summary = "Retrieve the tenants the user directory is associated with",
@@ -2038,6 +2136,10 @@ public class SecurityApi extends SecureApi {
    * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
    * @param username the username for the user
    * @return the user
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws UserDirectoryNotFoundException if the user directory could not be found
+   * @throws UserNotFoundException if the user could not be found
+   * @throws ServiceUnavailableException if the user could not be retrieved
    */
   @Operation(summary = "Retrieve the user", description = "Retrieve the user")
   @ApiResponses(
@@ -2130,6 +2232,8 @@ public class SecurityApi extends SecureApi {
    * @param pageIndex the optional page index
    * @param pageSize the optional page size
    * @return the user directories
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws ServiceUnavailableException if the user directories could not be retrieved
    */
   @Operation(
       summary = "Retrieve the user directories",
@@ -2200,6 +2304,10 @@ public class SecurityApi extends SecureApi {
    *
    * @param tenantId the Universally Unique Identifier (UUID) for the tenant
    * @return the user directories the tenant is associated with
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws TenantNotFoundException if the tenant could not be found
+   * @throws ServiceUnavailableException if the user directories could not be retrieved for the
+   *     tenant
    */
   @Operation(
       summary = "Retrieve the user directories the tenant is associated with",
@@ -2275,6 +2383,9 @@ public class SecurityApi extends SecureApi {
    *
    * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
    * @return the user directory
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws UserDirectoryNotFoundException if the user directory could not be found
+   * @throws ServiceUnavailableException if the user directory could not be retrieved
    */
   @Operation(summary = "Retrieve the user directory", description = "Retrieve the user directory")
   @ApiResponses(
@@ -2333,6 +2444,9 @@ public class SecurityApi extends SecureApi {
    *
    * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
    * @return the capabilities the user directory supports
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws UserDirectoryNotFoundException if the user directory could not be found
+   * @throws ServiceUnavailableException if the user directory capabilities could not be retrieved
    */
   @Operation(
       summary = "Retrieve the capabilities the user directory supports",
@@ -2398,6 +2512,9 @@ public class SecurityApi extends SecureApi {
    *
    * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
    * @return the name of user directory
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws UserDirectoryNotFoundException if the user directory could not be found
+   * @throws ServiceUnavailableException if the name of the user directory could not be retrieved
    */
   @Operation(
       summary = "Retrieve the name of the user directory",
@@ -2461,6 +2578,8 @@ public class SecurityApi extends SecureApi {
    * @param pageIndex the optional page index
    * @param pageSize the optional page size
    * @return the summaries for the user directories
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws ServiceUnavailableException if the user directory summaries could not be retrieved
    */
   @Operation(
       summary = "Retrieve the summaries for the user directories",
@@ -2531,6 +2650,10 @@ public class SecurityApi extends SecureApi {
    *
    * @param tenantId the Universally Unique Identifier (UUID) for the tenant
    * @return the summaries for the user directories the tenant is associated with
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws TenantNotFoundException if the tenant could not be found
+   * @throws ServiceUnavailableException if the user directory summaries could not be retrieved for
+   *     the tenant
    */
   @Operation(
       summary = "Retrieve the summaries for the user directories the tenant is associated with",
@@ -2606,6 +2729,11 @@ public class SecurityApi extends SecureApi {
    *
    * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
    * @return the user directory type for the user directory
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws UserDirectoryNotFoundException if the user directory could not be found
+   * @throws UserDirectoryTypeNotFoundException if the user directory type could not be found
+   * @throws ServiceUnavailableException if the user directory type could not be retrieved for the
+   *     user directory
    */
   @Operation(
       summary = "Retrieve the user directory type for the user directory",
@@ -2671,6 +2799,7 @@ public class SecurityApi extends SecureApi {
    * Retrieve the user directory types.
    *
    * @return the user directory types
+   * @throws ServiceUnavailableException if the user directory types could not be retrieved
    */
   @Operation(
       summary = "Retrieve the user directory types",
@@ -2704,6 +2833,10 @@ public class SecurityApi extends SecureApi {
    * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
    * @param username the username for the user
    * @return the name of the user
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws UserDirectoryNotFoundException if the user directory could not be found
+   * @throws UserNotFoundException if the user could not be found
+   * @throws ServiceUnavailableException if the name of the user could not be retrieved
    */
   @Operation(
       summary = "Retrieve the name of the user",
@@ -2778,6 +2911,9 @@ public class SecurityApi extends SecureApi {
    * @param pageIndex the optional page index
    * @param pageSize the optional page size
    * @return the users
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws UserDirectoryNotFoundException if the user directory could not be found
+   * @throws ServiceUnavailableException if the users could not be retrieved
    */
   @Operation(summary = "Retrieve the users", description = "Retrieve the users")
   @ApiResponses(
@@ -2870,6 +3006,11 @@ public class SecurityApi extends SecureApi {
    * @param groupName the name of the group
    * @param memberType the group member type
    * @param memberName the name of the group member
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws UserDirectoryNotFoundException if the user directory could not be found
+   * @throws GroupNotFoundException if the group could not be found
+   * @throws GroupMemberNotFoundException if the group member could not be found
+   * @throws ServiceUnavailableException if the group member could not be removed from the group
    */
   @Operation(
       summary = "Remove the group member from the group",
@@ -2949,6 +3090,11 @@ public class SecurityApi extends SecureApi {
    * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
    * @param groupName the name of the group
    * @param roleCode the code for the role
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws UserDirectoryNotFoundException if the user directory could not be found
+   * @throws GroupNotFoundException if the group could not be found
+   * @throws GroupRoleNotFoundException if the group role could not be found
+   * @throws ServiceUnavailableException if the role could not be removed from the group
    */
   @Operation(
       summary = "Remove the role from the group",
@@ -3035,6 +3181,10 @@ public class SecurityApi extends SecureApi {
    *
    * @param tenantId the Universally Unique Identifier (UUID) for the tenant
    * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws TenantNotFoundException if the tenant could not be found
+   * @throws TenantUserDirectoryNotFoundException if the tenant user directory could not be found
+   * @throws ServiceUnavailableException if the user directory could not be removed from the tenant
    */
   @Operation(
       summary = "Remove the user directory from the tenant",
@@ -3104,6 +3254,8 @@ public class SecurityApi extends SecureApi {
    *
    * @param username the username for the user
    * @param resetPasswordUrl the reset password URL
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws ServiceUnavailableException if the password reset could not be initiated
    */
   @Operation(
       summary = "Initiate the password reset process for the user",
@@ -3169,6 +3321,10 @@ public class SecurityApi extends SecureApi {
    * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
    * @param groupName the name of the group
    * @param group the group
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws UserDirectoryNotFoundException if the user directory could not be found
+   * @throws GroupNotFoundException if the group could not be found
+   * @throws ServiceUnavailableException if the group could not be updated
    */
   @Operation(summary = "Update the group", description = "Update the group")
   @ApiResponses(
@@ -3253,6 +3409,9 @@ public class SecurityApi extends SecureApi {
    *
    * @param tenantId the Universally Unique Identifier (UUID) for the tenant
    * @param tenant the tenant
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws TenantNotFoundException if the tenant could not be found
+   * @throws ServiceUnavailableException if the tenant could not be updated
    */
   @Operation(summary = "Update the tenant", description = "Update the tenant")
   @ApiResponses(
@@ -3331,6 +3490,10 @@ public class SecurityApi extends SecureApi {
    * @param user the user
    * @param expirePassword expire the user's password
    * @param lockUser lock the user
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws UserDirectoryNotFoundException if the user directory could not be found
+   * @throws UserNotFoundException if the user could not be found
+   * @throws ServiceUnavailableException if the user could not be updated
    */
   @Operation(summary = "Update the user", description = "Update the user")
   @ApiResponses(
@@ -3435,6 +3598,9 @@ public class SecurityApi extends SecureApi {
    *
    * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
    * @param userDirectory the user directory
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws UserDirectoryNotFoundException if the user directory could not be found
+   * @throws ServiceUnavailableException if the user directory could not be updated
    */
   @Operation(summary = "Update the user directory", description = "Update the user directory")
   @ApiResponses(
@@ -3514,6 +3680,7 @@ public class SecurityApi extends SecureApi {
    * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
    * @return <b>true</b> if the user associated with the authenticated request has access to the
    *     user directory or <b>false</b> otherwise
+   * @throws InvalidArgumentException if an argument is invalid
    */
   protected boolean hasAccessToUserDirectory(UUID userDirectoryId) throws InvalidArgumentException {
     if (isSecurityEnabled()) {

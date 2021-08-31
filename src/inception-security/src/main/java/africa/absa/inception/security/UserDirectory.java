@@ -253,6 +253,8 @@ public class UserDirectory implements Serializable {
    * Set the XML configuration data for the user directory.
    *
    * @param configuration the XML configuration data for the user directory
+   * @throws InvalidConfigurationException if the XML configuration data could not be set for the
+   *     user directory
    */
   public void setConfiguration(String configuration) throws InvalidConfigurationException {
     try {
