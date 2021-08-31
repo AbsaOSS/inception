@@ -32,7 +32,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.reactive.function.client.WebClient;
 
 /**
- * The <b>TestRestController</b> class.
+ * The <b>TestApi</b> class.
  *
  * @author Marcus Portmann
  */

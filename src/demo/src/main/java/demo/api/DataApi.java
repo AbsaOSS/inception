@@ -37,7 +37,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * The <b>DataRestController</b> class.
+ * The <b>DataApi</b> class.
  *
  * @author Marcus Portmann
  */
