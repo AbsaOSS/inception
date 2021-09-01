@@ -241,7 +241,7 @@ public class UserAttribute implements Serializable {
   }
 
   /**
-   * Returns the <b>long</b> value for the user attribute with the specified name in the specified
+   * Returns the <b>int</b> value for the user attribute with the specified name in the specified
    * list.
    *
    * @param list the user attributes to search
