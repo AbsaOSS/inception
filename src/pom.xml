@@ -363,6 +363,9 @@
   </dependencyManagement>
 
   <modules>
+    <!-- Demo Modules -->
+    <module>demo</module>
+  
     <!-- Inception Modules -->
     <module>inception-api</module>
     <module>inception-application</module>
@@ -390,10 +393,6 @@
     <module>inception-security</module>
     <module>inception-security-api</module>
     <module>inception-test</module>
-
-    <!-- Demo Modules -->
-    <module>demo</module>
-
   </modules>
 
   <build>
