@@ -97,7 +97,7 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <java.version>11</java.version>
 
-    <inception.version>1.0.0-SNAPSHOT</inception.version>
+<!--    <inception.version>1.0.0-SNAPSHOT</inception.version>-->
 
     <agroal-pool.version>1.12</agroal-pool.version>
     <avro.version>1.10.2</avro.version>
@@ -240,137 +240,137 @@
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-application</artifactId>
-        <version>${inception.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-cache</artifactId>
-        <version>${inception.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-codes</artifactId>
-        <version>${inception.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-codes-api</artifactId>
-        <version>${inception.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-config</artifactId>
-        <version>${inception.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-config-api</artifactId>
-        <version>${inception.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-core</artifactId>
-        <version>${inception.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-error</artifactId>
-        <version>${inception.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-error-api</artifactId>
-        <version>${inception.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-jpa</artifactId>
-        <version>${inception.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-json</artifactId>
-        <version>${inception.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-jta</artifactId>
-        <version>${inception.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-kafka</artifactId>
-        <version>${inception.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-mail</artifactId>
-        <version>${inception.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-mail-api</artifactId>
-        <version>${inception.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-oauth2-authorization-server</artifactId>
-        <version>${inception.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-oauth2-resource-server</artifactId>
-        <version>${inception.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-reference</artifactId>
-        <version>${inception.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-reference-api</artifactId>
-        <version>${inception.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-reporting</artifactId>
-        <version>${inception.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-reporting-api</artifactId>
-        <version>${inception.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-api</artifactId>
-        <version>${inception.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-scheduler</artifactId>
-        <version>${inception.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-scheduler-api</artifactId>
-        <version>${inception.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-security</artifactId>
-        <version>${inception.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-security-api</artifactId>
-        <version>${inception.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-test</artifactId>
-        <version>${inception.version}</version>
+        <version>${project.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
