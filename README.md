@@ -176,10 +176,10 @@ Complete the following steps to setup a development environment on Windows.
    ```
    git clone https://github.com/AbsaOSS/inception.git
    ```
-2. Build and install the Java components of the Absa Inception Framework by executing the
+2. Build the Java components of the Absa Inception Framework by executing the
    following commands in the *inception/src* directory in a Terminal window.
    ```
-   mvn clean compile package install
+   mvn clean compile package
    ```
 2. Build the Angular components of the Absa Inception Framework by executing the
    following commands in the *inception/src/inception-angular* directory in a Terminal
@@ -251,7 +251,7 @@ Complete the following steps to create a new application based on the Absa Incep
         <parent>
           <groupId>africa.absa</groupId>
           <artifactId>inception</artifactId>
-          <version>1.0.0</version>
+          <version>1.0.1</version>
           <relativePath/>
         </parent>
 

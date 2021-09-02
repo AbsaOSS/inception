@@ -9,6 +9,12 @@
 
   <packaging>pom</packaging>
 
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.5.4</version>
+  </parent>
+
   <repositories>
     <!--
     <repository>
@@ -84,12 +90,6 @@
     <url>https://github.com/AbsaOSS/inception</url>
     <tag>HEAD</tag>
   </scm>
-
-  <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.5.4</version>
-  </parent>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -228,11 +228,6 @@
         <version>${spring-shell.version}</version>
       </dependency>
 
-
-
-
-
-
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-application</artifactId>
@@ -367,262 +362,7 @@
         <groupId>africa.absa</groupId>
         <artifactId>inception-test</artifactId>
         <version>1.0.2-SNAPSHOT</version>
-      </dependency>      
-      
-      
-      
-      
-      
-      
-      <!--
-      <dependency>
-        <groupId>africa.absa</groupId>
-        <artifactId>inception-application</artifactId>
-        <version>${project.version}</version>
       </dependency>
-      <dependency>
-        <groupId>africa.absa</groupId>
-        <artifactId>inception-cache</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>africa.absa</groupId>
-        <artifactId>inception-codes</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>africa.absa</groupId>
-        <artifactId>inception-codes-api</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>africa.absa</groupId>
-        <artifactId>inception-config</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>africa.absa</groupId>
-        <artifactId>inception-config-api</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>africa.absa</groupId>
-        <artifactId>inception-core</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>africa.absa</groupId>
-        <artifactId>inception-error</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>africa.absa</groupId>
-        <artifactId>inception-error-api</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>africa.absa</groupId>
-        <artifactId>inception-jpa</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>africa.absa</groupId>
-        <artifactId>inception-json</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>africa.absa</groupId>
-        <artifactId>inception-jta</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>africa.absa</groupId>
-        <artifactId>inception-kafka</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>africa.absa</groupId>
-        <artifactId>inception-mail</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>africa.absa</groupId>
-        <artifactId>inception-mail-api</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>africa.absa</groupId>
-        <artifactId>inception-oauth2-authorization-server</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>africa.absa</groupId>
-        <artifactId>inception-oauth2-resource-server</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>africa.absa</groupId>
-        <artifactId>inception-reference</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>africa.absa</groupId>
-        <artifactId>inception-reference-api</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>africa.absa</groupId>
-        <artifactId>inception-reporting</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>africa.absa</groupId>
-        <artifactId>inception-reporting-api</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>africa.absa</groupId>
-        <artifactId>inception-api</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>africa.absa</groupId>
-        <artifactId>inception-scheduler</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>africa.absa</groupId>
-        <artifactId>inception-scheduler-api</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>africa.absa</groupId>
-        <artifactId>inception-security</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>africa.absa</groupId>
-        <artifactId>inception-security-api</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>africa.absa</groupId>
-        <artifactId>inception-test</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      -->
-
-
-<!--      <dependency>-->
-<!--        <groupId>africa.absa</groupId>-->
-<!--        <artifactId>inception-application</artifactId>-->
-<!--      </dependency>-->
-<!--      <dependency>-->
-<!--        <groupId>africa.absa</groupId>-->
-<!--        <artifactId>inception-cache</artifactId>-->
-<!--      </dependency>-->
-<!--      <dependency>-->
-<!--        <groupId>africa.absa</groupId>-->
-<!--        <artifactId>inception-codes</artifactId>-->
-<!--      </dependency>-->
-<!--      <dependency>-->
-<!--        <groupId>africa.absa</groupId>-->
-<!--        <artifactId>inception-codes-api</artifactId>-->
-<!--      </dependency>-->
-<!--      <dependency>-->
-<!--        <groupId>africa.absa</groupId>-->
-<!--        <artifactId>inception-config</artifactId>-->
-<!--      </dependency>-->
-<!--      <dependency>-->
-<!--        <groupId>africa.absa</groupId>-->
-<!--        <artifactId>inception-config-api</artifactId>-->
-<!--      </dependency>-->
-<!--      <dependency>-->
-<!--        <groupId>africa.absa</groupId>-->
-<!--        <artifactId>inception-core</artifactId>-->
-<!--      </dependency>-->
-<!--      <dependency>-->
-<!--        <groupId>africa.absa</groupId>-->
-<!--        <artifactId>inception-error</artifactId>-->
-<!--      </dependency>-->
-<!--      <dependency>-->
-<!--        <groupId>africa.absa</groupId>-->
-<!--        <artifactId>inception-error-api</artifactId>-->
-<!--      </dependency>-->
-<!--      <dependency>-->
-<!--        <groupId>africa.absa</groupId>-->
-<!--        <artifactId>inception-jpa</artifactId>-->
-<!--      </dependency>-->
-<!--      <dependency>-->
-<!--        <groupId>africa.absa</groupId>-->
-<!--        <artifactId>inception-json</artifactId>-->
-<!--      </dependency>-->
-<!--      <dependency>-->
-<!--        <groupId>africa.absa</groupId>-->
-<!--        <artifactId>inception-jta</artifactId>-->
-<!--      </dependency>-->
-<!--      <dependency>-->
-<!--        <groupId>africa.absa</groupId>-->
-<!--        <artifactId>inception-kafka</artifactId>-->
-<!--      </dependency>-->
-<!--      <dependency>-->
-<!--        <groupId>africa.absa</groupId>-->
-<!--        <artifactId>inception-mail</artifactId>-->
-<!--      </dependency>-->
-<!--      <dependency>-->
-<!--        <groupId>africa.absa</groupId>-->
-<!--        <artifactId>inception-mail-api</artifactId>-->
-<!--      </dependency>-->
-<!--      <dependency>-->
-<!--        <groupId>africa.absa</groupId>-->
-<!--        <artifactId>inception-oauth2-authorization-server</artifactId>-->
-<!--      </dependency>-->
-<!--      <dependency>-->
-<!--        <groupId>africa.absa</groupId>-->
-<!--        <artifactId>inception-oauth2-resource-server</artifactId>-->
-<!--      </dependency>-->
-<!--      <dependency>-->
-<!--        <groupId>africa.absa</groupId>-->
-<!--        <artifactId>inception-reference</artifactId>-->
-<!--      </dependency>-->
-<!--      <dependency>-->
-<!--        <groupId>africa.absa</groupId>-->
-<!--        <artifactId>inception-reference-api</artifactId>-->
-<!--      </dependency>-->
-<!--      <dependency>-->
-<!--        <groupId>africa.absa</groupId>-->
-<!--        <artifactId>inception-reporting</artifactId>-->
-<!--      </dependency>-->
-<!--      <dependency>-->
-<!--        <groupId>africa.absa</groupId>-->
-<!--        <artifactId>inception-reporting-api</artifactId>-->
-<!--      </dependency>-->
-<!--      <dependency>-->
-<!--        <groupId>africa.absa</groupId>-->
-<!--        <artifactId>inception-api</artifactId>-->
-<!--      </dependency>-->
-<!--      <dependency>-->
-<!--        <groupId>africa.absa</groupId>-->
-<!--        <artifactId>inception-scheduler</artifactId>-->
-<!--      </dependency>-->
-<!--      <dependency>-->
-<!--        <groupId>africa.absa</groupId>-->
-<!--        <artifactId>inception-scheduler-api</artifactId>-->
-<!--      </dependency>-->
-<!--      <dependency>-->
-<!--        <groupId>africa.absa</groupId>-->
-<!--        <artifactId>inception-security</artifactId>-->
-<!--      </dependency>-->
-<!--      <dependency>-->
-<!--        <groupId>africa.absa</groupId>-->
-<!--        <artifactId>inception-security-api</artifactId>-->
-<!--      </dependency>-->
-<!--      <dependency>-->
-<!--        <groupId>africa.absa</groupId>-->
-<!--        <artifactId>inception-test</artifactId>-->
-<!--      </dependency>-->
-
-
     </dependencies>
   </dependencyManagement>
 
