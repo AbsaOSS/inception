@@ -458,6 +458,8 @@
           <pushChanges>false</pushChanges>
           <mavenExecutorId>forked-path</mavenExecutorId>
           <arguments>-Dgpg.passphrase=${gpg.passphrase}</arguments>
+          <autoVersionSubmodules>true</autoVersionSubmodules>
+          <stagingRepository>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</stagingRepository>
         </configuration>
         <dependencies>
           <dependency>
