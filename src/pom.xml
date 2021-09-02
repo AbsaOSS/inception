@@ -4,7 +4,7 @@
 
   <groupId>africa.absa</groupId>
   <artifactId>inception</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1-SNAPSHOT</version>
   <name>inception</name>
 
   <packaging>pom</packaging>
@@ -80,7 +80,7 @@
     <connection>scm:git:git://github.com/AbsaOSS/inception.git</connection>
     <developerConnection>scm:git:git@github.com:AbsaOSS/inception.git</developerConnection>
     <url>https://github.com/AbsaOSS/inception</url>
-    <tag>v1.0.0</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <parent>
