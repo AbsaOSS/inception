@@ -251,7 +251,7 @@ Complete the following steps to create a new application based on the Absa Incep
         <parent>
           <groupId>africa.absa</groupId>
           <artifactId>inception</artifactId>
-          <version>1.0.0-SNAPSHOT</version>
+          <version>1.0.0</version>
           <relativePath/>
         </parent>
 
@@ -343,7 +343,7 @@ Complete the following steps to create a new application based on the Absa Incep
               <version>1.6</version>
               <configuration>
                 <workingDirectory>src/main/frontend</workingDirectory>
-                <nodeVersion>v14.7.0</nodeVersion>
+                <nodeVersion>v14.15.0</nodeVersion>
                 <npmVersion>6.14.7</npmVersion>
               </configuration>
               <executions>
@@ -393,7 +393,7 @@ Complete the following steps to create a new application based on the Absa Incep
 
       @Configuration
       @ComponentScan(
-          basePackages = {"digital.inception", "demo"})
+          basePackages = {"africa.absa.inception", "demo"})
       @EnableJpaRepositories(
           entityManagerFactoryRef = "applicationPersistenceUnit",
           basePackages = {"demo"})
