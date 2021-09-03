@@ -75,7 +75,6 @@ export * from './src/layout/components/sidebar-form.component';
 export * from './src/layout/components/sidebar-header.component';
 export * from './src/layout/components/sidebar-minimizer.component';
 export * from './src/layout/components/sidebar-nav.component';
-export * from './src/layout/components/sidebar-nav-dropdown.component';
 export * from './src/layout/components/sidebar-nav-item.component';
 export * from './src/layout/components/simple-container.component';
 export * from './src/layout/components/spinner.component';

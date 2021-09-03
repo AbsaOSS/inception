@@ -44,7 +44,7 @@ import {BreadcrumbsService} from '../services/breadcrumbs.service';
 })
 export class BreadcrumbsComponent implements OnInit, OnDestroy {
 
-  breadcrumbs: Observable<Array<{}>>;
+  breadcrumbs: Observable<Array<Breadcrumb>>;
   @Input() fixed = false;
   private subscriptions: Subscription = new Subscription();
 

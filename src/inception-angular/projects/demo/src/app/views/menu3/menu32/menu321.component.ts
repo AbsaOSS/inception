@@ -26,7 +26,7 @@ import {TitleBarService} from '@absaoss/ngx-inception/core';
   template: `
     <mat-card class="flex-grow-1">
       <mat-card-content>
-        Menu 3.2.1 Component
+        Menu 3.2.1
       </mat-card-content>
     </mat-card>
   `

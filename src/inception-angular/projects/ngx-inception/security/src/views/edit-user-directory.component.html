@@ -28,7 +28,7 @@
       <inception-internal-user-directory *ngIf="editUserDirectoryForm.contains('internalUserDirectory')" formControlName="internalUserDirectory"></inception-internal-user-directory>
       <inception-ldap-user-directory *ngIf="editUserDirectoryForm.contains('ldapUserDirectory')" formControlName="ldapUserDirectory"></inception-ldap-user-directory>
     </mat-card-content>
-    <mat-card-actions class="align-right">
+    <mat-card-actions align="end">
       <button type="button" mat-flat-button color="link" (click)="cancel()" i18n="@@security_edit_user_directory_component_button_cancel">Cancel</button>
       <button type="button" mat-flat-button color="primary" [disabled]="!editUserDirectoryForm.valid" (click)="ok()" i18n="@@security_edit_user_directory_component_button_ok">OK</button>
     </mat-card-actions>

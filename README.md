@@ -1,8 +1,8 @@
 # Absa Inception Framework
 
 ## Overview
-The Absa Inception Framework enables the rapid development of Java back-end and Angular
-front-end applications.
+The Absa Inception Framework enables the rapid development of applications with a Java 
+back-end and Angular front-end.
 
 ## Quickstart for MacOS
 
@@ -395,7 +395,7 @@ Complete the following steps to create a new application based on the Absa Incep
       @ComponentScan(
           basePackages = {"africa.absa.inception", "demo"})
       @EnableJpaRepositories(
-          entityManagerFactoryRef = "applicationPersistenceUnit",
+          entityManagerFactoryRef = "applicationEntityManagerFactory",
           basePackages = {"demo"})
       public class DemoConfiguration {}
       ```
@@ -624,15 +624,15 @@ Complete the following steps to create a new application based on the Absa Incep
    6. Execute the following command under the *src/main/frontend* directory to install the
       local *ngx-inception* library dependency using a relative path.
       ```
-      npm install ../../../../inception/src/inception-angular/dist/ngx-inception
+      npm install ../../../../inception/src/inception-angular/dist/@absaoss/ngx-inception
       ```
    7. Add the path mapping for the ngx-inception library to the *src/main/frontend/tsconfig.app.json* file.
       ```
       "compilerOptions": {
         ...,
         "paths": {
-          "ngx-inception/*": [
-            "./node_modules/ngx-inception/*"
+          "@absaoss/ngx-inception/*": [
+            "./node_modules/@absaoss/ngx-inception/*"
           ]
         }
       },
@@ -651,7 +651,7 @@ Complete the following steps to create a new application based on the Absa Incep
 
       import {
         CoreModule, InceptionAppModule, InceptionConfig, NavigationBadge, NavigationItem, NavigationTitle
-      } from 'ngx-inception/core';
+      } from '@absaoss/ngx-inception/core';
 
       ...
       ```
@@ -819,7 +819,7 @@ Complete the following steps to create a new application based on the Absa Incep
           following contents.
           ```
           import {NgModule} from '@angular/core';
-          import {CodesViewsModule} from 'ngx-inception/codes';
+          import {CodesViewsModule} from '@absaoss/ngx-inception/codes';
 
           @NgModule({
             imports: [CodesViewsModule]
@@ -831,7 +831,7 @@ Complete the following steps to create a new application based on the Absa Incep
           following contents.
           ```
           import {NgModule} from '@angular/core';
-          import {ConfigViewsModule} from 'ngx-inception/config';
+          import {ConfigViewsModule} from '@absaoss/ngx-inception/config';
 
           @NgModule({
             imports: [ConfigViewsModule]
@@ -843,7 +843,7 @@ Complete the following steps to create a new application based on the Absa Incep
           following contents.
           ```
           import {NgModule} from '@angular/core';
-          import {ErrorViewsModule} from 'ngx-inception/error';
+          import {ErrorViewsModule} from '@absaoss/ngx-inception/error';
 
           @NgModule({
             imports: [ErrorViewsModule]
@@ -855,7 +855,7 @@ Complete the following steps to create a new application based on the Absa Incep
           following contents.
           ```
           import {NgModule} from '@angular/core';
-          import {LoginViewsModule} from 'ngx-inception/login';
+          import {LoginViewsModule} from '@absaoss/ngx-inception/login';
 
           @NgModule({
             imports: [LoginViewsModule]
@@ -867,7 +867,7 @@ Complete the following steps to create a new application based on the Absa Incep
           following contents.
           ```
           import {NgModule} from '@angular/core';
-          import {MailViewsModule} from 'ngx-inception/mail';
+          import {MailViewsModule} from '@absaoss/ngx-inception/mail';
 
           @NgModule({
             imports: [MailViewsModule]
@@ -879,7 +879,7 @@ Complete the following steps to create a new application based on the Absa Incep
           following contents.
           ```
           import {NgModule} from '@angular/core';
-          import {ReportingViewsModule} from 'ngx-inception/reporting';
+          import {ReportingViewsModule} from '@absaoss/ngx-inception/reporting';
 
           @NgModule({
             imports: [ReportingViewsModule]
@@ -891,7 +891,7 @@ Complete the following steps to create a new application based on the Absa Incep
           following contents.
           ```
           import {NgModule} from '@angular/core';
-          import {SchedulerViewsModule} from 'ngx-inception/scheduler';
+          import {SchedulerViewsModule} from '@absaoss/ngx-inception/scheduler';
 
           @NgModule({
             imports: [SchedulerViewsModule]
@@ -904,7 +904,7 @@ Complete the following steps to create a new application based on the Absa Incep
           ```
           import {NgModule} from '@angular/core';
 
-          import {SecurityViewsModule} from 'ngx-inception/security';
+          import {SecurityViewsModule} from '@absaoss/ngx-inception/security';
 
           @NgModule({
             imports: [SecurityViewsModule]
@@ -918,12 +918,12 @@ Complete the following steps to create a new application based on the Absa Incep
        import {CommonModule} from '@angular/common';
        import {NgModule} from '@angular/core';
        import {RouterModule, Routes} from '@angular/router';
-       import {CodeCategoriesTitleResolver} from 'ngx-inception/codes';
-       import {ConfigsTitleResolver} from 'ngx-inception/config';
-       import {MailTitleResolver} from 'ngx-inception/mail';
-       import {ReportingTitleResolver} from 'ngx-inception/reporting';
-       import {SchedulerTitleResolver} from 'ngx-inception/scheduler';
-       import {SecurityTitleResolver} from 'ngx-inception/security';
+       import {CodeCategoriesTitleResolver} from '@absaoss/ngx-inception/codes';
+       import {ConfigsTitleResolver} from '@absaoss/ngx-inception/config';
+       import {MailTitleResolver} from '@absaoss/ngx-inception/mail';
+       import {ReportingTitleResolver} from '@absaoss/ngx-inception/reporting';
+       import {SchedulerTitleResolver} from '@absaoss/ngx-inception/scheduler';
+       import {SecurityTitleResolver} from '@absaoss/ngx-inception/security';
        import {AdministrationTitleResolver} from './administration-title-resolver';
        import {AdministrationComponent} from './administration.component';
        import {SystemTitleResolver} from './system-title-resolver';
@@ -1111,8 +1111,8 @@ Complete the following steps to create a new application based on the Absa Incep
        import {RouterModule, Routes} from '@angular/router';
        import {
          AdminContainerComponent, CanActivateFunctionGuard, NotFoundComponent, SimpleContainerComponent
-       } from 'ngx-inception/core';
-       import {UserProfileComponent} from 'ngx-inception/security';
+       } from '@absaoss/ngx-inception/core';
+       import {UserProfileComponent} from '@absaoss/ngx-inception/security';
        import {AdministrationTitleResolver} from './views/administration/administration-title-resolver';
 
        export const routes: Routes = [{

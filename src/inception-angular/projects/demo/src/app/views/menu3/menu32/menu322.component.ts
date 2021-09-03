@@ -28,7 +28,7 @@ import {Observable} from 'rxjs';
   template: `
     <mat-card class="flex-grow-1">
       <mat-card-content>
-        Menu 3.2.2 Component
+        Menu 3.2.2
       </mat-card-content>
     </mat-card>
   `

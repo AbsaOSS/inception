@@ -1,0 +1,58 @@
+<form [formGroup]="referenceForm" autocomplete="off" class="d-flex flex-column flex-auto" validatedForm>
+  <mat-card class="d-flex flex-column flex-auto">
+    <mat-card-content class="d-flex flex-column flex-auto">
+      <div class="row">
+        <div class="col-sm">
+          <mat-form-field>
+            <mat-label>Country</mat-label>
+            <input type="text" matInput formControlName="country" autocompleteSelectionRequired required="true" [matAutocomplete]="countryAutocomplete">
+            <mat-autocomplete autoActiveFirstOption #countryAutocomplete="matAutocomplete" [displayWith]="displayCountry">
+              <mat-option *ngFor="let country of filteredCountries$ | async" [value]="country">
+                {{country.shortName}}
+              </mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="referenceForm.controls['country'].errors && !referenceForm.controls['country'].untouched">
+              <span *ngIf="referenceForm.controls['country'].errors?.required">A country is required.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <mat-form-field>
+            <mat-label>Language</mat-label>
+            <input type="text" matInput formControlName="language" autocompleteSelectionRequired required="true" [matAutocomplete]="languageAutocomplete">
+            <mat-autocomplete autoActiveFirstOption #languageAutocomplete="matAutocomplete" [displayWith]="displayLanguage">
+              <mat-option *ngFor="let language of filteredLanguages$ | async" [value]="language">
+                {{language.name}}
+              </mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="referenceForm.controls['language'].errors && !referenceForm.controls['language'].untouched">
+              <span *ngIf="referenceForm.controls['language'].errors?.required">A language is required.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <mat-form-field>
+            <mat-label>Region</mat-label>
+            <input type="text" matInput formControlName="region" autocompleteSelectionRequired required="true" [matAutocomplete]="regionAutocomplete">
+            <mat-autocomplete autoActiveFirstOption #regionAutocomplete="matAutocomplete" [displayWith]="displayRegion">
+              <mat-option *ngFor="let region of filteredRegions$ | async" [value]="region">
+                {{region.name}}
+              </mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="referenceForm.controls['region'].errors && !referenceForm.controls['region'].untouched">
+              <span *ngIf="referenceForm.controls['region'].errors?.required">A region is required.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button type="button" mat-flat-button color="link">Cancel</button>
+      <button type="button" mat-flat-button color="primary" (click)="ok()">OK</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

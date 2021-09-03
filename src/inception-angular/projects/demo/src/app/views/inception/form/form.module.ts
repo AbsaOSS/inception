@@ -20,6 +20,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
 import {CoreModule} from '@absaoss/ngx-inception/core';
 import {ExampleFormComponent} from './example-form.component';
+import {ReferenceFormComponent} from './reference-form.component';
 
 const routes: Routes = [{
   path: '',
@@ -29,6 +30,12 @@ const routes: Routes = [{
   component: ExampleFormComponent,
   data: {
     title: 'Example Form',
+  }
+}, {
+  path: 'reference-form',
+  component: ReferenceFormComponent,
+  data: {
+    title: 'Reference Form',
   }
 }
 ];
@@ -41,7 +48,7 @@ const routes: Routes = [{
     // Inception modules
     CoreModule
   ],
-  declarations: [ExampleFormComponent],
+  declarations: [ExampleFormComponent, ReferenceFormComponent],
   providers: []
 })
 export class FormModule {

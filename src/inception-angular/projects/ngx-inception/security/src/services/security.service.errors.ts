@@ -132,25 +132,6 @@ export class ExistingGroupMembersError extends Error {
 }
 
 /**
- * The ExistingGroupRoleError class holds the information for an existing group role error.
- *
- * @author Marcus Portmann
- */
-export class ExistingGroupRoleError extends Error {
-
-  static readonly TYPE = 'http://inception.digital/problems/security/existing-group-role';
-
-  /**
-   * Constructs a new ExistingGroupRoleError.
-   *
-   * @param cause The optional cause of the error.
-   */
-  constructor(cause?: ProblemDetails | HttpErrorResponse | HttpError) {
-    super($localize`:@@security_existing_group_role_error:The group role already exists.`, cause);
-  }
-}
-
-/**
  * The ExistingPasswordError class holds the information for an existing password error.
  *
  * @author Marcus Portmann

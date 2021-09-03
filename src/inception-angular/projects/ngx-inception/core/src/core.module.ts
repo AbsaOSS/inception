@@ -72,7 +72,6 @@ import {SidebarFooterComponent} from './layout/components/sidebar-footer.compone
 import {SidebarFormComponent} from './layout/components/sidebar-form.component';
 import {SidebarHeaderComponent} from './layout/components/sidebar-header.component';
 import {SidebarMinimizerComponent} from './layout/components/sidebar-minimizer.component';
-import {SidebarNavDropdownComponent} from './layout/components/sidebar-nav-dropdown.component';
 import {SidebarNavItemComponent} from './layout/components/sidebar-nav-item.component';
 import {SidebarNavComponent} from './layout/components/sidebar-nav.component';
 import {SidebarComponent} from './layout/components/sidebar.component';
@@ -138,8 +137,7 @@ export const INCEPTION_DATE_FORMATS = {
     AdminContainerComponent, AdminFooterComponent, AdminHeaderComponent, BreadcrumbsComponent,
     NotFoundComponent, SidebarComponent, SidebarFooterComponent, SidebarFormComponent,
     SidebarHeaderComponent, SidebarMinimizerComponent, SidebarNavComponent,
-    SidebarNavDropdownComponent, SidebarNavItemComponent, SimpleContainerComponent,
-    SpinnerComponent, TitleBarComponent,
+    SidebarNavItemComponent, SimpleContainerComponent, SpinnerComponent, TitleBarComponent,
 
     // Layout Directives
     BrandMinimizerDirective, MobileSidebarTogglerDirective, SidebarMinimizerDirective,
@@ -195,8 +193,7 @@ export const INCEPTION_DATE_FORMATS = {
     AdminContainerComponent, AdminFooterComponent, AdminHeaderComponent, BreadcrumbsComponent,
     NotFoundComponent, SidebarComponent, SidebarFooterComponent, SidebarFormComponent,
     SidebarHeaderComponent, SidebarMinimizerComponent, SidebarNavComponent,
-    SidebarNavDropdownComponent, SidebarNavItemComponent, SimpleContainerComponent,
-    SpinnerComponent, TitleBarComponent,
+    SidebarNavItemComponent, SimpleContainerComponent, SpinnerComponent, TitleBarComponent,
 
     // Layout Directives
     BrandMinimizerDirective, MobileSidebarTogglerDirective, SidebarMinimizerDirective,

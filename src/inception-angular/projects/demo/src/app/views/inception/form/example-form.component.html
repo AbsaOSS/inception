@@ -111,7 +111,7 @@
         <div class="col-sm">
           <mat-form-field>
             <mat-label>Favorite country</mat-label>
-            <input type="text" matInput autocompleteSelectionRequired [formControl]="exampleForm.get('favoriteCountry')" required="true" [matAutocomplete]="favoriteCountryAutocomplete">
+            <input type="text" matInput formControlName="favoriteCountry" autocompleteSelectionRequired required="true" [matAutocomplete]="favoriteCountryAutocomplete">
             <mat-autocomplete autoActiveFirstOption #favoriteCountryAutocomplete="matAutocomplete" [displayWith]="displayCountry">
               <mat-option *ngFor="let country of filteredCountries$ | async" [value]="country">
                 {{country.shortName}}
@@ -168,7 +168,7 @@
         </div>
       </div>
     </mat-card-content>
-    <mat-card-actions class="align-right">
+    <mat-card-actions align="end">
       <button type="button" mat-flat-button color="link">Cancel</button>
       <button type="button" mat-flat-button color="primary" [disabled]="!exampleForm.valid">OK</button>
     </mat-card-actions>

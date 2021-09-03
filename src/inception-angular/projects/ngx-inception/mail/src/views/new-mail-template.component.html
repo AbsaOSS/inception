@@ -43,7 +43,7 @@
         <div class="col-sm">
           <mat-form-field>
             <mat-label i18n="@@mail_new_mail_template_component_label_template">Template</mat-label>
-            <file-upload formControlName="template" i18n-placeholder="@@mail_new_mail_template_component_placeholder_no_file_selected" placeholder="No file selected" required></file-upload>
+            <file-upload formControlName="template" i18n-placeholder="@@mail_new_mail_template_component_placeholder_no_file_selected" placeholder="No file selected"></file-upload>
             <mat-error *ngIf="templateFormControl.errors && !templateFormControl.untouched">
               <span *ngIf="templateFormControl.errors?.required" i18n="@@mail_new_mail_template_component_error_template_required">A template is required.</span>
               <span *ngIf="templateFormControl.errors?.minSize" i18n="@@mail_new_mail_template_component_error_template_min_size">The template is empty.</span>
@@ -53,7 +53,7 @@
         </div>
       </div>
     </mat-card-content>
-    <mat-card-actions class="align-right">
+    <mat-card-actions align="end">
       <button type="button" mat-flat-button color="link" (click)="cancel()" i18n="@@mail_new_mail_template_component_button_cancel">Cancel</button>
       <button type="button" mat-flat-button color="primary" [disabled]="!newMailTemplateForm.valid" (click)="ok()" i18n="@@mail_new_mail_template_component_button_ok">OK</button>
     </mat-card-actions>

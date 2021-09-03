@@ -1,23 +1,53 @@
-/*
-  This is a "Solution Style" tsconfig.json file, and is used by editors and TypeScript’s language server to improve development experience.
-  It is not intended to be used to perform a compilation.
-
-  To learn more about this file see: https://angular.io/config/solution-tsconfig.
-*/
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./projects/ngx-inception/tsconfig.lib.json"
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "paths": {
+      "@absaoss/ngx-inception": [
+        "dist/@absaoss/ngx-inception"
+      ],
+      "@absaoss/ngx-inception/*": [
+        "dist/@absaoss/ngx-inception/*"
+      ]
     },
-    {
-      "path": "./projects/ngx-inception/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/demo/tsconfig.app.json"
-    },
-    {
-      "path": "./projects/demo/tsconfig.spec.json"
-    }
-  ]
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2017",
+    "module": "es2020",
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    /* Inception Options */
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "pretty": true,
+    "noEmitOnError": true,
+    "strictNullChecks": true
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  }
 }
+
+
+
+
+
+
+
+
+

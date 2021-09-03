@@ -25,7 +25,7 @@ import {Component} from '@angular/core';
   template: `
     <mat-card class="flex-grow-1">
       <mat-card-content>
-        Menu 2.2 Component
+        Menu 2.2
       </mat-card-content>
     </mat-card>
   `

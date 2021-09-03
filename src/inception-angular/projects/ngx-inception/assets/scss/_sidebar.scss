@@ -182,7 +182,7 @@
       border-radius: $border-radius;
     }
 
-    > sidebar-nav-dropdown {
+    > .sidebar-nav-dropdown {
       > .nav-dropdown-items
       {
         max-height: 1500px;
@@ -417,7 +417,7 @@
       }
 
       .nav > sidebar-nav-item > .nav-dropdown {
-        > sidebar-nav-dropdown
+        > .sidebar-nav-dropdown
         {
           > .nav-dropdown-items
           {
@@ -431,7 +431,7 @@
           {
             background: $sidebar-nav-link-hover-bg;
 
-            > sidebar-nav-dropdown {
+            > .sidebar-nav-dropdown {
 
               > .nav-dropdown-items
               {

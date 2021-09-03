@@ -3,46 +3,14 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ngx-inception": {
-      "projectType": "library",
-      "root": "projects/ngx-inception",
-      "sourceRoot": "projects/ngx-inception/src",
-      "prefix": "inception",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/ngx-inception/tsconfig.lib.json",
-            "project": "projects/ngx-inception/ng-package.json"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/ngx-inception/src/test.ts",
-            "tsConfig": "projects/ngx-inception/tsconfig.spec.json",
-            "karmaConfig": "projects/ngx-inception/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/ngx-inception/tsconfig.lib.json",
-              "projects/ngx-inception/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
     "demo": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
         }
       },
       "root": "projects/demo",
@@ -57,6 +25,7 @@
             "main": "projects/demo/src/main.ts",
             "polyfills": "projects/demo/src/polyfills.ts",
             "tsConfig": "projects/demo/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
             "assets": [
               "projects/demo/src/favicon.ico",
               "projects/demo/src/assets"
@@ -66,59 +35,52 @@
               "projects/ngx-inception/assets/scss/default-theme.scss",
               "projects/demo/src/styles.scss"
             ],
-            "scripts": [],
-            "sourceMap": {
-              "scripts": true,
-              "styles": true,
-              "vendor": true
-            },
-            "vendorChunk": true,
-            "extractLicenses": false,
-            "buildOptimizer": false,
-            "optimization": false,
-            "namedChunks": true
+            "scripts": []
           },
           "configurations": {
             "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
               "fileReplacements": [
                 {
                   "replace": "projects/demo/src/environments/environment.ts",
                   "with": "projects/demo/src/environments/environment.prod.ts"
                 }
               ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
-              ]
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
           },
-          "defaultConfiguration": ""
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "demo:build"
-          },
           "configurations": {
             "production": {
               "browserTarget": "demo:build:production"
+            },
+            "development": {
+              "browserTarget": "demo:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -133,6 +95,7 @@
             "polyfills": "projects/demo/src/polyfills.ts",
             "tsConfig": "projects/demo/tsconfig.spec.json",
             "karmaConfig": "projects/demo/karma.conf.js",
+            "inlineStyleLanguage": "scss",
             "assets": [
               "projects/demo/src/favicon.ico",
               "projects/demo/src/assets"
@@ -142,35 +105,40 @@
             ],
             "scripts": []
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+        }
+      }
+    },
+    "ngx-inception": {
+      "projectType": "library",
+      "root": "projects/ngx-inception",
+      "sourceRoot": "projects/ngx-inception/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "tsConfig": [
-              "projects/demo/tsconfig.app.json",
-              "projects/demo/tsconfig.spec.json",
-              "projects/demo/e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        },
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "projects/demo/e2e/protractor.conf.js",
-            "devServerTarget": "demo:serve"
+            "project": "projects/ngx-inception/ng-package.json"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "demo:serve:production"
+              "tsConfig": "projects/ngx-inception/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ngx-inception/tsconfig.lib.json"
             }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-inception/src/test.ts",
+            "tsConfig": "projects/ngx-inception/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-inception/karma.conf.js"
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "ngx-inception"
 }
-
-

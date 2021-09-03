@@ -113,12 +113,14 @@ label {
     .mat-button:not(:last-child), .mat-flat-button:not(:last-child), .mat-raised-button:not(:last-child), .mat-icon-button:not(:last-child) {
       margin-right: 10px;
     }
+    /*
     &.align-right {
       display: flex;
       flex-direction: row;
       justify-content: flex-end;
       align-content: center;
     }
+    */
   }
 
   > .mat-card-actions:last-child {

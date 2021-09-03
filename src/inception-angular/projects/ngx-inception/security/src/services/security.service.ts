@@ -33,10 +33,10 @@ import {PasswordChangeReason} from './password-change-reason';
 import {Role} from './role';
 import {
   AuthenticationFailedError, DuplicateGroupError, DuplicateTenantError, DuplicateUserDirectoryError,
-  DuplicateUserError, ExistingGroupMembersError, ExistingPasswordError,
-  GroupMemberNotFoundError, GroupNotFoundError, GroupRoleNotFoundError, InvalidSecurityCodeError,
-  RoleNotFoundError, TenantNotFoundError, TenantUserDirectoryNotFoundError,
-  UserDirectoryNotFoundError, UserLockedError, UserNotFoundError
+  DuplicateUserError, ExistingGroupMembersError, ExistingPasswordError,  GroupMemberNotFoundError,
+  GroupNotFoundError, GroupRoleNotFoundError, InvalidSecurityCodeError, RoleNotFoundError,
+  TenantNotFoundError, TenantUserDirectoryNotFoundError, UserDirectoryNotFoundError,
+  UserLockedError, UserNotFoundError
 } from './security.service.errors';
 import {Tenant} from './tenant';
 import {TenantUserDirectory} from './tenant-user-directory';

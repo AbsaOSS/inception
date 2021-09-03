@@ -16,10 +16,8 @@
 
 import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
-
 import {RouterModule, Routes} from '@angular/router';
 import {CoreModule} from '@absaoss/ngx-inception/core';
-
 import {Menu1Component} from './menu1.component';
 
 const routes: Routes = [{
@@ -35,9 +33,9 @@ const routes: Routes = [{
  * @author Marcus Portmann
  */
 @NgModule({
-  imports: [CommonModule,
+  imports: [
     // Angular modules
-    RouterModule.forChild(routes),
+    CommonModule, RouterModule.forChild(routes),
 
     // Inception modules
     CoreModule
