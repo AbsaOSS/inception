@@ -15,7 +15,7 @@
  */
 
 import {NgModule} from '@angular/core';
-import {ErrorViewsModule} from 'ngx-inception/error';
+import {ErrorViewsModule} from '@absaoss/ngx-inception/error';
 
 @NgModule({
   imports: [ErrorViewsModule]

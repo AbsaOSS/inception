@@ -1,6 +1,6 @@
 {
-  "name": "inception-angular",
-  "version": "1.0.0-SNAPSHOT",
+  "name": "@absaoss/inception-angular",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

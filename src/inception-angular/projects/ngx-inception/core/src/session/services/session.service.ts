@@ -22,10 +22,10 @@ import {catchError, map, mergeMap, switchMap} from 'rxjs/operators';
 import {
   AccessDeniedError, CommunicationError, InvalidArgumentError, ServiceUnavailableError
 } from '../../errors';
-import {INCEPTION_CONFIG, InceptionConfig} from "../../inception-config";
+import {INCEPTION_CONFIG, InceptionConfig} from '../../inception-config';
 import {Session} from './session';
-import {LoginError, PasswordExpiredError, UserLockedError} from "./session.service.errors";
-import {TokenResponse} from "./token-response";
+import {LoginError, PasswordExpiredError, UserLockedError} from './session.service.errors';
+import {TokenResponse} from './token-response';
 
 /**
  * The Session Service implementation.

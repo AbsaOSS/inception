@@ -15,7 +15,7 @@
  */
 
 import {NgModule} from '@angular/core';
-import {ConfigViewsModule} from 'ngx-inception/config';
+import {ConfigViewsModule} from '@absaoss/ngx-inception/config';
 
 @NgModule({
   imports: [ConfigViewsModule]

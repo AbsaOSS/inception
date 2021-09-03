@@ -17,8 +17,8 @@
 import {Injectable} from '@angular/core';
 import {ReplaySubject, Subject} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {Session} from "../../session/services/session";
-import {SessionService} from "../../session/services/session.service";
+import {Session} from '../../session/services/session';
+import {SessionService} from '../../session/services/session.service';
 import {NavigationItem} from './navigation-item';
 
 /**

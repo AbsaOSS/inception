@@ -18,7 +18,7 @@ import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
-import {CoreModule} from 'ngx-inception/core';
+import {CoreModule} from '@absaoss/ngx-inception/core';
 import {SendErrorReportComponent} from './send-error-report.component';
 
 const routes: Routes = [{

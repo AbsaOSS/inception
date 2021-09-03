@@ -18,7 +18,7 @@ import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 
 import {RouterModule, Routes} from '@angular/router';
-import {CoreModule} from "../../../../../../../dist/ngx-inception/core";
+import {CoreModule} from '@absaoss/ngx-inception/core';
 import {Menu321TitleResolver} from './menu321-title-resolver';
 import {Menu321Component} from './menu321.component';
 import {Menu322TitleResolver} from './menu322-title-resolver';

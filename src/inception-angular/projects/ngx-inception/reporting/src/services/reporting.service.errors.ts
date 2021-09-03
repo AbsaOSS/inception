@@ -15,7 +15,7 @@
  */
 
 import {HttpErrorResponse} from '@angular/common/http';
-import {Error, HttpError, ProblemDetails} from 'ngx-inception/core';
+import {Error, HttpError, ProblemDetails} from '@absaoss/ngx-inception/core';
 
 /**
  * The DuplicateReportDefinitionError class holds the information for a duplicate report definition

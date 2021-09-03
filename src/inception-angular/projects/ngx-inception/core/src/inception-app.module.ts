@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-import {InceptionInjector} from "./inception-injector";
-import {NavigationItem} from "./layout/services/navigation-item";
-import {NavigationService} from "./layout/services/navigation.service";
+import {InceptionInjector} from './inception-injector';
+import {NavigationItem} from './layout/services/navigation-item';
+import {NavigationService} from './layout/services/navigation.service';
 
 /**
  * The InceptionAppModule class provides the base class that all application module classes that

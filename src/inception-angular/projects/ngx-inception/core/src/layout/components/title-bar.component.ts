@@ -17,7 +17,7 @@
 import {Component, ElementRef, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
-import {Replace} from "../../util/replace";
+import {Replace} from '../../util/replace';
 import {TitleBarService} from '../services/title-bar.service';
 import {BackNavigation} from './back-navigation';
 

@@ -20,10 +20,10 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {
   AccessDeniedError, AdminContainerView, BackNavigation, DialogService, Error, InvalidArgumentError,
   ServiceUnavailableError, SpinnerService
-} from 'ngx-inception/core';
+} from '@absaoss/ngx-inception/core';
 import {finalize, first} from 'rxjs/operators';
-import {CodeCategory} from "../services/code-category";
-import {CodesService} from "../services/codes.service";
+import {CodeCategory} from '../services/code-category';
+import {CodesService} from '../services/codes.service';
 
 /**
  * The EditCodeCategoryComponent class implements the edit code category component.

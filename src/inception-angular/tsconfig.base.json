@@ -20,11 +20,11 @@
       "dom"
     ],
     "paths": {
-      "ngx-inception": [
-        "dist/ngx-inception"
+      "@absaoss/ngx-inception": [
+        "dist/@absoss/ngx-inception"
       ],
-      "ngx-inception/*": [
-        "dist/ngx-inception/*"
+      "@absaoss/ngx-inception/*": [
+        "dist/@absaoss/ngx-inception/*"
       ]
     },
     /* Inception Options */

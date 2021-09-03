@@ -18,7 +18,7 @@ import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
-import {CoreModule} from 'ngx-inception/core';
+import {CoreModule} from '@absaoss/ngx-inception/core';
 import {ActionListTableComponent} from './action-list-table.component';
 import {ActionMenuTableComponent} from './action-menu-table.component';
 import {BasicTableComponent} from './basic-table.component';

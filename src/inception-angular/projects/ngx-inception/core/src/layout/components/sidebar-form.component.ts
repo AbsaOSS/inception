@@ -15,7 +15,7 @@
  */
 
 import {Component, ElementRef, OnInit} from '@angular/core';
-import {Replace} from "../../util/replace";
+import {Replace} from '../../util/replace';
 
 /**
  * The SidebarFormComponent class implements the sidebar form component.

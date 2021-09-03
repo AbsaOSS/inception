@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {SortDirection} from 'ngx-inception/core';
+import {SortDirection} from '@absaoss/ngx-inception/core';
 import {User} from './user';
 import {UserSortBy} from './user-sort-by';
 

@@ -19,7 +19,7 @@ import {Inject, Injectable} from '@angular/core';
 import {
   AccessDeniedError, CommunicationError, Error, INCEPTION_CONFIG, InceptionConfig,
   InvalidArgumentError, ServiceUnavailableError
-} from 'ngx-inception/core';
+} from '@absaoss/ngx-inception/core';
 import {Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import {v4 as uuid} from 'uuid';

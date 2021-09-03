@@ -23,7 +23,7 @@ import {
   AccessDeniedError, AdminContainerView, BackNavigation, ConfirmationDialogComponent, DialogService,
   Error, InvalidArgumentError, ServiceUnavailableError, SortDirection, SpinnerService,
   TableFilterComponent
-} from 'ngx-inception/core';
+} from '@absaoss/ngx-inception/core';
 import {merge, Subscription} from 'rxjs';
 import {finalize, first, tap} from 'rxjs/operators';
 import {GroupMember} from '../services/group-member';

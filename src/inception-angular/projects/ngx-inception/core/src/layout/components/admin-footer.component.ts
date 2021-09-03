@@ -15,7 +15,7 @@
  */
 
 import {Component, ElementRef, Input, OnInit} from '@angular/core';
-import {Replace} from "../../util/replace";
+import {Replace} from '../../util/replace';
 
 /**
  * The AdminFooterComponent class implements the admin footer component.

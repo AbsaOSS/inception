@@ -19,9 +19,9 @@ import {RouterModule, Routes} from '@angular/router';
 
 import {
   AdminContainerComponent, CanActivateFunctionGuard, NotFoundComponent, SimpleContainerComponent
-} from 'ngx-inception/core';
+} from '@absaoss/ngx-inception/core';
 
-import {UserProfileComponent} from 'ngx-inception/security';
+import {UserProfileComponent} from '@absaoss/ngx-inception/security';
 import {AdministrationTitleResolver} from './views/administration/administration-title-resolver';
 
 export const routes: Routes = [{

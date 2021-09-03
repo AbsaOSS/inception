@@ -18,10 +18,10 @@ import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, ActivatedRouteSnapshot, Router} from '@angular/router';
 
 import {Observable, Subscription} from 'rxjs';
-import {INCEPTION_CONFIG, InceptionConfig} from "../../inception-config";
-import {Session} from "../../session/services/session";
-import {SessionService} from "../../session/services/session.service";
-import {SpinnerService} from "../services/spinner.service";
+import {INCEPTION_CONFIG, InceptionConfig} from '../../inception-config';
+import {Session} from '../../session/services/session';
+import {SessionService} from '../../session/services/session.service';
+import {SpinnerService} from '../services/spinner.service';
 import {TitleBarService} from '../services/title-bar.service';
 
 import {AdminContainerView} from './admin-container-view';

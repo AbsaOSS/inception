@@ -15,7 +15,7 @@
  */
 
 import {Directive, HostListener, Input, OnInit} from '@angular/core';
-import {toggleClasses} from "../../util/toggle-classes";
+import {toggleClasses} from '../../util/toggle-classes';
 import {SIDEBAR_CSS_CLASSES} from '../components/sidebar-css-classes';
 
 /**

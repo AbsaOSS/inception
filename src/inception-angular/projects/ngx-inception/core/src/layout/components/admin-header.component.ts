@@ -18,10 +18,10 @@ import {Component, ElementRef, Inject, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {INCEPTION_CONFIG, InceptionConfig} from "../../inception-config";
-import {Session} from "../../session/services/session";
-import {SessionService} from "../../session/services/session.service";
-import {Replace} from "../../util/replace";
+import {INCEPTION_CONFIG, InceptionConfig} from '../../inception-config';
+import {Session} from '../../session/services/session';
+import {SessionService} from '../../session/services/session.service';
+import {Replace} from '../../util/replace';
 
 /**
  * The AdminHeaderComponent class implements the admin header component.

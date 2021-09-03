@@ -20,8 +20,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {
   AccessDeniedError, DialogService, Error, INCEPTION_CONFIG, InceptionConfig, InvalidArgumentError,
   PasswordExpiredError, ServiceUnavailableError, Session, SessionService, SpinnerService
-} from 'ngx-inception/core';
-import {SecurityService, Tenant, Tenants} from 'ngx-inception/security';
+} from '@absaoss/ngx-inception/core';
+import {SecurityService, Tenant, Tenants} from '@absaoss/ngx-inception/security';
 import {finalize, first, map} from 'rxjs/operators';
 
 /**

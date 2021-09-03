@@ -1,6 +1,6 @@
 {
-  "name": "ngx-inception",
-  "version": "1.0.0-SNAPSHOT",
+  "name": "@absaoss/ngx-inception",
+  "version": "1.0.0",
   "peerDependencies": {
     "@angular/animations": "~13.0.0-next.0",
     "@angular/cdk": "~12.2.2",

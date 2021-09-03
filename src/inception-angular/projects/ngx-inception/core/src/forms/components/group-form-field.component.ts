@@ -22,14 +22,14 @@ import {
   Component, ContentChild, ContentChildren, ElementRef, Inject, InjectionToken, Input, NgZone,
   OnDestroy, Optional, QueryList, ViewChild, ViewEncapsulation,
 } from '@angular/core';
-import {MatCheckbox} from "@angular/material/checkbox";
+import {MatCheckbox} from '@angular/material/checkbox';
 import {CanColor, CanColorCtor, mixinColor,} from '@angular/material/core';
 import {
   getMatFormFieldDuplicatedHintError, MAT_FORM_FIELD_DEFAULT_OPTIONS, MatError,
   matFormFieldAnimations, MatFormFieldAppearance, MatFormFieldDefaultOptions, MatHint, MatLabel,
   MatPrefix, MatSuffix
-} from "@angular/material/form-field";
-import {MatRadioButton, MatRadioGroup} from "@angular/material/radio";
+} from '@angular/material/form-field';
+import {MatRadioButton, MatRadioGroup} from '@angular/material/radio';
 import {ANIMATION_MODULE_TYPE} from '@angular/platform-browser/animations';
 import {fromEvent, merge, Subject} from 'rxjs';
 import {startWith, take, takeUntil} from 'rxjs/operators';

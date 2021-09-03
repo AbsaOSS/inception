@@ -18,7 +18,7 @@ import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
-import {CanActivateFunctionGuard, CoreModule} from 'ngx-inception/core';
+import {CanActivateFunctionGuard, CoreModule} from '@absaoss/ngx-inception/core';
 import {EditJobTitleResolver} from './edit-job-title-resolver';
 import {EditJobComponent} from './edit-job.component';
 import {JobParameterDialogComponent} from './job-parameter-dialog.component';

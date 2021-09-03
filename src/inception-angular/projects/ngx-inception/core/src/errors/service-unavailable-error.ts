@@ -16,8 +16,8 @@
 
 import {HttpErrorResponse} from '@angular/common/http';
 import {Error} from './error';
-import {HttpError} from "./http-error";
-import {ProblemDetails} from "./problem-details";
+import {HttpError} from './http-error';
+import {ProblemDetails} from './problem-details';
 
 /**
  * The ServiceUnavailableError class holds the information for a service unavailable error.

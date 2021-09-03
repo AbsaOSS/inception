@@ -18,7 +18,7 @@ import {HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
 import {Inject, Injectable, LOCALE_ID} from '@angular/core';
 import {
   AccessDeniedError, CommunicationError, INCEPTION_CONFIG, InceptionConfig, ServiceUnavailableError
-} from 'ngx-inception/core';
+} from '@absaoss/ngx-inception/core';
 import {Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import {Country} from './country';

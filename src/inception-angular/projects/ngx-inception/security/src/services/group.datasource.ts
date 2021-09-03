@@ -15,7 +15,7 @@
  */
 
 import {CollectionViewer, DataSource} from '@angular/cdk/collections';
-import {SortDirection} from 'ngx-inception/core';
+import {SortDirection} from '@absaoss/ngx-inception/core';
 import {Observable, ReplaySubject, Subject} from 'rxjs';
 import {first} from 'rxjs/operators';
 import {Group} from './group';

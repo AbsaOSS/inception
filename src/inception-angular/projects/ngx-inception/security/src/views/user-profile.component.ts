@@ -21,7 +21,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {
   AccessDeniedError, AdminContainerView, DialogService, Error, InvalidArgumentError,
   ServiceUnavailableError, Session, SessionService, SpinnerService,
-} from 'ngx-inception/core';
+} from '@absaoss/ngx-inception/core';
 import {finalize, first} from 'rxjs/operators';
 import {SecurityService} from '../services/security.service';
 import {User} from '../services/user';

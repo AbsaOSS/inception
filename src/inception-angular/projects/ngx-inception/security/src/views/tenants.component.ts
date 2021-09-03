@@ -22,7 +22,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {
   AccessDeniedError, AdminContainerView, ConfirmationDialogComponent, DialogService, Error,
   InvalidArgumentError, ServiceUnavailableError, SortDirection, SpinnerService, TableFilterComponent
-} from 'ngx-inception/core';
+} from '@absaoss/ngx-inception/core';
 import {merge, Subscription} from 'rxjs';
 import {finalize, first, tap} from 'rxjs/operators';
 import {SecurityService} from '../services/security.service';

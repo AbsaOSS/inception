@@ -19,11 +19,11 @@ import {Inject, Injectable} from '@angular/core';
 import {
   AccessDeniedError, CommunicationError, INCEPTION_CONFIG, InceptionConfig, InvalidArgumentError,
   ProblemDetails, ServiceUnavailableError
-} from 'ngx-inception/core';
+} from '@absaoss/ngx-inception/core';
 import {Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import {Job} from './job';
-import {JobStatus} from "./job-status";
+import {JobStatus} from './job-status';
 import {DuplicateJobError, JobNotFoundError} from './scheduler.service.errors';
 
 /**

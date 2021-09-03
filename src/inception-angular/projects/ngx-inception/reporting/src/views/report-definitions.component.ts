@@ -23,7 +23,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {
   AccessDeniedError, AdminContainerView, ConfirmationDialogComponent, DialogService, Error,
   InvalidArgumentError, ServiceUnavailableError, SpinnerService
-} from 'ngx-inception/core';
+} from '@absaoss/ngx-inception/core';
 import {finalize, first} from 'rxjs/operators';
 import {ReportDefinitionSummary} from '../services/report-definition-summary';
 import {ReportingService} from '../services/reporting.service';

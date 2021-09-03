@@ -15,7 +15,7 @@
  */
 
 import {NgModule} from '@angular/core';
-import {SchedulerViewsModule} from 'ngx-inception/scheduler';
+import {SchedulerViewsModule} from '@absaoss/ngx-inception/scheduler';
 
 @NgModule({
   imports: [SchedulerViewsModule]

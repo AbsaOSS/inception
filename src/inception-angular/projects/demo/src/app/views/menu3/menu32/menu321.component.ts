@@ -15,7 +15,7 @@
  */
 
 import {AfterViewInit, Component} from '@angular/core';
-import {TitleBarService} from 'ngx-inception/core';
+import {TitleBarService} from '@absaoss/ngx-inception/core';
 
 /**
  * The Menu321Component class implements the menu 3.2.1 component.
