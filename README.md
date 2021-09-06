@@ -610,8 +610,7 @@ Complete the following steps to create a new application based on the Absa Incep
       npm install --save @angular/material-moment-adapter@12
       npm install --save @auth0/angular-jwt@5
       npm install --save @fortawesome/fontawesome-free@5
-      npm install --save bootstrap@4
-      npm install --save jquery@3
+      npm install --save bootstrap@4      
       npm install --save moment@2
       npm install --save ngx-perfect-scrollbar@10
       npm install --save string-template@1
@@ -622,9 +621,9 @@ Complete the following steps to create a new application based on the Absa Incep
       npm install --save-dev codelyzer
       ```
    6. Execute the following command under the *src/main/frontend* directory to install the
-      local *ngx-inception* library dependency using a relative path.
+      *ngx-inception* library dependency.
       ```
-      npm install ../../../../inception/src/inception-angular/dist/@absaoss/ngx-inception
+      npm install --save @absaoss/ngx-inception@1.0
       ```
    7. Add the path mapping for the ngx-inception library to the *src/main/frontend/tsconfig.app.json* file.
       ```
@@ -1234,12 +1233,12 @@ Complete the following steps to create a new application based on the Absa Incep
        NOTE: If you do not have application-specific logo and logo symbol images then you can
        copy the ones from the *ngx-inception*
        ```
-       cp src/main/frontend/node_modules/ngx-inception/assets/images/logo.png src/main/frontend/src/assets/images/logo.png
-       cp src/main/frontend/node_modules/ngx-inception/assets/images/logo-symbol.png src/main/frontend/src/assets/images/logo-symbol.png
+       cp src/main/frontend/node_modules/@absaoss/ngx-inception/assets/images/logo.png src/main/frontend/src/assets/images/logo.png
+       cp src/main/frontend/node_modules/@absaoss/ngx-inception/assets/images/logo-symbol.png src/main/frontend/src/assets/images/logo-symbol.png
        ```
    27. Replace the contents of the *src/main/frontend/src/styles.scss* file with the following.
        ```
-       @import "~ngx-inception/assets/scss/default-theme.scss";
+       @import "~@absaoss/ngx-inception/assets/scss/default-theme.scss";
 
        .brand-full {
          display: inline-block;
