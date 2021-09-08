@@ -343,8 +343,8 @@ Complete the following steps to create a new application based on the Absa Incep
               <version>1.6</version>
               <configuration>
                 <workingDirectory>src/main/frontend</workingDirectory>
-                <nodeVersion>v14.15.0</nodeVersion>
-                <npmVersion>6.14.7</npmVersion>
+                <nodeVersion>v16.9.0</nodeVersion>
+                <npmVersion>7.21.1</npmVersion>
               </configuration>
               <executions>
                 <execution>
@@ -651,6 +651,8 @@ Complete the following steps to create a new application based on the Absa Incep
       import {
         CoreModule, InceptionAppModule, InceptionConfig, NavigationBadge, NavigationItem, NavigationTitle
       } from '@absaoss/ngx-inception/core';
+      
+      import {environment} from "../environments/environment";
 
       ...
       ```
@@ -668,22 +670,22 @@ Complete the following steps to create a new application based on the Absa Incep
          applicationVersion: '1.0.0',
 
          // OAuth Token URL
-         oauthTokenUrl: 'http://localhost:8080/oauth/token',
+         oauthTokenUrl: environment.inception_oauthTokenUrl,
 
          // Logout redirect URI
          logoutRedirectUri: '/login',
 
          // Inception API URLs
-         codesApiUrlPrefix: 'http://localhost:8080/api/codes',
-         configApiUrlPrefix: 'http://localhost:8080/api/config',
-         errorApiUrlPrefix: 'http://localhost:8080/api/error',
-         mailApiUrlPrefix: 'http://localhost:8080/api/mail',
-         partyApiUrlPrefix: 'http://localhost:8080/api/party',
-         partyReferenceApiUrlPrefix: 'http://localhost:8080/api/party/reference',
-         referenceApiUrlPrefix: 'http://localhost:8080/api/reference',
-         reportingApiUrlPrefix: 'http://localhost:8080/api/reporting',
-         schedulerApiUrlPrefix: 'http://localhost:8080/api/scheduler',
-         securityApiUrlPrefix: 'http://localhost:8080/api/security',
+         codesApiUrlPrefix: environment.inception_codesApiUrlPrefix,
+         configApiUrlPrefix: environment.inception_configApiUrlPrefix,
+         errorApiUrlPrefix: environment.inception_errorApiUrlPrefix,
+         mailApiUrlPrefix: environment.inception_mailApiUrlPrefix,
+         partyApiUrlPrefix: environment.inception_partyApiUrlPrefix,
+         partyReferenceApiUrlPrefix: environment.inception_partyReferenceApiUrlPrefix,
+         referenceApiUrlPrefix: environment.inception_referenceApiUrlPrefix,
+         reportingApiUrlPrefix: environment.inception_reportingApiUrlPrefix,
+         schedulerApiUrlPrefix: environment.inception_schedulerApiUrlPrefix,
+         securityApiUrlPrefix: environment.inception_securityApiUrlPrefix,
 
          // Flags
          forgottenPasswordEnabled: true,
@@ -1269,6 +1271,51 @@ Complete the following steps to create a new application based on the Absa Incep
          content: "My Company";
        }
        ```
+   28. Replace the contents of the *src/main/frontend/src/environments/environment.ts* file with the following.
+       ```
+       export const environment = {
+         production: false,
+
+         // Inception API endpoints
+         inception_oauthTokenUrl: 'http://localhost:8080/oauth/token',
+         inception_codesApiUrlPrefix: 'http://localhost:8080/api/codes',
+         inception_configApiUrlPrefix: 'http://localhost:8080/api/config',
+         inception_errorApiUrlPrefix: 'http://localhost:8080/api/error',
+         inception_mailApiUrlPrefix: 'http://localhost:8080/api/mail',
+         inception_partyApiUrlPrefix: 'http://localhost:8080/api/party',
+         inception_partyReferenceApiUrlPrefix: 'http://localhost:8080/api/party/reference',
+         inception_referenceApiUrlPrefix: 'http://localhost:8080/api/reference',
+         inception_reportingApiUrlPrefix: 'http://localhost:8080/api/reporting',
+         inception_schedulerApiUrlPrefix: 'http://localhost:8080/api/scheduler',
+         inception_securityApiUrlPrefix: 'http://localhost:8080/api/security',
+       };
+
+       /*
+        * For easier debugging in development mode, we import the following file to ignore 
+        * zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
+        */
+       import 'zone.js/plugins/zone-error';
+       ```
+   29. Replace the contents of the *src/main/frontend/src/environments/environment.prod.ts* file with the following.
+       ```
+       export const environment = {
+         production: true,
+
+         // Inception API endpoints
+         inception_oauthTokenUrl: '/oauth/token',
+         inception_codesApiUrlPrefix: '/api/codes',
+         inception_configApiUrlPrefix: '/api/config',
+         inception_errorApiUrlPrefix: '/api/error',
+         inception_mailApiUrlPrefix: '/api/mail',
+         inception_partyApiUrlPrefix: '/api/party',
+         inception_partyReferenceApiUrlPrefix: '/api/party/reference',
+         inception_referenceApiUrlPrefix: '/api/reference',
+         inception_reportingApiUrlPrefix: '/api/reporting',
+         inception_schedulerApiUrlPrefix: '/api/scheduler',
+         inception_securityApiUrlPrefix: '/api/security',
+       };   
+       ```
+       
 5. Execute the following command under the *src* directory to build the new application.
    ```
    mvn package
