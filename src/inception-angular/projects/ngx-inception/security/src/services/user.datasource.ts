@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import {CollectionViewer, DataSource} from '@angular/cdk/collections';
 import {SortDirection} from '@absaoss/ngx-inception/core';
+import {CollectionViewer, DataSource} from '@angular/cdk/collections';
 import {Observable, ReplaySubject, Subject} from 'rxjs';
 import {first} from 'rxjs/operators';
 import {SecurityService} from './security.service';
@@ -31,9 +31,13 @@ import {Users} from './users';
 export class UserDatasource implements DataSource<User> {
 
   private dataSubject$: Subject<User[]> = new ReplaySubject<User[]>();
+
   private loadingSubject$: Subject<boolean> = new ReplaySubject<boolean>();
+
   loading$ = this.loadingSubject$.asObservable();
+
   private totalSubject$: Subject<number> = new ReplaySubject<number>();
+
   total$ = this.totalSubject$.asObservable();
 
   constructor(private securityService: SecurityService) {

@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-import {AfterViewInit, Component} from '@angular/core';
-import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
 import {
   AccessDeniedError, AdminContainerView, BackNavigation, DialogService, Error, InvalidArgumentError,
   ServiceUnavailableError, SpinnerService
 } from '@absaoss/ngx-inception/core';
+import {AfterViewInit, Component} from '@angular/core';
+import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
 import {combineLatest} from 'rxjs';
 import {finalize, first} from 'rxjs/operators';
 import {SecurityService} from '../services/security.service';
@@ -41,10 +41,15 @@ export class EditUserComponent extends AdminContainerView implements AfterViewIn
   editUserForm: FormGroup;
 
   emailFormControl: FormControl;
+
   mobileNumberFormControl: FormControl;
+
   nameFormControl: FormControl;
+
   phoneNumberFormControl: FormControl;
+
   preferredNameFormControl: FormControl;
+
   user?: User;
 
   userDirectoryCapabilities?: UserDirectoryCapabilities;

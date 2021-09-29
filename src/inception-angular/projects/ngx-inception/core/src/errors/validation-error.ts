@@ -55,10 +55,12 @@ export class ValidationError {
    * The attributes associated with the validation error.
    */
   attributes: ValidationErrorAttribute[];
+
   /**
    * The error message for the validation error.
    */
   message: string;
+
   /**
    * The path for the property that resulted in the validation error.
    */

@@ -67,10 +67,12 @@ export class Session {
    * The Universally Unique Identifiers (UUIDs) for tenants the user is associated with.
    */
   tenantIds: string[];
+
   /**
    * The Universally Unique Identifier (UUID) for the user directory the user is associated with.
    */
   userDirectoryId: string;
+
   /**
    * The username for the user, the user session is associated with.
    */

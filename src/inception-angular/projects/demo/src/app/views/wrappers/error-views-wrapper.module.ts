@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import {NgModule} from '@angular/core';
 import {ErrorViewsModule} from '@absaoss/ngx-inception/error';
+import {NgModule} from '@angular/core';
 
 @NgModule({
   imports: [ErrorViewsModule]

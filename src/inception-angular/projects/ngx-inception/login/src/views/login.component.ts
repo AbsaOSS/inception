@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-import {Component, Inject, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
 import {
   AccessDeniedError, DialogService, Error, INCEPTION_CONFIG, InceptionConfig, InvalidArgumentError,
   PasswordExpiredError, ServiceUnavailableError, Session, SessionService, SpinnerService
 } from '@absaoss/ngx-inception/core';
 import {SecurityService, Tenant, Tenants} from '@absaoss/ngx-inception/security';
+import {Component, Inject, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
 import {finalize, first, map} from 'rxjs/operators';
 
 /**

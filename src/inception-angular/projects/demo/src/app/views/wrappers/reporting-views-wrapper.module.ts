@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import {NgModule} from '@angular/core';
 import {ReportingViewsModule} from '@absaoss/ngx-inception/reporting';
+import {NgModule} from '@angular/core';
 
 @NgModule({
   imports: [ReportingViewsModule]

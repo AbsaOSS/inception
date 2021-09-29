@@ -14,14 +14,13 @@
  * limitations under the License.
  */
 
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-
 import {
   AdminContainerComponent, CanActivateFunctionGuard, NotFoundComponent, SimpleContainerComponent
 } from '@absaoss/ngx-inception/core';
 
 import {UserProfileComponent} from '@absaoss/ngx-inception/security';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {AdministrationTitleResolver} from './views/administration/administration-title-resolver';
 
 export const routes: Routes = [{

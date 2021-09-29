@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-import {AfterViewInit, ChangeDetectorRef, Component, OnDestroy, ViewChild} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
 import {
   AccessDeniedError, AdminContainerView, BackNavigation, DialogService, Error, InvalidArgumentError,
   ServiceUnavailableError, SpinnerService
 } from '@absaoss/ngx-inception/core';
+import {AfterViewInit, ChangeDetectorRef, Component, OnDestroy, ViewChild} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
 import {combineLatest, Subscription} from 'rxjs';
 import {finalize, first, pairwise, startWith} from 'rxjs/operators';
 import {SecurityService} from '../services/security.service';
@@ -41,13 +41,21 @@ import {LdapUserDirectoryComponent} from './ldap-user-directory.component';
 export class EditUserDirectoryComponent extends AdminContainerView implements AfterViewInit, OnDestroy {
 
   editUserDirectoryForm: FormGroup;
+
   @ViewChild(InternalUserDirectoryComponent) internalUserDirectory?: InternalUserDirectoryComponent;
+
   @ViewChild(LdapUserDirectoryComponent) ldapUserDirectory?: LdapUserDirectoryComponent;
+
   nameFormControl: FormControl;
+
   userDirectory?: UserDirectory;
+
   userDirectoryId: string;
+
   userDirectoryTypeFormControl: FormControl;
+
   userDirectoryTypes: UserDirectoryType[] = [];
+
   private subscriptions: Subscription = new Subscription();
 
   constructor(private changeDetectorRef: ChangeDetectorRef, private router: Router,

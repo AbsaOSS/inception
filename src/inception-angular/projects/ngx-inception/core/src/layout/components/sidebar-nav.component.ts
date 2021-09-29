@@ -36,7 +36,9 @@ import {NavigationService} from '../services/navigation.service';
 export class SidebarNavComponent implements OnInit, OnDestroy {
 
   navItems: NavigationItem[];
+
   @HostBinding('attr.role') role = 'nav';
+
   private userNavigationSubscription?: Subscription;
 
   /**

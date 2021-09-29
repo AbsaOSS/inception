@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import {NgModule} from '@angular/core';
 import {ConfigViewsModule} from '@absaoss/ngx-inception/config';
+import {NgModule} from '@angular/core';
 
 @NgModule({
   imports: [ConfigViewsModule]

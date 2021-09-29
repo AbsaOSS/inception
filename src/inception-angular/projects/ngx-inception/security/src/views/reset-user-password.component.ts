@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-import {AfterViewInit, Component} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
 import {
   AccessDeniedError, AdminContainerView, BackNavigation, DialogService, Error, InvalidArgumentError,
   ServiceUnavailableError, SpinnerService
 } from '@absaoss/ngx-inception/core';
+import {AfterViewInit, Component} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
 import {combineLatest} from 'rxjs';
 import {finalize, first} from 'rxjs/operators';
 import {SecurityService} from '../services/security.service';
@@ -51,9 +51,13 @@ export class ResetUserPasswordComponent extends AdminContainerView implements Af
   resetPasswordHistoryFormControl: FormControl;
 
   resetUserPasswordForm: FormGroup;
+
   userDirectoryCapabilities?: UserDirectoryCapabilities;
+
   userDirectoryId: string;
+
   username: string;
+
   usernameFormControl: FormControl;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private securityService: SecurityService,

@@ -27,22 +27,27 @@ export class NavigationItem {
    * The optional authorities that are used to restrict access to the navigation item.
    */
   authorities: string[];
+
   /**
    * The optional navigation badge associated with the navigation item.
    */
   badge?: NavigationBadge;
+
   /**
    * The optional child navigation items.
    */
   children: NavigationItem[];
+
   /**
    * The optional class associated with the navigation item.
    */
   cssClass?: string;
+
   /**
    * The optional divider indicator.
    */
   divider = false;
+
   /**
    * The optional icon associated with the navigation item.
    */

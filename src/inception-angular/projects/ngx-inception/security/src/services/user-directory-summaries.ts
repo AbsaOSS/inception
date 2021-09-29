@@ -39,14 +39,17 @@ export class UserDirectorySummaries {
    * The optional page size.
    */
   pageSize?: number;
+
   /**
    * The optional sort direction that was applied to the user directory summaries.
    */
   sortDirection?: SortDirection;
+
   /**
    * The total number of user directory summaries.
    */
   total: number;
+
   /**
    * The user directory summaries.
    */

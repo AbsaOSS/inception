@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
+import {CanActivateFunctionGuard, CoreModule} from '@absaoss/ngx-inception/core';
 import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
-import {CanActivateFunctionGuard, CoreModule} from '@absaoss/ngx-inception/core';
 import {ConfigTitleResolver} from './config-title-resolver';
 import {ConfigsTitleResolver} from './configs-title-resolver';
 import {ConfigsComponent} from './configs.component';

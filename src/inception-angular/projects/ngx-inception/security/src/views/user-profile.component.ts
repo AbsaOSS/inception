@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-import {Location} from '@angular/common'
-import {AfterViewInit, Component} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
 import {
   AccessDeniedError, AdminContainerView, DialogService, Error, InvalidArgumentError,
   ServiceUnavailableError, Session, SessionService, SpinnerService,
 } from '@absaoss/ngx-inception/core';
+import {Location} from '@angular/common'
+import {AfterViewInit, Component} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
 import {finalize, first} from 'rxjs/operators';
 import {SecurityService} from '../services/security.service';
 import {User} from '../services/user';
@@ -38,12 +38,19 @@ import {User} from '../services/user';
 export class UserProfileComponent extends AdminContainerView implements AfterViewInit {
 
   emailFormControl: FormControl;
+
   mobileNumberFormControl: FormControl;
+
   nameFormControl: FormControl;
+
   phoneNumberFormControl: FormControl;
+
   preferredNameFormControl: FormControl;
+
   user?: User;
+
   userProfileForm: FormGroup;
+
   usernameFormControl: FormControl;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private location: Location,

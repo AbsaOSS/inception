@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
+import {
+  AccessDeniedError, AdminContainerView, BackNavigation, ConfirmationDialogComponent, DialogService,
+  Error, InvalidArgumentError, ServiceUnavailableError, SpinnerService
+} from '@absaoss/ngx-inception/core';
 import {AfterViewInit, Component, OnDestroy, ViewChild} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {MatDialogRef} from '@angular/material/dialog';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {ActivatedRoute, Router} from '@angular/router';
-import {
-  AccessDeniedError, AdminContainerView, BackNavigation, ConfirmationDialogComponent, DialogService,
-  Error, InvalidArgumentError, ServiceUnavailableError, SpinnerService
-} from '@absaoss/ngx-inception/core';
 import {ReplaySubject, Subject, Subscription} from 'rxjs';
 import {debounceTime, finalize, first, map, startWith} from 'rxjs/operators';
 import {SecurityService} from '../services/security.service';
@@ -43,13 +43,21 @@ import {UserDirectorySummary} from '../services/user-directory-summary';
 export class TenantUserDirectoriesComponent extends AdminContainerView implements AfterViewInit, OnDestroy {
 
   allUserDirectories: UserDirectorySummary[] = [];
+
   availableUserDirectories$: Subject<UserDirectorySummary[]> = new ReplaySubject<UserDirectorySummary[]>();
+
   dataSource = new MatTableDataSource<UserDirectorySummary>([]);
+
   displayedColumns = ['existingUserDirectoryName', 'actions'];
+
   filteredUserDirectories$: Subject<UserDirectorySummary[]> = new ReplaySubject<UserDirectorySummary[]>();
+
   newUserDirectoryFormControl: FormControl;
+
   @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
+
   tenantId: string;
+
   private subscriptions: Subscription = new Subscription();
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private securityService: SecurityService,

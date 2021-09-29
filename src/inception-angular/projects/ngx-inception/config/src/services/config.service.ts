@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-import {HttpClient, HttpErrorResponse, HttpResponse} from '@angular/common/http';
-import {Inject, Injectable} from '@angular/core';
 import {
   AccessDeniedError, CommunicationError, INCEPTION_CONFIG, InceptionConfig, InvalidArgumentError,
   ProblemDetails, ServiceUnavailableError
 } from '@absaoss/ngx-inception/core';
+import {HttpClient, HttpErrorResponse, HttpResponse} from '@angular/common/http';
+import {Inject, Injectable} from '@angular/core';
 import {Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import {Config} from './config';

@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-import {AfterViewInit, Component, HostBinding, OnDestroy, ViewChild} from '@angular/core';
-import {MatDialogRef} from '@angular/material/dialog';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {ActivatedRoute, Router} from '@angular/router';
 import {
   AccessDeniedError, AdminContainerView, BackNavigation, ConfirmationDialogComponent, DialogService,
   Error, InvalidArgumentError, ServiceUnavailableError, SortDirection, SpinnerService,
   TableFilterComponent
 } from '@absaoss/ngx-inception/core';
+import {AfterViewInit, Component, HostBinding, OnDestroy, ViewChild} from '@angular/core';
+import {MatDialogRef} from '@angular/material/dialog';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {ActivatedRoute, Router} from '@angular/router';
 import {merge, Subscription} from 'rxjs';
 import {finalize, first, tap} from 'rxjs/operators';
 import {GroupMember} from '../services/group-member';
@@ -43,13 +43,21 @@ import {SecurityService} from '../services/security.service';
 export class GroupMembersComponent extends AdminContainerView implements AfterViewInit, OnDestroy {
 
   dataSource: GroupMemberDatasource;
+
   displayedColumns = ['memberName', 'memberType', 'actions'];
+
   groupName: string;
+
   @HostBinding('class') hostClass = 'flex flex-column flex-fill';
+
   @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
+
   @ViewChild(MatSort, {static: true}) sort!: MatSort;
+
   @ViewChild(TableFilterComponent, {static: true}) tableFilter!: TableFilterComponent;
+
   userDirectoryId: string;
+
   private subscriptions: Subscription = new Subscription();
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private securityService: SecurityService,

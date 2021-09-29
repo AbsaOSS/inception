@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-import {CommonModule} from '@angular/common';
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
 import {CodeCategoriesTitleResolver} from '@absaoss/ngx-inception/codes';
 import {ConfigsTitleResolver} from '@absaoss/ngx-inception/config';
 import {MailTitleResolver} from '@absaoss/ngx-inception/mail';
 import {ReportingTitleResolver} from '@absaoss/ngx-inception/reporting';
 import {SchedulerTitleResolver} from '@absaoss/ngx-inception/scheduler';
 import {SecurityTitleResolver} from '@absaoss/ngx-inception/security';
+import {CommonModule} from '@angular/common';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {AdministrationTitleResolver} from './administration-title-resolver';
 import {AdministrationComponent} from './administration.component';
 import {SystemTitleResolver} from './system-title-resolver';

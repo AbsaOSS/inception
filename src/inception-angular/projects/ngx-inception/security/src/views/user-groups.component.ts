@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
+import {
+  AccessDeniedError, AdminContainerView, BackNavigation, ConfirmationDialogComponent, DialogService,
+  Error, InvalidArgumentError, ServiceUnavailableError, SpinnerService
+} from '@absaoss/ngx-inception/core';
 import {AfterViewInit, Component, OnDestroy, ViewChild} from '@angular/core';
 import {MatDialogRef} from '@angular/material/dialog';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {ActivatedRoute, Router} from '@angular/router';
-import {
-  AccessDeniedError, AdminContainerView, BackNavigation, ConfirmationDialogComponent, DialogService,
-  Error, InvalidArgumentError, ServiceUnavailableError, SpinnerService
-} from '@absaoss/ngx-inception/core';
 import {ReplaySubject, Subject, Subscription} from 'rxjs';
 import {finalize, first} from 'rxjs/operators';
 import {GroupMemberType} from '../services/group-member-type';
@@ -40,13 +40,21 @@ import {SecurityService} from '../services/security.service';
 export class UserGroupsComponent extends AdminContainerView implements AfterViewInit, OnDestroy {
 
   allGroupNames: string[] = [];
+
   availableGroupNames$: Subject<string[]> = new ReplaySubject<string[]>();
+
   dataSource = new MatTableDataSource<string>([]);
+
   displayedColumns = ['existingGroupName', 'actions'];
+
   @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
+
   selectedGroupName = '';
+
   userDirectoryId: string;
+
   username: string;
+
   private subscriptions: Subscription = new Subscription();
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private securityService: SecurityService,

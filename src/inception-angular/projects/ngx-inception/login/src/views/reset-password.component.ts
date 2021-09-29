@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {MatDialogRef} from '@angular/material/dialog';
-import {ActivatedRoute, Params, Router} from '@angular/router';
 import {
   AccessDeniedError, DialogService, Error, InformationDialogComponent, InvalidArgumentError,
   ServiceUnavailableError, SpinnerService
 } from '@absaoss/ngx-inception/core';
 import {SecurityService} from '@absaoss/ngx-inception/security';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {MatDialogRef} from '@angular/material/dialog';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import {finalize, first} from 'rxjs/operators';
 
 /**
@@ -36,9 +36,13 @@ import {finalize, first} from 'rxjs/operators';
 export class ResetPasswordComponent implements OnInit {
 
   confirmNewPasswordFormControl: FormControl;
+
   newPasswordFormControl: FormControl;
+
   resetPasswordForm: FormGroup;
+
   securityCode?: string;
+
   usernameFormControl: FormControl;
 
   /**

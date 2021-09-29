@@ -67,14 +67,23 @@ import {FileUploadMixinBase} from './file-upload-mixin';
 export class FileUploadComponent extends FileUploadMixinBase implements MatFormFieldControl<File[]>,
   ControlValueAccessor, OnInit, OnDestroy, DoCheck {
   static nextId = 0;
+
   @Input() accept?: string;
+
   @Input() autofilled = false;
+
   controlType = 'file-input';
+
   @HostBinding('attr.aria-describedby') describedBy = '';
+
   @Input() errorStateMatcher: ErrorStateMatcher;
+
   focused = false;
+
   @HostBinding() id = `ngx-mat-file-input-${FileUploadComponent.nextId++}`;
+
   @Input() multiple = false;
+
   @Input() placeholder = '';
 
   /**

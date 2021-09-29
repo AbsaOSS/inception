@@ -82,8 +82,11 @@ import {debounceTime, distinctUntilChanged, tap} from 'rxjs/operators';
 export class TableFilterComponent implements OnInit, OnDestroy {
 
   @Output() changed: EventEmitter<string> = new EventEmitter<string>();
+
   filter = '';
+
   @ViewChild('tableFilterInput', {static: true}) tableFilterInput!: ElementRef;
+
   private tableFilterInputSubscription?: Subscription;
 
   ngOnDestroy(): void {

@@ -26,6 +26,7 @@ import {Component} from '@angular/core';
 })
 export class ExpansionPanelsComponent {
   panelOpenState = false;
+
   step = 0;
 
   nextStep() {

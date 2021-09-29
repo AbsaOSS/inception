@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import {NgModule} from '@angular/core';
 import {SecurityViewsModule} from '@absaoss/ngx-inception/security';
+import {NgModule} from '@angular/core';
 
 @NgModule({
   imports: [SecurityViewsModule]

@@ -38,11 +38,13 @@ import {NavigationItem} from '../services/navigation-item';
       </ng-template>
       <ng-template #checkForDropdown>
         <ng-container *ngIf="isDropdown(); else sidebarNavLink">
-          <li [ngClass]="!!this.navItem.cssClass ? 'nav-item nav-dropdown ' + navItem.cssClass : 'nav-item nav-dropdown'"
-              [class.open]="isActive()" routerLinkActive="open" sidebarNavDropdown>
+          <li
+            [ngClass]="!!this.navItem.cssClass ? 'nav-item nav-dropdown ' + navItem.cssClass : 'nav-item nav-dropdown'"
+            [class.open]="isActive()" routerLinkActive="open" sidebarNavDropdown>
             <div class="sidebar-nav-dropdown">
               <a class="nav-link nav-dropdown-toggle" sidebarNavDropdownToggler>
-                <i *ngIf="this.navItem.icon && !!this.navItem.icon" class="nav-icon {{ navItem.icon }}"></i>
+                <i *ngIf="this.navItem.icon && !!this.navItem.icon"
+                   class="nav-icon {{ navItem.icon }}"></i>
                 {{ navItem.name }}
                 <span *ngIf="this.navItem.badge && !!this.navItem.badge"
                       [ngClass]="'badge badge-' + navItem.badge.variant">
@@ -50,7 +52,8 @@ import {NavigationItem} from '../services/navigation-item';
                 </span>
               </a>
               <ul class="nav-dropdown-items">
-                <sidebar-nav-item *ngFor="let child of navItem.children" [navItem]='child'></sidebar-nav-item>
+                <sidebar-nav-item *ngFor="let child of navItem.children"
+                                  [navItem]='child'></sidebar-nav-item>
               </ul>
             </div>
           </li>

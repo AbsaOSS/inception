@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
+import {
+  DialogService, Error, InformationDialogComponent, ProblemDetails, SpinnerService
+} from '@absaoss/ngx-inception/core';
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatDialogRef} from '@angular/material/dialog';
 import {ActivatedRoute, Router} from '@angular/router';
-import {
-  DialogService, Error, InformationDialogComponent, ProblemDetails, SpinnerService
-} from '@absaoss/ngx-inception/core';
 import {first, map} from 'rxjs/operators';
 import {ErrorService} from '../services/error.service';
 

@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-import {AfterViewInit, Component} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {ActivatedRoute, Router} from '@angular/router';
 import {
   AccessDeniedError, AdminContainerView, BackNavigation, DialogService, Error, InvalidArgumentError,
   ServiceUnavailableError, SpinnerService
 } from '@absaoss/ngx-inception/core';
+import {AfterViewInit, Component} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {ActivatedRoute, Router} from '@angular/router';
 import {finalize, first} from 'rxjs/operators';
 import {Job} from '../services/job';
 import {JobParameter} from '../services/job-parameter';
@@ -43,14 +43,22 @@ import {
 export class NewJobComponent extends AdminContainerView implements AfterViewInit {
 
   JobStatus = JobStatus;
+
   enabledFormControl: FormControl;
+
   getJobStatusDescription = SchedulerService.getJobStatusDescription;
+
   idFormControl: FormControl;
+
   job?: Job;
+
   jobClassFormControl: FormControl;
+
   jobParameters: JobParameter[] = [];
+
   jobStatuses: JobStatus[] = [JobStatus.Unscheduled, JobStatus.Scheduled, JobStatus.Executing,
     JobStatus.Executed, JobStatus.Aborted, JobStatus.Failed, JobStatus.OnceOff];
+
   nameFormControl: FormControl;
 
   newJobForm: FormGroup;

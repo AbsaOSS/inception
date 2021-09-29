@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
+import {
+  AccessDeniedError, AdminContainerView, ConfirmationDialogComponent, DialogService, Error,
+  InvalidArgumentError, ServiceUnavailableError, SortDirection, SpinnerService, TableFilterComponent
+} from '@absaoss/ngx-inception/core';
 import {AfterViewInit, Component, HostBinding, OnDestroy, ViewChild} from '@angular/core';
 import {MatDialogRef} from '@angular/material/dialog';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {ActivatedRoute, Router} from '@angular/router';
-import {
-  AccessDeniedError, AdminContainerView, ConfirmationDialogComponent, DialogService, Error,
-  InvalidArgumentError, ServiceUnavailableError, SortDirection, SpinnerService, TableFilterComponent
-} from '@absaoss/ngx-inception/core';
 import {merge, Subscription} from 'rxjs';
 import {finalize, first, tap} from 'rxjs/operators';
 import {SecurityService} from '../services/security.service';
@@ -40,11 +40,17 @@ import {UserDirectorySummaryDatasource} from '../services/user-directory-summary
 export class UserDirectoriesComponent extends AdminContainerView implements AfterViewInit, OnDestroy {
 
   dataSource: UserDirectorySummaryDatasource;
+
   displayedColumns = ['name', 'actions'];
+
   @HostBinding('class') hostClass = 'flex flex-column flex-fill';
+
   @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
+
   @ViewChild(MatSort, {static: true}) sort!: MatSort;
+
   @ViewChild(TableFilterComponent, {static: true}) tableFilter!: TableFilterComponent;
+
   private subscriptions: Subscription = new Subscription();
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private securityService: SecurityService,

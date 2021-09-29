@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
+import {CanActivateFunctionGuard, CoreModule} from '@absaoss/ngx-inception/core';
 import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
-import {CanActivateFunctionGuard, CoreModule} from '@absaoss/ngx-inception/core';
 import {EditReportDefinitionTitleResolver} from './edit-report-definition-title-resolver';
 import {EditReportDefinitionComponent} from './edit-report-definition.component';
 import {NewReportDefinitionTitleResolver} from './new-report-definition-title-resolver';

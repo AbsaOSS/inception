@@ -30,6 +30,7 @@ import {SIDEBAR_CSS_CLASSES} from '../components/sidebar-css-classes';
 export class SidebarTogglerDirective implements OnInit {
 
   bp?: string;
+
   @Input('sidebarToggler') breakpoint?: string;
 
   /**

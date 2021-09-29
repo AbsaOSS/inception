@@ -14,11 +14,10 @@
  * limitations under the License.
  */
 
+import {Country, Language, ReferenceService, Region} from '@absaoss/ngx-inception/reference';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {
-  Country, Language, ReferenceService, Region} from '@absaoss/ngx-inception/reference';
 import {ReplaySubject, Subject, Subscription} from 'rxjs';
 import {debounceTime, first, map, startWith} from 'rxjs/operators';
 
@@ -33,9 +32,13 @@ import {debounceTime, first, map, startWith} from 'rxjs/operators';
 export class ReferenceFormComponent implements OnInit, OnDestroy {
 
   filteredCountries$: Subject<Country[]> = new ReplaySubject<Country[]>();
+
   filteredLanguages$: Subject<Language[]> = new ReplaySubject<Language[]>();
+
   filteredRegions$: Subject<Region[]> = new ReplaySubject<Region[]>();
+
   referenceForm: FormGroup;
+
   private subscriptions: Subscription = new Subscription();
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute,

@@ -37,6 +37,7 @@ export class ListsComponent {
     updated: new Date('1/28/16'),
   }
   ];
+
   notes = [{
     name: 'Vacation Itinerary',
     updated: new Date('2/20/16'),
@@ -45,6 +46,7 @@ export class ListsComponent {
     updated: new Date('1/18/16'),
   }
   ];
+
   planets: any[] = [{
     name: 'Jupiter',
     image: 'assets/images/planets/1.png',
@@ -62,6 +64,7 @@ export class ListsComponent {
     detail: 'Mars is the fourth planet from the Sun and the second-smallest planet'
   }
   ];
+
   typesOfShoes = ['Dogs', 'Cats', 'Birds', 'Hamsters', 'Ponies'];
 
   constructor() {

@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import {NgModule} from '@angular/core';
 import {MailViewsModule} from '@absaoss/ngx-inception/mail';
+import {NgModule} from '@angular/core';
 
 @NgModule({
   imports: [MailViewsModule]

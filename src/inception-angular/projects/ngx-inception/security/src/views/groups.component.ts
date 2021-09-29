@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
+import {
+  AccessDeniedError, AdminContainerView, ConfirmationDialogComponent, DialogService, Error,
+  InvalidArgumentError, ServiceUnavailableError, Session, SessionService, SortDirection,
+  SpinnerService, TableFilterComponent
+} from '@absaoss/ngx-inception/core';
 import {AfterViewInit, Component, HostBinding, OnDestroy, ViewChild} from '@angular/core';
 import {MatDialogRef} from '@angular/material/dialog';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSelect, MatSelectChange} from '@angular/material/select';
 import {MatSort} from '@angular/material/sort';
 import {ActivatedRoute, Router} from '@angular/router';
-import {
-  AccessDeniedError, AdminContainerView, ConfirmationDialogComponent, DialogService, Error,
-  InvalidArgumentError, ServiceUnavailableError, Session, SessionService, SortDirection,
-  SpinnerService, TableFilterComponent
-} from '@absaoss/ngx-inception/core';
 import {BehaviorSubject, merge, Observable, ReplaySubject, Subject, Subscription} from 'rxjs';
 import {finalize, first, map, tap} from 'rxjs/operators';
 import {GroupDatasource} from '../services/group.datasource';
@@ -44,15 +44,25 @@ import {UserDirectorySummary} from '../services/user-directory-summary';
 export class GroupsComponent extends AdminContainerView implements AfterViewInit, OnDestroy {
 
   dataSource: GroupDatasource;
+
   displayedColumns = ['name', 'actions'];
+
   @HostBinding('class') hostClass = 'flex flex-column flex-fill';
+
   @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
+
   @ViewChild(MatSort, {static: true}) sort!: MatSort;
+
   @ViewChild(TableFilterComponent, {static: true}) tableFilter!: TableFilterComponent;
+
   userDirectories: UserDirectorySummary[] = [];
+
   userDirectoryCapabilities$: Subject<UserDirectoryCapabilities> = new ReplaySubject<UserDirectoryCapabilities>();
+
   userDirectoryId$: BehaviorSubject<string> = new BehaviorSubject<string>('');
+
   @ViewChild('userDirectorySelect', {static: true}) userDirectorySelect!: MatSelect;
+
   private subscriptions: Subscription = new Subscription();
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute,

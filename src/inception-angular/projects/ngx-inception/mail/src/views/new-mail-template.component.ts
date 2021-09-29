@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-import {AfterViewInit, Component} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
 import {
   AccessDeniedError, AdminContainerView, BackNavigation, Base64, DialogService, Error,
   FileValidator, InvalidArgumentError, ServiceUnavailableError, SpinnerService
 } from '@absaoss/ngx-inception/core';
+import {AfterViewInit, Component} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
 import {finalize, first} from 'rxjs/operators';
 import {MailTemplate} from '../services/mail-template';
 import {MailTemplateContentType} from '../services/mail-template-content-type';
@@ -38,10 +38,14 @@ import {MailService} from '../services/mail.service';
 export class NewMailTemplateComponent extends AdminContainerView implements AfterViewInit {
 
   MailTemplateContentType = MailTemplateContentType;
+
   contentTypeFormControl: FormControl;
+
   contentTypes: MailTemplateContentType[] = [MailTemplateContentType.Text,
     MailTemplateContentType.HTML];
+
   getMailTemplateContentTypeDescription = MailService.getMailTemplateContentTypeDescription;
+
   idFormControl: FormControl;
 
   mailTemplate?: MailTemplate;

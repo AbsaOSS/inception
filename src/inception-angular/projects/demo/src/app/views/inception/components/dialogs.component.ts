@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
+import {ConfirmationDialogComponent, DialogService, Error} from '@absaoss/ngx-inception/core';
 import {Component} from '@angular/core';
 import {MatDialogRef} from '@angular/material/dialog';
-import {ConfirmationDialogComponent, DialogService, Error} from '@absaoss/ngx-inception/core';
 import {first} from 'rxjs/operators';
 
 /**

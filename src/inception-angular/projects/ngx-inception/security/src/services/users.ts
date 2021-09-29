@@ -39,22 +39,27 @@ export class Users {
    * The optional page size.
    */
   pageSize?: number;
+
   /**
    * The optional method used to sort the users e.g. by name.
    */
   sortBy?: UserSortBy;
+
   /**
    * The optional sort direction that was applied to the users.
    */
   sortDirection?: SortDirection;
+
   /**
    * The total number of users.
    */
   total: number;
+
   /**
    * The Universally Unique Identifier (UUID) for the user directory the users are associated with.
    */
   userDirectoryId: string;
+
   /**
    * The users.
    */

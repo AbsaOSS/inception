@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import {NgModule} from '@angular/core';
 import {SchedulerViewsModule} from '@absaoss/ngx-inception/scheduler';
+import {NgModule} from '@angular/core';
 
 @NgModule({
   imports: [SchedulerViewsModule]

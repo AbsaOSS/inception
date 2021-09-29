@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
+import {AdminContainerView, BackNavigation} from '@absaoss/ngx-inception/core';
 import {Component} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {AdminContainerView, BackNavigation} from '@absaoss/ngx-inception/core';
 import {Observable} from 'rxjs';
 
 /**

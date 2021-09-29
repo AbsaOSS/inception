@@ -138,6 +138,7 @@ const ELEMENT_DATA: PeriodicElement[] = [{
 export class BasicTableComponent {
 
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+
   displayedColumns = ['position', 'name', 'weight', 'symbol'];
 }
 

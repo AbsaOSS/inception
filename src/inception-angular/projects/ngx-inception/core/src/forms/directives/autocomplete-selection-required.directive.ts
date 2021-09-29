@@ -28,6 +28,7 @@ export class AutocompleteSelectionRequiredDirective implements AfterViewInit, On
 
   @Input()
   matAutocomplete: MatAutocomplete | undefined;
+
   private subscriptions: Subscription = new Subscription();
 
   constructor(@Host() @Self() private readonly autoCompleteTrigger: MatAutocompleteTrigger,

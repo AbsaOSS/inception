@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
+import {Country, ReferenceService} from '@absaoss/ngx-inception/reference';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Country, ReferenceService} from '@absaoss/ngx-inception/reference';
 import {ReplaySubject, Subject, Subscription} from 'rxjs';
 import {debounceTime, first, map, startWith} from 'rxjs/operators';
 
@@ -26,6 +26,7 @@ import {debounceTime, first, map, startWith} from 'rxjs/operators';
  */
 class Title {
   name: string;
+
   value: string;
 
   constructor(name: string, value: string) {
@@ -45,10 +46,15 @@ class Title {
 export class ExampleFormComponent implements OnInit, OnDestroy {
 
   static readonly MAX_DATE = Date.now();
+
   static readonly MIN_DATE = new Date(1900, 1, 1);
+
   exampleForm: FormGroup;
+
   filteredCountries$: Subject<Country[]> = new ReplaySubject<Country[]>();
+
   titles: Array<Title> = [new Title('Mr', 'Mr'), new Title('Mrs', 'Mrs'), new Title('Ms', 'Ms')];
+
   private subscriptions: Subscription = new Subscription();
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute,

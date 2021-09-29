@@ -76,14 +76,23 @@ export class LdapUserDirectoryComponent implements ControlValueAccessor, Validat
   supportsGroupMemberAdministrationFormControl: FormControl;
 
   supportsUserAdministrationFormControl: FormControl;
+
   useSSLFormControl: FormControl;
+
   userBaseDNFormControl: FormControl;
+
   userEmailAttributeFormControl: FormControl;
+
   userMobileNumberAttributeFormControl: FormControl;
+
   userNameAttributeFormControl: FormControl;
+
   userObjectClassFormControl: FormControl;
+
   userPhoneNumberAttributeFormControl: FormControl;
+
   userPreferredNameAttributeFormControl: FormControl;
+
   userUsernameAttributeFormControl: FormControl;
 
   constructor() {

@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import {HttpErrorResponse} from '@angular/common/http';
 import {Error, HttpError, ProblemDetails} from '@absaoss/ngx-inception/core';
+import {HttpErrorResponse} from '@angular/common/http';
 
 /**
  * The DuplicateJobError class holds the information for a duplicate job error.

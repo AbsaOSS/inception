@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import {CollectionViewer, DataSource} from '@angular/cdk/collections';
 import {SortDirection} from '@absaoss/ngx-inception/core';
+import {CollectionViewer, DataSource} from '@angular/cdk/collections';
 import {Observable, ReplaySubject, Subject} from 'rxjs';
 import {first} from 'rxjs/operators';
 import {SecurityService} from './security.service';
@@ -30,9 +30,13 @@ import {UserDirectorySummary} from './user-directory-summary';
 export class UserDirectorySummaryDatasource implements DataSource<UserDirectorySummary> {
 
   private dataSubject$: Subject<UserDirectorySummary[]> = new ReplaySubject<UserDirectorySummary[]>();
+
   private loadingSubject$: Subject<boolean> = new ReplaySubject<boolean>();
+
   loading$ = this.loadingSubject$.asObservable();
+
   private totalSubject$: Subject<number> = new ReplaySubject<number>();
+
   total$ = this.totalSubject$.asObservable();
 
   constructor(private securityService: SecurityService) {

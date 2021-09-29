@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
+import {
+  AccessDeniedError, AdminContainerView, ConfirmationDialogComponent, DialogService, Error,
+  InvalidArgumentError, ServiceUnavailableError, SpinnerService
+} from '@absaoss/ngx-inception/core';
 import {AfterViewInit, Component, HostBinding, ViewChild} from '@angular/core';
 import {MatDialogRef} from '@angular/material/dialog';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {ActivatedRoute, Router} from '@angular/router';
-import {
-  AccessDeniedError, AdminContainerView, ConfirmationDialogComponent, DialogService, Error,
-  InvalidArgumentError, ServiceUnavailableError, SpinnerService
-} from '@absaoss/ngx-inception/core';
 import {finalize, first} from 'rxjs/operators';
 import {MailTemplateContentType} from '../services/mail-template-content-type';
 import {MailTemplateSummary} from '../services/mail-template-summary';
@@ -41,10 +41,15 @@ import {MailService} from '../services/mail.service';
 export class MailTemplatesComponent extends AdminContainerView implements AfterViewInit {
 
   MailTemplateContentType = MailTemplateContentType;
+
   dataSource: MatTableDataSource<MailTemplateSummary> = new MatTableDataSource<MailTemplateSummary>();
+
   displayedColumns = ['name', 'contentType', 'actions'];
+
   getMailTemplateContentTypeDescription = MailService.getMailTemplateContentTypeDescription;
+
   @HostBinding('class') hostClass = 'flex flex-column flex-fill';
+
   @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
 
   @ViewChild(MatSort, {static: true}) sort!: MatSort;

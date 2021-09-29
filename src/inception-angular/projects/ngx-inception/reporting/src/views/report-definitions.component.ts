@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
+import {
+  AccessDeniedError, AdminContainerView, ConfirmationDialogComponent, DialogService, Error,
+  InvalidArgumentError, ServiceUnavailableError, SpinnerService
+} from '@absaoss/ngx-inception/core';
 import {AfterViewInit, Component, HostBinding, ViewChild} from '@angular/core';
 import {MatDialogRef} from '@angular/material/dialog';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {ActivatedRoute, Router} from '@angular/router';
-import {
-  AccessDeniedError, AdminContainerView, ConfirmationDialogComponent, DialogService, Error,
-  InvalidArgumentError, ServiceUnavailableError, SpinnerService
-} from '@absaoss/ngx-inception/core';
 import {finalize, first} from 'rxjs/operators';
 import {ReportDefinitionSummary} from '../services/report-definition-summary';
 import {ReportingService} from '../services/reporting.service';
@@ -40,8 +40,11 @@ import {ReportingService} from '../services/reporting.service';
 export class ReportDefinitionsComponent extends AdminContainerView implements AfterViewInit {
 
   dataSource: MatTableDataSource<ReportDefinitionSummary> = new MatTableDataSource<ReportDefinitionSummary>();
+
   displayedColumns = ['name', 'actions'];
+
   @HostBinding('class') hostClass = 'flex flex-column flex-fill';
+
   @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
 
   @ViewChild(MatSort, {static: true}) sort!: MatSort;

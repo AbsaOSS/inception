@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-import {HttpClient, HttpErrorResponse, HttpParams, HttpResponse} from '@angular/common/http';
-import {Inject, Injectable} from '@angular/core';
 import {
   AccessDeniedError, CommunicationError, INCEPTION_CONFIG, InceptionConfig, InvalidArgumentError,
   ProblemDetails, ServiceUnavailableError, SessionService, SortDirection
 } from '@absaoss/ngx-inception/core';
+import {HttpClient, HttpErrorResponse, HttpParams, HttpResponse} from '@angular/common/http';
+import {Inject, Injectable} from '@angular/core';
 import {Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import {Group} from './group';
@@ -33,7 +33,7 @@ import {PasswordChangeReason} from './password-change-reason';
 import {Role} from './role';
 import {
   AuthenticationFailedError, DuplicateGroupError, DuplicateTenantError, DuplicateUserDirectoryError,
-  DuplicateUserError, ExistingGroupMembersError, ExistingPasswordError,  GroupMemberNotFoundError,
+  DuplicateUserError, ExistingGroupMembersError, ExistingPasswordError, GroupMemberNotFoundError,
   GroupNotFoundError, GroupRoleNotFoundError, InvalidSecurityCodeError, RoleNotFoundError,
   TenantNotFoundError, TenantUserDirectoryNotFoundError, UserDirectoryNotFoundError,
   UserLockedError, UserNotFoundError

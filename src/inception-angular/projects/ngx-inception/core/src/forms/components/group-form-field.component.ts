@@ -95,32 +95,51 @@ export class GroupFormFieldComponent extends _GroupFormFieldMixinBase
   implements AfterContentInit, AfterContentChecked, AfterViewInit, OnDestroy, CanColor {
 
   static ngAcceptInputType_hideRequiredMarker: BooleanInput;
+
   /** Whether the Angular animations are enabled. */
   _animationsEnabled: boolean;
+
   @ContentChildren(MatCheckbox, {descendants: true}) _checkboxChildren!: QueryList<MatCheckbox>;
+
   @ViewChild('connectionContainer', {static: true}) _connectionContainerRef!: ElementRef;
+
   @ContentChildren(MatError, {descendants: true}) _errorChildren!: QueryList<MatError>;
+
   @ContentChildren(MatHint, {descendants: true}) _hintChildren!: QueryList<MatHint>;
+
   // Unique id for the hint label.
   _hintLabelId: string = `mat-hint-${nextUniqueId++}`;
+
   @ContentChild(MatLabel) _labelChildNonStatic?: MatLabel;
+
   @ContentChild(MatLabel, {static: true}) _labelChildStatic!: MatLabel;
+
   // Unique id for the internal form field label.
   _labelId = `group-form-field-label-${nextUniqueId++}`;
+
   @ContentChildren(MatPrefix, {descendants: true}) _prefixChildren!: QueryList<MatPrefix>;
+
   @ContentChild(MatRadioGroup) _radioGroupChildNonStatic!: MatRadioGroup;
+
   @ContentChild(MatRadioGroup, {static: true}) _radioGroupChildStatic!: MatRadioGroup;
+
   /** State of the mat-hint and mat-error animations. */
   _subscriptAnimationState: string = '';
+
   @ContentChildren(MatSuffix, {descendants: true}) _suffixChildren!: QueryList<MatSuffix>;
+
   private _destroyed = new Subject<void>();
+
   @ViewChild('label') private _label!: ElementRef;
+
   /**
    * Whether the outline gap needs to be calculated immediately on the next change detection run.
    */
   private _outlineGapCalculationNeededImmediately = false;
+
   /** Whether the outline gap needs to be calculated next time the zone has stabilized. */
   private _outlineGapCalculationNeededOnStable = false;
+
   /** Override for the logic that disables the label animation in certain cases. */
   private _showAlwaysAnimate = false;
 
@@ -362,7 +381,7 @@ export class GroupFormFieldComponent extends _GroupFormFieldMixinBase
   }
 
   /**
-   * Gets an ElementRef for the element that a overlay attached to the form-field should be
+   * Gets an ElementRef for the element that an overlay attached to the form-field should be
    * positioned relative to.
    */
   getConnectedOverlayOrigin(): ElementRef {

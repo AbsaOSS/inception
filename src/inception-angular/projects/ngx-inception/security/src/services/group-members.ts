@@ -28,22 +28,27 @@ export class GroupMembers {
    * The optional filter that was applied to the group members.
    */
   filter?: string;
+
   /**
    * The group members.
    */
   groupMembers: GroupMember[];
+
   /**
    * The name of the group the group members are associated with.
    */
   groupName: string;
+
   /**
    * The optional page index.
    */
   pageIndex?: number;
+
   /**
    * The optional page size.
    */
   pageSize?: number;
+
   /**
    * The optional sort direction that was applied to the group members.
    */
