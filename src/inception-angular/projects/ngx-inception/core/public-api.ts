@@ -50,6 +50,7 @@ export * from './src/routing/disabled-function-guard';
 
 export * from './src/session/directives/has-authority.directive';
 export * from './src/session/services/session';
+export * from './src/session/services/session.interceptor';
 export * from './src/session/services/session.service';
 export * from './src/session/services/session.service.errors';
 

@@ -15,8 +15,10 @@
 */
 
 import {
-  CoreModule, InceptionAppModule, InceptionConfig, NavigationBadge, NavigationItem, NavigationTitle
+  CoreModule, InceptionAppModule, InceptionConfig, NavigationBadge, NavigationItem, NavigationTitle,
+  SessionInterceptor
 } from '@absaoss/ngx-inception/core';
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -66,7 +68,12 @@ const ngxInceptionConfig: InceptionConfig = {
     BrowserAnimationsModule,
     BrowserModule,
     CoreModule.forRoot(ngxInceptionConfig)
-  ]
+  ],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: SessionInterceptor,
+    multi: true
+  }]
 })
 export class AppModule extends InceptionAppModule {
   constructor() {

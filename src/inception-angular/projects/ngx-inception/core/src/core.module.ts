@@ -211,6 +211,13 @@ export const INCEPTION_DATE_FORMATS = {
 
     // Layout Components
     SpinnerComponent
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SessionInterceptor,
+      multi: true,
+    },
   ]
 })
 export class CoreModule {
@@ -221,17 +228,15 @@ export class CoreModule {
   static forRoot(config: InceptionConfig): ModuleWithProviders<CoreModule> {
     return {
       ngModule: CoreModule,
-      providers: [{
-        provide: INCEPTION_CONFIG,
-        useValue: config
-      },
-
+      providers: [
+        {
+          provide: INCEPTION_CONFIG,
+          useValue: config
+        },
         {
           provide: LocationStrategy,
           useClass: HashLocationStrategy,
         },
-
-
         {
           provide: DateAdapter,
           useClass: MomentDateAdapter,
@@ -243,15 +248,11 @@ export class CoreModule {
           provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
           useValue: {appearance: 'standard'}
         },
-
-
         {
           provide: HTTP_INTERCEPTORS,
           useClass: SessionInterceptor,
           multi: true
         },
-
-
         {
           provide: PERFECT_SCROLLBAR_CONFIG,
           useValue: INCEPTION_PERFECT_SCROLLBAR_CONFIG
