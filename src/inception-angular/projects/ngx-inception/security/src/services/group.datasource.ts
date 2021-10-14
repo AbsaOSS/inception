@@ -62,7 +62,7 @@ export class GroupDatasource implements DataSource<Group> {
   /**
    * Load the groups.
    *
-   * @param userDirectoryId The Universally Unique Identifier (UUID) for the user directory the
+   * @param userDirectoryId The ID for the user directory the
    *                        groups are associated with.
    * @param filter          The optional filter to apply to the groups.
    * @param sortDirection   The optional sort direction to apply to the groups.

@@ -87,22 +87,15 @@ public class ErrorReportSummary implements Serializable {
   @Column(name = "description", length = 4000, nullable = false)
   private String description;
 
-  /**
-   * The optional Universally Unique Identifier (UUID) for the device the error report originated
-   * from.
-   */
-  @Schema(
-      description =
-          "The optional Universally Unique Identifier (UUID) for the device the error report originated from")
+  /** The optional ID for the device the error report originated from. */
+  @Schema(description = "The optional ID for the device the error report originated from")
   @JsonProperty
   @Size(max = 50)
   @Column(name = "device_id")
   private UUID deviceId;
 
-  /** The Universally Unique Identifier (UUID) for the error report. */
-  @Schema(
-      description = "The Universally Unique Identifier (UUID) for the error report",
-      required = true)
+  /** The ID for the error report. */
+  @Schema(description = "The ID for the error report", required = true)
   @JsonProperty(required = true)
   @NotNull
   @Id
@@ -122,14 +115,13 @@ public class ErrorReportSummary implements Serializable {
   /**
    * Constructs a new <b>ErrorReportSummary</b>.
    *
-   * @param id the Universally Unique Identifier (UUID) for the error report
+   * @param id the ID for the error report
    * @param applicationId the ID for the application that generated the error report
    * @param applicationVersion the version of the application that generated the error report
    * @param description the description of the error
    * @param created the date and time the error report was created
    * @param who the optional username for the user associated with the error report
-   * @param deviceId the optional Universally Unique Identifier (UUID) for the device the error
-   *     report originated from
+   * @param deviceId the optional ID for the device the error report originated from
    */
   public ErrorReportSummary(
       UUID id,
@@ -210,20 +202,18 @@ public class ErrorReportSummary implements Serializable {
   }
 
   /**
-   * Returns the optional Universally Unique Identifier (UUID) for the device the error report
-   * originated from.
+   * Returns the optional ID for the device the error report originated from.
    *
-   * @return the optional Universally Unique Identifier (UUID) for the device the error report
-   *     originated from
+   * @return the optional ID for the device the error report originated from
    */
   public UUID getDeviceId() {
     return deviceId;
   }
 
   /**
-   * Returns the Universally Unique Identifier (UUID) for the error report.
+   * Returns the ID for the error report.
    *
-   * @return the Universally Unique Identifier (UUID) for the error report
+   * @return the ID for the error report
    */
   public UUID getId() {
     return id;

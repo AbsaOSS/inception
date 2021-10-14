@@ -84,13 +84,9 @@ public class GroupMembers implements Serializable {
   @JsonProperty(required = true)
   private long total;
 
-  /**
-   * The Universally Unique Identifier (UUID) for the user directory the group members are
-   * associated with.
-   */
+  /** The ID for the user directory the group members are associated with. */
   @Schema(
-      description =
-          "The Universally Unique Identifier (UUID) for the user directory the group members are associated with",
+      description = "The ID for the user directory the group members are associated with",
       required = true)
   @JsonProperty(required = true)
   private UUID userDirectoryId;
@@ -101,8 +97,7 @@ public class GroupMembers implements Serializable {
   /**
    * Constructs a new <b>GroupMembers</b>.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory the
-   *     group members are associated with
+   * @param userDirectoryId the ID for the user directory the group members are associated with
    * @param groupName the name of the group the group members are associated with
    * @param groupMembers the group members
    * @param total the total number of group members
@@ -194,11 +189,9 @@ public class GroupMembers implements Serializable {
   }
 
   /**
-   * Returns the Universally Unique Identifier (UUID) for the user directory the group members are
-   * associated with.
+   * Returns the ID for the user directory the group members are associated with.
    *
-   * @return the Universally Unique Identifier (UUID) for the user directory the group members are
-   *     associated with
+   * @return the ID for the user directory the group members are associated with
    */
   public UUID getUserDirectoryId() {
     return userDirectoryId;

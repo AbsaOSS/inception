@@ -129,7 +129,7 @@ public class LDAPUserDirectory extends UserDirectoryBase {
   /**
    * Constructs a new <b>LDAPUserDirectory</b>.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param parameters the parameters for the user directory
    * @param groupRepository the Group Repository
    * @param userRepository the User Repository

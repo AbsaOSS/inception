@@ -75,7 +75,7 @@ public class AuthorizationServerController {
    * The "token" endpoint that supports the Resource Owner Password Grant.
    *
    * @param request the HTTP servlet request
-   * @param parameters the request parameter  s
+   * @param parameters the request parameter s
    * @return the token response
    */
   @PostMapping(value = "/token", produces = "application/json")

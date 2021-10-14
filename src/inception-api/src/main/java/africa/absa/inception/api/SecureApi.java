@@ -204,7 +204,7 @@ public abstract class SecureApi {
   /**
    * Confirm that the user associated with the authenticated request has access to the tenant.
    *
-   * @param tenantId the Universally Unique Identifier (UUID) for the tenant
+   * @param tenantId the ID for the tenant
    * @return <b>true</b> if the user associated with the authenticated request has access to the
    *     tenant or <b>false</b> otherwise
    */

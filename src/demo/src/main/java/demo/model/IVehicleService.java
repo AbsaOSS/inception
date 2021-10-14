@@ -19,7 +19,6 @@ package demo.model;
 import africa.absa.inception.core.service.InvalidArgumentException;
 import africa.absa.inception.core.service.ServiceUnavailableException;
 import africa.absa.inception.core.sorting.SortDirection;
-import africa.absa.inception.mail.DuplicateMailTemplateException;
 
 /**
  * The <b>IVehicleService</b> interface defines the functionality that must be provided by a Vehicle

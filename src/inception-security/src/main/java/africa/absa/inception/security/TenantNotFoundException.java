@@ -39,7 +39,7 @@ public class TenantNotFoundException extends ServiceException {
   /**
    * Constructs a new <b>TenantNotFoundException</b>.
    *
-   * @param tenantId the Universally Unique Identifier (UUID) for the tenant
+   * @param tenantId the ID for the tenant
    */
   public TenantNotFoundException(UUID tenantId) {
     super("The tenant (" + tenantId + ") could not be found");

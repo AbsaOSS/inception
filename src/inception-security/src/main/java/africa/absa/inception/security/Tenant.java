@@ -62,8 +62,8 @@ public class Tenant implements Serializable {
   @Column(name = "created", nullable = false, updatable = false)
   private LocalDateTime created;
 
-  /** The Universally Unique Identifier (UUID) for the tenant. */
-  @Schema(description = "The Universally Unique Identifier (UUID) for the tenant", required = true)
+  /** The ID for the tenant. */
+  @Schema(description = "The ID for the tenant", required = true)
   @JsonProperty(required = true)
   @NotNull
   @Id
@@ -117,7 +117,7 @@ public class Tenant implements Serializable {
   /**
    * Constructs a new <b>Tenant</b>.
    *
-   * @param id the Universally Unique Identifier (UUID) for the tenant
+   * @param id the ID for the tenant
    * @param name the name of the tenant
    * @param status the status for the tenant
    */
@@ -162,9 +162,9 @@ public class Tenant implements Serializable {
   }
 
   /**
-   * Returns the Universally Unique Identifier (UUID) for the tenant.
+   * Returns the ID for the tenant.
    *
-   * @return the Universally Unique Identifier (UUID) for the tenant
+   * @return the ID for the tenant
    */
   public UUID getId() {
     return id;
@@ -227,9 +227,9 @@ public class Tenant implements Serializable {
   }
 
   /**
-   * Set the Universally Unique Identifier (UUID) for the tenant.
+   * Set the ID for the tenant.
    *
-   * @param id the Universally Unique Identifier (UUID) for the tenant
+   * @param id the ID for the tenant
    */
   public void setId(UUID id) {
     this.id = id;

@@ -77,12 +77,9 @@ public class Users implements Serializable {
   @JsonProperty(required = true)
   private long total;
 
-  /**
-   * The Universally Unique Identifier (UUID) for the user directory the users are associated with.
-   */
+  /** The ID for the user directory the users are associated with. */
   @Schema(
-      description =
-          "The Universally Unique Identifier (UUID) for the user directory the users are associated with",
+      description = "The ID for the user directory the users are associated with",
       required = true)
   @JsonProperty(required = true)
   private UUID userDirectoryId;
@@ -98,8 +95,7 @@ public class Users implements Serializable {
   /**
    * Constructs a new <b>Users</b>.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory the
-   *     users are associated with
+   * @param userDirectoryId the ID for the user directory the users are associated with
    * @param users the users
    * @param total the total number of users
    * @param filter the optional filter that was applied to the users
@@ -182,11 +178,9 @@ public class Users implements Serializable {
   }
 
   /**
-   * Returns the Universally Unique Identifier (UUID) for the user directory the users are
-   * associated with.
+   * Returns the ID for the user directory the users are associated with.
    *
-   * @return the Universally Unique Identifier (UUID) for the user directory the users are
-   *     associated with
+   * @return the ID for the user directory the users are associated with
    */
   public UUID getUserDirectoryId() {
     return userDirectoryId;

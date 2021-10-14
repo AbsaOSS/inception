@@ -16,6 +16,9 @@
 
 package demo.test;
 
+import africa.absa.inception.core.sorting.SortDirection;
+import africa.absa.inception.test.InceptionExtension;
+import africa.absa.inception.test.TestConfiguration;
 import demo.DemoConfiguration;
 import demo.model.Car;
 import demo.model.Cars;
@@ -23,9 +26,6 @@ import demo.model.IVehicleService;
 import demo.model.Vehicle;
 import demo.model.VehicleType;
 import demo.model.Vehicles;
-import africa.absa.inception.core.sorting.SortDirection;
-import africa.absa.inception.test.InceptionExtension;
-import africa.absa.inception.test.TestConfiguration;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -35,8 +35,8 @@ public class JwtGrantedAuthoritiesConverter
   public static final String FUNCTIONS_CLAIM = "functions";
 
   /**
-   * The name of the tenants claim that provides the Universally Unique Identifiers (UUIDs) for the
-   * tenants the user is associated with.
+   * The name of the tenants claim that provides the IDs for the tenants the user is associated
+   * with.
    */
   public static final String TENANTS_CLAIM = "tenants";
 

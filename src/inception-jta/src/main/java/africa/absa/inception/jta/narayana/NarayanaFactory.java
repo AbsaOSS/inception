@@ -29,8 +29,8 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.jta.JtaTransactionManager;
 
 /**
- * The <b>NarayanaFactory</b> class produces the JTA transaction management beans for the
- * Narayana transactions toolkit.
+ * The <b>NarayanaFactory</b> class produces the JTA transaction management beans for the Narayana
+ * transactions toolkit.
  *
  * @author Marcus Portmann
  * @see <a href="https://narayana.io">Naryana</a>

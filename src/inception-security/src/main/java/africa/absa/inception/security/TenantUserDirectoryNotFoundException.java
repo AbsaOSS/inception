@@ -39,8 +39,8 @@ public class TenantUserDirectoryNotFoundException extends ServiceException {
   /**
    * Constructs a new <b>TenantUserDirectoryNotFoundException</b>.
    *
-   * @param tenantId the Universally Unique Identifier (UUID) for the tenant
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param tenantId the ID for the tenant
+   * @param userDirectoryId the ID for the user directory
    */
   public TenantUserDirectoryNotFoundException(UUID tenantId, UUID userDirectoryId) {
     super(

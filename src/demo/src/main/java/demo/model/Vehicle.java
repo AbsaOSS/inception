@@ -66,8 +66,8 @@ public class Vehicle implements Serializable {
   @Column(table = "vehicles", name = "created", nullable = false, updatable = false)
   private LocalDateTime created;
 
-  /** The Universally Unique Identifier (UUID) for the vehicle. */
-  @Schema(description = "The Universally Unique Identifier (UUID) for the vehicle", required = true)
+  /** The ID for the vehicle. */
+  @Schema(description = "The ID for the vehicle", required = true)
   @JsonProperty(required = true)
   @NotNull
   @Id
@@ -145,9 +145,9 @@ public class Vehicle implements Serializable {
   }
 
   /**
-   * Returns the Universally Unique Identifier (UUID) for the vehicle.
+   * Returns the ID for the vehicle.
    *
-   * @return the Universally Unique Identifier (UUID) for the vehicle
+   * @return the ID for the vehicle
    */
   public UUID getId() {
     return id;
@@ -191,9 +191,9 @@ public class Vehicle implements Serializable {
   }
 
   /**
-   * Set the Universally Unique Identifier (UUID) for the vehicle.
+   * Set the ID for the vehicle.
    *
-   * @param id the Universally Unique Identifier (UUID) for the vehicle
+   * @param id the ID for the vehicle
    */
   public void setId(UUID id) {
     this.id = id;

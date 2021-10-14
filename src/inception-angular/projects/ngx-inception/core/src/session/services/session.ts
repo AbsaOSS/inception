@@ -59,17 +59,17 @@ export class Session {
   scopes: string[];
 
   /**
-   * The Universally Unique Identifier (UUID) for the selected tenant for the user session.
+   * The ID for the selected tenant for the user session.
    */
   tenantId?: string;
 
   /**
-   * The Universally Unique Identifiers (UUIDs) for tenants the user is associated with.
+   * The IDs for tenants the user is associated with.
    */
   tenantIds: string[];
 
   /**
-   * The Universally Unique Identifier (UUID) for the user directory the user is associated with.
+   * The ID for the user directory the user is associated with.
    */
   userDirectoryId: string;
 
@@ -82,7 +82,7 @@ export class Session {
    * Constructs a new Session.
    *
    * @param username          The username for the user the user session is associated with.
-   * @param userDirectoryId   The Universally Unique Identifier (UUID) for the user directory the
+   * @param userDirectoryId   The ID for the user directory the
    *                          user is associated with.
    * @param name              The name of the user.
    * @param scopes            The OAuth2 scopes for the user session.
@@ -90,7 +90,7 @@ export class Session {
    *                          the user session.
    * @param functionCodes     The codes for the functions assigned to the user associated
    *                          with the user session.
-   * @param tenantIds         The Universally Unique Identifiers (UUIDs) for the tenants the user
+   * @param tenantIds         The IDs for the tenants the user
    *                          is associated with.
    * @param accessToken       The base-64 encoded OAuth2 JWT access token for the user session.
    * @param accessTokenExpiry The string representation of the epoch timestamp giving the date and

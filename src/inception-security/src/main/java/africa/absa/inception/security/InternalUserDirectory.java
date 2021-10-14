@@ -90,7 +90,7 @@ public class InternalUserDirectory extends UserDirectoryBase {
   /**
    * Constructs a new <b>InternalUserDirectory</b>.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param parameters the parameters for the user directory
    * @param groupRepository the Group Repository
    * @param userRepository the User Repository
@@ -1366,7 +1366,7 @@ public class InternalUserDirectory extends UserDirectoryBase {
    * Is the password a historical password that cannot be reused for a period of time i.e. was the
    * password used previously in the last X months.
    *
-   * @param userId the Universally Unique Identifier (UUID) for the user
+   * @param userId the ID for the user
    * @param password the password
    * @return <b>true</b> if the password was previously used and cannot be reused for a period of
    *     time or <b>false</b> otherwise

@@ -42,11 +42,9 @@ public class UserDetails implements org.springframework.security.core.userdetail
    * @param user the user
    * @param roleCodes the codes for the roles that the user has been assigned
    * @param functionCodes the function codes for the user
-   * @param tenantIds the Universally Unique Identifiers (UUIDs) for the tenants the user is
-   *     associated with
-   * @param userDirectoryIds the list of Universally Unique Identifiers (UUIDs) for the user user
-   *     directories the user is associated with as a result of being associated with one or more
-   *     tenants
+   * @param tenantIds the IDs for the tenants the user is associated with
+   * @param userDirectoryIds the list of IDs for the user user directories the user is associated
+   *     with as a result of being associated with one or more tenants
    */
   UserDetails(
       User user,

@@ -106,11 +106,11 @@ public class Car extends VehicleBase implements Serializable {
   }
 
   /**
-   * Returns the Universally Unique Identifier (UUID) for the car.
+   * Returns the ID for the car.
    *
-   * @return the Universally Unique Identifier (UUID) for the car
+   * @return the ID for the car
    */
-  @Schema(description = "The Universally Unique Identifier (UUID) for the car", required = true)
+  @Schema(description = "The ID for the car", required = true)
   @JsonProperty(required = true)
   @Override
   public UUID getId() {
@@ -173,9 +173,9 @@ public class Car extends VehicleBase implements Serializable {
   }
 
   /**
-   * Set the Universally Unique Identifier (UUID) for the car.
+   * Set the ID for the car.
    *
-   * @param id the Universally Unique Identifier (UUID) for the car
+   * @param id the ID for the car
    */
   @Override
   public void setId(UUID id) {

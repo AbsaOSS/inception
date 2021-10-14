@@ -98,7 +98,7 @@ public class SecurityApi extends SecureApi {
   /**
    * Add the group member to the group.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param groupName the name of the group
    * @param groupMember the group member
    * @throws InvalidArgumentException if an argument is invalid
@@ -162,7 +162,7 @@ public class SecurityApi extends SecureApi {
   public void addMemberToGroup(
       @Parameter(
               name = "userDirectoryId",
-              description = "The Universally Unique Identifier (UUID) for the user directory",
+              description = "The ID for the user directory",
               required = true)
           @PathVariable
           UUID userDirectoryId,
@@ -211,7 +211,7 @@ public class SecurityApi extends SecureApi {
   /**
    * Add the role to the group.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param groupName the name of the group
    * @param groupRole the group role
    * @throws InvalidArgumentException if an argument is invalid
@@ -273,7 +273,7 @@ public class SecurityApi extends SecureApi {
   public void addRoleToGroup(
       @Parameter(
               name = "userDirectoryId",
-              description = "The Universally Unique Identifier (UUID) for the user directory",
+              description = "The ID for the user directory",
               required = true)
           @PathVariable
           UUID userDirectoryId,
@@ -333,7 +333,7 @@ public class SecurityApi extends SecureApi {
   /**
    * Add the user directory to the tenant.
    *
-   * @param tenantId the Universally Unique Identifier (UUID) for the tenant
+   * @param tenantId the ID for the tenant
    * @param tenantUserDirectory the tenant user directory
    * @throws InvalidArgumentException if an argument is invalid
    * @throws TenantNotFoundException if the tenant could not be found
@@ -393,10 +393,7 @@ public class SecurityApi extends SecureApi {
   @PreAuthorize(
       "isSecurityDisabled() or hasRole('Administrator') or hasAuthority('FUNCTION_Security.TenantAdministration')")
   public void addUserDirectoryToTenant(
-      @Parameter(
-              name = "tenantId",
-              description = "The Universally Unique Identifier (UUID) for the tenant",
-              required = true)
+      @Parameter(name = "tenantId", description = "The ID for the tenant", required = true)
           @PathVariable
           UUID tenantId,
       @io.swagger.v3.oas.annotations.parameters.RequestBody(
@@ -438,7 +435,7 @@ public class SecurityApi extends SecureApi {
   /**
    * Administratively change the password for the user.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param username the username for the user
    * @param passwordChange the password change
    * @throws InvalidArgumentException if an argument is invalid
@@ -494,7 +491,7 @@ public class SecurityApi extends SecureApi {
   public void adminChangePassword(
       @Parameter(
               name = "userDirectoryId",
-              description = "The Universally Unique Identifier (UUID) for the user directory",
+              description = "The ID for the user directory",
               required = true)
           @PathVariable
           UUID userDirectoryId,
@@ -709,7 +706,7 @@ public class SecurityApi extends SecureApi {
   /**
    * Create the new group.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param group the group
    * @throws InvalidArgumentException if an argument is invalid
    * @throws UserDirectoryNotFoundException if the user directory could not be found
@@ -767,7 +764,7 @@ public class SecurityApi extends SecureApi {
   public void createGroup(
       @Parameter(
               name = "userDirectoryId",
-              description = "The Universally Unique Identifier (UUID) for the user directory",
+              description = "The ID for the user directory",
               required = true)
           @PathVariable
           UUID userDirectoryId,
@@ -859,7 +856,7 @@ public class SecurityApi extends SecureApi {
   /**
    * Create the new user.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param user the user
    * @param expiredPassword create the user with its password expired
    * @param userLocked create the user locked
@@ -919,7 +916,7 @@ public class SecurityApi extends SecureApi {
   public void createUser(
       @Parameter(
               name = "userDirectoryId",
-              description = "The Universally Unique Identifier (UUID) for the user directory",
+              description = "The ID for the user directory",
               required = true)
           @PathVariable
           UUID userDirectoryId,
@@ -1020,7 +1017,7 @@ public class SecurityApi extends SecureApi {
   /**
    * Delete the group.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param groupName the name of the group
    * @throws InvalidArgumentException if an argument is invalid
    * @throws UserDirectoryNotFoundException if the user directory could not be found
@@ -1080,7 +1077,7 @@ public class SecurityApi extends SecureApi {
   public void deleteGroup(
       @Parameter(
               name = "userDirectoryId",
-              description = "The Universally Unique Identifier (UUID) for the user directory",
+              description = "The ID for the user directory",
               required = true)
           @PathVariable
           UUID userDirectoryId,
@@ -1100,7 +1097,7 @@ public class SecurityApi extends SecureApi {
   /**
    * Delete the tenant.
    *
-   * @param tenantId the Universally Unique Identifier (UUID) for the tenant
+   * @param tenantId the ID for the tenant
    * @throws InvalidArgumentException if an argument is invalid
    * @throws TenantNotFoundException if the tenant could not be found
    * @throws ServiceUnavailableException if the tenant could not be deleted
@@ -1147,10 +1144,7 @@ public class SecurityApi extends SecureApi {
   @PreAuthorize(
       "isSecurityDisabled() or hasRole('Administrator') or hasAuthority('FUNCTION_Security.TenantAdministration')")
   public void deleteTenant(
-      @Parameter(
-              name = "tenantId",
-              description = "The Universally Unique Identifier (UUID) for the tenant",
-              required = true)
+      @Parameter(name = "tenantId", description = "The ID for the tenant", required = true)
           @PathVariable
           UUID tenantId)
       throws InvalidArgumentException, TenantNotFoundException, ServiceUnavailableException {
@@ -1160,7 +1154,7 @@ public class SecurityApi extends SecureApi {
   /**
    * Delete the user.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param username the username for the user
    * @throws InvalidArgumentException if an argument is invalid
    * @throws UserDirectoryNotFoundException if the user directory could not be found
@@ -1211,7 +1205,7 @@ public class SecurityApi extends SecureApi {
   public void deleteUser(
       @Parameter(
               name = "userDirectoryId",
-              description = "The Universally Unique Identifier (UUID) for the user directory",
+              description = "The ID for the user directory",
               required = true)
           @PathVariable
           UUID userDirectoryId,
@@ -1231,7 +1225,7 @@ public class SecurityApi extends SecureApi {
   /**
    * Delete the user directory.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @throws InvalidArgumentException if an argument is invalid
    * @throws UserDirectoryNotFoundException if the user directory could not be found
    * @throws ServiceUnavailableException if the user directory could not be deleted
@@ -1282,7 +1276,7 @@ public class SecurityApi extends SecureApi {
   public void deleteUserDirectory(
       @Parameter(
               name = "userDirectoryId",
-              description = "The Universally Unique Identifier (UUID) for the user directory",
+              description = "The ID for the user directory",
               required = true)
           @PathVariable
           UUID userDirectoryId)
@@ -1293,7 +1287,7 @@ public class SecurityApi extends SecureApi {
   /**
    * Retrieve the group.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param groupName the name of the group
    * @return the group
    * @throws InvalidArgumentException if an argument is invalid
@@ -1345,7 +1339,7 @@ public class SecurityApi extends SecureApi {
   public Group getGroup(
       @Parameter(
               name = "userDirectoryId",
-              description = "The Universally Unique Identifier (UUID) for the user directory",
+              description = "The ID for the user directory",
               required = true)
           @PathVariable
           UUID userDirectoryId,
@@ -1365,7 +1359,7 @@ public class SecurityApi extends SecureApi {
   /**
    * Retrieve all the group names.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @return the group names
    * @throws InvalidArgumentException if an argument is invalid
    * @throws UserDirectoryNotFoundException if the user directory could not be found
@@ -1415,7 +1409,7 @@ public class SecurityApi extends SecureApi {
   public List<String> getGroupNames(
       @Parameter(
               name = "userDirectoryId",
-              description = "The Universally Unique Identifier (UUID) for the user directory",
+              description = "The ID for the user directory",
               required = true)
           @PathVariable
           UUID userDirectoryId)
@@ -1431,7 +1425,7 @@ public class SecurityApi extends SecureApi {
   /**
    * Retrieve the names of the groups the user is a member of.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param username the username for the user
    * @return the names of the groups the user is a member of
    * @throws InvalidArgumentException if an argument is invalid
@@ -1486,7 +1480,7 @@ public class SecurityApi extends SecureApi {
   public List<String> getGroupNamesForUser(
       @Parameter(
               name = "userDirectoryId",
-              description = "The Universally Unique Identifier (UUID) for the user directory",
+              description = "The ID for the user directory",
               required = true)
           @PathVariable
           UUID userDirectoryId,
@@ -1506,7 +1500,7 @@ public class SecurityApi extends SecureApi {
   /**
    * Retrieve the groups.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param filter the optional filter to apply to the groups
    * @param sortDirection the optional sort direction to apply to the groups
    * @param pageIndex the optional page index
@@ -1560,7 +1554,7 @@ public class SecurityApi extends SecureApi {
   public Groups getGroups(
       @Parameter(
               name = "userDirectoryId",
-              description = "The Universally Unique Identifier (UUID) for the user directory",
+              description = "The ID for the user directory",
               required = true)
           @PathVariable
           UUID userDirectoryId,
@@ -1597,7 +1591,7 @@ public class SecurityApi extends SecureApi {
   /**
    * Retrieve the group members for the group.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param groupName the name of the group
    * @param filter the optional filter to apply to the group members
    * @param sortDirection the optional sort direction to apply to the group members
@@ -1653,7 +1647,7 @@ public class SecurityApi extends SecureApi {
   public GroupMembers getMembersForGroup(
       @Parameter(
               name = "userDirectoryId",
-              description = "The Universally Unique Identifier (UUID) for the user directory",
+              description = "The ID for the user directory",
               required = true)
           @PathVariable
           UUID userDirectoryId,
@@ -1695,7 +1689,7 @@ public class SecurityApi extends SecureApi {
   /**
    * Retrieve the codes for the roles that have been assigned to the group.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param groupName the name of the group
    * @return the codes for the roles that have been assigned to the group
    * @throws InvalidArgumentException if an argument is invalid
@@ -1750,7 +1744,7 @@ public class SecurityApi extends SecureApi {
   public List<String> getRoleCodesForGroup(
       @Parameter(
               name = "userDirectoryId",
-              description = "The Universally Unique Identifier (UUID) for the user directory",
+              description = "The ID for the user directory",
               required = true)
           @PathVariable
           UUID userDirectoryId,
@@ -1797,7 +1791,7 @@ public class SecurityApi extends SecureApi {
   /**
    * Retrieve the roles that have been assigned to the group.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param groupName the name of the group
    * @return the roles that have been assigned to the group
    * @throws InvalidArgumentException if an argument is invalid
@@ -1852,7 +1846,7 @@ public class SecurityApi extends SecureApi {
   public List<GroupRole> getRolesForGroup(
       @Parameter(
               name = "userDirectoryId",
-              description = "The Universally Unique Identifier (UUID) for the user directory",
+              description = "The ID for the user directory",
               required = true)
           @PathVariable
           UUID userDirectoryId,
@@ -1872,7 +1866,7 @@ public class SecurityApi extends SecureApi {
   /**
    * Retrieve the tenant.
    *
-   * @param tenantId the Universally Unique Identifier (UUID) for the tenant
+   * @param tenantId the ID for the tenant
    * @return the tenant
    * @throws InvalidArgumentException if an argument is invalid
    * @throws TenantNotFoundException if the tenant could not be found
@@ -1920,10 +1914,7 @@ public class SecurityApi extends SecureApi {
   @PreAuthorize(
       "isSecurityDisabled() or hasRole('Administrator') or hasAuthority('FUNCTION_Security.TenantAdministration')")
   public Tenant getTenant(
-      @Parameter(
-              name = "tenantId",
-              description = "The Universally Unique Identifier (UUID) for the tenant",
-              required = true)
+      @Parameter(name = "tenantId", description = "The ID for the tenant", required = true)
           @PathVariable
           UUID tenantId)
       throws InvalidArgumentException, TenantNotFoundException, ServiceUnavailableException {
@@ -1933,7 +1924,7 @@ public class SecurityApi extends SecureApi {
   /**
    * Retrieve the name of the tenant.
    *
-   * @param tenantId the Universally Unique Identifier (UUID) for the tenant
+   * @param tenantId the ID for the tenant
    * @return the name of the tenant
    * @throws InvalidArgumentException if an argument is invalid
    * @throws TenantNotFoundException if the tenant could not be found
@@ -1983,10 +1974,7 @@ public class SecurityApi extends SecureApi {
   @PreAuthorize(
       "isSecurityDisabled() or hasRole('Administrator') or hasAuthority('FUNCTION_Security.TenantAdministration')")
   public String getTenantName(
-      @Parameter(
-              name = "tenantId",
-              description = "The Universally Unique Identifier (UUID) for the tenant",
-              required = true)
+      @Parameter(name = "tenantId", description = "The ID for the tenant", required = true)
           @PathVariable
           UUID tenantId)
       throws InvalidArgumentException, TenantNotFoundException, ServiceUnavailableException {
@@ -2064,7 +2052,7 @@ public class SecurityApi extends SecureApi {
   /**
    * Retrieve the tenants the user directory is associated with.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @return the tenants the user directory is associated with
    * @throws InvalidArgumentException if an argument is invalid
    * @throws UserDirectoryNotFoundException if the user directory could not be found
@@ -2115,7 +2103,7 @@ public class SecurityApi extends SecureApi {
   public ResponseEntity<List<Tenant>> getTenantsForUserDirectory(
       @Parameter(
               name = "userDirectoryId",
-              description = "The Universally Unique Identifier (UUID) for the user directory",
+              description = "The ID for the user directory",
               required = true)
           @PathVariable
           UUID userDirectoryId)
@@ -2133,7 +2121,7 @@ public class SecurityApi extends SecureApi {
   /**
    * Retrieve the user.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param username the username for the user
    * @return the user
    * @throws InvalidArgumentException if an argument is invalid
@@ -2183,7 +2171,7 @@ public class SecurityApi extends SecureApi {
   public User getUser(
       @Parameter(
               name = "userDirectoryId",
-              description = "The Universally Unique Identifier (UUID) for the user directory",
+              description = "The ID for the user directory",
               required = true)
           @PathVariable
           UUID userDirectoryId,
@@ -2302,7 +2290,7 @@ public class SecurityApi extends SecureApi {
   /**
    * Retrieve the user directories the tenant is associated with.
    *
-   * @param tenantId the Universally Unique Identifier (UUID) for the tenant
+   * @param tenantId the ID for the tenant
    * @return the user directories the tenant is associated with
    * @throws InvalidArgumentException if an argument is invalid
    * @throws TenantNotFoundException if the tenant could not be found
@@ -2353,10 +2341,7 @@ public class SecurityApi extends SecureApi {
   @PreAuthorize(
       "isSecurityDisabled() or hasRole('Administrator') or hasAuthority('FUNCTION_Security.TenantAdministration') or hasAuthority('FUNCTION_Security.UserAdministration') or hasAuthority('FUNCTION_Security.GroupAdministration')")
   public ResponseEntity<List<UserDirectory>> getUserDirectoriesForTenant(
-      @Parameter(
-              name = "tenantId",
-              description = "The Universally Unique Identifier (UUID) for the tenant",
-              required = true)
+      @Parameter(name = "tenantId", description = "The ID for the tenant", required = true)
           @PathVariable
           UUID tenantId)
       throws InvalidArgumentException, TenantNotFoundException, ServiceUnavailableException {
@@ -2381,7 +2366,7 @@ public class SecurityApi extends SecureApi {
   /**
    * Retrieve the user directory.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @return the user directory
    * @throws InvalidArgumentException if an argument is invalid
    * @throws UserDirectoryNotFoundException if the user directory could not be found
@@ -2431,7 +2416,7 @@ public class SecurityApi extends SecureApi {
   public UserDirectory getUserDirectory(
       @Parameter(
               name = "userDirectoryId",
-              description = "The Universally Unique Identifier (UUID) for the user directory",
+              description = "The ID for the user directory",
               required = true)
           @PathVariable
           UUID userDirectoryId)
@@ -2442,7 +2427,7 @@ public class SecurityApi extends SecureApi {
   /**
    * Retrieve the capabilities the user directory supports.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @return the capabilities the user directory supports
    * @throws InvalidArgumentException if an argument is invalid
    * @throws UserDirectoryNotFoundException if the user directory could not be found
@@ -2494,7 +2479,7 @@ public class SecurityApi extends SecureApi {
   public UserDirectoryCapabilities getUserDirectoryCapabilities(
       @Parameter(
               name = "userDirectoryId",
-              description = "The Universally Unique Identifier (UUID) for the user directory",
+              description = "The ID for the user directory",
               required = true)
           @PathVariable
           UUID userDirectoryId)
@@ -2510,7 +2495,7 @@ public class SecurityApi extends SecureApi {
   /**
    * Retrieve the name of the user directory.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @return the name of user directory
    * @throws InvalidArgumentException if an argument is invalid
    * @throws UserDirectoryNotFoundException if the user directory could not be found
@@ -2562,7 +2547,7 @@ public class SecurityApi extends SecureApi {
   public String getUserDirectoryName(
       @Parameter(
               name = "userDirectoryId",
-              description = "The Universally Unique Identifier (UUID) for the user directory",
+              description = "The ID for the user directory",
               required = true)
           @PathVariable
           UUID userDirectoryId)
@@ -2648,7 +2633,7 @@ public class SecurityApi extends SecureApi {
   /**
    * Retrieve the summaries for the user directories the tenant is associated with.
    *
-   * @param tenantId the Universally Unique Identifier (UUID) for the tenant
+   * @param tenantId the ID for the tenant
    * @return the summaries for the user directories the tenant is associated with
    * @throws InvalidArgumentException if an argument is invalid
    * @throws TenantNotFoundException if the tenant could not be found
@@ -2699,10 +2684,7 @@ public class SecurityApi extends SecureApi {
   @PreAuthorize(
       "isSecurityDisabled() or hasRole('Administrator') or hasAuthority('FUNCTION_Security.TenantAdministration') or hasAuthority('FUNCTION_Security.ResetUserPassword') or hasAuthority('FUNCTION_Security.UserAdministration') or hasAuthority('FUNCTION_Security.UserGroups')")
   public ResponseEntity<List<UserDirectorySummary>> getUserDirectorySummariesForTenant(
-      @Parameter(
-              name = "tenantId",
-              description = "The Universally Unique Identifier (UUID) for the tenant",
-              required = true)
+      @Parameter(name = "tenantId", description = "The ID for the tenant", required = true)
           @PathVariable
           UUID tenantId)
       throws InvalidArgumentException, TenantNotFoundException, ServiceUnavailableException {
@@ -2727,7 +2709,7 @@ public class SecurityApi extends SecureApi {
   /**
    * Retrieve the user directory type for the user directory.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @return the user directory type for the user directory
    * @throws InvalidArgumentException if an argument is invalid
    * @throws UserDirectoryNotFoundException if the user directory could not be found
@@ -2781,7 +2763,7 @@ public class SecurityApi extends SecureApi {
   public UserDirectoryType getUserDirectoryTypeForUserDirectory(
       @Parameter(
               name = "userDirectoryId",
-              description = "The Universally Unique Identifier (UUID) for the user directory",
+              description = "The ID for the user directory",
               required = true)
           @PathVariable
           UUID userDirectoryId)
@@ -2830,7 +2812,7 @@ public class SecurityApi extends SecureApi {
   /**
    * Retrieve the name of the user.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param username the username for the user
    * @return the name of the user
    * @throws InvalidArgumentException if an argument is invalid
@@ -2884,7 +2866,7 @@ public class SecurityApi extends SecureApi {
   public String getUserName(
       @Parameter(
               name = "userDirectoryId",
-              description = "The Universally Unique Identifier (UUID) for the user directory",
+              description = "The ID for the user directory",
               required = true)
           @PathVariable
           UUID userDirectoryId,
@@ -2904,7 +2886,7 @@ public class SecurityApi extends SecureApi {
   /**
    * Retrieve the users.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param filter the optional filter to apply to the users
    * @param sortBy the optional method used to sort the users e.g. by name.
    * @param sortDirection the optional sort direction to apply to the users
@@ -2959,7 +2941,7 @@ public class SecurityApi extends SecureApi {
   public Users getUsers(
       @Parameter(
               name = "userDirectoryId",
-              description = "The Universally Unique Identifier (UUID) for the user directory",
+              description = "The ID for the user directory",
               required = true)
           @PathVariable
           UUID userDirectoryId,
@@ -3002,7 +2984,7 @@ public class SecurityApi extends SecureApi {
   /**
    * Remove the group member from the group.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param groupName the name of the group
    * @param memberType the group member type
    * @param memberName the name of the group member
@@ -3061,7 +3043,7 @@ public class SecurityApi extends SecureApi {
   public void removeMemberFromGroup(
       @Parameter(
               name = "userDirectoryId",
-              description = "The Universally Unique Identifier (UUID) for the user directory",
+              description = "The ID for the user directory",
               required = true)
           @PathVariable
           UUID userDirectoryId,
@@ -3087,7 +3069,7 @@ public class SecurityApi extends SecureApi {
   /**
    * Remove the role from the group.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param groupName the name of the group
    * @param roleCode the code for the role
    * @throws InvalidArgumentException if an argument is invalid
@@ -3144,7 +3126,7 @@ public class SecurityApi extends SecureApi {
   public void removeRoleFromGroup(
       @Parameter(
               name = "userDirectoryId",
-              description = "The Universally Unique Identifier (UUID) for the user directory",
+              description = "The ID for the user directory",
               required = true)
           @PathVariable
           UUID userDirectoryId,
@@ -3179,8 +3161,8 @@ public class SecurityApi extends SecureApi {
   /**
    * Remove the user directory from the tenant.
    *
-   * @param tenantId the Universally Unique Identifier (UUID) for the tenant
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param tenantId the ID for the tenant
+   * @param userDirectoryId the ID for the user directory
    * @throws InvalidArgumentException if an argument is invalid
    * @throws TenantNotFoundException if the tenant could not be found
    * @throws TenantUserDirectoryNotFoundException if the tenant user directory could not be found
@@ -3232,15 +3214,12 @@ public class SecurityApi extends SecureApi {
   @PreAuthorize(
       "isSecurityDisabled() or hasRole('Administrator') or hasAuthority('FUNCTION_Security.TenantAdministration')")
   public void removeUserDirectoryFromTenant(
-      @Parameter(
-              name = "tenantId",
-              description = "The Universally Unique Identifier (UUID) for the tenant",
-              required = true)
+      @Parameter(name = "tenantId", description = "The ID for the tenant", required = true)
           @PathVariable
           UUID tenantId,
       @Parameter(
               name = "userDirectoryId",
-              description = "The Universally Unique Identifier (UUID) for the user directory",
+              description = "The ID for the user directory",
               required = true)
           @PathVariable
           UUID userDirectoryId)
@@ -3318,7 +3297,7 @@ public class SecurityApi extends SecureApi {
   /**
    * Update the group.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param groupName the name of the group
    * @param group the group
    * @throws InvalidArgumentException if an argument is invalid
@@ -3370,7 +3349,7 @@ public class SecurityApi extends SecureApi {
   public void updateGroup(
       @Parameter(
               name = "userDirectoryId",
-              description = "The Universally Unique Identifier (UUID) for the user directory",
+              description = "The ID for the user directory",
               required = true)
           @PathVariable
           UUID userDirectoryId,
@@ -3407,7 +3386,7 @@ public class SecurityApi extends SecureApi {
   /**
    * Update the tenant.
    *
-   * @param tenantId the Universally Unique Identifier (UUID) for the tenant
+   * @param tenantId the ID for the tenant
    * @param tenant the tenant
    * @throws InvalidArgumentException if an argument is invalid
    * @throws TenantNotFoundException if the tenant could not be found
@@ -3455,10 +3434,7 @@ public class SecurityApi extends SecureApi {
   @PreAuthorize(
       "isSecurityDisabled() or hasRole('Administrator') or hasAuthority('FUNCTION_Security.TenantAdministration')")
   public void updateTenant(
-      @Parameter(
-              name = "tenantId",
-              description = "The Universally Unique Identifier (UUID) for the tenant",
-              required = true)
+      @Parameter(name = "tenantId", description = "The ID for the tenant", required = true)
           @PathVariable
           UUID tenantId,
       @io.swagger.v3.oas.annotations.parameters.RequestBody(
@@ -3485,7 +3461,7 @@ public class SecurityApi extends SecureApi {
   /**
    * Update the user.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param username the username for the user
    * @param user the user
    * @param expirePassword expire the user's password
@@ -3537,7 +3513,7 @@ public class SecurityApi extends SecureApi {
   public void updateUser(
       @Parameter(
               name = "userDirectoryId",
-              description = "The Universally Unique Identifier (UUID) for the user directory",
+              description = "The ID for the user directory",
               required = true)
           @PathVariable
           UUID userDirectoryId,
@@ -3596,7 +3572,7 @@ public class SecurityApi extends SecureApi {
   /**
    * Update the user directory.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param userDirectory the user directory
    * @throws InvalidArgumentException if an argument is invalid
    * @throws UserDirectoryNotFoundException if the user directory could not be found
@@ -3648,7 +3624,7 @@ public class SecurityApi extends SecureApi {
   public void updateUserDirectory(
       @Parameter(
               name = "userDirectoryId",
-              description = "The Universally Unique Identifier (UUID) for the user directory",
+              description = "The ID for the user directory",
               required = true)
           @PathVariable
           UUID userDirectoryId,
@@ -3677,7 +3653,7 @@ public class SecurityApi extends SecureApi {
    * Confirm that the user associated with the authenticated request has access to the user
    * directory.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @return <b>true</b> if the user associated with the authenticated request has access to the
    *     user directory or <b>false</b> otherwise
    * @throws InvalidArgumentException if an argument is invalid

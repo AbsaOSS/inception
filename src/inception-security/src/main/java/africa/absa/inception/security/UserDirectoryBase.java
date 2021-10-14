@@ -37,7 +37,7 @@ public abstract class UserDirectoryBase implements IUserDirectory {
   /** The Role Repository. */
   private final RoleRepository roleRepository;
 
-  /** The Universally Unique Identifier (UUID) for the user directory. */
+  /** The ID for the user directory. */
   private final UUID userDirectoryId;
 
   /** The User Repository. */
@@ -46,7 +46,7 @@ public abstract class UserDirectoryBase implements IUserDirectory {
   /**
    * Constructs a new <b>UserDirectoryBase</b>.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param parameters the parameters for the user directory
    * @param groupRepository the Group Repository
    * @param userRepository the User Repository
@@ -93,9 +93,9 @@ public abstract class UserDirectoryBase implements IUserDirectory {
   }
 
   /**
-   * Returns the Universally Unique Identifier (UUID) for the user directory.
+   * Returns the ID for the user directory.
    *
-   * @return the Universally Unique Identifier (UUID) for the user directory
+   * @return the ID for the user directory
    */
   public UUID getUserDirectoryId() {
     return userDirectoryId;

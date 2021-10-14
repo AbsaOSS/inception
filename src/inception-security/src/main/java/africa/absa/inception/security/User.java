@@ -92,7 +92,7 @@ public class User implements Serializable {
   @ManyToMany(mappedBy = "users")
   private Set<Group> groups = new HashSet<>();
 
-  /** The Universally Unique Identifier (UUID) for the user. */
+  /** The ID for the user. */
   @JsonIgnore
   @Id
   @Column(name = "id", nullable = false)
@@ -185,13 +185,9 @@ public class User implements Serializable {
   @Column(name = "updated", insertable = false)
   private LocalDateTime updated;
 
-  /**
-   * The Universally Unique Identifier (UUID) for the user directory the user is associated with.
-   */
+  /** The ID for the user directory the user is associated with. */
   @Schema(
-      description =
-          "The Universally Unique Identifier (UUID) for the user directory the "
-              + "user is associated with",
+      description = "The ID for the user directory the " + "user is associated with",
       required = true)
   @JsonProperty(required = true)
   @NotNull
@@ -262,9 +258,9 @@ public class User implements Serializable {
   }
 
   /**
-   * Returns the Universally Unique Identifier (UUID) for the user.
+   * Returns the ID for the user.
    *
-   * @return the Universally Unique Identifier (UUID) for the user
+   * @return the ID for the user
    */
   public UUID getId() {
     return id;
@@ -354,11 +350,9 @@ public class User implements Serializable {
   }
 
   /**
-   * Returns the Universally Unique Identifier (UUID) for the user directory the user is associated
-   * with.
+   * Returns the ID for the user directory the user is associated with.
    *
-   * @return the Universally Unique Identifier (UUID) for the user directory the user is associated
-   *     with
+   * @return the ID for the user directory the user is associated with
    */
   public UUID getUserDirectoryId() {
     return userDirectoryId;
@@ -449,9 +443,9 @@ public class User implements Serializable {
   }
 
   /**
-   * Set the Universally Unique Identifier (UUID) for the user.
+   * Set the ID for the user.
    *
-   * @param id the Universally Unique Identifier (UUID) for the user
+   * @param id the ID for the user
    */
   public void setId(UUID id) {
     this.id = id;
@@ -530,11 +524,9 @@ public class User implements Serializable {
   }
 
   /**
-   * Set the Universally Unique Identifier (UUID) for the user directory the user is associated
-   * with.
+   * Set the ID for the user directory the user is associated with.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory the user
-   *     is associated with
+   * @param userDirectoryId the ID for the user directory the user is associated with
    */
   public void setUserDirectoryId(UUID userDirectoryId) {
     this.userDirectoryId = userDirectoryId;

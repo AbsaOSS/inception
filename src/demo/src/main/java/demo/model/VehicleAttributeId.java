@@ -34,10 +34,7 @@ public class VehicleAttributeId implements Serializable {
   /** The code for the vehicle attribute type. */
   private String type;
 
-  /**
-   * The Universally Unique Identifier (UUID) for the vehicle the vehicle attribute is associated
-   * with.
-   */
+  /** The ID for the vehicle the vehicle attribute is associated with. */
   private UUID vehicle;
 
   /**

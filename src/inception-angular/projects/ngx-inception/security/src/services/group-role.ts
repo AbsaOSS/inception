@@ -32,14 +32,14 @@ export class GroupRole {
   roleCode: string;
 
   /**
-   * The Universally Unique Identifier (UUID) for the user directory the group is associated with.
+   * The ID for the user directory the group is associated with.
    */
   userDirectoryId: string;
 
   /**
    * Constructs a new GroupRole.
    *
-   * @param userDirectoryId The Universally Unique Identifier (UUID) for the user directory the
+   * @param userDirectoryId The ID for the user directory the
    *                        group is associated with.
    * @param groupName       The name of the group.
    * @param roleCode        The code for the role.

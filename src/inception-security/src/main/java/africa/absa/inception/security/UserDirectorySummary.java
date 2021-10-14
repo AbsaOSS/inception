@@ -61,10 +61,8 @@ public class UserDirectorySummary implements java.io.Serializable {
       inverseJoinColumns = @JoinColumn(name = "tenant_id", referencedColumnName = "id"))
   private final Set<Tenant> tenants = new HashSet<>();
 
-  /** The Universally Unique Identifier (UUID) for the user directory. */
-  @Schema(
-      description = "The Universally Unique Identifier (UUID) for the user directory",
-      required = true)
+  /** The ID for the user directory. */
+  @Schema(description = "The ID for the user directory", required = true)
   @JsonProperty(required = true)
   @NotNull
   @Id
@@ -116,9 +114,9 @@ public class UserDirectorySummary implements java.io.Serializable {
   }
 
   /**
-   * Returns the Universally Unique Identifier (UUID) for the user directory.
+   * Returns the ID for the user directory.
    *
-   * @return the Universally Unique Identifier (UUID) for the user directory
+   * @return the ID for the user directory
    */
   public UUID getId() {
     return id;

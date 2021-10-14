@@ -183,8 +183,7 @@ interface IUserDirectory {
    * @param username the username for the user
    * @return the function codes for the user
    * @throws UserNotFoundException if the user could not be found
-   * @throws ServiceUnavailableException if the function codes could not be retrieved for
-   *     the user
+   * @throws ServiceUnavailableException if the function codes could not be retrieved for the user
    */
   List<String> getFunctionCodesForUser(String username)
       throws UserNotFoundException, ServiceUnavailableException;

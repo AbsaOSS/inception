@@ -39,7 +39,7 @@ public class DuplicateCarException extends ServiceException {
   /**
    * Constructs a new <b>DuplicateCarException</b>.
    *
-   * @param id the Universally Unique Identifier (UUID) for the car
+   * @param id the ID for the car
    */
   public DuplicateCarException(UUID id) {
     super("The car with the ID (" + id + ") already exists");

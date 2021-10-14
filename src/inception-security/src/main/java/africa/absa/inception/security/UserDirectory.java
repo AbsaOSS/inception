@@ -75,10 +75,8 @@ public class UserDirectory implements Serializable {
   @Column(name = "created", nullable = false, updatable = false)
   private LocalDateTime created;
 
-  /** The Universally Unique Identifier (UUID) for the user directory. */
-  @Schema(
-      description = "The Universally Unique Identifier (UUID) for the user directory",
-      required = true)
+  /** The ID for the user directory. */
+  @Schema(description = "The ID for the user directory", required = true)
   @JsonProperty(required = true)
   @NotNull
   @Id
@@ -186,9 +184,9 @@ public class UserDirectory implements Serializable {
   }
 
   /**
-   * Returns the Universally Unique Identifier (UUID) for the user directory.
+   * Returns the ID for the user directory.
    *
-   * @return the Universally Unique Identifier (UUID) for the user directory
+   * @return the ID for the user directory
    */
   public UUID getId() {
     return id;
@@ -297,9 +295,9 @@ public class UserDirectory implements Serializable {
   }
 
   /**
-   * Set the Universally Unique Identifier (UUID) for the user directory.
+   * Set the ID for the user directory.
    *
-   * @param id the Universally Unique Identifier (UUID) for the user directory
+   * @param id the ID for the user directory
    */
   public void setId(UUID id) {
     this.id = id;

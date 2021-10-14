@@ -116,7 +116,8 @@ public interface ISchedulerService {
    *
    * @return an Optional containing the next job that is scheduled for execution or an empty
    *     Optional if no jobs are currently scheduled for execution
-   * @throws ServiceUnavailableException if the next job scheduled for execution could not be retrieved
+   * @throws ServiceUnavailableException if the next job scheduled for execution could not be
+   *     retrieved
    */
   Optional<Job> getNextJobScheduledForExecution() throws ServiceUnavailableException;
 
@@ -149,13 +150,15 @@ public interface ISchedulerService {
    * @throws InvalidArgumentException if an argument is invalid
    * @throws ServiceUnavailableException if the job locks could not be reset
    */
-  void resetJobLocks(JobStatus status, JobStatus newStatus) throws InvalidArgumentException, ServiceUnavailableException;
+  void resetJobLocks(JobStatus status, JobStatus newStatus)
+      throws InvalidArgumentException, ServiceUnavailableException;
 
   /**
    * Schedule the next unscheduled job for execution.
    *
    * @return <b>true</b> if a job was successfully scheduled for execution or <b>false</b> otherwise
-   * @throws ServiceUnavailableException if the next unscheduled job could not be scheduled for execution
+   * @throws ServiceUnavailableException if the next unscheduled job could not be scheduled for
+   *     execution
    */
   boolean scheduleNextUnscheduledJobForExecution() throws ServiceUnavailableException;
 

@@ -67,7 +67,7 @@ public class Group implements Serializable {
   @Column(name = "description", length = 100)
   private String description;
 
-  /** The Universally Unique Identifier (UUID) for the group. */
+  /** The ID for the group. */
   @JsonIgnore
   @Id
   @Column(name = "id", nullable = false)
@@ -96,13 +96,9 @@ public class Group implements Serializable {
   @Column(name = "updated", insertable = false)
   private LocalDateTime updated;
 
-  /**
-   * The Universally Unique Identifier (UUID) for the user directory the group is associated with.
-   */
+  /** The ID for the user directory the group is associated with. */
   @Schema(
-      description =
-          "The Universally Unique Identifier (UUID) for the user directory the "
-              + "group is associated with",
+      description = "The ID for the user directory the " + "group is associated with",
       required = true)
   @JsonProperty(required = true)
   @NotNull
@@ -134,8 +130,7 @@ public class Group implements Serializable {
   /**
    * Constructs a new <b>Group</b>.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory the
-   *     group is associated with
+   * @param userDirectoryId the ID for the user directory the group is associated with
    * @param name the name of the group
    * @param description the description for the group
    */
@@ -213,9 +208,9 @@ public class Group implements Serializable {
   }
 
   /**
-   * Returns the Universally Unique Identifier (UUID) for the group.
+   * Returns the ID for the group.
    *
-   * @return the Universally Unique Identifier (UUID) for the group
+   * @return the ID for the group
    */
   public UUID getId() {
     return id;
@@ -249,11 +244,9 @@ public class Group implements Serializable {
   }
 
   /**
-   * Returns the Universally Unique Identifier (UUID) for the user directory the group is associated
-   * with.
+   * Returns the ID for the user directory the group is associated with.
    *
-   * @return the Universally Unique Identifier (UUID) for the user directory the group is associated
-   *     with
+   * @return the ID for the user directory the group is associated with
    */
   public UUID getUserDirectoryId() {
     return userDirectoryId;
@@ -308,9 +301,9 @@ public class Group implements Serializable {
   }
 
   /**
-   * Set the Universally Unique Identifier (UUID) for the group.
+   * Set the ID for the group.
    *
-   * @param id the Universally Unique Identifier (UUID) for the group
+   * @param id the ID for the group
    */
   public void setId(UUID id) {
     this.id = id;
@@ -335,11 +328,9 @@ public class Group implements Serializable {
   }
 
   /**
-   * Set the Universally Unique Identifier (UUID) for the user directory the group is associated
-   * with.
+   * Set the ID for the user directory the group is associated with.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory the
-   *     group is associated with
+   * @param userDirectoryId the ID for the user directory the group is associated with
    */
   public void setUserDirectoryId(UUID userDirectoryId) {
     this.userDirectoryId = userDirectoryId;

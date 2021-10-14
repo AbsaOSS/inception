@@ -2164,13 +2164,13 @@ public class SecurityService implements ISecurityService, InitializingBean {
   }
 
   /**
-   * Returns the Universally Unique Identifier (UUID) for the internal user directory the internal
-   * user with the specified username is associated with.
+   * Returns the ID for the internal user directory the internal user with the specified username is
+   * associated with.
    *
    * @param username the username for the internal user
-   * @return an Optional containing the Universally Unique Identifier (UUID) for the internal user
-   *     directory the internal user with the specified username is associated with or an empty
-   *     Optional if an internal user with the specified username could not be found
+   * @return an Optional containing the ID for the internal user directory the internal user with
+   *     the specified username is associated with or an empty Optional if an internal user with the
+   *     specified username could not be found
    */
   private Optional<UUID> getInternalUserDirectoryIdForUser(String username)
       throws ServiceUnavailableException {

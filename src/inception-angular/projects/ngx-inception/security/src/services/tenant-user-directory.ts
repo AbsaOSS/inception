@@ -22,20 +22,20 @@
 export class TenantUserDirectory {
 
   /**
-   * The Universally Unique Identifier (UUID) for the user directory.
+   * The ID for the user directory.
    */
   tenantId: string;
 
   /**
-   * The Universally Unique Identifier (UUID) for the tenant.
+   * The ID for the tenant.
    */
   userDirectoryId: string;
 
   /**
    * Constructs a new TenantUserDirectory.
    *
-   * @param tenantId  The Universally Unique Identifier (UUID) for the tenant.
-   * @param userDirectoryId The Universally Unique Identifier (UUID) for the user directory.
+   * @param tenantId  The ID for the tenant.
+   * @param userDirectoryId The ID for the user directory.
    */
   constructor(tenantId: string, userDirectoryId: string) {
     this.tenantId = tenantId;

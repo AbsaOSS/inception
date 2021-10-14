@@ -31,7 +31,7 @@ import java.util.UUID;
  */
 public interface ISecurityService {
 
-  /** The Universally Unique Identifier (UUID) for the Administrators group. */
+  /** The ID for the Administrators group. */
   UUID ADMINISTRATORS_GROUP_ID = UUID.fromString("00000000-0000-0000-0000-000000000000");
 
   /** The name of the Administrators group. */
@@ -43,10 +43,10 @@ public interface ISecurityService {
   /** The username for the Administrator user. */
   String ADMINISTRATOR_USERNAME = "administrator";
 
-  /** The Universally Unique Identifier (UUID) for the default tenant. */
+  /** The ID for the default tenant. */
   UUID DEFAULT_TENANT_ID = UUID.fromString("00000000-0000-0000-0000-000000000000");
 
-  /** The Universally Unique Identifier (UUID) for the default internal user directory. */
+  /** The ID for the default internal user directory. */
   UUID DEFAULT_USER_DIRECTORY_ID = UUID.fromString("00000000-0000-0000-0000-000000000000");
 
   /** The code for the internal user directory type. */
@@ -64,7 +64,7 @@ public interface ISecurityService {
   /**
    * Add the group member to the group.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param groupName the name of the group
    * @param memberType the group member type
    * @param memberName the group member name
@@ -82,7 +82,7 @@ public interface ISecurityService {
   /**
    * Add the role to the group.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param groupName the name of the group
    * @param roleCode the code for the role
    * @throws InvalidArgumentException if an argument is invalid
@@ -98,8 +98,8 @@ public interface ISecurityService {
   /**
    * Add the user directory to the tenant.
    *
-   * @param tenantId the Universally Unique Identifier (UUID) for the tenant
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param tenantId the ID for the tenant
+   * @param userDirectoryId the ID for the user directory
    * @throws InvalidArgumentException if an argument is invalid
    * @throws TenantNotFoundException if the tenant could not be found
    * @throws UserDirectoryNotFoundException if the user directory could not be found
@@ -112,7 +112,7 @@ public interface ISecurityService {
   /**
    * Add the user to the group.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param groupName the name of the group
    * @param username the username for the user
    * @throws InvalidArgumentException if an argument is invalid
@@ -128,7 +128,7 @@ public interface ISecurityService {
   /**
    * Administratively change the password for the user.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param username the username for the user
    * @param newPassword the new password
    * @param expirePassword expire the user's password
@@ -156,7 +156,7 @@ public interface ISecurityService {
    *
    * @param username the username for the user
    * @param password the password being used to authenticate
-   * @return the Universally Unique Identifier (UUID) for the user directory
+   * @return the ID for the user directory
    * @throws InvalidArgumentException if an argument is invalid
    * @throws AuthenticationFailedException if the authentication failed
    * @throws UserLockedException if the user is locked
@@ -174,7 +174,7 @@ public interface ISecurityService {
    * @param username the username for the user
    * @param password the password for the user that is used to authorise the operation
    * @param newPassword the new password
-   * @return the Universally Unique Identifier (UUID) for the user directory
+   * @return the ID for the user directory
    * @throws InvalidArgumentException if an argument is invalid
    * @throws AuthenticationFailedException if the authentication failed
    * @throws UserLockedException if the user is locked
@@ -263,7 +263,7 @@ public interface ISecurityService {
   /**
    * Delete the group.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param groupName the name of the group
    * @throws InvalidArgumentException if an argument is invalid
    * @throws UserDirectoryNotFoundException if the user directory could not be found
@@ -278,7 +278,7 @@ public interface ISecurityService {
   /**
    * Delete the tenant.
    *
-   * @param tenantId the Universally Unique Identifier (UUID) for the tenant
+   * @param tenantId the ID for the tenant
    * @throws InvalidArgumentException if an argument is invalid
    * @throws TenantNotFoundException if the tenant could not be found
    * @throws ServiceUnavailableException if the tenant could not be deleted
@@ -289,7 +289,7 @@ public interface ISecurityService {
   /**
    * Delete the user.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param username the username for the user
    * @throws InvalidArgumentException if an argument is invalid
    * @throws UserDirectoryNotFoundException if the user directory could not be found
@@ -303,7 +303,7 @@ public interface ISecurityService {
   /**
    * Delete the user directory.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @throws InvalidArgumentException if an argument is invalid
    * @throws UserDirectoryNotFoundException if the user directory could not be found
    * @throws ServiceUnavailableException if the user directory could not be deleted
@@ -314,7 +314,7 @@ public interface ISecurityService {
   /**
    * Retrieve the users matching the user attribute criteria.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param userAttributes the user attribute criteria used to select the users
    * @return the users whose attributes match the user attribute criteria
    * @throws InvalidArgumentException if an argument is invalid
@@ -342,14 +342,13 @@ public interface ISecurityService {
   /**
    * Retrieve the function codes for the user.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param username the username for the user
    * @return the function codes for the user
    * @throws InvalidArgumentException if an argument is invalid
    * @throws UserDirectoryNotFoundException if the user directory could not be found
    * @throws UserNotFoundException if the user could not be found
-   * @throws ServiceUnavailableException if the function codes could not be retrieved for
-   *     the user
+   * @throws ServiceUnavailableException if the function codes could not be retrieved for the user
    */
   List<String> getFunctionCodesForUser(UUID userDirectoryId, String username)
       throws InvalidArgumentException, UserDirectoryNotFoundException, UserNotFoundException,
@@ -366,7 +365,7 @@ public interface ISecurityService {
   /**
    * Retrieve the group.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param groupName the name of the group
    * @return the group
    * @throws InvalidArgumentException if an argument is invalid
@@ -381,7 +380,7 @@ public interface ISecurityService {
   /**
    * Retrieve all the group names.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @return the group names
    * @throws InvalidArgumentException if an argument is invalid
    * @throws UserDirectoryNotFoundException if the user directory could not be found
@@ -393,7 +392,7 @@ public interface ISecurityService {
   /**
    * Retrieve the names of the groups the user is a member of.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param username the username for the user
    * @return the names of the groups the user is a member of
    * @throws InvalidArgumentException if an argument is invalid
@@ -409,7 +408,7 @@ public interface ISecurityService {
   /**
    * Retrieve all the groups.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @return the groups
    * @throws InvalidArgumentException if an argument is invalid
    * @throws UserDirectoryNotFoundException if the user directory could not be found
@@ -421,7 +420,7 @@ public interface ISecurityService {
   /**
    * Retrieve the groups.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param filter the optional filter to apply to the groups
    * @param sortDirection the optional sort direction to apply to the groups
    * @param pageIndex the optional page index
@@ -442,7 +441,7 @@ public interface ISecurityService {
   /**
    * Retrieve the groups the user is a member of.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param username the username for the user
    * @return the groups the user is a member of
    * @throws InvalidArgumentException if an argument is invalid
@@ -458,7 +457,7 @@ public interface ISecurityService {
   /**
    * Retrieve the group members for the group.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param groupName the name of the group
    * @return the group members for the group
    * @throws InvalidArgumentException if an argument is invalid
@@ -473,7 +472,7 @@ public interface ISecurityService {
   /**
    * Retrieve the group members for the group.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param groupName the name of the group
    * @param filter the optional filter to apply to the group members
    * @param sortDirection the optional sort direction to apply to the group members
@@ -498,7 +497,7 @@ public interface ISecurityService {
   /**
    * Retrieve the codes for the roles that have been assigned to the group.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param groupName the name of the group
    * @return the codes for the roles that have been assigned to the group
    * @throws InvalidArgumentException if an argument is invalid
@@ -514,7 +513,7 @@ public interface ISecurityService {
   /**
    * Retrieve the codes for the roles that have been assigned to the user.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param username the username for the user
    * @return the codes for the roles that have been assigned to the user
    * @throws InvalidArgumentException if an argument is invalid
@@ -538,7 +537,7 @@ public interface ISecurityService {
   /**
    * Retrieve the roles that have been assigned to the group.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param groupName the name of the group
    * @return the roles that have been assigned to the group
    * @throws InvalidArgumentException if an argument is invalid
@@ -554,7 +553,7 @@ public interface ISecurityService {
   /**
    * Retrieve the tenant.
    *
-   * @param tenantId the Universally Unique Identifier (UUID) for the tenant
+   * @param tenantId the ID for the tenant
    * @return the tenant
    * @throws InvalidArgumentException if an argument is invalid
    * @throws TenantNotFoundException if the tenant could not be found
@@ -564,12 +563,10 @@ public interface ISecurityService {
       throws InvalidArgumentException, TenantNotFoundException, ServiceUnavailableException;
 
   /**
-   * Retrieve the Universally Unique Identifiers (UUIDs) for the tenants the user directory is
-   * associated with.
+   * Retrieve the IDs for the tenants the user directory is associated with.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
-   * @return the Universally Unique Identifiers (UUIDs) for the tenants the user directory is
-   *     associated with
+   * @param userDirectoryId the ID for the user directory
+   * @return the IDs for the tenants the user directory is associated with
    * @throws InvalidArgumentException if an argument is invalid
    * @throws UserDirectoryNotFoundException if the user directory could not be found
    * @throws ServiceUnavailableException if the tenant IDs could not be retrieved for the user
@@ -581,7 +578,7 @@ public interface ISecurityService {
   /**
    * Retrieve the name of the tenant.
    *
-   * @param tenantId the Universally Unique Identifier (UUID) for the tenant
+   * @param tenantId the ID for the tenant
    * @return the name of the tenant
    * @throws InvalidArgumentException if an argument is invalid
    * @throws TenantNotFoundException if the tenant could not be found
@@ -616,7 +613,7 @@ public interface ISecurityService {
   /**
    * Retrieve the tenants the user directory is associated with.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @return the tenants the user directory is associated with
    * @throws InvalidArgumentException if an argument is invalid
    * @throws UserDirectoryNotFoundException if the user directory could not be found
@@ -629,7 +626,7 @@ public interface ISecurityService {
   /**
    * Retrieve the user.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param username the username for the user
    * @return the user
    * @throws InvalidArgumentException if an argument is invalid
@@ -667,7 +664,7 @@ public interface ISecurityService {
   /**
    * Retrieve the user directories the tenant is associated with.
    *
-   * @param tenantId the Universally Unique Identifier (UUID) for the tenant
+   * @param tenantId the ID for the tenant
    * @return the user directories the tenant is associated with
    * @throws InvalidArgumentException if an argument is invalid
    * @throws TenantNotFoundException if the tenant could not be found
@@ -680,7 +677,7 @@ public interface ISecurityService {
   /**
    * Retrieve the user directory.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @return the user directory
    * @throws InvalidArgumentException if an argument is invalid
    * @throws UserDirectoryNotFoundException if the user directory could not be found
@@ -692,7 +689,7 @@ public interface ISecurityService {
   /**
    * Retrieve the capabilities the user directory supports.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @return the capabilities the user directory supports
    * @throws InvalidArgumentException if an argument is invalid
    * @throws UserDirectoryNotFoundException if the user directory could not be found
@@ -702,13 +699,12 @@ public interface ISecurityService {
       throws InvalidArgumentException, UserDirectoryNotFoundException, ServiceUnavailableException;
 
   /**
-   * Retrieve the Universally Unique Identifier (UUID) for the user directory that the user with the
-   * specified username is associated with.
+   * Retrieve the ID for the user directory that the user with the specified username is associated
+   * with.
    *
    * @param username the username for the user
-   * @return an Optional containing the Universally Unique Identifier (UUID) for the user directory
-   *     that the user with the specified username is associated with or an empty Optional if the
-   *     user cannot be found
+   * @return an Optional containing the ID for the user directory that the user with the specified
+   *     username is associated with or an empty Optional if the user cannot be found
    * @throws InvalidArgumentException if an argument is invalid
    * @throws ServiceUnavailableException if the user directory ID could not be retrieved for the
    *     user
@@ -717,12 +713,10 @@ public interface ISecurityService {
       throws InvalidArgumentException, ServiceUnavailableException;
 
   /**
-   * Retrieve the Universally Unique Identifiers (UUIDs) for the user directories the tenant is
-   * associated with.
+   * Retrieve the IDs for the user directories the tenant is associated with.
    *
-   * @param tenantId the Universally Unique Identifier (UUID) for the tenant
-   * @return the Universally Unique Identifiers (UUIDs) for the user directories the tenant is
-   *     associated with
+   * @param tenantId the ID for the tenant
+   * @return the IDs for the user directories the tenant is associated with
    * @throws InvalidArgumentException if an argument is invalid
    * @throws TenantNotFoundException if the tenant could not be found
    * @throws ServiceUnavailableException if the user directory IDs could not be retrieved for the
@@ -732,14 +726,13 @@ public interface ISecurityService {
       throws InvalidArgumentException, TenantNotFoundException, ServiceUnavailableException;
 
   /**
-   * Retrieve the Universally Unique Identifiers (UUIDs) for the user directories the user is
-   * associated with. Every user is associated with a user directory, which is in turn associated
-   * with one or more tenants, which are in turn associated with one or more user directories. The
-   * user is therefore associated indirectly with all these user directories.
+   * Retrieve the IDs for the user directories the user is associated with. Every user is associated
+   * with a user directory, which is in turn associated with one or more tenants, which are in turn
+   * associated with one or more user directories. The user is therefore associated indirectly with
+   * all these user directories.
    *
    * @param username the username for the user
-   * @return the Universally Unique Identifiers (UUIDs) for the user directories the user is
-   *     associated with
+   * @return the IDs for the user directories the user is associated with
    * @throws InvalidArgumentException if an argument is invalid
    * @throws UserNotFoundException if the user could not be found
    * @throws ServiceUnavailableException if the user directory IDs could not be retrieved for the
@@ -751,7 +744,7 @@ public interface ISecurityService {
   /**
    * Retrieve the name of the user directory.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @return the name of the user directory
    * @throws InvalidArgumentException if an argument is invalid
    * @throws UserDirectoryNotFoundException if the user directory could not be found
@@ -778,7 +771,7 @@ public interface ISecurityService {
   /**
    * Retrieve the summaries for the user directories the tenant is associated with.
    *
-   * @param tenantId the Universally Unique Identifier (UUID) for the tenant
+   * @param tenantId the ID for the tenant
    * @return the summaries for the user directories the tenant is associated with
    * @throws InvalidArgumentException if an argument is invalid
    * @throws TenantNotFoundException if the tenant could not be found
@@ -791,7 +784,7 @@ public interface ISecurityService {
   /**
    * Retrieve the user directory type for the user directory.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @return the user directory type for the user directory
    * @throws InvalidArgumentException if an argument is invalid
    * @throws UserDirectoryNotFoundException if the user directory could not be found
@@ -814,7 +807,7 @@ public interface ISecurityService {
   /**
    * Retrieve the name of the user.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param username the username for the user
    * @return the name of the user
    * @throws InvalidArgumentException if an argument is invalid
@@ -829,7 +822,7 @@ public interface ISecurityService {
   /**
    * Retrieve all the users.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @return the users
    * @throws InvalidArgumentException if an argument is invalid
    * @throws UserDirectoryNotFoundException if the user directory could not be found
@@ -841,7 +834,7 @@ public interface ISecurityService {
   /**
    * Retrieve the users.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param filter the optional filter to apply to the users
    * @param sortBy the optional method used to sort the users e.g. by name
    * @param sortDirection the optional sort direction to apply to the users
@@ -892,7 +885,7 @@ public interface ISecurityService {
   /**
    * Does the user with the specified username exist?
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param username the username for the user
    * @return <b>true</b> if a user with specified username exists or <b>false</b> otherwise
    * @throws InvalidArgumentException if an argument is invalid
@@ -905,7 +898,7 @@ public interface ISecurityService {
   /**
    * Is the user in the group?
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param groupName the name of the group
    * @param username the username for the user
    * @return <b>true</b> if the user is a member of the group or <b>false</b> otherwise
@@ -930,7 +923,7 @@ public interface ISecurityService {
   /**
    * Remove the group member from the group.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param groupName the name of the group
    * @param memberType the group member type
    * @param memberName the group member name
@@ -948,7 +941,7 @@ public interface ISecurityService {
   /**
    * Remove the role from the group.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param groupName the name of the group
    * @param roleCode the code for the role
    * @throws InvalidArgumentException if an argument is invalid
@@ -964,8 +957,8 @@ public interface ISecurityService {
   /**
    * Remove the user directory from the tenant.
    *
-   * @param tenantId the Universally Unique Identifier (UUID) for the tenant
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param tenantId the ID for the tenant
+   * @param userDirectoryId the ID for the user directory
    * @throws InvalidArgumentException if an argument is invalid
    * @throws TenantNotFoundException if the tenant could not be found
    * @throws TenantUserDirectoryNotFoundException if the tenant user directory could not be found
@@ -978,7 +971,7 @@ public interface ISecurityService {
   /**
    * Remove the user from the group.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory
+   * @param userDirectoryId the ID for the user directory
    * @param groupName the name of the group
    * @param username the username for the user
    * @throws InvalidArgumentException if an argument is invalid

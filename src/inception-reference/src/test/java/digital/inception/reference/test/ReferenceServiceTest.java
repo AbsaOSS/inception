@@ -68,7 +68,8 @@ public class ReferenceServiceTest {
   /** Test the country reference functionality. */
   @Test
   public void countryTest() throws Exception {
-    List<Country> retrievedCountries = referenceService.getCountries(IReferenceService.DEFAULT_LOCALE_ID);
+    List<Country> retrievedCountries =
+        referenceService.getCountries(IReferenceService.DEFAULT_LOCALE_ID);
 
     assertEquals(
         246, retrievedCountries.size(), "The correct number of countries was not retrieved");
@@ -111,7 +112,8 @@ public class ReferenceServiceTest {
   @Test
   public void languageTest() throws Exception {
 
-    List<Language> retrievedLanguages = referenceService.getLanguages(IReferenceService.DEFAULT_LOCALE_ID);
+    List<Language> retrievedLanguages =
+        referenceService.getLanguages(IReferenceService.DEFAULT_LOCALE_ID);
 
     assertEquals(
         93, retrievedLanguages.size(), "The correct number of languages was not retrieved");
@@ -163,7 +165,8 @@ public class ReferenceServiceTest {
   /** Test the measurement units reference functionality. */
   @Test
   public void measurementUnitsTest() throws Exception {
-    List<MeasurementUnit> retrievedMeasurementUnits = referenceService.getMeasurementUnits(IReferenceService.DEFAULT_LOCALE_ID);
+    List<MeasurementUnit> retrievedMeasurementUnits =
+        referenceService.getMeasurementUnits(IReferenceService.DEFAULT_LOCALE_ID);
 
     assertEquals(
         9,
@@ -181,7 +184,8 @@ public class ReferenceServiceTest {
   /** Test the region reference functionality. */
   @Test
   public void regionTest() throws Exception {
-    List<Region> retrievedRegions = referenceService.getRegions(IReferenceService.DEFAULT_LOCALE_ID);
+    List<Region> retrievedRegions =
+        referenceService.getRegions(IReferenceService.DEFAULT_LOCALE_ID);
 
     assertEquals(9, retrievedRegions.size(), "The correct number of regions was not retrieved");
 
@@ -193,7 +197,8 @@ public class ReferenceServiceTest {
   /** Test the time zone reference functionality. */
   @Test
   public void timeZoneTest() throws Exception {
-    List<TimeZone> retrievedTimeZones = referenceService.getTimeZones(IReferenceService.DEFAULT_LOCALE_ID);
+    List<TimeZone> retrievedTimeZones =
+        referenceService.getTimeZones(IReferenceService.DEFAULT_LOCALE_ID);
 
     if (retrievedTimeZones.size() <= 0) {
       fail("Failed to retrieve the time zones");

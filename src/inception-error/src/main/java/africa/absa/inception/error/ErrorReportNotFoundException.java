@@ -39,7 +39,7 @@ public class ErrorReportNotFoundException extends ServiceException {
   /**
    * Constructs a new <b>ErrorReportNotFoundException</b>.
    *
-   * @param errorReportId the Universally Unique Identifier (UUID) for the error report
+   * @param errorReportId the ID for the error report
    */
   public ErrorReportNotFoundException(UUID errorReportId) {
     super("The error report (" + errorReportId + ") could not be found");

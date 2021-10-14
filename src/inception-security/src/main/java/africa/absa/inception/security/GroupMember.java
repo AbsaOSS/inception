@@ -58,13 +58,9 @@ public class GroupMember implements Serializable {
   @NotNull
   private GroupMemberType memberType;
 
-  /**
-   * The Universally Unique Identifier (UUID) for the user directory the group is associated with.
-   */
+  /** The ID for the user directory the group is associated with. */
   @Schema(
-      description =
-          "The Universally Unique Identifier (UUID) for the user directory the "
-              + "group is associated with",
+      description = "The ID for the user directory the " + "group is associated with",
       required = true)
   @JsonProperty(required = true)
   @NotNull
@@ -76,8 +72,7 @@ public class GroupMember implements Serializable {
   /**
    * Constructs a new <b>GroupMember</b>.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory the
-   *     group is associated with
+   * @param userDirectoryId the ID for the user directory the group is associated with
    * @param groupName the name of the group
    * @param memberType the group member type
    * @param memberName the name of the group member
@@ -118,11 +113,9 @@ public class GroupMember implements Serializable {
   }
 
   /**
-   * Returns the Universally Unique Identifier (UUID) for the user directory the group is associated
-   * with.
+   * Returns the ID for the user directory the group is associated with.
    *
-   * @return the Universally Unique Identifier (UUID) for the user directory the group is associated
-   *     with
+   * @return the ID for the user directory the group is associated with
    */
   public UUID getUserDirectoryId() {
     return userDirectoryId;
@@ -156,11 +149,9 @@ public class GroupMember implements Serializable {
   }
 
   /**
-   * Set the Universally Unique Identifier (UUID) for the user directory the group is associated
-   * with.
+   * Set the ID for the user directory the group is associated with.
    *
-   * @param userDirectoryId the Universally Unique Identifier (UUID) for the user directory the
-   *     group is associated with
+   * @param userDirectoryId the ID for the user directory the group is associated with
    */
   public void setUserDirectoryId(UUID userDirectoryId) {
     this.userDirectoryId = userDirectoryId;

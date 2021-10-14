@@ -54,14 +54,14 @@ public class OAuth2AccessToken extends org.springframework.security.oauth2.core.
   public static final String SCOPE_CLAIM = "scope";
 
   /**
-   * The name of the tenants claim that provides the Universally Unique Identifiers (UUIDs) for the
-   * tenants the user is associated with.
+   * The name of the tenants claim that provides the IDs for the tenants the user is associated
+   * with.
    */
   public static final String TENANTS_CLAIM = "tenants";
 
   /**
-   * The name of the user directory ID claim that provides the Universally Unique Identifier (UUID)
-   * for the user directory the user is associated with.
+   * The name of the user directory ID claim that provides the ID for the user directory the user is
+   * associated with.
    */
   public static final String USER_DIRECTORY_ID_CLAIM = "user_directory_id";
 

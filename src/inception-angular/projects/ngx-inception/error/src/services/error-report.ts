@@ -52,7 +52,7 @@ export class ErrorReport {
   detail: string;
 
   /**
-   * The optional Universally Unique Identifier (UUID) for the device the error report originated
+   * The optional ID for the device the error report originated
    * from.
    */
   deviceId?: string;
@@ -63,7 +63,7 @@ export class ErrorReport {
   feedback?: string;
 
   /**
-   * The Universally Unique Identifier (UUID) for the error report.
+   * The ID for the error report.
    */
   id: string;
 
@@ -75,7 +75,7 @@ export class ErrorReport {
   /**
    * Constructs a new ErrorReport.
    *
-   * @param id                 The Universally Unique Identifier (UUID) for the error report.
+   * @param id                 The ID for the error report.
    * @param applicationId      The ID for the application that generated the error report.
    * @param applicationVersion The version of the application that generated the error report.
    * @param description        The description of the error.
