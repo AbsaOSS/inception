@@ -41,7 +41,7 @@
       <column name="created" type="timestamp" remarks="The date and time the vehicle was created">
         <constraints nullable="false"/>
       </column>
-      <column name="id" type="uuid" remarks="The Universally Unique Identifier (UUID) for the vehicle">
+      <column name="id" type="uuid" remarks="The ID for the vehicle">
         <constraints primaryKey="true" nullable="false"/>
       </column>
       <column name="name" type="nvarchar(100)" remarks="The name of the vehicle">
@@ -57,7 +57,7 @@
     </createIndex>
 
     <createTable schemaName="demo" tableName="cars" remarks="Cars">
-      <column name="id" type="uuid" remarks="The Universally Unique Identifier (UUID) for the car">
+      <column name="id" type="uuid" remarks="The ID for the car">
         <constraints primaryKey="true" nullable="false"/>
       </column>
       <column name="number_of_doors" type="int" remarks="The number of doors for the car">
@@ -85,7 +85,7 @@
       <column name="created" type="timestamp" remarks="The date and time the vehicle attribute was created">
         <constraints nullable="false"/>
       </column>
-      <column name="vehicle_id" type="uuid" remarks="The Universally Unique Identifier (UUID) for the vehicle the vehicle attribute is associated with">
+      <column name="vehicle_id" type="uuid" remarks="The ID for the vehicle the vehicle attribute is associated with">
         <constraints primaryKey="true" nullable="false"/>
       </column>
       <column name="type" type="nvarchar(30)" remarks="The code for the vehicle attribute type">

@@ -124,6 +124,8 @@ export class NewUserDirectoryComponent extends AdminContainerView implements Aft
 
       if (this.internalUserDirectory) {
         this.userDirectory.parameters = this.internalUserDirectory.getParameters();
+      } else if (this.ldapUserDirectory) {
+        this.userDirectory.parameters = this.ldapUserDirectory.getParameters();
       }
 
       this.spinnerService.showSpinner();

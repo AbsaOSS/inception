@@ -28,7 +28,7 @@
     </sql>
 
     <createTable schemaName="error" tableName="error_reports" remarks="Error Reports">
-      <column name="id" type="uuid" remarks="The Universally Unique Identifier (UUID) for the error report">
+      <column name="id" type="uuid" remarks="The ID for the error report">
         <constraints primaryKey="true" nullable="false"/>
       </column>
       <column name="application_id" type="nvarchar(200)" remarks="The ID for the application that generated the error report">
@@ -47,7 +47,7 @@
         <constraints nullable="false"/>
       </column>
       <column name="who" type="nvarchar(100)" remarks="The optional username for the user associated with the error report"/>
-      <column name="device_id" type="uuid" remarks="The optional Universally Unique Identifier (UUID) for the device the error report originated from"/>
+      <column name="device_id" type="uuid" remarks="The optional ID for the device the error report originated from"/>
       <column name="feedback" type="nvarchar(4000)" remarks="The optional feedback provided by the user for the error"/>
       <column name="data" type="clob" remarks="The optional base-64 encoded data associated with the error report"/>
     </createTable>

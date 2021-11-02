@@ -42,7 +42,7 @@
         <input type="text" matInput formControlName="bindDN" required="true">
         <mat-error *ngIf="bindDNFormControl.errors && !bindDNFormControl.untouched">
           <span *ngIf="bindDNFormControl.errors?.required" i18n="@@security_ldap_user_directory_component_error_bind_dn_required">The bind DN is required.</span>
-          <span *ngIf="bindDNFormControl.errors?.maxlength" i18n="@@security_ldap_user_directory_component_error_bind_dn_maxlength">Bind DN must not exceed 100 characters.</span>
+          <span *ngIf="bindDNFormControl.errors?.maxlength" i18n="@@security_ldap_user_directory_component_error_bind_dn_maxlength">Bind DN must not exceed 200 characters.</span>
         </mat-error>
       </mat-form-field>
     </div>
@@ -66,7 +66,7 @@
         <input type="text" matInput formControlName="baseDN" required="true">
         <mat-error *ngIf="baseDNFormControl.errors && !baseDNFormControl.untouched">
           <span *ngIf="baseDNFormControl.errors?.required" i18n="@@security_ldap_user_directory_component_error_base_dn_required">The base DN is required.</span>
-          <span *ngIf="baseDNFormControl.errors?.maxlength" i18n="@@security_ldap_user_directory_component_error_base_dn_maxlength">Base DN must not exceed 100 characters.</span>
+          <span *ngIf="baseDNFormControl.errors?.maxlength" i18n="@@security_ldap_user_directory_component_error_base_dn_maxlength">Base DN must not exceed 200 characters.</span>
         </mat-error>
       </mat-form-field>
     </div>
@@ -78,7 +78,7 @@
         <input type="text" matInput formControlName="userBaseDN" required="true">
         <mat-error *ngIf="userBaseDNFormControl.errors && !userBaseDNFormControl.untouched">
           <span *ngIf="userBaseDNFormControl.errors?.required" i18n="@@security_ldap_user_directory_component_error_user_base_dn_required">The user base DN is required.</span>
-          <span *ngIf="userBaseDNFormControl.errors?.maxlength" i18n="@@security_ldap_user_directory_component_error_user_base_dn_maxlength">User base DN must not exceed 100 characters.</span>
+          <span *ngIf="userBaseDNFormControl.errors?.maxlength" i18n="@@security_ldap_user_directory_component_error_user_base_dn_maxlength">User base DN must not exceed 200 characters.</span>
         </mat-error>
       </mat-form-field>
     </div>
@@ -90,7 +90,7 @@
         <input type="text" matInput formControlName="groupBaseDN" required="true">
         <mat-error *ngIf="groupBaseDNFormControl.errors && !groupBaseDNFormControl.untouched">
           <span *ngIf="groupBaseDNFormControl.errors?.required" i18n="@@security_ldap_user_directory_component_error_group_base_dn_required">The group base DN is required.</span>
-          <span *ngIf="groupBaseDNFormControl.errors?.maxlength" i18n="@@security_ldap_user_directory_component_error_group_base_dn_maxlength">Group base DN must not exceed 100 characters.</span>
+          <span *ngIf="groupBaseDNFormControl.errors?.maxlength" i18n="@@security_ldap_user_directory_component_error_group_base_dn_maxlength">Group base DN must not exceed 200 characters.</span>
         </mat-error>
       </mat-form-field>
     </div>

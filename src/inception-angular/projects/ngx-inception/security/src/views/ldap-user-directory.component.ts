@@ -97,10 +97,10 @@ export class LdapUserDirectoryComponent implements ControlValueAccessor, Validat
 
   constructor() {
     // Initialise the form controls
-    this.baseDNFormControl = new FormControl('', [Validators.required, Validators.maxLength(100)]);
-    this.bindDNFormControl = new FormControl('', [Validators.required, Validators.maxLength(100)]);
+    this.baseDNFormControl = new FormControl('', [Validators.required, Validators.maxLength(200)]);
+    this.bindDNFormControl = new FormControl('', [Validators.required, Validators.maxLength(200)]);
     this.bindPasswordFormControl = new FormControl('', [Validators.required, Validators.maxLength(100)]);
-    this.groupBaseDNFormControl = new FormControl('', [Validators.required, Validators.maxLength(100)]);
+    this.groupBaseDNFormControl = new FormControl('', [Validators.required, Validators.maxLength(200)]);
     this.groupDescriptionAttributeFormControl = new FormControl('', [Validators.required, Validators.maxLength(100)]);
     this.groupMemberAttributeFormControl = new FormControl('', [Validators.required, Validators.maxLength(100)]);
     this.groupNameAttributeFormControl = new FormControl('', [Validators.required, Validators.maxLength(100)]);
@@ -120,7 +120,7 @@ export class LdapUserDirectoryComponent implements ControlValueAccessor, Validat
       new FormControl('', [Validators.required, Validators.pattern('^(true|false)$')]);
     this.supportsUserAdministrationFormControl =
       new FormControl('', [Validators.required, Validators.pattern('^(true|false)$')]);
-    this.userBaseDNFormControl = new FormControl('', [Validators.required, Validators.maxLength(100)]);
+    this.userBaseDNFormControl = new FormControl('', [Validators.required, Validators.maxLength(200)]);
     this.userObjectClassFormControl = new FormControl('', [Validators.required, Validators.maxLength(100)]);
     this.userEmailAttributeFormControl = new FormControl('', [Validators.required, Validators.maxLength(100)]);
     this.userNameAttributeFormControl = new FormControl('', [Validators.required, Validators.maxLength(100)]);

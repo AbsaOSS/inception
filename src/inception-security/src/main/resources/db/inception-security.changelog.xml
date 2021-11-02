@@ -28,7 +28,7 @@
     </sql>
 
     <createTable schemaName="security" tableName="tenants" remarks="Tenants">
-      <column name="id" type="uuid" remarks="The Universally Unique Identifier (UUID) for the tenant">
+      <column name="id" type="uuid" remarks="The ID for the tenant">
         <constraints primaryKey="true" nullable="false"/>
       </column>
       <column name="name" type="nvarchar(100)" remarks="The name of the tenant">
@@ -59,7 +59,7 @@
     </createTable>
 
     <createTable schemaName="security" tableName="user_directories" remarks="User Directories">
-      <column name="id" type="uuid" remarks="The Universally Unique Identifier (UUID) for the user directory">
+      <column name="id" type="uuid" remarks="The ID for the user directory">
         <constraints primaryKey="true" nullable="false"/>
       </column>
       <column name="type" type="nvarchar(100)" remarks="The code for the user directory type">
@@ -86,10 +86,10 @@
     </createIndex>
 
     <createTable schemaName="security" tableName="user_directory_to_tenant_map" remarks="User Directory To Tenant Mappings">
-      <column name="user_directory_id" type="uuid" remarks="The Universally Unique Identifier (UUID) for the user directory">
+      <column name="user_directory_id" type="uuid" remarks="The ID for the user directory">
         <constraints primaryKey="true" nullable="false"/>
       </column>
-      <column name="tenant_id" type="uuid" remarks="The Universally Unique Identifier (UUID) for the tenant">
+      <column name="tenant_id" type="uuid" remarks="The ID for the tenant">
         <constraints primaryKey="true" nullable="false"/>
       </column>
     </createTable>
@@ -111,10 +111,10 @@
     </createIndex>
 
     <createTable schemaName="security" tableName="users" remarks="Users">
-      <column name="id" type="uuid" remarks="The Universally Unique Identifier (UUID) for the user">
+      <column name="id" type="uuid" remarks="The ID for the user">
         <constraints primaryKey="true" nullable="false"/>
       </column>
-      <column name="user_directory_id" type="uuid" remarks="The Universally Unique Identifier (UUID) for the user directory the user is associated with">
+      <column name="user_directory_id" type="uuid" remarks="The ID for the user directory the user is associated with">
         <constraints nullable="false"/>
       </column>
       <column name="username" type="nvarchar(100)" remarks="The username for the user">
@@ -165,7 +165,7 @@
     </createIndex>
 
     <createTable schemaName="security" tableName="users_password_history" remarks="User Password History">
-      <column name="user_id" type="uuid" remarks="The Universally Unique Identifier (UUID) for the user">
+      <column name="user_id" type="uuid" remarks="The ID for the user">
         <constraints primaryKey="true" nullable="false"/>
       </column>
       <column name="changed" type="timestamp" remarks="When the password change took place for the user">
@@ -189,10 +189,10 @@
     </createIndex>
 
     <createTable schemaName="security" tableName="groups" remarks="Groups">
-      <column name="id" type="uuid" remarks="The Universally Unique Identifier (UUID) for the group">
+      <column name="id" type="uuid" remarks="The ID for the group">
         <constraints primaryKey="true" nullable="false"/>
       </column>
-      <column name="user_directory_id" type="uuid" remarks="The Universally Unique Identifier (UUID) for the user directory the group is associated with">
+      <column name="user_directory_id" type="uuid" remarks="The ID for the user directory the group is associated with">
         <constraints nullable="false"/>
       </column>
       <column name="name" type="nvarchar(100)" remarks="The name of the group">
@@ -217,10 +217,10 @@
     </createIndex>
 
     <createTable schemaName="security" tableName="user_to_group_map" remarks="User To Group Mappings">
-      <column name="user_id" type="uuid" remarks="The Universally Unique Identifier (UUID) for the user">
+      <column name="user_id" type="uuid" remarks="The ID for the user">
         <constraints primaryKey="true" nullable="false"/>
       </column>
-      <column name="group_id" type="uuid" remarks="The Universally Unique Identifier (UUID) for the group">
+      <column name="group_id" type="uuid" remarks="The ID for the group">
         <constraints primaryKey="true" nullable="false"/>
       </column>
     </createTable>
@@ -290,7 +290,7 @@
       <column name="role_code" type="nvarchar(100)" remarks="The code for the role">
         <constraints primaryKey="true" nullable="false"/>
       </column>
-      <column name="group_id" type="uuid" remarks="The Universally Unique Identifier (UUID) for the group">
+      <column name="group_id" type="uuid" remarks="The ID for the group">
         <constraints primaryKey="true" nullable="false"/>
       </column>
     </createTable>
