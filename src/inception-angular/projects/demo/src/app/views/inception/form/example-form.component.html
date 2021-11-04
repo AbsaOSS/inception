@@ -39,7 +39,7 @@
         <div class="col-sm">
           <mat-form-field>
             <mat-label>Name</mat-label>
-            <input type="text" matInput formControlName="name" required="true" autofocus>
+            <input type="text" matInput formControlName="name" required autofocus>
             <mat-hint>The name.</mat-hint>
             <mat-error *ngIf="exampleForm.controls['name'].errors && !exampleForm.controls['name'].untouched">
               <span *ngIf="exampleForm.controls['name'].errors?.required">A name is required.</span>
@@ -49,7 +49,7 @@
         <div class="col-sm">
           <mat-form-field>
             <mat-label>Preferred name</mat-label>
-            <input type="text" matInput formControlName="preferredName" required="true">
+            <input type="text" matInput formControlName="preferredName" required>
             <mat-error *ngIf="exampleForm.controls['preferredName'].errors && !exampleForm.controls['preferredName'].untouched">
               <span *ngIf="exampleForm.controls['preferredName'].errors?.required">A preferred name is required.</span>
             </mat-error>
@@ -60,7 +60,7 @@
         <div class="col-sm">
           <mat-form-field>
             <mat-label>Date of birth</mat-label>
-            <input matInput [matDatepicker]="datePicker" (focus)="datePicker.open()" formControlName="dateOfBirth" required="true" readonly>
+            <input matInput [matDatepicker]="datePicker" (focus)="datePicker.open()" formControlName="dateOfBirth" required readonly>
             <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
             <mat-datepicker #datePicker></mat-datepicker>
             <mat-error *ngIf="exampleForm.controls['dateOfBirth'].errors && !exampleForm.controls['dateOfBirth'].untouched">
@@ -71,7 +71,7 @@
         <div class="col-sm">
           <mat-form-field>
             <mat-label>Title</mat-label>
-            <mat-select formControlName="title" required="true">
+            <mat-select formControlName="title" required>
               <mat-option *ngFor="let title of titles" [value]="title.value">
                 {{title.name}}
               </mat-option>
@@ -86,7 +86,7 @@
         <div class="col-sm">
           <mat-form-field>
             <mat-label>Password</mat-label>
-            <input type="password" matInput formControlName="password" required="true">
+            <input type="password" matInput formControlName="password" required>
             <mat-error *ngIf="exampleForm.controls['password'].errors && !exampleForm.controls['password'].untouched">
               <span *ngIf="exampleForm.controls['password'].errors?.required">A password is required.</span>
             </mat-error>
@@ -95,7 +95,7 @@
         <div class="col-sm">
           <mat-form-field>
             <mat-label>Confirm Password</mat-label>
-            <input type="password" matInput formControlName="confirmPassword" required="true">
+            <input type="password" matInput formControlName="confirmPassword" required>
             <mat-error *ngIf="exampleForm.controls['confirmPassword'].errors && !exampleForm.controls['confirmPassword'].untouched">
               <span *ngIf="exampleForm.controls['confirmPassword'].errors?.required">Password confirmation is required.</span>
             </mat-error>
@@ -111,7 +111,7 @@
         <div class="col-sm">
           <mat-form-field>
             <mat-label>Favorite country</mat-label>
-            <input type="text" matInput formControlName="favoriteCountry" autocompleteSelectionRequired required="true" [matAutocomplete]="favoriteCountryAutocomplete">
+            <input type="text" matInput formControlName="favoriteCountry" autocompleteSelectionRequired required [matAutocomplete]="favoriteCountryAutocomplete">
             <mat-autocomplete autoActiveFirstOption #favoriteCountryAutocomplete="matAutocomplete" [displayWith]="displayCountry">
               <mat-option *ngFor="let country of filteredCountries$ | async" [value]="country">
                 {{country.shortName}}
@@ -138,7 +138,7 @@
         <div class="col-sm">
           <group-form-field>
             <mat-label>Favorite color</mat-label>
-            <mat-radio-group formControlName="favoriteColor" required="true">
+            <mat-radio-group formControlName="favoriteColor" required>
               <mat-radio-button value="1">Red</mat-radio-button>
               <mat-radio-button value="2">Green</mat-radio-button>
               <mat-radio-button value="3">Blue</mat-radio-button>

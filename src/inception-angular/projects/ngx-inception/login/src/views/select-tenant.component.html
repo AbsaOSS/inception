@@ -11,7 +11,7 @@
               <div class="col">
                 <span i18n="@@login_select_tenant_component_explanation">Your user account is associated with multiple tenants. To proceed, please select the tenant you wish to login with.</span>
                 <mat-form-field floatLabel="never">
-                  <input type="text" matInput autocompleteSelectionRequired [formControl]="tenantFormControl" required="true" [matAutocomplete]="auto" i18n-placeholder="@@login_select_tenant_component_placeholder_select_an_tenant" placeholder="Select a tenant">
+                  <input type="text" matInput autocompleteSelectionRequired [formControl]="tenantFormControl" required [matAutocomplete]="auto" i18n-placeholder="@@login_select_tenant_component_placeholder_select_an_tenant" placeholder="Select a tenant">
                   <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayTenant">
                     <mat-option *ngFor="let filteredTenant of filteredTenants$ | async" [value]="filteredTenant">
                       {{filteredTenant.name}}

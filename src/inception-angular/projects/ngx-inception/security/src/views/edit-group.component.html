@@ -13,7 +13,7 @@
         <div class="col-sm">
           <mat-form-field>
             <mat-label i18n="@@security_edit_group_component_label_description">Description</mat-label>
-            <input type="text" matInput formControlName="description" required="true" autofocus>
+            <input type="text" matInput formControlName="description" required autofocus>
             <mat-error *ngIf="descriptionFormControl.errors && !descriptionFormControl.untouched">
               <span *ngIf="descriptionFormControl.errors?.required" i18n="@@security_edit_group_component_error_description_required">A description is required.</span>
               <span *ngIf="descriptionFormControl.errors?.maxlength" i18n="@@security_edit_group_component_error_description_maxlength">Description must not exceed 100 characters.</span>

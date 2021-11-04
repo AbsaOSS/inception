@@ -5,7 +5,7 @@
         <div class="col-sm">
           <mat-form-field>
             <mat-label i18n="@@reporting_new_report_definition_component_label_id">ID</mat-label>
-            <input type="text" matInput formControlName="id" required="true" autofocus>
+            <input type="text" matInput formControlName="id" required autofocus>
             <mat-error *ngIf="idFormControl.errors && !idFormControl.untouched">
               <span *ngIf="idFormControl.errors?.required" i18n="@@reporting_new_report_definition_component_error_id_required">An ID is required.</span>
             </mat-error>
@@ -16,7 +16,7 @@
         <div class="col-sm">
           <mat-form-field>
             <mat-label i18n="@@reporting_new_report_definition_component_label_name">Name</mat-label>
-            <input type="text" matInput formControlName="name" required="true">
+            <input type="text" matInput formControlName="name" required>
             <mat-error *ngIf="nameFormControl.errors && !nameFormControl.untouched">
               <span *ngIf="nameFormControl.errors?.required" i18n="@@reporting_new_report_definition_component_error_name_required">A name is required.</span>
               <span *ngIf="nameFormControl.errors?.maxlength" i18n="@@reporting_new_report_definition_component_error_name_maxlength">Name must not exceed 100 characters.</span>

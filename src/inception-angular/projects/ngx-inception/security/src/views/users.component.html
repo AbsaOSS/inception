@@ -2,7 +2,7 @@
   <div class="select-user-directory-container" [hidden]="userDirectories.length < 2">
     <span class="mat-header-label" i18n="@@security_users_component_user_directory">User Directory :</span>
     <mat-form-field class="mat-form-field-slim">
-      <mat-select #userDirectorySelect required="true" i18n-placeholder="@@security_users_component_placeholder_select_a_user_directory" placeholder="Select a user directory">
+      <mat-select #userDirectorySelect required i18n-placeholder="@@security_users_component_placeholder_select_a_user_directory" placeholder="Select a user directory">
         <mat-option *ngFor="let userDirectory of userDirectories" [value]="userDirectory.id">
           {{userDirectory.name}}
         </mat-option>

@@ -5,7 +5,7 @@
         <div class="col-sm">
           <mat-form-field>
             <mat-label i18n="@@security_new_user_directory_component_label_name">Name</mat-label>
-            <input type="text" matInput formControlName="name" required="true" autofocus>
+            <input type="text" matInput formControlName="name" required autofocus>
             <mat-error *ngIf="nameFormControl.errors && !nameFormControl.untouched">
               <span *ngIf="nameFormControl.errors?.required" i18n="@@security_new_user_directory_component_error_name_required">A name is required.</span>
               <span *ngIf="nameFormControl.errors?.maxlength" i18n="@@security_new_user_directory_component_error_name_maxlength">Name must not exceed 100 characters.</span>
@@ -17,7 +17,7 @@
         <div class="col-sm">
           <mat-form-field>
             <mat-label i18n="@@security_new_user_directory_component_label_type">Type</mat-label>
-            <mat-select formControlName="userDirectoryType"  required="true" i18n-placeholder="@@security_edit_user_component_placeholder_select_a_user_directory_type" placeholder="Select a user directory type">
+            <mat-select formControlName="userDirectoryType"  required i18n-placeholder="@@security_edit_user_component_placeholder_select_a_user_directory_type" placeholder="Select a user directory type">
               <mat-option *ngFor="let userDirectoryType of userDirectoryTypes" [value]="userDirectoryType.code">
                 {{userDirectoryType.name}}
               </mat-option>

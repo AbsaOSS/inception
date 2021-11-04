@@ -5,7 +5,7 @@
         <div class="col-sm">
           <mat-form-field>
             <mat-label i18n="@@config_new_config_component_label_key">Key</mat-label>
-            <input type="text" matInput formControlName="key" required="true" autofocus>
+            <input type="text" matInput formControlName="key" required autofocus>
             <mat-error *ngIf="keyFormControl.errors && !keyFormControl.untouched">
               <span *ngIf="keyFormControl.errors?.required" i18n="@@config_new_config_component_error_id_required">A key is required.</span>
               <span *ngIf="keyFormControl.errors?.maxlength" i18n="@@config_new_config_component_error_id_maxlength">Key must not exceed 100 characters.</span>
