@@ -40,7 +40,7 @@ export class EditTenantComponent extends AdminContainerView implements AfterView
 
   nameFormControl: FormControl;
 
-  tenant?: Tenant;
+  tenant: Tenant | null = null;
 
   tenantId: string;
 

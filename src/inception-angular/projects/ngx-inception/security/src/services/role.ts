@@ -29,7 +29,7 @@ export class Role {
   /**
    *  The description for the role.
    */
-  description?: string;
+  description: string | null = null;
 
   /**
    * The name of the role.
@@ -46,6 +46,6 @@ export class Role {
   constructor(code: string, name: string, description?: string) {
     this.code = code;
     this.name = name;
-    this.description = description;
+    this.description = !!description ? description : null;
   }
 }

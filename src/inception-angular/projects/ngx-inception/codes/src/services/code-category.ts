@@ -24,7 +24,7 @@ export class CodeCategory {
   /**
    * The optional code data for the code category.
    */
-  data?: string;
+  data: string | null = null;
 
   /**
    * The ID for the code category.
@@ -39,7 +39,7 @@ export class CodeCategory {
   /**
    * The date and time the code category was last updated.
    */
-  updated?: Date;
+  updated: Date | null = null;
 
   /**
    * Constructs a new CodeCategory.
@@ -52,7 +52,7 @@ export class CodeCategory {
   constructor(id: string, name: string, data?: string, updated?: Date) {
     this.id = id;
     this.name = name;
-    this.data = data;
-    this.updated = updated;
+    this.data = !!data ? data : null;
+    this.updated = !!updated ? updated : null;
   }
 }

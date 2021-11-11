@@ -45,7 +45,7 @@ export class ErrorReportSummary {
    * The optional ID for the device the error report originated
    * from.
    */
-  deviceId?: string;
+  deviceId: string | null = null;
 
   /**
    * The ID for the error report.
@@ -55,7 +55,7 @@ export class ErrorReportSummary {
   /**
    * The optional username for the user associated with the error report.
    */
-  who?: string;
+  who: string | null = null;
 
   /**
    * Constructs a new ErrorReportSummary.
@@ -70,14 +70,14 @@ export class ErrorReportSummary {
    * @param deviceId           The optional ID for the device the
    *                           error report originated from.
    */
-  constructor(id: string, applicationId: string, applicationVersion: string, description: string, created: Date,
-              who?: string, deviceId?: string) {
+  constructor(id: string, applicationId: string, applicationVersion: string, description: string,
+              created: Date, who?: string, deviceId?: string) {
     this.id = id;
     this.applicationId = applicationId;
     this.applicationVersion = applicationVersion;
     this.description = description;
     this.created = created;
-    this.who = who;
-    this.deviceId = deviceId;
+    this.who = !!who ? who : null;
+    this.deviceId = !!deviceId ? deviceId : null;
   }
 }

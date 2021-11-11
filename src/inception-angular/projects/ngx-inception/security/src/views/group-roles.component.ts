@@ -52,7 +52,7 @@ export class GroupRolesComponent extends AdminContainerView implements AfterView
 
   @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
 
-  selectedRole?: Role;
+  selectedRole: Role | null = null;
 
   userDirectoryId: string;
 
@@ -100,7 +100,7 @@ export class GroupRolesComponent extends AdminContainerView implements AfterView
       .pipe(first(), finalize(() => this.spinnerService.hideSpinner()))
       .subscribe(() => {
         this.loadRolesForGroup();
-        this.selectedRole = undefined;
+        this.selectedRole = null;
       }, (error: Error) => {
         // noinspection SuspiciousTypeOfGuard
         if ((error instanceof AccessDeniedError) || (error instanceof InvalidArgumentError) ||
@@ -178,7 +178,7 @@ export class GroupRolesComponent extends AdminContainerView implements AfterView
         .pipe(first(), finalize(() => this.spinnerService.hideSpinner()))
         .subscribe(() => {
           this.loadRolesForGroup();
-          this.selectedRole = undefined;
+          this.selectedRole = null;
         }, (error: Error) => {
           // noinspection SuspiciousTypeOfGuard
           if ((error instanceof AccessDeniedError) || (error instanceof InvalidArgumentError) ||

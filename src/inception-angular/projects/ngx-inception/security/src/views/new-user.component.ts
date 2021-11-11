@@ -56,9 +56,9 @@ export class NewUserComponent extends AdminContainerView implements AfterViewIni
 
   preferredNameFormControl: FormControl;
 
-  user?: User;
+  user: User | null = null;
 
-  userDirectoryCapabilities?: UserDirectoryCapabilities;
+  userDirectoryCapabilities: UserDirectoryCapabilities | null = null;
 
   userDirectoryId: string;
 

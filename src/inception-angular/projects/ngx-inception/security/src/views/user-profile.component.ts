@@ -47,7 +47,7 @@ export class UserProfileComponent extends AdminContainerView implements AfterVie
 
   preferredNameFormControl: FormControl;
 
-  user?: User;
+  user: User | null = null;
 
   userProfileForm: FormGroup;
 

@@ -26,12 +26,12 @@ export class User {
   /**
    * The optional e-mail address for the user.
    */
-  email?: string;
+  email: string | null = null;
 
   /**
    * The optional mobile number for the user.
    */
-  mobileNumber?: string;
+  mobileNumber: string | null = null;
 
   /**
    * The name of the user.
@@ -46,22 +46,22 @@ export class User {
   /**
    * The number of failed authentication attempts as a result of an incorrect password for the user.
    */
-  passwordAttempts?: number | undefined;
+  passwordAttempts: number | null = null;
 
   /**
    * The date and time the password for the user expires.
    */
-  passwordExpiry?: Date | undefined;
+  passwordExpiry: Date | null = null;
 
   /**
    * The optional phone number for the user.
    */
-  phoneNumber?: string;
+  phoneNumber: string | null = null;
 
   /**
    * The optional preferred name for the user.
    */
-  preferredName?: string;
+  preferredName: string | null = null;
 
   /**
    * The status for the user.
@@ -95,9 +95,9 @@ export class User {
    *                          incorrect password for the user.
    * @param passwordExpiry    The date and time the password for the user expires.
    */
-  constructor(userDirectoryId: string, username: string, name: string, preferredName: string, mobileNumber: string,
-              phoneNumber: string, email: string, status: UserStatus, password: string, passwordAttempts?: number,
-              passwordExpiry?: Date) {
+  constructor(userDirectoryId: string, username: string, name: string, preferredName: string,
+              mobileNumber: string, phoneNumber: string, email: string, status: UserStatus,
+              password: string, passwordAttempts?: number, passwordExpiry?: Date) {
     this.userDirectoryId = userDirectoryId;
     this.username = username;
     this.name = name;
@@ -107,7 +107,7 @@ export class User {
     this.email = email;
     this.status = status;
     this.password = password;
-    this.passwordAttempts = passwordAttempts;
-    this.passwordExpiry = passwordExpiry;
+    this.passwordAttempts = !!passwordAttempts ? passwordAttempts : null;
+    this.passwordExpiry = !!passwordExpiry ? passwordExpiry : null;
   }
 }

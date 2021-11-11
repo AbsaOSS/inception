@@ -28,27 +28,27 @@ export class Users {
   /**
    * The optional filter that was applied to the users.
    */
-  filter?: string;
+  filter: string | null = null;
 
   /**
    * The optional page index.
    */
-  pageIndex?: number;
+  pageIndex: number | null = null;
 
   /**
    * The optional page size.
    */
-  pageSize?: number;
+  pageSize: number | null = null;
 
   /**
    * The optional method used to sort the users e.g. by name.
    */
-  sortBy?: UserSortBy;
+  sortBy: UserSortBy | null = null;
 
   /**
    * The optional sort direction that was applied to the users.
    */
-  sortDirection?: SortDirection;
+  sortDirection: SortDirection | null = null;
 
   /**
    * The total number of users.
@@ -78,15 +78,16 @@ export class Users {
    * @param pageIndex       The optional page index.
    * @param pageSize        The optional page size.
    */
-  constructor(userDirectoryId: string, users: User[], total: number, filter?: string, sortBy?: UserSortBy,
-              sortDirection?: SortDirection, pageIndex?: number, pageSize?: number) {
+  constructor(userDirectoryId: string, users: User[], total: number, filter?: string,
+              sortBy?: UserSortBy, sortDirection?: SortDirection, pageIndex?: number,
+              pageSize?: number) {
     this.userDirectoryId = userDirectoryId;
     this.users = users;
     this.total = total;
-    this.filter = filter;
-    this.sortBy = sortBy;
-    this.sortDirection = sortDirection;
-    this.pageIndex = pageIndex;
-    this.pageSize = pageSize;
+    this.filter = !!filter ? filter : null;
+    this.sortBy = !!sortBy ? sortBy : null;
+    this.sortDirection = !!sortDirection ? sortDirection : null;
+    this.pageIndex = !!pageIndex ? pageIndex : null;
+    this.pageSize = !!pageSize ? pageSize : null;
   }
 }

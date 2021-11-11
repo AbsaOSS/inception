@@ -48,7 +48,7 @@ export class EditUserDirectoryComponent extends AdminContainerView implements Af
 
   nameFormControl: FormControl;
 
-  userDirectory?: UserDirectory;
+  userDirectory: UserDirectory | null = null;
 
   userDirectoryId: string;
 

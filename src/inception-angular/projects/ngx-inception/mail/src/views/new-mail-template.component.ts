@@ -48,7 +48,7 @@ export class NewMailTemplateComponent extends AdminContainerView implements Afte
 
   idFormControl: FormControl;
 
-  mailTemplate?: MailTemplate;
+  mailTemplate: MailTemplate | null = null;
 
   nameFormControl: FormControl;
 

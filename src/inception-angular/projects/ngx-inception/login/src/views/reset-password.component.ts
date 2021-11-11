@@ -41,7 +41,7 @@ export class ResetPasswordComponent implements OnInit {
 
   resetPasswordForm: FormGroup;
 
-  securityCode?: string;
+  securityCode: string | null = null;
 
   usernameFormControl: FormControl;
 

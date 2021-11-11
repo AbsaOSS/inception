@@ -27,7 +27,7 @@ export class Groups {
   /**
    * The optional filter that was applied to the groups.
    */
-  filter?: string;
+  filter: string | null = null;
 
   /**
    * The groups.
@@ -37,17 +37,17 @@ export class Groups {
   /**
    * The optional page index.
    */
-  pageIndex?: number;
+  pageIndex: number | null = null;
 
   /**
    * The optional page size.
    */
-  pageSize?: number;
+  pageSize: number | null = null;
 
   /**
    * The optional sort direction that was applied to the groups.
    */
-  sortDirection?: SortDirection;
+  sortDirection: SortDirection | null = null;
 
   /**
    * The total number of groups.
@@ -71,14 +71,14 @@ export class Groups {
    * @param pageIndex       The optional page index.
    * @param pageSize        The optional page size.
    */
-  constructor(userDirectoryId: string, groups: Group[], total: number, filter?: string, sortDirection?: SortDirection,
-              pageIndex?: number, pageSize?: number) {
+  constructor(userDirectoryId: string, groups: Group[], total: number, filter?: string,
+              sortDirection?: SortDirection, pageIndex?: number, pageSize?: number) {
     this.userDirectoryId = userDirectoryId;
     this.groups = groups;
     this.total = total;
-    this.filter = filter;
-    this.sortDirection = sortDirection;
-    this.pageIndex = pageIndex;
-    this.pageSize = pageSize;
+    this.filter = !!filter ? filter : null;
+    this.sortDirection = !!sortDirection ? sortDirection : null;
+    this.pageIndex = !!pageIndex ? pageIndex : null;
+    this.pageSize = !!pageSize ? pageSize : null;
   }
 }

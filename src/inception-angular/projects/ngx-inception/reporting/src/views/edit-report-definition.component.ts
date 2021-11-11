@@ -42,7 +42,7 @@ export class EditReportDefinitionComponent extends AdminContainerView implements
 
   nameFormControl: FormControl;
 
-  reportDefinition?: ReportDefinition;
+  reportDefinition: ReportDefinition | null = null;
 
   reportDefinitionId: string;
 

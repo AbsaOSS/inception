@@ -50,7 +50,7 @@ export class EditMailTemplateComponent extends AdminContainerView implements Aft
 
   idFormControl: FormControl;
 
-  mailTemplate?: MailTemplate;
+  mailTemplate: MailTemplate | null = null;
 
   mailTemplateId: string;
 

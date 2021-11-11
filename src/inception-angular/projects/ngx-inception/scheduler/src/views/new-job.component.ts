@@ -50,7 +50,7 @@ export class NewJobComponent extends AdminContainerView implements AfterViewInit
 
   idFormControl: FormControl;
 
-  job?: Job;
+  job: Job | null = null;
 
   jobClassFormControl: FormControl;
 

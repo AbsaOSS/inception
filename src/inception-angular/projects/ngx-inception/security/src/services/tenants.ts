@@ -27,22 +27,22 @@ export class Tenants {
   /**
    * The optional filter that was applied to the tenants.
    */
-  filter?: string;
+  filter: string | null = null;
 
   /**
    * The optional page index.
    */
-  pageIndex?: number;
+  pageIndex: number | null = null;
 
   /**
    * The optional page size.
    */
-  pageSize?: number;
+  pageSize: number | null = null;
 
   /**
    * The optional sort direction that was applied to the tenants.
    */
-  sortDirection?: SortDirection;
+  sortDirection: SortDirection | null = null;
 
   /**
    * The tenants.
@@ -68,9 +68,9 @@ export class Tenants {
               pageIndex?: number, pageSize?: number) {
     this.tenants = tenants;
     this.total = total;
-    this.filter = filter;
-    this.sortDirection = sortDirection;
-    this.pageIndex = pageIndex;
-    this.pageSize = pageSize;
+    this.filter = !!filter ? filter : null;
+    this.sortDirection = !!sortDirection ? sortDirection : null;
+    this.pageIndex = !!pageIndex ? pageIndex : null;
+    this.pageSize = !!pageSize ? pageSize : null;
   }
 }

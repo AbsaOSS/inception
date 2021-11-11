@@ -39,7 +39,7 @@ export class ErrorReport {
   /**
    * The optional base-64 encoded data associated with the error report.
    */
-  data?: string;
+  data: string | null = null;
 
   /**
    * The description of the error.
@@ -55,12 +55,12 @@ export class ErrorReport {
    * The optional ID for the device the error report originated
    * from.
    */
-  deviceId?: string;
+  deviceId: string | null = null;
 
   /**
    * The optional feedback provided by the user for the error.
    */
-  feedback?: string;
+  feedback: string | null = null;
 
   /**
    * The ID for the error report.
@@ -70,7 +70,7 @@ export class ErrorReport {
   /**
    * The optional username for the user associated with the error report.
    */
-  who?: string;
+  who: string | null = null;
 
   /**
    * Constructs a new ErrorReport.
@@ -85,16 +85,16 @@ export class ErrorReport {
    * @param feedback           The optional feedback provided by the user for the error.
    * @param data               The optional base-64 encoded data associated with the error report.
    */
-  constructor(id: string, applicationId: string, applicationVersion: string, description: string, detail: string,
-              created: Date, who?: string, feedback?: string, data?: string) {
+  constructor(id: string, applicationId: string, applicationVersion: string, description: string,
+              detail: string, created: Date, who?: string, feedback?: string, data?: string) {
     this.id = id;
     this.applicationId = applicationId;
     this.applicationVersion = applicationVersion;
     this.description = description;
     this.detail = detail;
     this.created = created;
-    this.who = who;
-    this.feedback = feedback;
-    this.data = data;
+    this.who = !!who ? who : null;
+    this.feedback = !!feedback ? feedback : null;
+    this.data = !!data ? data : null;
   }
 }

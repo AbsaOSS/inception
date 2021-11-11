@@ -49,7 +49,7 @@ export class NewUserDirectoryComponent extends AdminContainerView implements Aft
 
   newUserDirectoryForm: FormGroup;
 
-  userDirectory?: UserDirectory;
+  userDirectory: UserDirectory | null = null;
 
   userDirectoryTypeFormControl: FormControl;
 

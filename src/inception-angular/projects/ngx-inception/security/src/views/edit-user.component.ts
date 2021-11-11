@@ -50,7 +50,7 @@ export class EditUserComponent extends AdminContainerView implements AfterViewIn
 
   preferredNameFormControl: FormControl;
 
-  user?: User;
+  user: User | null = null;
 
   userDirectoryCapabilities?: UserDirectoryCapabilities;
 

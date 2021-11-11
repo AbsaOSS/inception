@@ -39,13 +39,13 @@ export class NewGroupComponent extends AdminContainerView implements AfterViewIn
 
   descriptionFormControl: FormControl;
 
-  group?: Group;
+  group: Group | null = null;
 
   nameFormControl: FormControl;
 
   newGroupForm: FormGroup;
 
-  userDirectoryCapabilities?: UserDirectoryCapabilities;
+  userDirectoryCapabilities: UserDirectoryCapabilities | null = null;
 
   userDirectoryId: string;
 

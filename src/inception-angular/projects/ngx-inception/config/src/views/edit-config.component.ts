@@ -36,7 +36,7 @@ import {ConfigService} from '../services/config.service';
 })
 export class EditConfigComponent extends AdminContainerView implements AfterViewInit {
 
-  config?: Config;
+  config: Config | null = null;
 
   descriptionFormControl: FormControl;
 

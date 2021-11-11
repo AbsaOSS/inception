@@ -44,7 +44,7 @@ export class NewTenantComponent extends AdminContainerView implements AfterViewI
 
   newTenantForm: FormGroup;
 
-  tenant?: Tenant;
+  tenant: Tenant | null = null;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private securityService: SecurityService,
               private dialogService: DialogService, private spinnerService: SpinnerService) {

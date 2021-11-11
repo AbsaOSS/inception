@@ -36,7 +36,7 @@ import {CodesService} from '../services/codes.service';
 })
 export class NewCodeComponent extends AdminContainerView implements AfterViewInit {
 
-  code?: Code;
+  code: Code | null = null;
 
   codeCategoryId: string;
 

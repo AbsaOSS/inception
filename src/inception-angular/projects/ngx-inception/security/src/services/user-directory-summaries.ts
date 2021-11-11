@@ -28,22 +28,22 @@ export class UserDirectorySummaries {
   /**
    * The optional filter that was applied to the user directory summaries.
    */
-  filter?: string;
+  filter: string | null = null;
 
   /**
    * The optional page index.
    */
-  pageIndex?: number;
+  pageIndex: number | null = null;
 
   /**
    * The optional page size.
    */
-  pageSize?: number;
+  pageSize: number | null = null;
 
   /**
    * The optional sort direction that was applied to the user directory summaries.
    */
-  sortDirection?: SortDirection;
+  sortDirection: SortDirection | null = null;
 
   /**
    * The total number of user directory summaries.
@@ -71,9 +71,9 @@ export class UserDirectorySummaries {
               sortDirection?: SortDirection, pageIndex?: number, pageSize?: number) {
     this.userDirectorySummaries = userDirectorySummaries;
     this.total = total;
-    this.filter = filter;
-    this.sortDirection = sortDirection;
-    this.pageIndex = pageIndex;
-    this.pageSize = pageSize;
+    this.filter = !!filter ? filter : null;
+    this.sortDirection = !!sortDirection ? sortDirection : null;
+    this.pageIndex = !!pageIndex ? pageIndex : null;
+    this.pageSize = !!pageSize ? pageSize : null;
   }
 }

@@ -32,7 +32,7 @@ export class Job {
   /**
    * The number of times the current execution of the job has been attempted.
    */
-  executionAttempts?: number;
+  executionAttempts: number | null = null;
 
   /**
    * The ID for the job.
@@ -47,12 +47,12 @@ export class Job {
   /**
    * The date and time the job was last executed.
    */
-  lastExecuted?: Date;
+  lastExecuted: Date | null = null;
 
   /**
    * The name of the entity that has locked the job for execution.
    */
-  lockName?: string;
+  lockName: string | null = null;
 
   /**
    * The name of the job.
@@ -62,7 +62,7 @@ export class Job {
   /**
    * The date and time when the job will next be executed.
    */
-  nextExecution?: Date;
+  nextExecution: Date | null = null;
 
   /**
    * The parameters for the job.

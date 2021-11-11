@@ -27,7 +27,7 @@ export class GroupMembers {
   /**
    * The optional filter that was applied to the group members.
    */
-  filter?: string;
+  filter: string | null = null;
 
   /**
    * The group members.
@@ -42,17 +42,17 @@ export class GroupMembers {
   /**
    * The optional page index.
    */
-  pageIndex?: number;
+  pageIndex: number | null = null;
 
   /**
    * The optional page size.
    */
-  pageSize?: number;
+  pageSize: number | null = null;
 
   /**
    * The optional sort direction that was applied to the group members.
    */
-  sortDirection?: SortDirection;
+  sortDirection: SortDirection | null = null;
 
   /**
    * The total number of group members.
@@ -78,15 +78,15 @@ export class GroupMembers {
    * @param pageIndex       The optional page index.
    * @param pageSize        The optional page size.
    */
-  constructor(userDirectoryId: string, groupName: string, groupMembers: GroupMember[], total: number, filter?: string,
-              sortDirection?: SortDirection, pageIndex?: number, pageSize?: number) {
+  constructor(userDirectoryId: string, groupName: string, groupMembers: GroupMember[], total: number,
+              filter?: string, sortDirection?: SortDirection, pageIndex?: number, pageSize?: number) {
     this.userDirectoryId = userDirectoryId;
     this.groupName = groupName;
     this.groupMembers = groupMembers;
     this.total = total;
-    this.filter = filter;
-    this.sortDirection = sortDirection;
-    this.pageIndex = pageIndex;
-    this.pageSize = pageSize;
+    this.filter = !!filter ? filter : null;
+    this.sortDirection = !!sortDirection ? sortDirection : null;
+    this.pageIndex = !!pageIndex ? pageIndex : null;
+    this.pageSize = !!pageSize ? pageSize : null;
   }
 }

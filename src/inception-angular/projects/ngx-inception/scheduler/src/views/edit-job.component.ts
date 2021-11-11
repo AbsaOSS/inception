@@ -52,7 +52,7 @@ export class EditJobComponent extends AdminContainerView implements AfterViewIni
 
   idFormControl: FormControl;
 
-  job?: Job;
+  job: Job | null = null;
 
   jobClassFormControl: FormControl;
 

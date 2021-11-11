@@ -42,7 +42,7 @@ export class NewReportDefinitionComponent extends AdminContainerView implements 
 
   newReportDefinitionForm: FormGroup;
 
-  reportDefinition?: ReportDefinition;
+  reportDefinition: ReportDefinition | null = null;
 
   templateFormControl: FormControl;
 

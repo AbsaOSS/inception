@@ -34,7 +34,7 @@ export class CodeCategorySummary {
   /**
    * The date and time the code category was last updated.
    */
-  updated?: Date;
+  updated: Date | null = null;
 
   /**
    * Constructs a new CodeCategorySummary.
@@ -46,6 +46,6 @@ export class CodeCategorySummary {
   constructor(id: string, name: string, updated?: Date) {
     this.id = id;
     this.name = name;
-    this.updated = updated;
+    this.updated = !!updated ? updated : null;
   }
 }

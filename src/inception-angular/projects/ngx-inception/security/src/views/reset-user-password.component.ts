@@ -52,7 +52,7 @@ export class ResetUserPasswordComponent extends AdminContainerView implements Af
 
   resetUserPasswordForm: FormGroup;
 
-  userDirectoryCapabilities?: UserDirectoryCapabilities;
+  userDirectoryCapabilities: UserDirectoryCapabilities | null = null;
 
   userDirectoryId: string;
 

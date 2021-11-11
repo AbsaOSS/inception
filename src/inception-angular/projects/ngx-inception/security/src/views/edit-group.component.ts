@@ -42,7 +42,7 @@ export class EditGroupComponent extends AdminContainerView implements AfterViewI
 
   editGroupForm: FormGroup;
 
-  group?: Group;
+  group: Group | null = null;
 
   groupName: string;
 

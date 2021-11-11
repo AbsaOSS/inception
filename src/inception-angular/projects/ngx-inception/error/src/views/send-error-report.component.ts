@@ -36,7 +36,7 @@ export class SendErrorReportComponent implements OnInit {
 
   emailFormControl: FormControl;
 
-  error?: Error;
+  error: Error | null = null;
 
   feedbackFormControl: FormControl;
 

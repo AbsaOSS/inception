@@ -28,7 +28,7 @@ export class Error {
   /**
    * The optional cause of the error.
    */
-  cause?: ProblemDetails | HttpErrorResponse | HttpError;
+  cause: ProblemDetails | HttpErrorResponse | HttpError | null = null;
 
   /**
    * The error message.
@@ -51,7 +51,7 @@ export class Error {
     this.message = message;
     this.timestamp = new Date();
 
-    if (cause) {
+    if (!!cause) {
       if (cause instanceof HttpErrorResponse) {
         if (ProblemDetails.isProblemDetails(cause)) {
           const problemDetails: ProblemDetails = new ProblemDetails(cause);
