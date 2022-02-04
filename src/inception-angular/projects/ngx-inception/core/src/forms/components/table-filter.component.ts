@@ -21,7 +21,7 @@ import {fromEvent, Subscription} from 'rxjs';
 import {debounceTime, distinctUntilChanged, tap} from 'rxjs/operators';
 
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   selector: 'table-filter',
   template: `
     <div class="table-filter-container">
@@ -78,7 +78,7 @@ import {debounceTime, distinctUntilChanged, tap} from 'rxjs/operators';
     }
   `
   ]
-}) // tslint:disable-next-line
+}) // eslint-disable-next-line
 export class TableFilterComponent implements OnInit, OnDestroy {
 
   @Output() changed: EventEmitter<string> = new EventEmitter<string>();

@@ -27,9 +27,20 @@ import org.springframework.data.jpa.repository.Query;
  */
 public interface RegionRepository extends JpaRepository<Region, RegionId> {
 
+  /**
+   * Retrieve all the regions sorted by locale ID, sort index, and name.
+   *
+   * @return all the regions sorted by locale ID, sort index, and name.
+   */
   @Query("select r from Region r order by r.localeId, -r.sortIndex DESC, r.name")
   List<Region> findAll();
 
+  /**
+   * Retrieve the regions for the specified locale sorted by locale ID, sort index, and name.
+   *
+   * @param localeId the Unicode locale identifier for the locale to retrieve the regions for
+   * @return the regions for the specified locale sorted by locale ID, sort index, and name
+   */
   @Query(
       "select r from Region r where upper(r.localeId) = upper(:localeId) order by r.localeId, -r.sortIndex DESC, r.name")
   List<Region> findByLocaleIdIgnoreCase(String localeId);

@@ -29,9 +29,23 @@ import org.springframework.data.jpa.repository.Query;
 public interface MeasurementSystemRepository
     extends JpaRepository<MeasurementSystem, MeasurementSystemId> {
 
+  /**
+   * Retrieve all the measurement systems sorted by locale ID, sort index, and name.
+   *
+   * @return all the measurement systems sorted by locale ID, sort index, and name.
+   */
   @Query("select ms from MeasurementSystem ms order by ms.localeId, -ms.sortIndex DESC, ms.name")
   List<MeasurementSystem> findAll();
 
+  /**
+   * Retrieve the measurement systems for the specified locale sorted by locale ID, sort index, and
+   * name.
+   *
+   * @param localeId the Unicode locale identifier for the locale to retrieve the measurement
+   *     systems for
+   * @return the measurement systems for the specified locale sorted by locale ID, sort index, and
+   *     name
+   */
   @Query(
       "select ms from MeasurementSystem ms where upper(ms.localeId) = upper(:localeId) order by ms.localeId, -ms.sortIndex DESC, ms.name")
   List<MeasurementSystem> findByLocaleIdIgnoreCase(String localeId);

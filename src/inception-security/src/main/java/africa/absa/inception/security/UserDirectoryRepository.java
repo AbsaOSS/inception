@@ -34,31 +34,77 @@ import org.springframework.data.repository.query.Param;
  */
 public interface UserDirectoryRepository extends JpaRepository<UserDirectory, UUID> {
 
-  long countByNameContainingIgnoreCase(String name);
-
+  /**
+   * Delete the user directory.
+   *
+   * @param userDirectoryId the ID for the user directory
+   */
   @Modifying
   @Query("delete from UserDirectory ud where ud.id = :userDirectoryId")
   void deleteById(@Param("userDirectoryId") UUID userDirectoryId);
 
+  /**
+   * Check whether the user directory with the specified name exists.
+   *
+   * @param name the name of the user directory
+   * @return <b>true</b> if a user directory with the specified name exists or <b>false</b>
+   *     otherwise
+   */
   boolean existsByNameIgnoreCase(String name);
 
-  Page<UserDirectory> findAllByOrderByNameAsc(Pageable pageable);
+  /**
+   * Retrieve the user directories.
+   *
+   * @param pageable the pagination information
+   * @return the user directories
+   */
+  Page<UserDirectory> findAll(Pageable pageable);
 
-  Page<UserDirectory> findAllByOrderByNameDesc(Pageable pageable);
-
+  /**
+   * Retrieve the user directories for the tenant.
+   *
+   * @param tenantId the ID for the tenant
+   * @return the user directories for the tenant
+   */
   @Query("select ud from UserDirectory ud join ud.tenants as o where o.id = :tenantId")
   List<UserDirectory> findAllByTenantId(@Param("tenantId") UUID tenantId);
 
-  Page<UserDirectory> findByNameContainingIgnoreCaseOrderByNameAsc(String name, Pageable pageable);
+  /**
+   * Retrieve the filtered user directories.
+   *
+   * @param filter the filter to apply to the user directories
+   * @param pageable the pagination information
+   * @return the filtered user directories
+   */
+  @Query("select ud from UserDirectory ud where (lower(ud.name) like lower(:filter))")
+  Page<UserDirectory> findFiltered(String filter, Pageable pageable);
 
-  Page<UserDirectory> findByNameContainingIgnoreCaseOrderByNameDesc(String name, Pageable pageable);
-
+  /**
+   * Retrieve the name of the user directory.
+   *
+   * @param userDirectoryId the ID for the user directory
+   * @return an Optional containing the name of the user directory or an empty Optional if the user
+   *     directory could not be found
+   */
   @Query("select ud.name from UserDirectory ud where ud.id = :userDirectoryId")
   Optional<String> getNameById(@Param("userDirectoryId") UUID userDirectoryId);
 
+  /**
+   * Retrieve the IDs for the tenants for the user directory.
+   *
+   * @param userDirectoryId the ID for the user directory
+   * @return the IDs for the tenants for the user directory
+   */
   @Query("select o.id from Tenant o join o.userDirectories as ud where ud.id = :userDirectoryId")
   List<UUID> getTenantIdsById(@Param("userDirectoryId") UUID userDirectoryId);
 
+  /**
+   * Retrieve the type for the user directory.
+   *
+   * @param userDirectoryId the ID for the user directory
+   * @return an Optional containing the type for the user directory or an empty Optional if the user
+   *     directory could not be found
+   */
   @Query("select ud.type from UserDirectory ud where ud.id = :userDirectoryId")
   Optional<String> getTypeForUserDirectoryById(@Param("userDirectoryId") UUID userDirectoryId);
 }

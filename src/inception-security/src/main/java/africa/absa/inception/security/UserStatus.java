@@ -27,9 +27,16 @@ import io.swagger.v3.oas.annotations.media.Schema;
  */
 @Schema(description = "The user status")
 public enum UserStatus {
+  /** Inactive. */
   INACTIVE("inactive", "Inactive"),
+
+  /** Active. */
   ACTIVE("active", "Active"),
+
+  /** Locked. */
   LOCKED("locked", "Locked"),
+
+  /** Expired. */
   EXPIRED("expired", "Expired");
 
   private final String code;

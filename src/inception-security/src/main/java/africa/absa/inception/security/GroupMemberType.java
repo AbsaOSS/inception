@@ -27,7 +27,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
  */
 @Schema(description = "The group member type")
 public enum GroupMemberType {
+  /** User. */
   USER("user", "User"),
+
+  /** Group. */
   GROUP("group", "Group");
 
   private final String code;

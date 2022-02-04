@@ -30,6 +30,13 @@ import org.springframework.data.repository.query.Param;
  */
 public interface CarRepository extends JpaRepository<Car, UUID> {
 
+  /**
+   * Retrieve the filtered cars.
+   *
+   * @param filter the filter to apply to the cars
+   * @param pageable the pagination information
+   * @return the filtered cars
+   */
   @Query("select c from Car c where (lower(c.name) like lower(:filter))")
   Page<Car> findFiltered(@Param("filter") String filter, Pageable pageable);
 }

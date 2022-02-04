@@ -33,6 +33,12 @@ import org.springframework.data.repository.query.Param;
  */
 public interface TenantRepository extends JpaRepository<Tenant, UUID> {
 
+  /**
+   * Add the user directory to the tenant.
+   *
+   * @param tenantId the ID for the tenant
+   * @param userDirectoryId the ID for the user directory
+   */
   @Modifying
   @Query(
       value =
@@ -42,45 +48,96 @@ public interface TenantRepository extends JpaRepository<Tenant, UUID> {
   void addUserDirectoryToTenant(
       @Param("tenantId") UUID tenantId, @Param("userDirectoryId") UUID userDirectoryId);
 
-  long countByNameContainingIgnoreCase(String name);
-
-  @Query(
-      value =
-          "select count(user_directory_id) from security.user_directory_to_tenant_map where "
-              + "tenant_id = :tenantId and user_directory_id = :userDirectoryId",
-      nativeQuery = true)
-  long countTenantUserDirectory(
-      @Param("tenantId") UUID tenantId, @Param("userDirectoryId") UUID userDirectoryId);
-
+  /**
+   * Delete the tenant.
+   *
+   * @param tenantId the ID for the tenant
+   */
   @Modifying
   @Query("delete from Tenant u where u.id = :tenantId")
   void deleteById(@Param("tenantId") UUID tenantId);
 
+  /**
+   * Check whether the tenant with the specified name exists.
+   *
+   * @param name the name of the tenant
+   * @return <b>true</b> if a tenant with the specified name exists or <b>false</b> otherwise
+   */
   boolean existsByNameIgnoreCase(String name);
 
-  Page<Tenant> findAllByOrderByNameAsc(Pageable pageable);
+  /**
+   * Retrieve the tenants.
+   *
+   * @param pageable the pagination information
+   * @return the tenants
+   */
+  Page<Tenant> findAll(Pageable pageable);
 
-  Page<Tenant> findAllByOrderByNameDesc(Pageable pageable);
-
+  /**
+   * Retrieve the tenants for the user directory.
+   *
+   * @param userDirectoryId the ID for the user directory
+   * @return the tenants for the user directory
+   */
   @Query("select o from Tenant o join o.userDirectories as ud where ud.id = :userDirectoryId")
   List<Tenant> findAllByUserDirectoryId(@Param("userDirectoryId") UUID userDirectoryId);
 
-  Page<Tenant> findByNameContainingIgnoreCaseOrderByNameAsc(String name, Pageable pageable);
+  /**
+   * Retrieve the filtered tenants.
+   *
+   * @param filter the filter to apply to the tenants
+   * @param pageable the pagination information
+   * @return the filtered tenants
+   */
+  @Query("select t from Tenant t where (lower(t.name) like lower(:filter))")
+  Page<Tenant> findFiltered(String filter, Pageable pageable);
 
-  Page<Tenant> findByNameContainingIgnoreCaseOrderByNameDesc(String name, Pageable pageable);
-
+  /**
+   * Retrieve the name of the tenant.
+   *
+   * @param tenantId the ID for the tenant
+   * @return an Optional containing the name of the tenant or an empty Optional if the tenant could
+   *     not be found
+   */
   @Query("select o.name from Tenant o where o.id = :tenantId")
   Optional<String> getNameById(@Param("tenantId") UUID tenantId);
 
+  /**
+   * Retrieve the IDs for the user directories for the tenant.
+   *
+   * @param tenantId the ID for the tenant
+   * @return the IDs for the user directories for the tenant
+   */
   @Query("select ud.id from UserDirectory ud join ud.tenants as o where o.id = :tenantId")
   List<UUID> getUserDirectoryIdsById(@Param("tenantId") UUID tenantId);
 
+  /**
+   * Remove the user directory from the tenant
+   *
+   * @param tenantId the ID for the tenant
+   * @param userDirectoryId the ID for the user directory
+   */
   @Modifying
   @Query(
       value =
           "delete from security.user_directory_to_tenant_map "
               + "where tenant_id=:tenantId and user_directory_id = :userDirectoryId",
       nativeQuery = true)
-  int removeUserDirectoryFromTenant(
+  void removeUserDirectoryFromTenant(
+      @Param("tenantId") UUID tenantId, @Param("userDirectoryId") UUID userDirectoryId);
+
+  /**
+   * Check whether the user directory to tenant mapping exists.
+   *
+   * @param tenantId the ID for the tenant
+   * @param userDirectoryId the ID for the user directory
+   * @return <b>true</b> if the user directory to tenant mapping exists or <b>false</b> otherwise
+   */
+  @Query(
+      value =
+          "select (count(user_directory_id) > 0) from security.user_directory_to_tenant_map where "
+              + "tenant_id = :tenantId and user_directory_id = :userDirectoryId",
+      nativeQuery = true)
+  boolean userDirectoryToTenantMappingExists(
       @Param("tenantId") UUID tenantId, @Param("userDirectoryId") UUID userDirectoryId);
 }

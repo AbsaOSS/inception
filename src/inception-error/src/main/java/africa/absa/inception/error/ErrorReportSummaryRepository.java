@@ -31,6 +31,13 @@ import org.springframework.data.repository.query.Param;
  */
 public interface ErrorReportSummaryRepository extends JpaRepository<ErrorReportSummary, UUID> {
 
+  /**
+   * Retrieve the filtered error report summaries.
+   *
+   * @param filter the filter to apply to the error reports
+   * @param pageable the pagination information
+   * @return the filtered error report summaries
+   */
   @Query("select ers from ErrorReportSummary ers where (lower(ers.who) like lower(:filter))")
   Page<ErrorReportSummary> findFiltered(@Param("filter") String filter, Pageable pageable);
 }

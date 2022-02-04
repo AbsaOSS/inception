@@ -28,7 +28,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
  */
 @Schema(description = "The mail template content type")
 public enum MailTemplateContentType {
+  /** Text. */
   TEXT("text", "Text"),
+
+  /** HTML. */
   HTML("html", "HTML");
 
   private final String code;

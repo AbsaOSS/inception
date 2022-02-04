@@ -1,4 +1,10 @@
 .mat-form-field {
+  .mat-checkbox {
+    .mat-checkbox-label {
+      color: rgba(0, 0, 0, 0.87);
+    }
+  }
+
   .mat-checkbox:not(:last-child) {
     margin-right: 0.8em !important;
   }
@@ -11,6 +17,7 @@
     }
     .mat-radio-button .mat-radio-label .mat-radio-label-content {
       line-height: 1.5rem;
+      color: rgba(0, 0, 0, 0.87);
     }
   }
 

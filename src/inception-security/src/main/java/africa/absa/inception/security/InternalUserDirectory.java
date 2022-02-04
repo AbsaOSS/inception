@@ -185,7 +185,7 @@ public class InternalUserDirectory extends UserDirectoryBase {
         throw new RoleNotFoundException(roleCode);
       }
 
-      if (getGroupRepository().countGroupRole(groupIdOptional.get(), roleCode) > 0) {
+      if (getGroupRepository().roleToGroupMappingExists(groupIdOptional.get(), roleCode)) {
         return;
       }
 
@@ -494,7 +494,7 @@ public class InternalUserDirectory extends UserDirectoryBase {
         throw new GroupNotFoundException(groupName);
       }
 
-      if (getGroupRepository().countUsersById(groupIdOptional.get()) > 0) {
+      if (getGroupRepository().getNumberOfUsersForGroup(groupIdOptional.get()) > 0) {
         throw new ExistingGroupMembersException(groupName);
       }
 

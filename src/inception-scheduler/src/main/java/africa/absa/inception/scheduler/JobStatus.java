@@ -27,12 +27,25 @@ import io.swagger.v3.oas.annotations.media.Schema;
  */
 @Schema(description = "The job status")
 public enum JobStatus {
+  /** Unscheduled. */
   UNSCHEDULED("unscheduled", "Unscheduled"),
+
+  /** Scheduled. */
   SCHEDULED("scheduled", "Scheduled"),
+
+  /** Executing. */
   EXECUTING("executing", "Executing"),
+
+  /** Executed. */
   EXECUTED("executed", "Executed"),
+
+  /** Aborted. */
   ABORTED("aborted", "Aborted"),
+
+  /** Failed. */
   FAILED("failed", "Failed"),
+
+  /** Once-off. */
   ONCE_OFF("once_off", "Once-Off");
 
   private final String code;

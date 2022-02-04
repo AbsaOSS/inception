@@ -32,16 +32,30 @@ import org.springframework.data.repository.query.Param;
  */
 public interface UserDirectorySummaryRepository extends JpaRepository<UserDirectorySummary, UUID> {
 
-  Page<UserDirectorySummary> findAllByOrderByNameAsc(Pageable pageable);
+  /**
+   * Retrieve the user directory summaries.
+   *
+   * @param pageable the pagination information
+   * @return the user directory summaries
+   */
+  Page<UserDirectorySummary> findAll(Pageable pageable);
 
-  Page<UserDirectorySummary> findAllByOrderByNameDesc(Pageable pageable);
-
+  /**
+   * Retrieve the user directory summaries for the tenant.
+   *
+   * @param tenantId the ID for the tenant
+   * @return the user directory summaries for the tenant
+   */
   @Query("select uds from UserDirectorySummary uds join uds.tenants as o where o.id = :tenantId")
   List<UserDirectorySummary> findAllByTenantId(@Param("tenantId") UUID tenantId);
 
-  Page<UserDirectorySummary> findByNameContainingIgnoreCaseOrderByNameAsc(
-      String name, Pageable pageable);
-
-  Page<UserDirectorySummary> findByNameContainingIgnoreCaseOrderByNameDesc(
-      String name, Pageable pageable);
+  /**
+   * Retrieve the filtered user directory summaries.
+   *
+   * @param filter the filter to apply to the user directory summaries
+   * @param pageable the pagination information
+   * @return the filtered user directory summaries
+   */
+  @Query("select uds from UserDirectorySummary uds where (lower(uds.name) like lower(:filter))")
+  Page<UserDirectorySummary> findFiltered(String filter, Pageable pageable);
 }

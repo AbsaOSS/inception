@@ -28,9 +28,20 @@ import org.springframework.data.jpa.repository.Query;
  */
 public interface LanguageRepository extends JpaRepository<Language, LanguageId> {
 
+  /**
+   * Retrieve all the languages sorted by locale ID, sort index, and name.
+   *
+   * @return all the languages sorted by locale ID, sort index, and name.
+   */
   @Query("select l from Language l order by l.localeId, -l.sortIndex DESC, l.shortName")
   List<Language> findAll();
 
+  /**
+   * Retrieve the languages for the specified locale sorted by locale ID, sort index, and name.
+   *
+   * @param localeId the Unicode locale identifier for the locale to retrieve the languages for
+   * @return the languages for the specified locale sorted by locale ID, sort index, and name
+   */
   @Query(
       "select l from Language l where upper(l.localeId) = upper(:localeId) order by l.localeId, -l.sortIndex DESC, l.shortName")
   List<Language> findByLocaleIdIgnoreCase(String localeId);

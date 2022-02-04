@@ -43,6 +43,11 @@ public class ApiMethodSecurityConfiguration extends GlobalMethodSecurityConfigur
     this.applicationContext = applicationContext;
   }
 
+  /**
+   * Returns the method security expression handler.
+   *
+   * @return the method security expression handler
+   */
   @Bean
   public MethodSecurityExpressionHandler expressionHandler() {
     return new ApiMethodSecurityExpressionHandler(applicationContext);

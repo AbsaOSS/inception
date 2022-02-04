@@ -30,18 +30,32 @@ import org.springframework.data.repository.query.Param;
  */
 public interface CodeRepository extends JpaRepository<Code, CodeId> {
 
-  long countByCodeCategoryId(String codeCategoryId);
-
-  @Modifying
-  @Query("delete from Code c where c.codeCategoryId = :#{#id.codeCategoryId} and c.id = :#{#id.id}")
-  void deleteById(@Param("id") CodeId id);
-
+  /**
+   * Delete the code.
+   *
+   * @param codeCategoryId the ID for the code category the code is associated with
+   * @param codeId the ID for the code
+   */
   @Modifying
   @Query("delete from Code c where c.codeCategoryId = :codeCategoryId and c.id = :codeId")
   void deleteById(@Param("codeCategoryId") String codeCategoryId, @Param("codeId") String codeId);
 
+  /**
+   * Retrieve the codes for the code category.
+   *
+   * @param codeCategoryId the ID for the code category the codes are associated with
+   * @return the codes for the code category
+   */
   List<Code> findByCodeCategoryId(String codeCategoryId);
 
+  /**
+   * Retrieve the name for the code.
+   *
+   * @param codeCategoryId the ID for the code category the code is associated with
+   * @param codeId the ID for the code
+   * @return an Optional containing the name for the code or an empty Optional if the code could not
+   *     be found
+   */
   @Query("select c.name from Code c where c.codeCategoryId = :codeCategoryId and c.id = :codeId")
   Optional<String> getNameById(
       @Param("codeCategoryId") String codeCategoryId, @Param("codeId") String codeId);

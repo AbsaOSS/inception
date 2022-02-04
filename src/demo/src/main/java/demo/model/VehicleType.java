@@ -27,8 +27,13 @@ import io.swagger.v3.oas.annotations.media.Schema;
  */
 @Schema(description = "The vehicle type")
 public enum VehicleType {
+  /** Car. */
   CAR("car", "Car"),
+
+  /** Motorbike. */
   MOTORBIKE("motorbike", "Motorbike"),
+
+  /** Unknown */
   UNKNOWN("unknown", "Unknown");
 
   private final String code;

@@ -2,7 +2,7 @@
   <div class="mat-form-field-flex" #connectionContainer>
 
     <!-- Outline used for outline appearance. -->
-    <ng-container *ngIf="appearance == 'outline'">
+    <ng-container *ngIf="appearance === 'outline'">
       <div class="mat-form-field-outline">
         <div class="mat-form-field-outline-start"></div>
         <div class="mat-form-field-outline-gap"></div>
@@ -15,7 +15,10 @@
       </div>
     </ng-container>
 
-    <div class="mat-form-field-prefix" *ngIf="_prefixChildren.length">
+    <div class="mat-form-field-prefix"
+         *ngIf="_prefixChildren.length"
+         (cdkObserveContent)="_updateOutlineGap()"
+         [cdkObserveContentDisabled]="appearance !== 'outline'">
       <ng-content select="[matPrefix]"></ng-content>
     </div>
 
@@ -27,10 +30,12 @@
              read if it comes before the control in the DOM. -->
         <label class="mat-form-field-label"
                (cdkObserveContent)="_updateOutlineGap()"
-               [cdkObserveContentDisabled]="appearance != 'outline'"
+               [cdkObserveContentDisabled]="appearance !== 'outline'"
                [id]="_labelId"
-               [class.mat-accent]="color == 'accent'"
-               [class.mat-warn]="color == 'warn'"
+               [attr.for]="_controlId()"
+               [attr.aria-owns]="_controlId()"
+               [class.mat-accent]="color === 'accent'"
+               [class.mat-warn]="color === 'warn'"
                #label
                *ngIf="_hasLabel()"
                [ngSwitch]="_hasLabel()">
@@ -48,6 +53,13 @@
     <div class="mat-form-field-suffix" *ngIf="_suffixChildren.length">
       <ng-content select="[matSuffix]"></ng-content>
     </div>
+  </div>
+
+  <!-- Underline used for legacy, standard, and box appearances. -->
+  <div class="mat-form-field-underline" *ngIf="appearance !== 'outline'">
+    <span class="mat-form-field-ripple"
+          [class.mat-accent]="color === 'accent'"
+          [class.mat-warn]="color === 'warn'"></span>
   </div>
 
   <div class="mat-form-field-subscript-wrapper" [ngSwitch]="_getDisplayedMessages()">

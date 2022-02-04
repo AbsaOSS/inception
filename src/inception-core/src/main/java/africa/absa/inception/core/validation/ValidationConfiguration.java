@@ -31,6 +31,11 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 @Configuration
 public class ValidationConfiguration {
 
+  /**
+   * Returns the local validator factory bean.
+   *
+   * @return the local validator factory bean
+   */
   @Bean
   public static LocalValidatorFactoryBean validator() {
     LocalValidatorFactoryBean factoryBean = new LocalValidatorFactoryBean();

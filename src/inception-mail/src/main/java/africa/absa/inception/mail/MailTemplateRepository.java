@@ -31,13 +31,32 @@ import org.springframework.data.repository.query.Param;
  */
 public interface MailTemplateRepository extends JpaRepository<MailTemplate, String> {
 
+  /**
+   * Delete the mail template.
+   *
+   * @param mailTemplateId the ID for the mail template
+   */
   @Modifying
   @Query("delete from MailTemplate mt where mt.id = :mailTemplateId")
   void deleteById(@Param("mailTemplateId") String mailTemplateId);
 
+  /**
+   * Retrieve the name of the mail template.
+   *
+   * @param mailTemplateId the ID for the mail template
+   * @return an Optional containing the name for the mail template or an empty Optional if the mail
+   *     template could not be found
+   */
   @Query("select mt.name from MailTemplate mt where mt.id = :mailTemplateId")
   Optional<String> getNameById(@Param("mailTemplateId") String mailTemplateId);
 
+  /**
+   * Retrieve the date and time the mail template was last updated.
+   *
+   * @param mailTemplateId the ID for the mail template
+   * @return an Optional containing the date and time the mail template was last updated or an empty
+   *     Optional if the mail template could not be found
+   */
   @Query("select mt.updated from MailTemplate mt where mt.id = :mailTemplateId")
   Optional<LocalDateTime> getUpdatedById(@Param("mailTemplateId") String mailTemplateId);
 }

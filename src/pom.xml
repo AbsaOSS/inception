@@ -12,7 +12,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.5.4</version>
+    <version>2.5.9</version>
   </parent>
 
   <repositories>
@@ -94,25 +94,25 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <java.version>11</java.version>
-    <agroal-pool.version>1.12</agroal-pool.version>
-    <avro.version>1.10.2</avro.version>
+    <java.version>17</java.version>
+    <agroal-pool.version>1.14</agroal-pool.version>
+    <avro.version>1.11.0</avro.version>
     <commons-beanutils.version>1.9.4</commons-beanutils.version>
     <commons-io.version>2.11.0</commons-io.version>
     <freemarker.version>2.3.31</freemarker.version>
-    <groovy.version>3.0.8</groovy.version>
-    <hibernate-validator.version>6.2.0.Final</hibernate-validator.version>
-    <jasperreports.version>6.17.0</jasperreports.version>
+    <groovy.version>3.0.9</groovy.version>
+    <hibernate-validator.version>6.2.1.Final</hibernate-validator.version>
+    <jasperreports.version>6.18.1</jasperreports.version>
     <liquibase-slf4j.version>4.0.0</liquibase-slf4j.version>
-    <mssql-jdbc.version>9.2.1.jre11</mssql-jdbc.version>
-    <narayana.version>5.12.0.Final</narayana.version>
-    <postgresql.version>42.2.23</postgresql.version>
-    <spring-boot.version>2.5.4</spring-boot.version>
+    <mssql-jdbc.version>9.4.1.jre11</mssql-jdbc.version>
+    <narayana.version>5.12.5.Final</narayana.version>
+    <postgresql.version>42.3.2</postgresql.version>
+    <spring-boot.version>2.5.9</spring-boot.version>
     <spring-shell.version>2.0.1.RELEASE</spring-shell.version>
-    <springdoc-openapi-ui.version>1.5.10</springdoc-openapi-ui.version>
-    <swagger-codegen-maven-plugin.version>3.0.27</swagger-codegen-maven-plugin.version>
-    <swagger.version>2.1.10</swagger.version>
-    <uuid-creator.version>3.7.3</uuid-creator.version>
+    <springdoc-openapi-ui.version>1.6.5</springdoc-openapi-ui.version>
+    <swagger-codegen-maven-plugin.version>3.0.31</swagger-codegen-maven-plugin.version>
+    <swagger.version>2.1.12</swagger.version>
+    <uuid-creator.version>4.3.1</uuid-creator.version>
   </properties>
 
   <dependencyManagement>
@@ -406,7 +406,7 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.1</version>
         <configuration>
-          <release>11</release>
+          <release>17</release>
         </configuration>
       </plugin>
       <plugin>
@@ -438,10 +438,13 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.2.0</version>
+        <version>3.3.1</version>
         <configuration>
           <failOnWarnings>true</failOnWarnings>
           <quiet>true</quiet>
+          <sourceFileExcludes>
+            <sourceFileExclude>**/Version.java</sourceFileExclude>
+          </sourceFileExcludes>
         </configuration>
         <executions>
           <execution>

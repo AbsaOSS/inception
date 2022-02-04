@@ -24,8 +24,18 @@ import java.sql.Types;
 import java.util.Properties;
 import java.util.UUID;
 
+/**
+ * The <b>PostgresJsonTest</b> class.
+ *
+ * @author Marcus Portmann
+ */
 public class PostgresJsonTest {
 
+  /**
+   * The main method.
+   *
+   * @param args the command-line arguments
+   */
   public static void main(String[] args) {
     try {
       String url = "jdbc:postgresql://localhost/demo";

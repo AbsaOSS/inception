@@ -50,12 +50,25 @@ public class NarayanaTransactionIntegration
 
   private final TransactionSynchronizationRegistry transactionSynchronizationRegistry;
 
+  /**
+   * Constructs a new <b>NarayanaTransactionIntegration</b>.
+   *
+   * @param transactionManager the transaction manager
+   * @param transactionSynchronizationRegistry the transaction synchronization registry
+   */
   public NarayanaTransactionIntegration(
       TransactionManager transactionManager,
       TransactionSynchronizationRegistry transactionSynchronizationRegistry) {
     this(transactionManager, transactionSynchronizationRegistry, null);
   }
 
+  /**
+   * Constructs a new <b>NarayanaTransactionIntegration</b>.
+   *
+   * @param transactionManager the transaction manager
+   * @param transactionSynchronizationRegistry the transaction synchronization registry
+   * @param recoveryManager the recovery manager
+   */
   public NarayanaTransactionIntegration(
       TransactionManager transactionManager,
       TransactionSynchronizationRegistry transactionSynchronizationRegistry,

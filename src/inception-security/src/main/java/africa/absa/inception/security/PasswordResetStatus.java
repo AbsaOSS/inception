@@ -27,8 +27,13 @@ import io.swagger.v3.oas.annotations.media.Schema;
  */
 @Schema(description = "The password reset status")
 public enum PasswordResetStatus {
+  /** Requested. */
   REQUESTED("requested", "Requested"),
+
+  /** Completed. */
   COMPLETED("completed", "Completed"),
+
+  /** Expired. */
   EXPIRED("expired", "Expired");
 
   private final String code;

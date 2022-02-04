@@ -28,8 +28,13 @@ import io.swagger.v3.oas.annotations.media.Schema;
  */
 @Schema(description = "The password change reason")
 public enum PasswordChangeReason {
+  /** User. */
   USER("user", "User"),
+
+  /** Administrative. */
   ADMINISTRATIVE("administrative", "Administrative"),
+
+  /** Reset. */
   RESET("reset", "Reset");
 
   private final String code;

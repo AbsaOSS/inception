@@ -27,7 +27,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
  */
 @Schema(description = "The tenant status")
 public enum TenantStatus {
+  /** Inactive. */
   INACTIVE("inactive", "Inactive"),
+
+  /** Active. */
   ACTIVE("active", "Active");
 
   private final String code;

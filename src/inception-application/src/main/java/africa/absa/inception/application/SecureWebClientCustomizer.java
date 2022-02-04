@@ -42,6 +42,11 @@ public class SecureWebClientCustomizer implements WebClientCustomizer {
   /** The application security configuration. */
   ApplicationSecurityConfiguration applicationSecurityConfiguration;
 
+  /**
+   * Constructs a new <b>SecureWebClientCustomizer</b>.
+   *
+   * @param applicationSecurityConfiguration the application security configuration
+   */
   public SecureWebClientCustomizer(
       ApplicationSecurityConfiguration applicationSecurityConfiguration) {
     this.applicationSecurityConfiguration = applicationSecurityConfiguration;

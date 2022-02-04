@@ -21,15 +21,22 @@ import {
   Renderer2, Self
 } from '@angular/core';
 import {ControlValueAccessor, FormGroupDirective, NgControl, NgForm} from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material/core';
+import {ErrorStateMatcher, mixinColor, mixinErrorState} from '@angular/material/core';
 import {MatFormFieldControl} from '@angular/material/form-field';
 
+const _FileUploadMixinBase = mixinErrorState(
+  class {
+    /* eslint-disable @typescript-eslint/naming-convention, no-underscore-dangle, id-blacklist, id-match */
+    constructor(public _defaultErrorStateMatcher: ErrorStateMatcher, public _parentForm: NgForm,
+                public _parentFormGroup: FormGroupDirective, public ngControl: NgControl) {
+    }
+  }
+);
 
-import {FileUploadMixinBase} from './file-upload-mixin';
 
-/* tslint:disable:variable-name */
+/* eslint-disable @typescript-eslint/naming-convention, no-underscore-dangle, id-blacklist, id-match */
 @Component({
-  // tslint:disable-next-line:component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'file-upload',
   template: `
     <input #input type="file" [attr.multiple]="multiple? '' : null" [attr.accept]="accept">
@@ -64,7 +71,7 @@ import {FileUploadMixinBase} from './file-upload-mixin';
   }
   ]
 })
-export class FileUploadComponent extends FileUploadMixinBase implements MatFormFieldControl<File[]>,
+export class FileUploadComponent extends _FileUploadMixinBase implements MatFormFieldControl<File[]>,
   ControlValueAccessor, OnInit, OnDestroy, DoCheck {
   static nextId = 0;
 
@@ -168,7 +175,7 @@ export class FileUploadComponent extends FileUploadMixinBase implements MatFormF
     const fileList: FileList | null = (event.target as HTMLInputElement).files;
     const fileArray: File[] = [];
     if (fileList) {
-      // tslint:disable-next-line:prefer-for-of
+      // eslint-disable-next-line @typescript-eslint/prefer-for-of
       for (let i = 0; i < fileList.length; i++) {
         fileArray.push(fileList[i]);
       }

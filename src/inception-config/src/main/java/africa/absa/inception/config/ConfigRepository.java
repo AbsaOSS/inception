@@ -29,16 +29,51 @@ import org.springframework.data.repository.query.Param;
  */
 public interface ConfigRepository extends JpaRepository<Config, String> {
 
+  /**
+   * Delete the config with the specified key.
+   *
+   * @param key the key for the config
+   */
   void deleteByKeyIgnoreCase(String key);
 
+  /**
+   * Check whether the config exists.
+   *
+   * @param key the key for the config
+   * @return <b>true</b> if the config exists or <b>false</b> otherwise
+   */
   boolean existsByKeyIgnoreCase(String key);
 
+  /**
+   * Retrieve all the configs ordered by key descending.
+   *
+   * @return all the configs ordered by key descending
+   */
   List<Config> findAllByOrderByKeyDesc();
 
+  /**
+   * Retrieve the config.
+   *
+   * @param key the key for the config
+   * @return an Optional containing the config or an empty Optional if the config could not be found
+   */
   Optional<Config> findByKeyIgnoreCase(String key);
 
+  /**
+   * Retrieve the filtered configs.
+   *
+   * @param filter the filter to apply to the keys for the configs
+   * @return the filtered configs
+   */
   List<Config> findByKeyIgnoreCaseContaining(String filter);
 
+  /**
+   * Retrieve the value for the config.
+   *
+   * @param key the key for the config
+   * @return an Optional containing the value for the config or an empty Optional if the config
+   *     could not be found
+   */
   @Query("select c.value from Config c where lower(c.key) = lower(:key)")
   Optional<String> getValueByKeyIgnoreCase(@Param("key") String key);
 }

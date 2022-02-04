@@ -53,8 +53,16 @@ public class ProblemHandler {
   @Value("${inception.debug.enabled:#{false}}")
   private boolean inDebugMode;
 
+  /** Constructs a new <b>ProblemHandler</b>. */
   public ProblemHandler() {}
 
+  /**
+   * Handle the service exception.
+   *
+   * @param request the HTTP request
+   * @param serviceException the service exception
+   * @return the problem details response entity containing the service exception information
+   */
   @ExceptionHandler
   @ResponseBody
   protected ResponseEntity<ProblemDetails> handle(
@@ -113,6 +121,13 @@ public class ProblemHandler {
     return new ResponseEntity<>(problemDetails, new HttpHeaders(), problemDetails.getStatus());
   }
 
+  /**
+   * Handle the access denied exception.
+   *
+   * @param request the HTTP request
+   * @param accessDeniedException the access denied exception
+   * @return the problem details response entity containing the access denied exception information
+   */
   @ExceptionHandler
   @ResponseBody
   protected ResponseEntity<ProblemDetails> handle(
@@ -133,6 +148,13 @@ public class ProblemHandler {
     return new ResponseEntity<>(problemDetails, new HttpHeaders(), problemDetails.getStatus());
   }
 
+  /**
+   * Handle the exception.
+   *
+   * @param request the HTTP request
+   * @param cause the exception
+   * @return the problem details response entity containing the exception information
+   */
   @ExceptionHandler
   @ResponseBody
   protected ResponseEntity<ProblemDetails> handle(HttpServletRequest request, Throwable cause) {

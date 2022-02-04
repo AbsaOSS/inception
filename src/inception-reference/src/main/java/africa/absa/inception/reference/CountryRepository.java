@@ -28,9 +28,20 @@ import org.springframework.data.jpa.repository.Query;
  */
 public interface CountryRepository extends JpaRepository<Country, CountryId> {
 
+  /**
+   * Retrieve all the countries sorted by locale ID, sort index, and name.
+   *
+   * @return all the countries sorted by locale ID, sort index, and name.
+   */
   @Query("select c from Country c order by c.localeId, -c.sortIndex DESC, c.shortName")
   List<Country> findAll();
 
+  /**
+   * Retrieve the countries for the specified locale sorted by locale ID, sort index, and name.
+   *
+   * @param localeId the Unicode locale identifier for the locale to retrieve the countries for
+   * @return the countries for the specified locale sorted by locale ID, sort index, and name
+   */
   @Query(
       "select c from Country c where upper(c.localeId) = upper(:localeId) order by c.localeId, -c.sortIndex DESC, c.shortName")
   List<Country> findByLocaleIdIgnoreCase(String localeId);

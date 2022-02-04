@@ -14,20 +14,7 @@
  * limitations under the License.
  */
 
+import {ElementRef} from '@angular/core';
 import {FormGroupDirective, NgControl, NgForm} from '@angular/forms';
-import {CanUpdateErrorStateCtor, ErrorStateMatcher, mixinErrorState} from '@angular/material/core';
+import {ErrorStateMatcher, mixinColor, mixinErrorState} from '@angular/material/core';
 
-/**
- * See https://github.com/merlosy/ngx-material-file-input.
- */
-export class FileUploadBase {
-  /* tslint:disable:variable-name */
-  constructor(public _defaultErrorStateMatcher: ErrorStateMatcher, public _parentForm: NgForm,
-              public _parentFormGroup: FormGroupDirective, public ngControl: NgControl) {
-  }
-}
-
-/**
- * Allows a custom ErrorStateMatcher to be used with the file-upload component.
- */
-export const FileUploadMixinBase: CanUpdateErrorStateCtor & typeof FileUploadBase = mixinErrorState(FileUploadBase);

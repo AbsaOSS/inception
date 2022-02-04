@@ -29,6 +29,7 @@ public class BinaryBuffer implements java.io.Serializable {
 
   private static final long serialVersionUID = 1000000;
 
+  /** The binary data. */
   private byte[] data;
 
   /**

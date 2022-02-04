@@ -15,7 +15,7 @@
  */
 
 import {Directionality} from '@angular/cdk/bidi';
-import {BooleanInput} from '@angular/cdk/coercion';
+import {BooleanInput, coerceBooleanProperty} from '@angular/cdk/coercion';
 import {Platform} from '@angular/cdk/platform';
 import {
   AfterContentChecked, AfterContentInit, AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef,
@@ -23,16 +23,16 @@ import {
   OnDestroy, Optional, QueryList, ViewChild, ViewEncapsulation,
 } from '@angular/core';
 import {MatCheckbox} from '@angular/material/checkbox';
-import {CanColor, CanColorCtor, mixinColor,} from '@angular/material/core';
+import {CanColor, mixinColor,} from '@angular/material/core';
 import {
-  getMatFormFieldDuplicatedHintError, MAT_FORM_FIELD_DEFAULT_OPTIONS, MatError,
-  matFormFieldAnimations, MatFormFieldAppearance, MatFormFieldDefaultOptions, MatHint, MatLabel,
-  MatPrefix, MatSuffix
+  _MAT_HINT, FloatLabelType, getMatFormFieldDuplicatedHintError, MAT_ERROR,
+  MAT_FORM_FIELD_DEFAULT_OPTIONS, MAT_PREFIX, MAT_SUFFIX, MatError, matFormFieldAnimations,
+  MatFormFieldAppearance, MatFormFieldDefaultOptions, MatHint, MatLabel, MatPrefix, MatSuffix
 } from '@angular/material/form-field';
 import {MatRadioButton, MatRadioGroup} from '@angular/material/radio';
 import {ANIMATION_MODULE_TYPE} from '@angular/platform-browser/animations';
-import {fromEvent, merge, Subject} from 'rxjs';
-import {startWith, take, takeUntil} from 'rxjs/operators';
+import {merge, Subject} from 'rxjs';
+import {startWith, takeUntil} from 'rxjs/operators';
 
 let nextUniqueId = 0;
 const floatingLabelScale = 0.75;
@@ -42,17 +42,13 @@ const outlineGapPadding = 5;
  * Boilerplate for applying mixins to GroupFormField.
  * @docs-private
  */
-class GroupFormFieldBase {
-  constructor(public _elementRef: ElementRef) {
-  }
-}
-
-/**
- * Base class to which we're applying the form field mixins.
- * @docs-private
- */
-const _GroupFormFieldMixinBase: CanColorCtor & typeof GroupFormFieldBase =
-  mixinColor(GroupFormFieldBase, 'primary');
+const _GroupFormFieldBase = mixinColor(
+  class {
+    constructor(public _elementRef: ElementRef) {
+    }
+  },
+  'primary',
+);
 
 /**
  * Injection token that can be used to inject an instances of `GroupFormField`. It serves
@@ -63,6 +59,7 @@ export const GROUP_FORM_FIELD_COMPONENT = new InjectionToken<GroupFormFieldCompo
 
 /** Container for form controls that applies Material Design styling and behavior. */
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'group-form-field',
   exportAs: 'groupFormField',
   templateUrl: 'group-form-field.component.html',
@@ -70,6 +67,7 @@ export const GROUP_FORM_FIELD_COMPONENT = new InjectionToken<GroupFormFieldCompo
     'group-form-field.component.scss'
   ],
   animations: [matFormFieldAnimations.transitionMessages],
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     'class': 'mat-form-field mat-form-field-can-float mat-form-field-should-float',
     '[class.mat-form-field-appearance-standard]': 'appearance == "standard"',
@@ -77,12 +75,14 @@ export const GROUP_FORM_FIELD_COMPONENT = new InjectionToken<GroupFormFieldCompo
     '[class.mat-form-field-appearance-outline]': 'appearance == "outline"',
     '[class.mat-form-field-appearance-legacy]': 'appearance == "legacy"',
     '[class.mat-form-field-invalid]': '_hasError()',
-    '[class.mat-form-field-has-label]': '_hasLabel()',
+    '[class.mat-form-field-has-label]': '_hasFloatingLabel()',
     '[class.mat-form-field-disabled]': '_isDisabled()',
+    '[class.mat-focused]': '_isFocused()',
+    '[class._mat-animation-noopable]': '!_animationsEnabled',
     '[class.mat-accent]': 'color == "accent"',
     '[class.mat-warn]': 'color == "warn"',
-    '[class._mat-animation-noopable]': '!_animationsEnabled',
   },
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['color'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -91,33 +91,30 @@ export const GROUP_FORM_FIELD_COMPONENT = new InjectionToken<GroupFormFieldCompo
   ]
 })
 
-export class GroupFormFieldComponent extends _GroupFormFieldMixinBase
+export class GroupFormFieldComponent extends _GroupFormFieldBase
   implements AfterContentInit, AfterContentChecked, AfterViewInit, OnDestroy, CanColor {
 
   static ngAcceptInputType_hideRequiredMarker: BooleanInput;
-
-  /** Whether the Angular animations are enabled. */
-  _animationsEnabled: boolean;
 
   @ContentChildren(MatCheckbox, {descendants: true}) _checkboxChildren!: QueryList<MatCheckbox>;
 
   @ViewChild('connectionContainer', {static: true}) _connectionContainerRef!: ElementRef;
 
-  @ContentChildren(MatError, {descendants: true}) _errorChildren!: QueryList<MatError>;
+  @ContentChildren(MAT_ERROR, {descendants: true}) _errorChildren!: QueryList<MatError>;
 
-  @ContentChildren(MatHint, {descendants: true}) _hintChildren!: QueryList<MatHint>;
+  @ContentChildren(_MAT_HINT, {descendants: true}) _hintChildren!: QueryList<MatHint>;
 
   // Unique id for the hint label.
-  _hintLabelId: string = `mat-hint-${nextUniqueId++}`;
+  readonly _hintLabelId: string = `mat-hint-${nextUniqueId++}`;
 
   @ContentChild(MatLabel) _labelChildNonStatic?: MatLabel;
 
   @ContentChild(MatLabel, {static: true}) _labelChildStatic!: MatLabel;
 
   // Unique id for the internal form field label.
-  _labelId = `group-form-field-label-${nextUniqueId++}`;
+  readonly _labelId = `group-form-field-label-${nextUniqueId++}`;
 
-  @ContentChildren(MatPrefix, {descendants: true}) _prefixChildren!: QueryList<MatPrefix>;
+  @ContentChildren(MAT_PREFIX, {descendants: true}) _prefixChildren!: QueryList<MatPrefix>;
 
   @ContentChild(MatRadioGroup) _radioGroupChildNonStatic!: MatRadioGroup;
 
@@ -126,7 +123,10 @@ export class GroupFormFieldComponent extends _GroupFormFieldMixinBase
   /** State of the mat-hint and mat-error animations. */
   _subscriptAnimationState: string = '';
 
-  @ContentChildren(MatSuffix, {descendants: true}) _suffixChildren!: QueryList<MatSuffix>;
+  @ContentChildren(MAT_SUFFIX, {descendants: true}) _suffixChildren!: QueryList<MatSuffix>;
+
+  /** Whether the Angular animations are enabled. */
+  private readonly _animationsEnabled: boolean;
 
   private _destroyed = new Subject<void>();
 
@@ -144,20 +144,24 @@ export class GroupFormFieldComponent extends _GroupFormFieldMixinBase
   private _showAlwaysAnimate = false;
 
   constructor(
-    public _elementRef: ElementRef, private _changeDetectorRef: ChangeDetectorRef,
+    public _elementRef: ElementRef,
+    private _changeDetectorRef: ChangeDetectorRef,
     @Optional() private _dir: Directionality,
     @Optional() @Inject(MAT_FORM_FIELD_DEFAULT_OPTIONS) private _defaults:
       MatFormFieldDefaultOptions, private _platform: Platform, private _ngZone: NgZone,
     @Optional() @Inject(ANIMATION_MODULE_TYPE) _animationMode: string) {
     super(_elementRef);
 
+    this.floatLabel = this._getDefaultFloatLabelState();
     this._animationsEnabled = _animationMode !== 'NoopAnimations';
 
     // Set the default through here so we invoke the setter on the first run.
-    this.appearance = (_defaults && _defaults.appearance) ? _defaults.appearance : 'legacy';
+    this.appearance = _defaults && _defaults.appearance ? _defaults.appearance : 'legacy';
+    this._hideRequiredMarker =
+      _defaults && _defaults.hideRequiredMarker != null ? _defaults.hideRequiredMarker : false;
   }
 
-  _appearance!: MatFormFieldAppearance;
+  private _appearance!: MatFormFieldAppearance;
 
   /** The form-field appearance style. */
   @Input()
@@ -175,7 +179,41 @@ export class GroupFormFieldComponent extends _GroupFormFieldMixinBase
     }
   }
 
-  private _hintLabel = '';
+  private _floatLabel: FloatLabelType = this._getDefaultFloatLabelState();
+
+  /**
+   * Whether the label should always float, never float or float as the user types.
+   *
+   * Note: only the legacy appearance supports the `never` option. `never` was originally added as a
+   * way to make the floating label emulate the behavior of a standard input placeholder. However
+   * the form field now supports both floating labels and placeholders. Therefore in the non-legacy
+   * appearances the `never` option has been disabled in favor of just using the placeholder.
+   */
+  @Input()
+  get floatLabel(): FloatLabelType {
+    return this.appearance !== 'legacy' && this._floatLabel === 'never' ? 'auto' : this._floatLabel;
+  }
+
+  set floatLabel(value: FloatLabelType) {
+    if (value !== this._floatLabel) {
+      this._floatLabel = value || this._getDefaultFloatLabelState();
+      this._changeDetectorRef.markForCheck();
+    }
+  }
+
+  private _hideRequiredMarker: boolean;
+
+  /** Whether the required marker should be hidden. */
+  @Input()
+  get hideRequiredMarker(): boolean {
+    return this._hideRequiredMarker;
+  }
+
+  set hideRequiredMarker(value: boolean) {
+    this._hideRequiredMarker = coerceBooleanProperty(value);
+  }
+
+  private _hintLabel: string = '';
 
   /** Text for the form field hint. */
   @Input()
@@ -186,6 +224,7 @@ export class GroupFormFieldComponent extends _GroupFormFieldMixinBase
   set hintLabel(value: string) {
     this._hintLabel = value;
     this._processHints();
+    // this._syncDescribedByIds();
   }
 
   get _labelChild(): MatLabel {
@@ -196,17 +235,29 @@ export class GroupFormFieldComponent extends _GroupFormFieldMixinBase
     return this._radioGroupChildNonStatic || this._radioGroupChildStatic;
   }
 
-  /** Animates the label up and locks it in position. */
-  _animateAndLockLabel(): void {
-    if (this._animationsEnabled && this._label) {
-      this._showAlwaysAnimate = true;
+  // /** Animates the label up and locks it in position. */
+  // private _animateAndLockLabel(): void {
+  //   if (this._animationsEnabled && this._label) {
+  //     this._showAlwaysAnimate = true;
+  //
+  //     fromEvent(this._label.nativeElement, 'transitionend').pipe(take(1)).subscribe(() => {
+  //       this._showAlwaysAnimate = false;
+  //     });
+  //   }
+  //
+  //   this._changeDetectorRef.markForCheck();
+  // }
 
-      fromEvent(this._label.nativeElement, 'transitionend').pipe(take(1)).subscribe(() => {
-        this._showAlwaysAnimate = false;
-      });
+  _controlId(): string | undefined {
+    if (!!this._radioGroupChild) {
+      if (this._radioGroupChild._radios.length > 0) {
+        return this._radioGroupChild._radios.get(0)?.id;
+      }
+    } else if (this._checkboxChildren.length > 0) {
+      return this._checkboxChildren.get(0)?.id;
     }
 
-    this._changeDetectorRef.markForCheck();
+    return undefined;
   }
 
   /** Determines whether to display hints or errors. */
@@ -214,13 +265,12 @@ export class GroupFormFieldComponent extends _GroupFormFieldMixinBase
     return (this._errorChildren && this._errorChildren.length > 0) ? 'error' : 'hint';
   }
 
-  /** Gets the start end of the rect considering the current directionality. */
-  _getStartEnd(rect: ClientRect): number {
-    return (this._dir && this._dir.value === 'rtl') ? rect.right : rect.left;
-  }
-
   /** Whether there are one or more errors associated with the group form field. */
   _hasError(): boolean {
+    //console.log('this._errorChildren = ', this._errorChildren);
+
+    console.log('this._radioGroupChild = ', this._radioGroupChild);
+
     if (this._errorChildren) {
       if (this._errorChildren.length > 0) {
         return true;
@@ -230,24 +280,12 @@ export class GroupFormFieldComponent extends _GroupFormFieldMixinBase
     return false;
   }
 
-  _hasLabel(): boolean {
-    return !!this._labelChild;
+  _hasFloatingLabel(): boolean {
+    return this._hasLabel();
   }
 
-  /** Checks whether the form field is attached to the DOM. */
-  _isAttachedToDOM(): boolean {
-    const element: HTMLElement = this._elementRef.nativeElement;
-
-    if (element.getRootNode) {
-      const rootNode = element.getRootNode();
-      // If the element is inside the DOM the root node will be either the document
-      // or the closest shadow root, otherwise it'll be the element itself.
-      return rootNode && rootNode !== element;
-    }
-
-    // Otherwise fall back to checking if it's in the document. This doesn't account for
-    // shadow DOM, however browser that support shadow DOM should support `getRootNode` as well.
-    return document.documentElement!.contains(element);
+  _hasLabel(): boolean {
+    return !!(this._labelChildNonStatic || this._labelChildStatic);
   }
 
   _isDisabled(): boolean {
@@ -266,6 +304,10 @@ export class GroupFormFieldComponent extends _GroupFormFieldMixinBase
     } else {
       return false;
     }
+  }
+
+  _isFocused(): boolean {
+    return false;
   }
 
   _isRequired(): boolean {
@@ -357,30 +399,6 @@ export class GroupFormFieldComponent extends _GroupFormFieldMixinBase
   }
 
   /**
-   * Ensure that there is a maximum of one of each `<mat-hint>` alignment specified, with the
-   * attribute being considered as `align="start"`.
-   */
-  _validateHints() {
-    if (this._hintChildren) {
-      let startHint: MatHint;
-      let endHint: MatHint;
-      this._hintChildren.forEach((hint: MatHint) => {
-        if (hint.align === 'start') {
-          if (startHint || this.hintLabel) {
-            throw getMatFormFieldDuplicatedHintError('start');
-          }
-          startHint = hint;
-        } else if (hint.align === 'end') {
-          if (endHint) {
-            throw getMatFormFieldDuplicatedHintError('end');
-          }
-          endHint = hint;
-        }
-      });
-    }
-  }
-
-  /**
    * Gets an ElementRef for the element that an overlay attached to the form-field should be
    * positioned relative to.
    */
@@ -423,6 +441,7 @@ export class GroupFormFieldComponent extends _GroupFormFieldMixinBase
 
     // Update the aria-described by when the number of errors changes.
     this._errorChildren.changes.pipe(startWith(null)).subscribe(() => {
+      // this._syncDescribedByIds();
       this._changeDetectorRef.markForCheck();
     });
 
@@ -440,8 +459,6 @@ export class GroupFormFieldComponent extends _GroupFormFieldMixinBase
 
     if (!!this._labelChild) {
       if (!!this._radioGroupChild) {
-        const radios: MatRadioButton[] = this._radioGroupChild._radios.toArray();
-
         this._radioGroupChild._radios.forEach((radioButton: MatRadioButton) => {
           radioButton.ariaLabelledby = this._labelId;
         });
@@ -462,6 +479,97 @@ export class GroupFormFieldComponent extends _GroupFormFieldMixinBase
   ngOnDestroy() {
     this._destroyed.next();
     this._destroyed.complete();
+  }
+
+  /** Gets the default float label state. */
+  private _getDefaultFloatLabelState(): FloatLabelType {
+    return (this._defaults && this._defaults.floatLabel) || 'auto';
+  }
+
+  /** Gets the start end of the rect considering the current directionality. */
+  private _getStartEnd(rect: ClientRect): number {
+    return (this._dir && this._dir.value === 'rtl') ? rect.right : rect.left;
+  }
+
+  /** Checks whether the form field is attached to the DOM. */
+  private _isAttachedToDOM(): boolean {
+    const element: HTMLElement = this._elementRef.nativeElement;
+
+    if (element.getRootNode) {
+      const rootNode = element.getRootNode();
+      // If the element is inside the DOM the root node will be either the document
+      // or the closest shadow root, otherwise it'll be the element itself.
+      return rootNode && rootNode !== element;
+    }
+
+    // Otherwise fall back to checking if it's in the document. This doesn't account for
+    // shadow DOM, however browser that support shadow DOM should support `getRootNode` as well.
+    return document.documentElement!.contains(element);
+  }
+
+  // /**
+  //  * Sets the list of element IDs that describe the child control. This allows the control to update
+  //  * its `aria-describedby` attribute accordingly.
+  //  */
+  // private _syncDescribedByIds() {
+  //   if (this._control) {
+  //     let ids: string[] = [];
+  //
+  //     // TODO(wagnermaciel): Remove the type check when we find the root cause of this bug.
+  //     if (
+  //       this._control.userAriaDescribedBy &&
+  //       typeof this._control.userAriaDescribedBy === 'string'
+  //     ) {
+  //       ids.push(...this._control.userAriaDescribedBy.split(' '));
+  //     }
+  //
+  //     if (this._getDisplayedMessages() === 'hint') {
+  //       const startHint = this._hintChildren
+  //         ? this._hintChildren.find(hint => hint.align === 'start')
+  //         : null;
+  //       const endHint = this._hintChildren
+  //         ? this._hintChildren.find(hint => hint.align === 'end')
+  //         : null;
+  //
+  //       if (startHint) {
+  //         ids.push(startHint.id);
+  //       } else if (this._hintLabel) {
+  //         ids.push(this._hintLabelId);
+  //       }
+  //
+  //       if (endHint) {
+  //         ids.push(endHint.id);
+  //       }
+  //     } else if (this._errorChildren) {
+  //       ids.push(...this._errorChildren.map(error => error.id));
+  //     }
+  //
+  //     this._control.setDescribedByIds(ids);
+  //   }
+  // }
+
+  /**
+   * Ensure that there is a maximum of one of each `<mat-hint>` alignment specified, with the
+   * attribute being considered as `align="start"`.
+   */
+  private _validateHints() {
+    if (this._hintChildren) {
+      let startHint: MatHint;
+      let endHint: MatHint;
+      this._hintChildren.forEach((hint: MatHint) => {
+        if (hint.align === 'start') {
+          if (startHint || this.hintLabel) {
+            throw getMatFormFieldDuplicatedHintError('start');
+          }
+          startHint = hint;
+        } else if (hint.align === 'end') {
+          if (endHint) {
+            throw getMatFormFieldDuplicatedHintError('end');
+          }
+          endHint = hint;
+        }
+      });
+    }
   }
 }
 

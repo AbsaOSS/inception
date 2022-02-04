@@ -31,6 +31,12 @@ import org.springframework.data.repository.query.Param;
  */
 public interface PasswordResetRepository extends JpaRepository<PasswordReset, PasswordResetId> {
 
+  /**
+   * Expire the password resets.
+   *
+   * @param currentTimestamp the current date and time
+   * @param requestedBefore the date and time to expire password resets after
+   */
   @Modifying
   @Query(
       "update PasswordReset pr set pr.expired = :currentTimestamp, pr.status = 3 "
@@ -39,5 +45,12 @@ public interface PasswordResetRepository extends JpaRepository<PasswordReset, Pa
       @Param("currentTimestamp") LocalDateTime currentTimestamp,
       @Param("requestedBefore") LocalDateTime requestedBefore);
 
+  /**
+   * Retrieve the password reset with the specified status for the user.
+   *
+   * @param username the username for the user
+   * @param status the password reset status
+   * @return the password resets with the specified status for the user
+   */
   List<PasswordReset> findAllByUsernameAndStatus(String username, PasswordResetStatus status);
 }

@@ -5,12 +5,6 @@
     "assets"
   ],
   "lib": {
-    "entryFile": "src/public-api.ts",
-    "umdModuleIds": {
-      "@auth0/angular-jwt": "angularJwt",
-      "ngx-perfect-scrollbar": "ngxPerfectScrollbar",
-      "string-template": "format_",
-      "uuid": "uuid"
-    }
+    "entryFile": "src/public-api.ts"
   }
 }

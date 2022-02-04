@@ -30,10 +30,22 @@ import org.springframework.data.repository.query.Param;
  */
 public interface ReportDefinitionRepository extends JpaRepository<ReportDefinition, String> {
 
+  /**
+   * Delete the report definition.
+   *
+   * @param reportDefinitionId the ID for the report definition
+   */
   @Modifying
   @Query("delete from ReportDefinition rd where rd.id = :reportDefinitionId")
   void deleteById(@Param("reportDefinitionId") String reportDefinitionId);
 
+  /**
+   * Retrieve the name for the report definition.
+   *
+   * @param reportDefinitionId the ID for the report definition
+   * @return an Optional containing the name for the report definition or an empty Optional if the
+   *     report definition could not be found
+   */
   @Query("select rd.name from ReportDefinition rd where rd.id = :reportDefinitionId")
   Optional<String> getNameById(@Param("reportDefinitionId") String reportDefinitionId);
 }

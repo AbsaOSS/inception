@@ -423,7 +423,7 @@ public class LDAPUserDirectory extends UserDirectoryBase {
         getGroupRepository().saveAndFlush(group);
       }
 
-      if (getGroupRepository().countGroupRole(groupId, roleCode) > 0) {
+      if (getGroupRepository().roleToGroupMappingExists(groupId, roleCode)) {
         return;
       }
 
