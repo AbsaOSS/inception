@@ -21,8 +21,7 @@ Complete the following steps to setup a development environment on MacOS.
    ```
 3. Install OpenJDK 11 by executing the following commands in a Terminal window.
    ```
-   brew tap AdoptOpenJDK/openjdk
-   brew cask install adoptopenjdk11
+   brew install openjdk
    ```
 4. Install Apache Maven by executing the following command in a Terminal window.
    ```
@@ -38,11 +37,18 @@ Complete the following steps to setup a development environment on MacOS.
    export PATH="$HOME/.jenv/bin:$PATH"
    eval "$(jenv init -)"
    ```
-7. Set OpenJDK 11 as the default java verison by executing the following commands in a
+7. Set OpenJDK 17 as the default java verison by executing the following commands in a
    Terminal window.
    ```
-   jenv add /Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home
-   jenv global 11.0
+   Intel Mac:
+   jenv add /usr/local/opt/openjdk/libexec/openjdk.jdk/Contents/Home
+   jenv global 17
+   sudo ln -s /usr/local/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk
+
+   M1 Mac:
+   jenv add /opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home
+   jenv global 17
+   sudo ln -s /opt/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk
    ```
 8. Install the maven plugin for jenv by executing the following command in a Terminal
    window.
@@ -61,10 +67,10 @@ Complete the following steps to setup a development environment on MacOS.
     ```
     brew install npm
     ```
-12. Install the Angular CLI 11 globally by executing the following command in a Terminal
+12. Install the Angular CLI 13 globally by executing the following command in a Terminal
     window.
     ```
-    npm install -g @angular/cli@12
+    npm install -g @angular/cli@13
     ```
 13. Execute the following command to change to the more conservative tilde (~) patch
     update approach for dependencies for npm.
@@ -121,7 +127,7 @@ Complete the following steps to checkout and build the Absa Inception Framework 
    in the *src/demo/target* directory in a Terminal window, after building
    the Java components of the Absa Inception Framework.
    ```
-   java -jar demo-1.0.0-SNAPSHOT.jar
+   java -jar demo-1.1.0-SNAPSHOT.jar
    ```
 4. To launch the *demo* front-end application, execute the following command
    in the *inception/src/inception-angular* directory in a Terminal window, after building
@@ -146,7 +152,7 @@ Complete the following steps to checkout and build the Absa Inception Framework 
    Git Credential Manager
    Enable file system caching
    ```
-2. Download the OpenJDK 11 package from *https://adoptopenjdk.net* and install it.
+2. Download the OpenJDK 17 package from *https://adoptium.net/* and install it.
 3. Download the Maven package from *https://maven.apache.org* and install it.
 
    **NOTE:** Ensure that Maven is on the path.
@@ -156,10 +162,10 @@ Complete the following steps to checkout and build the Absa Inception Framework 
    it.
 
    **NOTE:** Set the proxy for NPM if required.
-5. Install the Angular CLI 11 globally by executing the following command in a Git Bash
+5. Install the Angular CLI 13 globally by executing the following command in a Git Bash
    window.
    ```
-   npm install -g @angular/cli@12
+   npm install -g @angular/cli@13
    ```
 6. Execute the following command to change to the more conservative tilde (~) patch
    update approach for dependencies for npm.
@@ -194,7 +200,7 @@ Complete the following steps to setup a development environment on Windows.
    in the *src/demo/target* directory in a Terminal window, after building
    the Java components of the Absa Inception Framework.
    ```
-   java -jar demo-1.0.0-SNAPSHOT.jar
+   java -jar demo-1.1.0-SNAPSHOT.jar
    ```
 4. To launch the *demo* front-end application, execute the following command
    in the *inception/src/inception-angular* directory in a Terminal window, after building
@@ -251,7 +257,7 @@ Complete the following steps to create a new application based on the Absa Incep
         <parent>
           <groupId>africa.absa</groupId>
           <artifactId>inception</artifactId>
-          <version>1.0.1</version>
+          <version>1.1.0</version>
           <relativePath/>
         </parent>
 
