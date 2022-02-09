@@ -1,4 +1,4 @@
-/*
+``/*
  * Copyright 2021 original authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -34,7 +34,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.unsubscribe$.next();
     this.unsubscribe$.complete();
   }
 

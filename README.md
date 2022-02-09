@@ -215,8 +215,9 @@ Complete the following steps to create a new application based on the Absa Incep
 
 1. Select a name for the new application, e.g. demo, and create the top-level directory
    for the application with the same name. The directory **MUST** be created under the
-   same directory that the Absa Inception Framework project was cloned into. This is because
-   the Absa Inception Framework will be installed as an npm dependency using a relative path.
+   same directory that the Absa Inception Framework project was cloned into. This allows
+   the Absa Inception Framework to be installed as an npm dependency using a relative path,
+   which is required when working with a snapshot of the framework.
 2. Execute the following commands under the top-level directory for the new application
    to create the project directory structure.
    ```
@@ -346,11 +347,11 @@ Complete the following steps to create a new application based on the Absa Incep
             <plugin>
               <groupId>com.github.eirslett</groupId>
               <artifactId>frontend-maven-plugin</artifactId>
-              <version>1.6</version>
+              <version>1.12.1</version>
               <configuration>
                 <workingDirectory>src/main/frontend</workingDirectory>
-                <nodeVersion>v16.9.0</nodeVersion>
-                <npmVersion>7.21.1</npmVersion>
+                <nodeVersion>v16.14.0</nodeVersion>
+                <npmVersion>8.3.1</npmVersion>
               </configuration>
               <executions>
                 <execution>
@@ -610,10 +611,10 @@ Complete the following steps to create a new application based on the Absa Incep
    5. Execute the following commands under the *src/main/frontend* directory to install the
       dependencies for the *ngx-inception* library.
       ```
-      npm install --save @angular/cdk@12
-      npm install --save @angular/localize@12
-      npm install --save @angular/material@12
-      npm install --save @angular/material-moment-adapter@12
+      npm install --save @angular/cdk@13
+      npm install --save @angular/localize@13
+      npm install --save @angular/material@13
+      npm install --save @angular/material-moment-adapter@13
       npm install --save @auth0/angular-jwt@5
       npm install --save @fortawesome/fontawesome-free@5
       npm install --save bootstrap@4      
@@ -629,7 +630,7 @@ Complete the following steps to create a new application based on the Absa Incep
    6. Execute the following command under the *src/main/frontend* directory to install the
       *ngx-inception* library dependency.
       ```
-      npm install --save @absaoss/ngx-inception@1.0
+      npm install --save @absaoss/ngx-inception@1.2
       ```
    7. Add the path mapping for the ngx-inception library to the *src/main/frontend/tsconfig.app.json* file.
       ```
@@ -1216,7 +1217,6 @@ Complete the following steps to create a new application based on the Absa Incep
          }
 
          ngOnDestroy(): void {
-           this.unsubscribe$.next();
            this.unsubscribe$.complete();
          }
 
@@ -1246,7 +1246,7 @@ Complete the following steps to create a new application based on the Absa Incep
        ```
    27. Replace the contents of the *src/main/frontend/src/styles.scss* file with the following.
        ```
-       @import "~@absaoss/ngx-inception/assets/scss/default-theme.scss";
+       @import "./node_modules/@absaoss/ngx-inception/assets/scss/default-theme";
 
        .brand-full {
          display: inline-block;
