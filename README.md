@@ -127,7 +127,7 @@ Complete the following steps to checkout and build the Absa Inception Framework 
    in the *src/demo/target* directory in a Terminal window, after building
    the Java components of the Absa Inception Framework.
    ```
-   java -jar demo-1.1.0-SNAPSHOT.jar
+   java -jar demo-1.2.1-SNAPSHOT.jar
    ```
 4. To launch the *demo* front-end application, execute the following command
    in the *inception/src/inception-angular* directory in a Terminal window, after building
@@ -200,7 +200,7 @@ Complete the following steps to setup a development environment on Windows.
    in the *src/demo/target* directory in a Terminal window, after building
    the Java components of the Absa Inception Framework.
    ```
-   java -jar demo-1.1.0-SNAPSHOT.jar
+   java -jar demo-1.2.1-SNAPSHOT.jar
    ```
 4. To launch the *demo* front-end application, execute the following command
    in the *inception/src/inception-angular* directory in a Terminal window, after building
@@ -257,7 +257,7 @@ Complete the following steps to create a new application based on the Absa Incep
         <parent>
           <groupId>africa.absa</groupId>
           <artifactId>inception</artifactId>
-          <version>1.1.0</version>
+          <version>1.2.0</version>
           <relativePath/>
         </parent>
 
