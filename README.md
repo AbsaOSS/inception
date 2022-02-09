@@ -398,6 +398,9 @@ Complete the following steps to create a new application based on the Absa Incep
       import org.springframework.context.annotation.Configuration;
       import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+      /**
+       * The <b>DemoConfiguration</b> class.
+       */
       @Configuration
       @ComponentScan(
           basePackages = {"africa.absa.inception", "demo"})
