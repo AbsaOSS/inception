@@ -4,7 +4,7 @@
 
   <groupId>africa.absa</groupId>
   <artifactId>inception</artifactId>
-  <version>1.1.1</version>
+  <version>1.1.2-SNAPSHOT</version>
   <name>inception</name>
 
   <packaging>pom</packaging>
@@ -88,7 +88,7 @@
     <connection>scm:git:git://github.com/AbsaOSS/inception.git</connection>
     <developerConnection>scm:git:git@github.com:AbsaOSS/inception.git</developerConnection>
     <url>https://github.com/AbsaOSS/inception</url>
-    <tag>v1.1.1</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <properties>
@@ -231,62 +231,62 @@
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-application</artifactId>
-        <version>1.1.1</version>
+        <version>1.1.2-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-cache</artifactId>
-        <version>1.1.1</version>
+        <version>1.1.2-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-codes</artifactId>
-        <version>1.1.1</version>
+        <version>1.1.2-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-codes-api</artifactId>
-        <version>1.1.1</version>
+        <version>1.1.2-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-config</artifactId>
-        <version>1.1.1</version>
+        <version>1.1.2-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-config-api</artifactId>
-        <version>1.1.1</version>
+        <version>1.1.2-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-core</artifactId>
-        <version>1.1.1</version>
+        <version>1.1.2-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-error</artifactId>
-        <version>1.1.1</version>
+        <version>1.1.2-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-error-api</artifactId>
-        <version>1.1.1</version>
+        <version>1.1.2-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-jpa</artifactId>
-        <version>1.1.1</version>
+        <version>1.1.2-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-json</artifactId>
-        <version>1.1.1</version>
+        <version>1.1.2-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-jta</artifactId>
-        <version>1.1.1</version>
+        <version>1.1.2-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
@@ -296,72 +296,72 @@
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-mail</artifactId>
-        <version>1.1.1</version>
+        <version>1.1.2-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-mail-api</artifactId>
-        <version>1.1.1</version>
+        <version>1.1.2-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-oauth2-authorization-server</artifactId>
-        <version>1.1.1</version>
+        <version>1.1.2-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-oauth2-resource-server</artifactId>
-        <version>1.1.1</version>
+        <version>1.1.2-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-reference</artifactId>
-        <version>1.1.1</version>
+        <version>1.1.2-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-reference-api</artifactId>
-        <version>1.1.1</version>
+        <version>1.1.2-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-reporting</artifactId>
-        <version>1.1.1</version>
+        <version>1.1.2-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-reporting-api</artifactId>
-        <version>1.1.1</version>
+        <version>1.1.2-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-api</artifactId>
-        <version>1.1.1</version>
+        <version>1.1.2-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-scheduler</artifactId>
-        <version>1.1.1</version>
+        <version>1.1.2-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-scheduler-api</artifactId>
-        <version>1.1.1</version>
+        <version>1.1.2-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-security</artifactId>
-        <version>1.1.1</version>
+        <version>1.1.2-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-security-api</artifactId>
-        <version>1.1.1</version>
+        <version>1.1.2-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>africa.absa</groupId>
         <artifactId>inception-test</artifactId>
-        <version>1.1.1</version>
+        <version>1.1.2-SNAPSHOT</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
