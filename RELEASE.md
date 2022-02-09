@@ -16,7 +16,7 @@ Complete the following steps to setup a JIRA account to access the Sonatype OSSR
 Complete the following steps to setup a Node Package Manager account.
 
 1. Sign up for a Node Package Manager (NPM) account using this [link](https://www.npmjs.com/signup).
-2. Add the Node Package Manager (NPM) account to the **absaoss** organization.
+2. Add the Node Package Manager (NPM) account to the **absaoss** organization under the **developers** team.
 
 
 ## Releasing on MacOS
