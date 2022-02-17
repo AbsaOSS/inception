@@ -166,7 +166,7 @@ public class MailServiceTest {
     mailService.sendMail(
         Collections.singletonList("test@test.com"),
         "Test Subject",
-        "no-reply@inception.digital",
+        "no-reply@inception.absa.africa",
         "Inception",
         mailTemplate.getId(),
         mapTemplateParameters);

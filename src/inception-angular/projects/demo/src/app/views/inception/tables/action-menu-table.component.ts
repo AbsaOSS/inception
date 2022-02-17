@@ -30,17 +30,17 @@ const USER_DATA: User[] = [{
   id: '44f3970c-432c-4834-807a-f59dd56b7d0d',
   name: 'Joe Bloggs',
   preferredName: 'Joe',
-  email: 'joe@inception.digital'
+  email: 'joe@inception.absa.africa'
 }, {
   id: 'd19c8a82-12c7-46ab-a5a0-f93c421034ce',
   name: 'Bob Smith',
   preferredName: 'Bob',
-  email: 'bob@inception.digital'
+  email: 'bob@inception.absa.africa'
 }, {
   id: '1a0f97a6-778d-409a-b071-84071be162c3',
   name: 'Frank Black',
   preferredName: 'Frank',
-  email: 'frank@inception.digital'
+  email: 'frank@inception.absa.africa'
 }, {
   id: 'b318689d-292e-442d-bebe-d7bbc85d0044',
   name: 'Samantha Carter',

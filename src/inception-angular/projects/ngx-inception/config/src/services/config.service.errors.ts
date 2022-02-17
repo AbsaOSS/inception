@@ -24,7 +24,7 @@ import {HttpErrorResponse} from '@angular/common/http';
  */
 export class ConfigNotFoundError extends Error {
 
-  static readonly TYPE = 'http://inception.digital/problems/config/config-not-found';
+  static readonly TYPE = 'http://inception.absa.africa/problems/config/config-not-found';
 
   /**
    * Constructs a new ConfigNotFoundError.

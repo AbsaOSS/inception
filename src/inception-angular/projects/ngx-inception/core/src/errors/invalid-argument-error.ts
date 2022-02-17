@@ -26,7 +26,7 @@ import {ProblemDetails} from './problem-details';
  */
 export class InvalidArgumentError extends Error {
 
-  static readonly TYPE = 'http://inception.digital/problems/invalid-argument';
+  static readonly TYPE = 'http://inception.absa.africa/problems/invalid-argument';
 
   /**
    * Constructs a new InvalidArgumentError.

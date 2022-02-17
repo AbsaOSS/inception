@@ -19,6 +19,9 @@ package demo.model;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
+import javax.xml.bind.annotation.XmlEnum;
+import javax.xml.bind.annotation.XmlEnumValue;
+import javax.xml.bind.annotation.XmlType;
 
 /**
  * The <b>VehicleType</b> enumeration defines the possible vehicle types.
@@ -26,14 +29,19 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * @author Marcus Portmann
  */
 @Schema(description = "The vehicle type")
+@XmlEnum
+@XmlType(name = "VehicleType", namespace = "http://demo")
 public enum VehicleType {
   /** Car. */
+  @XmlEnumValue("Car")
   CAR("car", "Car"),
 
   /** Motorbike. */
+  @XmlEnumValue("Motorbike")
   MOTORBIKE("motorbike", "Motorbike"),
 
   /** Unknown */
+  @XmlEnumValue("Unknown")
   UNKNOWN("unknown", "Unknown");
 
   private final String code;

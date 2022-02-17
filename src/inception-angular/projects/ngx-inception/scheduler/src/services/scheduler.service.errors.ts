@@ -24,7 +24,7 @@ import {HttpErrorResponse} from '@angular/common/http';
  */
 export class DuplicateJobError extends Error {
 
-  static readonly TYPE = 'http://inception.digital/problems/scheduler/duplicate-job';
+  static readonly TYPE = 'http://inception.absa.africa/problems/scheduler/duplicate-job';
 
   /**
    * Constructs a new DuplicateJobError.
@@ -43,7 +43,7 @@ export class DuplicateJobError extends Error {
  */
 export class JobNotFoundError extends Error {
 
-  static readonly TYPE = 'http://inception.digital/problems/scheduler/job-not-found';
+  static readonly TYPE = 'http://inception.absa.africa/problems/scheduler/job-not-found';
 
   /**
    * Constructs a new JobNotFoundError.

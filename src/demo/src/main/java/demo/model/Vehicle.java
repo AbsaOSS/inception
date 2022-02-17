@@ -16,14 +16,12 @@
 
 package demo.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.github.f4b6a3.uuid.UuidCreator;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
 import javax.persistence.Column;
@@ -32,8 +30,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 /**
  * The <b>Vehicle</b> class.
@@ -54,21 +55,22 @@ import org.hibernate.annotations.UpdateTimestamp;
 @Schema(description = "A vehicle")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({"id", "name", "type"})
+@XmlRootElement(name = "Vehicle", namespace = "http://demo")
+@XmlType(
+    name = "Vehicle",
+    namespace = "http://demo",
+    propOrder = {"id", "name", "type"})
+@XmlAccessorType(XmlAccessType.PROPERTY)
 @Entity
 @Table(schema = "demo", name = "vehicles")
 public class Vehicle implements Serializable {
 
   private static final long serialVersionUID = 1000000;
 
-  /** The date and time the vehicle was created. */
-  @JsonIgnore
-  @CreationTimestamp
-  @Column(table = "vehicles", name = "created", nullable = false, updatable = false)
-  private LocalDateTime created;
-
   /** The ID for the vehicle. */
   @Schema(description = "The ID for the vehicle", required = true)
   @JsonProperty(required = true)
+  @XmlElement(name = "Id", required = true)
   @NotNull
   @Id
   @Column(table = "vehicles", name = "id", nullable = false)
@@ -77,6 +79,7 @@ public class Vehicle implements Serializable {
   /** The name of the vehicle. */
   @Schema(description = "The name of the vehicle", required = true)
   @JsonProperty(required = true)
+  @XmlElement(name = "Name", required = true)
   @NotNull
   @Size(min = 1, max = 100)
   @Column(table = "vehicles", name = "name", length = 100, nullable = false)
@@ -85,15 +88,10 @@ public class Vehicle implements Serializable {
   /** The vehicle type. */
   @Schema(description = "The vehicle type", required = true)
   @JsonProperty(required = true)
+  @XmlElement(name = "Type", required = true)
   @NotNull
   @Column(table = "vehicles", name = "type", length = 30, nullable = false)
   private VehicleType type;
-
-  /** The date and time the vehicle was last updated. */
-  @JsonIgnore
-  @UpdateTimestamp
-  @Column(table = "vehicles", name = "updated", insertable = false)
-  private LocalDateTime updated;
 
   /** Constructs a new <b>Vehicle</b>. */
   public Vehicle() {}
@@ -136,15 +134,6 @@ public class Vehicle implements Serializable {
   }
 
   /**
-   * Returns the date and time the vehicle was created.
-   *
-   * @return the date and time the vehicle was created
-   */
-  public LocalDateTime getCreated() {
-    return created;
-  }
-
-  /**
    * Returns the ID for the vehicle.
    *
    * @return the ID for the vehicle
@@ -169,15 +158,6 @@ public class Vehicle implements Serializable {
    */
   public VehicleType getType() {
     return type;
-  }
-
-  /**
-   * Returns the date and time the vehicle was last updated.
-   *
-   * @return the date and time the vehicle was last updated
-   */
-  public LocalDateTime getUpdated() {
-    return updated;
   }
 
   /**

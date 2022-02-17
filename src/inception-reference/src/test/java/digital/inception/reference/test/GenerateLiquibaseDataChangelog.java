@@ -47,18 +47,18 @@ import org.springframework.context.annotation.FilterType;
  */
 @SpringBootApplication
 @ComponentScan(
-    basePackages = {"digital.inception"},
+    basePackages = {"africa.absa.inception"},
     lazyInit = true,
     excludeFilters = {
       @ComponentScan.Filter(value = SpringBootApplication.class, type = FilterType.ANNOTATION),
       @ComponentScan.Filter(
-          pattern = "digital\\.inception\\.application\\.ApplicationDataSourceConfiguration",
+          pattern = "africa\\.absa\\.inception\\.application\\.ApplicationDataSourceConfiguration",
           type = FilterType.REGEX),
       @ComponentScan.Filter(
-          pattern = "digital\\.inception\\.application\\.ApplicationTransactionManager",
+          pattern = "africa\\.absa\\.inception\\.application\\.ApplicationTransactionManager",
           type = FilterType.REGEX),
       @ComponentScan.Filter(
-          pattern = "digital\\.inception\\.persistence\\.PersistenceConfiguration",
+          pattern = "africa\\.absa\\.inception\\.persistence\\.PersistenceConfiguration",
           type = FilterType.REGEX)
     })
 public class GenerateLiquibaseDataChangelog implements CommandLineRunner {

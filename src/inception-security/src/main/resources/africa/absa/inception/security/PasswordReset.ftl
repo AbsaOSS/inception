@@ -757,7 +757,7 @@
                                         <tbody>
                                           <tr>
                                             <td class="esd-block-text" esd-links-color="#666666" align="center">
-                                              <p style="font-size: 14px;">Contact us: 27-11-555-1234 | <a target="_blank" href="mailto:info@inception.digital" style="font-size: 14px; color: rgb(102, 102, 102);">info@inception.digital</a></p>
+                                              <p style="font-size: 14px;">Contact us: 27-11-555-1234 | <a target="_blank" href="mailto:info@inception.absa.africa" style="font-size: 14px; color: rgb(102, 102, 102);">info@inception.absa.africa</a></p>
                                             </td>
                                           </tr>
                                         </tbody>

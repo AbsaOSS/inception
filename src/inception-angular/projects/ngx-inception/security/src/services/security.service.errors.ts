@@ -24,7 +24,7 @@ import {HttpErrorResponse} from '@angular/common/http';
  */
 export class AuthenticationFailedError extends Error {
 
-  static readonly TYPE = 'http://inception.digital/problems/security/authentication-failed';
+  static readonly TYPE = 'http://inception.absa.africa/problems/security/authentication-failed';
 
   /**
    * Constructs a new AuthenticationFailedError.
@@ -43,7 +43,7 @@ export class AuthenticationFailedError extends Error {
  */
 export class DuplicateGroupError extends Error {
 
-  static readonly TYPE = 'http://inception.digital/problems/security/duplicate-group';
+  static readonly TYPE = 'http://inception.absa.africa/problems/security/duplicate-group';
 
   /**
    * Constructs a new DuplicateGroupError.
@@ -62,7 +62,7 @@ export class DuplicateGroupError extends Error {
  */
 export class DuplicateTenantError extends Error {
 
-  static readonly TYPE = 'http://inception.digital/problems/security/duplicate-tenant';
+  static readonly TYPE = 'http://inception.absa.africa/problems/security/duplicate-tenant';
 
   /**
    * Constructs a new DuplicateTenantError.
@@ -81,7 +81,7 @@ export class DuplicateTenantError extends Error {
  */
 export class DuplicateUserDirectoryError extends Error {
 
-  static readonly TYPE = 'http://inception.digital/problems/security/duplicate-user-directory';
+  static readonly TYPE = 'http://inception.absa.africa/problems/security/duplicate-user-directory';
 
   /**
    * Constructs a new DuplicateUserDirectoryError.
@@ -100,7 +100,7 @@ export class DuplicateUserDirectoryError extends Error {
  */
 export class DuplicateUserError extends Error {
 
-  static readonly TYPE = 'http://inception.digital/problems/security/duplicate-user';
+  static readonly TYPE = 'http://inception.absa.africa/problems/security/duplicate-user';
 
   /**
    * Constructs a new DuplicateUserError.
@@ -119,7 +119,7 @@ export class DuplicateUserError extends Error {
  */
 export class ExistingGroupMembersError extends Error {
 
-  static readonly TYPE = 'http://inception.digital/problems/security/existing-group-members';
+  static readonly TYPE = 'http://inception.absa.africa/problems/security/existing-group-members';
 
   /**
    * Constructs a new ExistingGroupMembersError.
@@ -138,7 +138,7 @@ export class ExistingGroupMembersError extends Error {
  */
 export class ExistingPasswordError extends Error {
 
-  static readonly TYPE = 'http://inception.digital/problems/security/existing-password';
+  static readonly TYPE = 'http://inception.absa.africa/problems/security/existing-password';
 
   /**
    * Constructs a new ExistingPasswordError.
@@ -157,7 +157,7 @@ export class ExistingPasswordError extends Error {
  */
 export class GroupMemberNotFoundError extends Error {
 
-  static readonly TYPE = 'http://inception.digital/problems/security/group-member-not-found';
+  static readonly TYPE = 'http://inception.absa.africa/problems/security/group-member-not-found';
 
   /**
    * Constructs a new GroupMemberNotFoundError.
@@ -176,7 +176,7 @@ export class GroupMemberNotFoundError extends Error {
  */
 export class GroupNotFoundError extends Error {
 
-  static readonly TYPE = 'http://inception.digital/problems/security/group-not-found';
+  static readonly TYPE = 'http://inception.absa.africa/problems/security/group-not-found';
 
   /**
    * Constructs a new GroupNotFoundError.
@@ -195,7 +195,7 @@ export class GroupNotFoundError extends Error {
  */
 export class GroupRoleNotFoundError extends Error {
 
-  static readonly TYPE = 'http://inception.digital/problems/security/group-role-not-found';
+  static readonly TYPE = 'http://inception.absa.africa/problems/security/group-role-not-found';
 
   /**
    * Constructs a new GroupRoleNotFoundError.
@@ -214,7 +214,7 @@ export class GroupRoleNotFoundError extends Error {
  */
 export class InvalidSecurityCodeError extends Error {
 
-  static readonly TYPE = 'http://inception.digital/problems/security/invalid-security-code';
+  static readonly TYPE = 'http://inception.absa.africa/problems/security/invalid-security-code';
 
   /**
    * Constructs a new InvalidSecurityCodeError.
@@ -233,7 +233,7 @@ export class InvalidSecurityCodeError extends Error {
  */
 export class RoleNotFoundError extends Error {
 
-  static readonly TYPE = 'http://inception.digital/problems/security/role-not-found';
+  static readonly TYPE = 'http://inception.absa.africa/problems/security/role-not-found';
 
   /**
    * Constructs a new RoleNotFoundError.
@@ -270,7 +270,7 @@ export class SessionError extends Error {
  */
 export class TenantNotFoundError extends Error {
 
-  static readonly TYPE = 'http://inception.digital/problems/security/tenant-not-found';
+  static readonly TYPE = 'http://inception.absa.africa/problems/security/tenant-not-found';
 
   /**
    * Constructs a new TenantNotFoundError.
@@ -290,7 +290,7 @@ export class TenantNotFoundError extends Error {
  */
 export class TenantUserDirectoryNotFoundError extends Error {
 
-  static readonly TYPE = 'http://inception.digital/problems/security/tenant-user-directory-not-found';
+  static readonly TYPE = 'http://inception.absa.africa/problems/security/tenant-user-directory-not-found';
 
   /**
    * Constructs a new TenantUserDirectoryNotFoundError.
@@ -309,7 +309,7 @@ export class TenantUserDirectoryNotFoundError extends Error {
  */
 export class UserDirectoryNotFoundError extends Error {
 
-  static readonly TYPE = 'http://inception.digital/problems/security/user-directory-not-found';
+  static readonly TYPE = 'http://inception.absa.africa/problems/security/user-directory-not-found';
 
   /**
    * Constructs a new UserDirectoryNotFoundError.
@@ -328,7 +328,7 @@ export class UserDirectoryNotFoundError extends Error {
  */
 export class UserLockedError extends Error {
 
-  static readonly TYPE = 'http://inception.digital/problems/security/user-locked';
+  static readonly TYPE = 'http://inception.absa.africa/problems/security/user-locked';
 
   /**
    * Constructs a new UserLockedError.
@@ -347,7 +347,7 @@ export class UserLockedError extends Error {
  */
 export class UserNotFoundError extends Error {
 
-  static readonly TYPE = 'http://inception.digital/problems/security/user-not-found';
+  static readonly TYPE = 'http://inception.absa.africa/problems/security/user-not-found';
 
   /**
    * Constructs a new UserNotFoundError.

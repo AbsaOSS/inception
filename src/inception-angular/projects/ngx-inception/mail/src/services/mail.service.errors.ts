@@ -25,7 +25,7 @@ import {HttpErrorResponse} from '@angular/common/http';
  */
 export class DuplicateMailTemplateError extends Error {
 
-  static readonly TYPE = 'http://inception.digital/problems/mail/duplicate-mail-template';
+  static readonly TYPE = 'http://inception.absa.africa/problems/mail/duplicate-mail-template';
 
   /**
    * Constructs a new DuplicateMailTemplateError.
@@ -45,7 +45,7 @@ export class DuplicateMailTemplateError extends Error {
  */
 export class MailTemplateNotFoundError extends Error {
 
-  static readonly TYPE = 'http://inception.digital/problems/mail/mail-template-not-found';
+  static readonly TYPE = 'http://inception.absa.africa/problems/mail/mail-template-not-found';
 
   /**
    * Constructs a new MailTemplateNotFoundError.

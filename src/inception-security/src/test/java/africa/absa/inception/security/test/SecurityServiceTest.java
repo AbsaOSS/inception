@@ -128,7 +128,7 @@ public class SecurityServiceTest {
     user.setUserDirectoryId(userDirectoryId);
     user.setUsername("Numbered Test Username " + number);
     user.setStatus(UserStatus.ACTIVE);
-    user.setEmail("testing" + String.format("%03d", number) + "@inception.digital");
+    user.setEmail("testing" + String.format("%03d", number) + "@inception.absa.africa");
     user.setName("Numbered Test Name " + number);
     user.setPreferredName("Numbered Test Preferred Name " + number);
     user.setPhoneNumber("Numbered Test Phone Number " + number);
@@ -182,7 +182,7 @@ public class SecurityServiceTest {
     user.setUserDirectoryId(userDirectoryId);
     user.setUsername("Test User Username " + userCount);
     user.setStatus(UserStatus.ACTIVE);
-    user.setEmail("test" + String.format("%03d", userCount) + "@inception.digital");
+    user.setEmail("test" + String.format("%03d", userCount) + "@inception.absa.africa");
     user.setName("Test User Name " + userCount);
     user.setPreferredName("Test User Preferred Name " + userCount);
     user.setPhoneNumber("Test User Phone Number " + userCount);

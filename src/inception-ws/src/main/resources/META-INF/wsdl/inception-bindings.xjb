@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jxb:bindings version="1.0" xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+              xmlns:xs="http://www.w3.org/2001/XMLSchema"
+              xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+              jxb:extensionBindingPrefixes="xjc">
+  <jxb:bindings>
+    <jxb:globalBindings>
+      <xjc:serializable uid="1000000"/>
+      <!-- All xs:dataTime fields are implemented as java.time.LocalDateTime instances -->
+      <jxb:javaType name="java.time.LocalDateTime" xmlType="xs:dateTime"
+                    parseMethod="africa.absa.inception.core.xml.LocalDateTimeAdapter.toLocalDateTime"
+                    printMethod="africa.absa.inception.core.xml.LocalDateTimeAdapter.toISO8601"/>
+    </jxb:globalBindings>
+  </jxb:bindings>
+</jxb:bindings>

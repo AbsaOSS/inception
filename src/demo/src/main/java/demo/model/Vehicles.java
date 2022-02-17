@@ -23,6 +23,12 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 /**
  * The <b>Vehicles</b> class holds the results of a request to retrieve a list of vehicles.
@@ -32,6 +38,12 @@ import java.util.List;
 @Schema(description = "The results of a request to retrieve a list of vehicles")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({"vehicles", "total", "filter", "sortDirection", "pageIndex", "pageSize"})
+@XmlRootElement(name = "Vehicles", namespace = "http://demo")
+@XmlType(
+    name = "Vehicles",
+    namespace = "http://demo",
+    propOrder = {"vehicles", "total", "filter", "sortDirection", "pageIndex", "pageSize"})
+@XmlAccessorType(XmlAccessType.FIELD)
 @SuppressWarnings({"unused"})
 public class Vehicles implements Serializable {
 
@@ -40,31 +52,38 @@ public class Vehicles implements Serializable {
   /** The optional filter that was applied to the vehicles. */
   @Schema(description = "The optional filter that was applied to the vehicles")
   @JsonProperty
+  @XmlElement(name = "Filter")
   private String filter;
 
   /** The optional page index. */
   @Schema(description = "The optional page index")
   @JsonProperty
+  @XmlElement(name = "PageIndex")
   private Integer pageIndex;
 
   /** The optional page size. */
   @Schema(description = "The optional page size")
   @JsonProperty
+  @XmlElement(name = "PageSize")
   private Integer pageSize;
 
   /** The optional sort direction that was applied to the vehicles. */
   @Schema(description = "The optional sort direction that was applied to the vehicles")
   @JsonProperty
+  @XmlElement(name = "SortDirection")
   private SortDirection sortDirection;
 
   /** The total number of vehicles. */
   @Schema(description = "The total number of vehicles", required = true)
   @JsonProperty(required = true)
+  @XmlElement(name = "Total", required = true)
   private long total;
 
   /** The vehicles. */
   @Schema(description = "The vehicles", required = true)
   @JsonProperty(required = true)
+  @XmlElementWrapper(name = "Vehicles", required = true)
+  @XmlElement(name = "Vehicle", required = true)
   private List<Vehicle> vehicles;
 
   /** Constructs a new <b>Vehicles</b>. */

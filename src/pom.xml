@@ -95,14 +95,21 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <java.version>17</java.version>
+
     <agroal-pool.version>1.14</agroal-pool.version>
     <avro.version>1.11.0</avro.version>
+    <camunda.version>7.15.0</camunda.version>
     <commons-beanutils.version>1.9.4</commons-beanutils.version>
     <commons-io.version>2.11.0</commons-io.version>
+    <cxf.version>3.4.5</cxf.version>
     <freemarker.version>2.3.31</freemarker.version>
+    <glassfish-jaxb-runtime.version>2.4.0-b180830.0438</glassfish-jaxb-runtime.version>
     <groovy.version>3.0.9</groovy.version>
     <hibernate-validator.version>6.2.1.Final</hibernate-validator.version>
     <jasperreports.version>6.18.1</jasperreports.version>
+    <jaxb-xew-plugin.version>1.11</jaxb-xew-plugin.version>
+    <jboss-transaction-spi.version>7.6.1.Final</jboss-transaction-spi.version>
+    <jsr181-api.version>1.0-MR1</jsr181-api.version>
     <liquibase-slf4j.version>4.0.0</liquibase-slf4j.version>
     <mssql-jdbc.version>9.4.1.jre11</mssql-jdbc.version>
     <narayana.version>5.12.5.Final</narayana.version>
@@ -110,9 +117,11 @@
     <spring-boot.version>2.5.9</spring-boot.version>
     <spring-shell.version>2.0.1.RELEASE</spring-shell.version>
     <springdoc-openapi-ui.version>1.6.5</springdoc-openapi-ui.version>
+    <sun-activation.version>1.2.0</sun-activation.version>
     <swagger-codegen-maven-plugin.version>3.0.31</swagger-codegen-maven-plugin.version>
     <swagger.version>2.1.12</swagger.version>
     <uuid-creator.version>4.3.1</uuid-creator.version>
+    <wss4j-ws-security-common.version>2.2.6</wss4j-ws-security-common.version>
   </properties>
 
   <dependencyManagement>
@@ -136,6 +145,11 @@
         <groupId>com.microsoft.sqlserver</groupId>
         <artifactId>mssql-jdbc</artifactId>
         <version>${mssql-jdbc.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.sun.activation</groupId>
+        <artifactId>javax.activation</artifactId>
+        <version>${sun-activation.version}</version>
       </dependency>
       <dependency>
         <groupId>commons-beanutils</groupId>
@@ -168,9 +182,44 @@
         <version>${swagger.version}</version>
       </dependency>
       <dependency>
+        <groupId>javax.jws</groupId>
+        <artifactId>jsr181-api</artifactId>
+        <version>${jsr181-api.version}</version>
+      </dependency>
+      <dependency>
         <groupId>org.apache.avro</groupId>
         <artifactId>avro</artifactId>
         <version>${avro.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-frontend-jaxws</artifactId>
+        <version>${cxf.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-transports-http</artifactId>
+        <version>${cxf.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-ws-security</artifactId>
+        <version>${cxf.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.wss4j</groupId>
+        <artifactId>wss4j-ws-security-common</artifactId>
+        <version>${wss4j-ws-security-common.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.camunda.bpm</groupId>
+        <artifactId>camunda-engine</artifactId>
+        <version>${camunda.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.camunda.bpm</groupId>
+        <artifactId>camunda-engine-spring</artifactId>
+        <version>${camunda.version}</version>
       </dependency>
       <dependency>
         <groupId>org.codehaus.groovy</groupId>
@@ -191,6 +240,11 @@
         <groupId>org.hibernate</groupId>
         <artifactId>hibernate-validator</artifactId>
         <version>${hibernate-validator.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss</groupId>
+        <artifactId>jboss-transaction-spi</artifactId>
+        <version>${jboss-transaction-spi.version}</version>
       </dependency>
       <dependency>
         <groupId>org.jboss.narayana.jta</groupId>
@@ -363,6 +417,11 @@
         <artifactId>inception-test</artifactId>
         <version>1.2.1-SNAPSHOT</version>
       </dependency>
+      <dependency>
+        <groupId>africa.absa</groupId>
+        <artifactId>inception-ws</artifactId>
+        <version>1.2.1-SNAPSHOT</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -397,6 +456,7 @@
     <module>inception-security</module>
     <module>inception-security-api</module>
     <module>inception-test</module>
+    <module>inception-ws</module>
   </modules>
 
   <build>

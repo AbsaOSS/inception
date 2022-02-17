@@ -2234,7 +2234,7 @@ public class SecurityService implements ISecurityService, InitializingBean {
         mailService.sendMail(
             Collections.singletonList(user.getEmail()),
             "Password Reset",
-            "no-reply@inception.digital",
+            "no-reply@inception.absa.africa",
             "Inception",
             PASSWORD_RESET_MAIL_TEMPLATE_ID,
             parameters);

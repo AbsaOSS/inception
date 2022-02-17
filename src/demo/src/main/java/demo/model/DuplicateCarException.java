@@ -19,6 +19,9 @@ package demo.model;
 import africa.absa.inception.core.service.Problem;
 import africa.absa.inception.core.service.ServiceException;
 import java.util.UUID;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.ws.WebFault;
 
 /**
  * The <b>DuplicateCarException</b> exception is thrown to indicate an error condition as a result
@@ -32,6 +35,11 @@ import java.util.UUID;
     type = "http://demo/problems/duplicate-car-exception",
     title = "The car already exists.",
     status = 409)
+@WebFault(
+    name = "DuplicateCarException",
+    targetNamespace = "http://demo",
+    faultBean = "africa.absa.inception.core.service.ServiceError")
+@XmlAccessorType(XmlAccessType.PROPERTY)
 public class DuplicateCarException extends ServiceException {
 
   private static final long serialVersionUID = 1000000;

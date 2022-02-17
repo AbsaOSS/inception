@@ -16,6 +16,8 @@
 
 package demo.model;
 
+import africa.absa.inception.core.xml.LocalDateAdapter;
+import africa.absa.inception.core.xml.LocalDateTimeAdapter;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -31,6 +33,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * The <b>Data</b> class.
@@ -40,6 +49,12 @@ import javax.validation.constraints.Size;
 @Schema(description = "Data")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({"id", "stringValue", "integerValue", "dateValue", "timestampValue"})
+@XmlRootElement(name = "Data", namespace = "http://demo")
+@XmlType(
+    name = "Data",
+    namespace = "http://demo",
+    propOrder = {"id", "stringValue", "integerValue", "dateValue", "timestampValue"})
+@XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(schema = "demo", name = "data")
 @SuppressWarnings({"unused", "WeakerAccess"})
@@ -50,6 +65,9 @@ public class Data implements Serializable {
   /** The timestamp value for the data. */
   @Schema(description = "The timestamp value for the data", required = true)
   @JsonProperty(required = true)
+  @XmlElement(name = "TimestampValue", required = true)
+  @XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
+  @XmlSchemaType(name = "dateTime")
   @NotNull
   @Column(name = "timestamp_value")
   public LocalDateTime timestampValue;
@@ -58,6 +76,9 @@ public class Data implements Serializable {
   @Schema(description = "The date value for the data", required = true)
   @JsonProperty(required = true)
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+  @XmlElement(name = "DateValue", required = true)
+  @XmlJavaTypeAdapter(LocalDateAdapter.class)
+  @XmlSchemaType(name = "date")
   @NotNull
   @Column(name = "date_value")
   private LocalDate dateValue;
@@ -65,6 +86,7 @@ public class Data implements Serializable {
   /** The ID for the data. */
   @Schema(description = "The ID for the data", required = true)
   @JsonProperty(required = true)
+  @XmlElement(name = "Id", required = true)
   @NotNull
   @Id
   @Column(name = "id", nullable = false)
@@ -73,6 +95,7 @@ public class Data implements Serializable {
   /** The integer value for the data. */
   @Schema(description = "The integer value for the data", required = true)
   @JsonProperty(required = true)
+  @XmlElement(name = "IntegerValue", required = true)
   @NotNull
   @Column(name = "integer_value")
   private Integer integerValue;
@@ -80,6 +103,7 @@ public class Data implements Serializable {
   /** The string string value for the data. */
   @Schema(description = "The string string value for the data", required = true)
   @JsonProperty(required = true)
+  @XmlElement(name = "StringValue")
   @NotNull
   @Size(min = 1, max = 4000)
   @Column(name = "string_value")

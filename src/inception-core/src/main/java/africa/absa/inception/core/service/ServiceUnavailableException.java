@@ -16,6 +16,10 @@
 
 package africa.absa.inception.core.service;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.ws.WebFault;
+
 /**
  * The <b>ServiceUnavailableException</b> exception is thrown to indicate an error condition when a
  * service is unavailable and a request could not be processed.
@@ -24,6 +28,11 @@ package africa.absa.inception.core.service;
  *
  * @author Marcus Portmann
  */
+@WebFault(
+    name = "ServiceUnavailableException",
+    targetNamespace = "http://inception.absa.africa/core",
+    faultBean = "africa.absa.inception.core.service.ServiceError")
+@XmlAccessorType(XmlAccessType.PROPERTY)
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class ServiceUnavailableException extends ServiceException {
 

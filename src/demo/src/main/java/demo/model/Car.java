@@ -22,13 +22,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
 
 /**
  * The <b>Car</b> class.
@@ -41,6 +46,12 @@ import javax.validation.constraints.NotNull;
 @Schema(description = "A car")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({"id", "name", "numberOfDoors"})
+@XmlRootElement(name = "Car", namespace = "http://demo")
+@XmlType(
+    name = "Car",
+    namespace = "http://demo",
+    propOrder = {"id", "name", "numberOfDoors"})
+@XmlAccessorType(XmlAccessType.PROPERTY)
 @Entity
 @Table(schema = "demo", name = "cars")
 public class Car extends VehicleBase implements Serializable {
@@ -95,23 +106,13 @@ public class Car extends VehicleBase implements Serializable {
   }
 
   /**
-   * Returns the date and time the car was created.
-   *
-   * @return the date and time the car was created
-   */
-  @JsonIgnore
-  @Override
-  public LocalDateTime getCreated() {
-    return super.getCreated();
-  }
-
-  /**
    * Returns the ID for the car.
    *
    * @return the ID for the car
    */
   @Schema(description = "The ID for the car", required = true)
   @JsonProperty(required = true)
+  @XmlElement(name = "Id", required = true)
   @Override
   public UUID getId() {
     return super.getId();
@@ -124,6 +125,7 @@ public class Car extends VehicleBase implements Serializable {
    */
   @Schema(description = "The name of the car", required = true)
   @JsonProperty(required = true)
+  @XmlElement(name = "Name", required = true)
   @Override
   public String getName() {
     return super.getName();
@@ -136,6 +138,7 @@ public class Car extends VehicleBase implements Serializable {
    */
   @Schema(description = "The number of doors for the car", required = true)
   @JsonProperty(required = true)
+  @XmlElement(name = "NumberOfDoors", required = true)
   public int getNumberOfDoors() {
     return numberOfDoors;
   }
@@ -146,20 +149,10 @@ public class Car extends VehicleBase implements Serializable {
    * @return the vehicle type for the car
    */
   @JsonIgnore
+  @XmlTransient
   @Override
   public VehicleType getType() {
     return super.getType();
-  }
-
-  /**
-   * Returns the date and time the car was last updated.
-   *
-   * @return the date and time the car was last updated
-   */
-  @JsonIgnore
-  @Override
-  public LocalDateTime getUpdated() {
-    return super.getUpdated();
   }
 
   /**

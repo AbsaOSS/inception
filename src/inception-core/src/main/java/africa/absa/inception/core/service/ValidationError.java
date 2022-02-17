@@ -27,6 +27,11 @@ import java.util.Map;
 import java.util.Set;
 import javax.validation.ConstraintViolation;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 import org.springframework.util.StringUtils;
 
 /**
@@ -36,6 +41,12 @@ import org.springframework.util.StringUtils;
  */
 @Schema(description = "A validation error")
 @JsonPropertyOrder({"property", "message"})
+@XmlRootElement(name = "ValidationError", namespace = "http://inception.absa.africa/core")
+@XmlType(
+    name = "ValidationError",
+    namespace = "http://inception.absa.africa/core",
+    propOrder = {"property", "message"})
+@XmlAccessorType(XmlAccessType.FIELD)
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class ValidationError implements Serializable, Cloneable {
 
@@ -44,6 +55,7 @@ public class ValidationError implements Serializable, Cloneable {
   /** The error message for the validation error. */
   @Schema(description = "The error message for the validation error", required = true)
   @JsonProperty(required = true)
+  @XmlElement(name = "Message", required = true)
   @NotNull
   private String message;
 
@@ -52,6 +64,7 @@ public class ValidationError implements Serializable, Cloneable {
       description = "The path for the property that resulted in the validation error",
       required = true)
   @JsonProperty(required = true)
+  @XmlElement(name = "Property", required = true)
   @NotNull
   private String property;
 

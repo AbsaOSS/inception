@@ -24,7 +24,7 @@ import {HttpErrorResponse} from '@angular/common/http';
  */
 export class CodeCategoryNotFoundError extends Error {
 
-  static readonly TYPE = 'http://inception.digital/problems/codes/code-category-not-found';
+  static readonly TYPE = 'http://inception.absa.africa/problems/codes/code-category-not-found';
 
   /**
    * Constructs a new CodeCategoryNotFoundError.
@@ -43,7 +43,7 @@ export class CodeCategoryNotFoundError extends Error {
  */
 export class CodeNotFoundError extends Error {
 
-  static readonly TYPE = 'http://inception.digital/problems/codes/code-not-found';
+  static readonly TYPE = 'http://inception.absa.africa/problems/codes/code-not-found';
 
   /**
    * Constructs a new CodeNotFoundError.
@@ -62,7 +62,7 @@ export class CodeNotFoundError extends Error {
  */
 export class DuplicateCodeCategoryError extends Error {
 
-  static readonly TYPE = 'http://inception.digital/problems/codes/duplicate-code-category';
+  static readonly TYPE = 'http://inception.absa.africa/problems/codes/duplicate-code-category';
 
   /**
    * Constructs a new DuplicateCodeCategoryError.
@@ -81,7 +81,7 @@ export class DuplicateCodeCategoryError extends Error {
  */
 export class DuplicateCodeError extends Error {
 
-  static readonly TYPE = 'http://inception.digital/problems/codes/duplicate-code';
+  static readonly TYPE = 'http://inception.absa.africa/problems/codes/duplicate-code';
 
   /**
    * Constructs a new DuplicateCodeError.

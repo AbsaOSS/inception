@@ -25,7 +25,7 @@ import {HttpErrorResponse} from '@angular/common/http';
  */
 export class DuplicateReportDefinitionError extends Error {
 
-  static readonly TYPE = 'http://inception.digital/problems/reporting/duplicate-report-definition';
+  static readonly TYPE = 'http://inception.absa.africa/problems/reporting/duplicate-report-definition';
 
   /**
    * Constructs a new DuplicateReportDefinitionError.
@@ -45,7 +45,7 @@ export class DuplicateReportDefinitionError extends Error {
  */
 export class ReportDefinitionNotFoundError extends Error {
 
-  static readonly TYPE = 'http://inception.digital/problems/reporting/report-definition-not-found';
+  static readonly TYPE = 'http://inception.absa.africa/problems/reporting/report-definition-not-found';
 
   /**
    * Constructs a new ReportDefinitionNotFoundError.
