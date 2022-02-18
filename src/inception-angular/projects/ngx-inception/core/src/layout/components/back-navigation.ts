@@ -27,7 +27,7 @@ export class BackNavigation {
   /**
    * The router navigation commands for the back navigation.
    */
-    // tslint:disable-next-line
+    // eslint:disable-next-line
   commands: any[];
 
   /**
@@ -47,7 +47,7 @@ export class BackNavigation {
    * @param commands The router navigation commands for the back navigation.
    * @param extras   The optional router navigation extras for the back navigation.
    */
-  // tslint:disable-next-line
+  // eslint:disable-next-line
   constructor(title: string, commands: any[], extras?: NavigationExtras) {
     this.title = title;
     this.commands = commands;

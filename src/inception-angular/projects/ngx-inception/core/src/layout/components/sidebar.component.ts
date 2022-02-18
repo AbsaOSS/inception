@@ -23,7 +23,7 @@ import {SIDEBAR_CSS_CLASSES} from './sidebar-css-classes';
  * @author Marcus Portmann
  */
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'sidebar',
   template: `
     <ng-content></ng-content>`

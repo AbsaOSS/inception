@@ -23,7 +23,7 @@ import {Replace} from '../../util/replace';
  * @author Marcus Portmann
  */
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'sidebar-minimizer',
   template: `
     <button class="sidebar-minimizer" type="button" sidebarMinimizer brandMinimizer></button>

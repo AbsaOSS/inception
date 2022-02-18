@@ -26,7 +26,7 @@ import {NavigationService} from '../services/navigation.service';
  * @author Marcus Portmann
  */
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'sidebar-nav',
   template: `
     <ul class="nav">

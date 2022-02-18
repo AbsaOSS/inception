@@ -63,7 +63,7 @@ export class ExampleFormComponent implements OnInit, OnDestroy {
     this.exampleForm = this.formBuilder.group({
       // hideRequired: false,
       // floatLabel: 'auto',
-      // tslint:disable-next-line
+      // eslint:disable-next-line
       name: ['', Validators.required],
       preferredName: ['', Validators.required],
       title: ['', Validators.required], // dateOfBirth: [moment(), Validators.required],

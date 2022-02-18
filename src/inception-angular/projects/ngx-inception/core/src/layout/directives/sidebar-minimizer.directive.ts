@@ -22,7 +22,7 @@ import {Directive, HostListener} from '@angular/core';
  * @author Marcus Portmann
  */
 @Directive({
-  // tslint:disable-next-line
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '[sidebarMinimizer]'
 })
 export class SidebarMinimizerDirective {
@@ -33,7 +33,7 @@ export class SidebarMinimizerDirective {
   constructor() {
   }
 
-  // tslint:disable-next-line
+  // eslint:disable-next-line
   @HostListener('click', ['$event']) toggleOpen($event: any): void {
     $event.preventDefault();
 

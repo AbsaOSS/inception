@@ -91,12 +91,12 @@ export class InternalUserDirectoryComponent implements ControlValueAccessor, Val
   onTouched: () => void = () => {
   }
 
-  // tslint:disable-next-line:no-any
+  // eslint:disable-next-line:no-any
   registerOnChange(fn: any): void {
     this.internalUserDirectoryForm.valueChanges.subscribe(fn);
   }
 
-  // tslint:disable-next-line:no-any
+  // eslint:disable-next-line:no-any
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }
@@ -130,7 +130,7 @@ export class InternalUserDirectoryComponent implements ControlValueAccessor, Val
     };
   }
 
-  // tslint:disable-next-line:no-any
+  // eslint:disable-next-line:no-any
   writeValue(val: any): void {
     if (val) {
       this.internalUserDirectoryForm.setValue(val, {emitEvent: false});

@@ -220,7 +220,7 @@ export class TenantUserDirectoriesComponent extends AdminContainerView implement
   }
 
   private static calculateAvailableUserDirectories(allUserDirectories: UserDirectorySummary[],
-                                                   // tslint:disable-next-line:max-line-length
+                                                   // eslint:disable-next-line:max-line-length
                                                    existingTenantUserDirectories: UserDirectorySummary[]): UserDirectorySummary[] {
 
     const availableUserDirectories: UserDirectorySummary[] = [];

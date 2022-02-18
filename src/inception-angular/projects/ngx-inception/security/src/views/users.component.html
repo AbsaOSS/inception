@@ -10,7 +10,7 @@
     </mat-form-field>
   </div>
   <div class="mat-table-header">
-    <button *hasAuthority="['ROLE_Administrator', 'FUNCTION_Security.TenantAdministration', 'FUNCTION_Security.UserAdministration']" mat-flat-button color="primary" [disabled]="!(enableNewButton$ | async)" (click)="newUser()" i18n="@@security_users_component_button_new">New</button>
+    <button *hasAuthority="['ROLE_Administrator', 'FUNCTION_Security.TenantAdministration', 'FUNCTION_Security.UserAdministration']" mat-flat-button color="primary" [disabled]="(enableNewButton$ | async) === false" (click)="newUser()" i18n="@@security_users_component_button_new">New</button>
     <div></div>
     <table-filter></table-filter>
   </div>
@@ -30,8 +30,8 @@
 
     <!-- Actions Column -->
     <ng-container matColumnDef="actions">
-      <mat-header-cell class="mat-one-action" *matHeaderCellDef i18n="@@security_users_component_table_header_actions" [hidden]="!(enableActionsMenu$ | async)">Actions</mat-header-cell>
-      <mat-cell class="mat-one-action" *matCellDef="let row" [hidden]="!(enableActionsMenu$ | async)">
+      <mat-header-cell class="mat-one-action" *matHeaderCellDef i18n="@@security_users_component_table_header_actions" [hidden]="(enableActionsMenu$ | async) === false">Actions</mat-header-cell>
+      <mat-cell class="mat-one-action" *matCellDef="let row" [hidden]="(enableActionsMenu$ | async) === false">
         <ng-container>
           <button [matMenuTriggerFor]="actionsMenu" [matMenuTriggerData]="{username: row.username}" mat-icon-button>
             <i class="fas fa-ellipsis-v"></i>

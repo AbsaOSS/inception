@@ -24,7 +24,7 @@ import {DialogData} from '../services/dialog-data';
  * @author Marcus Portmann
  */
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'warning-dialog',
   template: `
     <div class="header">

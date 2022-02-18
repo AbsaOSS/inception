@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// tslint:disable-next-line
+// eslint:disable-next-line
 export function Replace(el: any): any {
   const nativeElement: HTMLElement = el.nativeElement;
   const parentElement: HTMLElement | null = nativeElement.parentElement;

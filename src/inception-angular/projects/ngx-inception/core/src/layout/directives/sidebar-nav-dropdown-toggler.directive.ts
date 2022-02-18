@@ -24,7 +24,7 @@ import {SidebarNavDropdownDirective} from './sidebar-nav-dropdown.directive';
  * @author Marcus Portmann
  */
 @Directive({
-  // tslint:disable-next-line
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '[sidebarNavDropdownToggler]'
 })
 export class SidebarNavDropdownTogglerDirective {
@@ -37,7 +37,7 @@ export class SidebarNavDropdownTogglerDirective {
   constructor(private dropdown: SidebarNavDropdownDirective) {
   }
 
-  // tslint:disable-next-line
+  // eslint:disable-next-line
   @HostListener('click', ['$event']) toggleOpen($event: any): void {
     $event.preventDefault();
     this.dropdown.toggle();

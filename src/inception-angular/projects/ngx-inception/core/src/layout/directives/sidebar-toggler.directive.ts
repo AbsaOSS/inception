@@ -24,7 +24,7 @@ import {SIDEBAR_CSS_CLASSES} from '../components/sidebar-css-classes';
  * @author Marcus Portmann
  */
 @Directive({
-  // tslint:disable-next-line
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '[sidebarToggler]'
 })
 export class SidebarTogglerDirective implements OnInit {
@@ -43,7 +43,7 @@ export class SidebarTogglerDirective implements OnInit {
     this.bp = this.breakpoint;
   }
 
-  // tslint:disable-next-line
+  // eslint:disable-next-line
   @HostListener('click', ['$event']) toggleOpen($event: any): void {
     $event.preventDefault();
     let cssClass;

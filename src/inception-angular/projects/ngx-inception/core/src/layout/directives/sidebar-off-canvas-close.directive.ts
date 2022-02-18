@@ -22,7 +22,7 @@ import {Directive, HostListener} from '@angular/core';
  * @author Marcus Portmann
  */
 @Directive({
-  // tslint:disable-next-line
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '[sidebarOffCanvasClose]'
 })
 export class SidebarOffCanvasCloseDirective {
@@ -30,7 +30,7 @@ export class SidebarOffCanvasCloseDirective {
   constructor() {
   }
 
-  // tslint:disable-next-line
+  // eslint:disable-next-line
   @HostListener('click', ['$event']) toggleOpen($event: any): void {
     $event.preventDefault();
 
@@ -47,7 +47,7 @@ export class SidebarOffCanvasCloseDirective {
    *
    * @return True if the element has a class with the specified name or false otherwise.
    */
-  // tslint:disable-next-line
+  // eslint:disable-next-line
   private static hasClass(target: any, className: string): boolean {
     return new RegExp('(\\s|^)' + className + '(\\s|$)').test(target.className);
   }
@@ -58,7 +58,7 @@ export class SidebarOffCanvasCloseDirective {
    * @param element   The element.
    * @param className The class name.
    */
-  // tslint:disable-next-line
+  // eslint:disable-next-line
   private static toggleClass(element: any, className: string): void {
     let newClass = ' ' + element.className.replace(/[\t\r\n]/g, ' ') + ' ';
     if (SidebarOffCanvasCloseDirective.hasClass(element, className)) {

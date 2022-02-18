@@ -29,7 +29,7 @@ import {Replace} from '../../util/replace';
  * @author Marcus Portmann
  */
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'admin-header',
   template: `
     <header class="admin-header">
@@ -87,7 +87,7 @@ export class AdminHeaderComponent implements OnInit {
 
   @Input() fixed = false;
 
-  // tslint:disable-next-line
+  // eslint:disable-next-line
   @Input() sidebarToggler!: any;
 
   /**
@@ -109,7 +109,7 @@ export class AdminHeaderComponent implements OnInit {
     }));
   }
 
-  // // tslint:disable-next-line
+  // // eslint:disable-next-line
   // static breakpoint(breakpoint: any): any {
   //   console.log(breakpoint);
   //   return breakpoint ? breakpoint : '';

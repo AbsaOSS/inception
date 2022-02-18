@@ -32,7 +32,7 @@ import {AdminContainerView} from './admin-container-view';
  * @author Marcus Portmann
  */
 @Component({
-  // tslint:disable-next-line:component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'admin-container',
   template: `
     <admin-header [fixed]="true" [sidebarToggler]="'lg'"></admin-header>
@@ -56,7 +56,7 @@ import {AdminContainerView} from './admin-container-view';
     </admin-footer>
   `
 })
-export class AdminContainerComponent implements OnInit, OnDestroy {
+export class AdminContainerComponent implements OnDestroy {
 
   element: HTMLElement = document.body;
 
@@ -104,15 +104,12 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
-  ngOnInit(): void {
-  }
-
   /**
    * Process the router outlet activate event.
    *
    * @param childComponent The child component.
    */
-  // tslint:disable-next-line
+  // eslint:disable-next-line
   routerOutletActive(childComponent: any) {
 
     let usingAdminContainerViewTitle = false;
@@ -166,7 +163,7 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
    *
    * @param childComponent The child component.
    */
-  // tslint:disable-next-line
+  // eslint:disable-next-line
   routerOutletDeactive(childComponent: any) {
     // Unsubscribe from the title for the admin container view if required
     if (this.adminContainerViewTitleSubscription) {

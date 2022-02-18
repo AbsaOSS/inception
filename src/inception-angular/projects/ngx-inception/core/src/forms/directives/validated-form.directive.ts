@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AfterViewInit, Directive, Host, Optional, Self, ViewContainerRef} from '@angular/core';
+import {Directive, Host, HostListener, Optional, Self, ViewContainerRef} from '@angular/core';
 import {FormGroupDirective} from '@angular/forms';
 
 /**
@@ -23,14 +23,10 @@ import {FormGroupDirective} from '@angular/forms';
  * @author Marcus Portmann
  */
 @Directive({
-  // tslint:disable-next-line
-  selector: 'form[validatedForm]', // tslint:disable-next-line
-  host: {
-    '(submit)': 'onSubmit()',
-    '(reset)': 'onReset()'
-  }
+  // eslint-disable-next-line @angular-eslint/directive-selector
+  selector: 'form[validatedForm]'
 })
-export class ValidatedFormDirective implements AfterViewInit {
+export class ValidatedFormDirective {
 
   /**
    * Constructs a new ValidatedFormDirective.
@@ -42,12 +38,11 @@ export class ValidatedFormDirective implements AfterViewInit {
               @Host() @Self() @Optional() private formGroupDirective: FormGroupDirective) {
   }
 
-  ngAfterViewInit(): void {
-  }
-
+  @HostListener('reset')
   onReset(): void {
   }
 
+  @HostListener('submit')
   onSubmit(): boolean {
     // Mark all controls as touched
     if (this.formGroupDirective && this.formGroupDirective.control && this.formGroupDirective.control.controls) {
@@ -78,7 +73,7 @@ export class ValidatedFormDirective implements AfterViewInit {
     }
   }
 
-  // tslint:disable-next-line
+  // eslint:disable-next-line
   private checkForInvalidFormControlAndSetFocus(nativeElement: any): boolean {
     if (nativeElement.children && (nativeElement.children.length > 0)) {
       for (const nativeChildElement of nativeElement.children) {

@@ -21,7 +21,7 @@ import {MatOptionSelectionChange} from '@angular/material/core';
 import {Subscription} from 'rxjs';
 
 @Directive({
-  // tslint:disable-next-line
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '[autocompleteSelectionRequired]'
 })
 export class AutocompleteSelectionRequiredDirective implements AfterViewInit, OnDestroy {

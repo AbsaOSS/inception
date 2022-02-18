@@ -22,7 +22,7 @@ import {Directive, HostListener} from '@angular/core';
  * @author Marcus Portmann
  */
 @Directive({
-  // tslint:disable-next-line:directive-selector
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '[brandMinimizer]'
 })
 export class BrandMinimizerDirective {
@@ -33,7 +33,7 @@ export class BrandMinimizerDirective {
   constructor() {
   }
 
-  // tslint:disable-next-line
+  // eslint:disable-next-line
   @HostListener('click', ['$event']) toggleOpen($event: any): void {
     $event.preventDefault();
 

@@ -208,12 +208,12 @@ export class LdapUserDirectoryComponent implements ControlValueAccessor, Validat
   onTouched: () => void = () => {
   };
 
-  // tslint:disable-next-line:no-any
+  // eslint:disable-next-line:no-any
   registerOnChange(fn: any): void {
     this.ldapUserDirectoryForm.valueChanges.subscribe(fn);
   }
 
-  // tslint:disable-next-line:no-any
+  // eslint:disable-next-line:no-any
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }
@@ -299,7 +299,7 @@ export class LdapUserDirectoryComponent implements ControlValueAccessor, Validat
   }
 
 
-  // tslint:disable-next-line:no-any
+  // eslint:disable-next-line:no-any
   writeValue(val: any): void {
     if (val) {
       this.ldapUserDirectoryForm.setValue(val, {emitEvent: false});

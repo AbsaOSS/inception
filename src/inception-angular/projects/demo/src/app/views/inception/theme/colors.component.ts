@@ -32,9 +32,9 @@ export class ColorsComponent implements OnInit {
   }
 
   getCssCustomProperties() {
-    // tslint:disable-next-line
+    // eslint:disable-next-line
     const cssCustomProperties: any = {};
-    // tslint:disable-next-line
+    // eslint:disable-next-line
     const sheets: any = document.styleSheets;
     let cssText = '';
 
@@ -54,7 +54,7 @@ export class ColorsComponent implements OnInit {
     }
 
     cssText = cssText.substring(cssText.lastIndexOf('{') + 1, cssText.lastIndexOf('}'));
-    // tslint:disable-next-line
+    // eslint:disable-next-line
     cssText.split(';').forEach(function (property) {
       if (property) {
         const name = property.split(': ')[0];
@@ -68,7 +68,7 @@ export class ColorsComponent implements OnInit {
     return cssCustomProperties;
   }
 
-  // tslint:disable-next-line
+  // eslint:disable-next-line
   getStyle(property: any, element: any): string {
     if (element === void 0) {
       element = document.body;
@@ -86,13 +86,13 @@ export class ColorsComponent implements OnInit {
     return style;
   }
 
-  // tslint:disable-next-line
+  // eslint:disable-next-line
   isCustomProperty(property: any): boolean {
     return property.match(/^--.*/i);
   }
 
   isIE1x(): boolean {
-    // tslint:disable-next-line
+    // eslint:disable-next-line
     const anyDocument: any = document;
     return Boolean(anyDocument.documentMode) && anyDocument.documentMode >= this.minIEVersion;
   }
@@ -101,7 +101,7 @@ export class ColorsComponent implements OnInit {
     this.themeColors();
   }
 
-  // tslint:disable-next-line
+  // eslint:disable-next-line
   rgbToHex(color: any): string {
     if (typeof color === 'undefined') {
       throw new Error('Hex color is not defined');
@@ -113,11 +113,11 @@ export class ColorsComponent implements OnInit {
       throw new Error(color + ' is not a valid rgb color');
     }
 
-    // tslint:disable-next-line
+    // eslint:disable-next-line
     const r = '0' + parseInt(rgb[1], 10).toString(16);
-    // tslint:disable-next-line
+    // eslint:disable-next-line
     const g = '0' + parseInt(rgb[2], 10).toString(16);
-    // tslint:disable-next-line
+    // eslint:disable-next-line
     const b = '0' + parseInt(rgb[3], 10).toString(16);
     return '#' + r.slice(-2) + g.slice(-2) + b.slice(-2);
   }

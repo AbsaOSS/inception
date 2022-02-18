@@ -67,11 +67,11 @@ export class Base64 {
       encoded3 = Base64.LOOKUP[base64.charCodeAt(i + 2)];
       encoded4 = Base64.LOOKUP[base64.charCodeAt(i + 3)];
 
-      // tslint:disable-next-line:no-bitwise
+      // eslint:disable-next-line:no-bitwise
       bytes[p++] = (encoded1 << 2) | (encoded2 >> 4);
-      // tslint:disable-next-line:no-bitwise
+      // eslint:disable-next-line:no-bitwise
       bytes[p++] = ((encoded2 & 15) << 4) | (encoded3 >> 2);
-      // tslint:disable-next-line:no-bitwise
+      // eslint:disable-next-line:no-bitwise
       bytes[p++] = ((encoded3 & 3) << 6) | (encoded4 & 63);
     }
 
@@ -92,13 +92,13 @@ export class Base64 {
     let base64 = '';
 
     for (i = 0; i < len; i += 3) {
-      // tslint:disable-next-line:no-bitwise
+      // eslint:disable-next-line:no-bitwise
       base64 += Base64.CHARACTERS[bytes[i] >> 2];
-      // tslint:disable-next-line:no-bitwise
+      // eslint:disable-next-line:no-bitwise
       base64 += Base64.CHARACTERS[((bytes[i] & 3) << 4) | (bytes[i + 1] >> 4)];
-      // tslint:disable-next-line:no-bitwise
+      // eslint:disable-next-line:no-bitwise
       base64 += Base64.CHARACTERS[((bytes[i + 1] & 15) << 2) | (bytes[i + 2] >> 6)];
-      // tslint:disable-next-line:no-bitwise
+      // eslint:disable-next-line:no-bitwise
       base64 += Base64.CHARACTERS[bytes[i + 2] & 63];
     }
 

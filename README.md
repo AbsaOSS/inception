@@ -623,11 +623,10 @@ Complete the following steps to create a new application based on the Absa Incep
       npm install --save bootstrap@4      
       npm install --save moment@2
       npm install --save ngx-perfect-scrollbar@10
-      npm install --save string-template@1
+      npm install --save es6-template-string@1
       npm install --save uuid@8
 
       npm install --save-dev @types/uuid@8
-      npm install --save-dev @types/string-template@1
       npm install --save-dev codelyzer
       ```
    6. Execute the following command under the *src/main/frontend* directory to install the

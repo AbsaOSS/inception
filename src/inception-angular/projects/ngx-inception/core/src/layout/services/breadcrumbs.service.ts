@@ -16,12 +16,10 @@
 
 import {Injectable} from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import {render} from 'es6-template-string';
 import {ReplaySubject, Subject} from 'rxjs';
 import {filter} from 'rxjs/operators';
-import * as format_ from 'string-template';
 import {Breadcrumb} from './breadcrumb';
-
-const format = format_;
 
 /**
  * The Breadcrumbs Service implementation.
@@ -53,7 +51,7 @@ export class BreadcrumbsService {
       do {
         const childrenRoutes = currentRoute.children;
         currentRoute = null;
-        // tslint:disable-next-line:no-shadowed-variable
+        // eslint:disable-next-line:no-shadowed-variable
         childrenRoutes.forEach(route => {
           if (route.outlet === 'primary') {
             const routeSnapshot = route.snapshot;
@@ -62,7 +60,7 @@ export class BreadcrumbsService {
               url += '/' + routeSnapshot.url.map(segment => segment.path).join('/');
 
               if (routeSnapshot.data.title) {
-                breadcrumbs.push(new Breadcrumb(format(routeSnapshot.data.title, routeSnapshot.params), url));
+                breadcrumbs.push(new Breadcrumb(render(routeSnapshot.data.title, routeSnapshot.params), url));
               }
             }
             currentRoute = route;

@@ -25,7 +25,7 @@ import {SessionService} from '../services/session.service';
  * @author Marcus Portmann
  */
 @Directive({
-  // tslint:disable-next-line
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '[hasAuthority]'
 })
 export class HasAuthorityDirective implements OnInit {
@@ -39,7 +39,7 @@ export class HasAuthorityDirective implements OnInit {
    * @param viewContainer  The view container for the element this directive is attached to.
    * @param sessionService The session service.
    */
-  // tslint:disable-next-line
+  // eslint:disable-next-line
   constructor(private templateRef: TemplateRef<any>, private viewContainer: ViewContainerRef,
               private sessionService: SessionService) {
   }

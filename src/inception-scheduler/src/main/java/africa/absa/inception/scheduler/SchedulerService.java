@@ -111,6 +111,8 @@ public class SchedulerService implements ISchedulerService, InitializingBean {
         throw new DuplicateJobException(job.getId());
       }
 
+      job.setExecutionAttempts(0);
+
       jobRepository.saveAndFlush(job);
     } catch (DuplicateJobException e) {
       throw e;

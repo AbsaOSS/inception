@@ -26,7 +26,7 @@ import {BreadcrumbsService} from '../services/breadcrumbs.service';
  * @author Marcus Portmann
  */
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'breadcrumbs',
   template: `
     <ol class="breadcrumb">

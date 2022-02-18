@@ -22,7 +22,7 @@ import {Component} from '@angular/core';
  * @author Marcus Portmann
  */
 @Component({
-  // tslint:disable-next-line:component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'simple-container',
   template: '<router-outlet></router-outlet>',
 })

@@ -122,7 +122,7 @@ export class SessionService {
   private static createSessionFromAccessToken(accessToken: string, refreshToken: string | undefined): Session {
     const helper = new JwtHelperService();
 
-    // tslint:disable-next-line
+    // eslint:disable-next-line
     const token: any = helper.decodeToken(accessToken);
 
     const accessTokenExpiry: Date | null = helper.getTokenExpirationDate(accessToken);

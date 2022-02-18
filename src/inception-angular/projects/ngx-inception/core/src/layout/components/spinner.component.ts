@@ -22,7 +22,7 @@ import {Component, ElementRef} from '@angular/core';
  * @author Marcus Portmann
  */
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'spinner',
   template: `
     <div class="spinner spinner-oval"></div>`,

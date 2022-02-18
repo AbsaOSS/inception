@@ -47,7 +47,7 @@ export class ReferenceFormComponent implements OnInit, OnDestroy {
     this.referenceForm = this.formBuilder.group({
       // hideRequired: false,
       // floatLabel: 'auto',
-      // tslint:disable-next-line
+      // eslint:disable-next-line
       country: ['', Validators.required],
       language: ['', Validators.required],
       region: ['', Validators.required]

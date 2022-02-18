@@ -49,7 +49,7 @@ export interface JobParameterDialogData {
  * @author Marcus Portmann
  */
 @Component({
-  // tslint:disable-next-line
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'job-parameter-dialog',
   template: `
     <div class="mat-dialog-title"><span>Job Parameter</span></div>
