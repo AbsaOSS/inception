@@ -51,6 +51,16 @@ public interface CodeCategoryRepository extends JpaRepository<CodeCategory, Stri
   Optional<String> getDataById(@Param("codeCategoryId") String codeCategoryId);
 
   /**
+   * Retrieve the date and time the code category was last modified.
+   *
+   * @param codeCategoryId the ID for the code category
+   * @return an Optional containing the date and time the code category was last modified or an
+   *     empty Optional if the code category could not be found
+   */
+  @Query("select cc.lastModified from CodeCategory cc where cc.id = :codeCategoryId")
+  Optional<LocalDateTime> getLastModifiedById(@Param("codeCategoryId") String codeCategoryId);
+
+  /**
    * Retrieve the name for the code category.
    *
    * @param codeCategoryId the ID for the code category
@@ -61,29 +71,19 @@ public interface CodeCategoryRepository extends JpaRepository<CodeCategory, Stri
   Optional<String> getNameById(@Param("codeCategoryId") String codeCategoryId);
 
   /**
-   * Retrieve the date and time the code category was last updated.
-   *
-   * @param codeCategoryId the ID for the code category
-   * @return an Optional containing the date and time the code category was last updated or an empty
-   *     Optional if the code category could not be found
-   */
-  @Query("select cc.updated from CodeCategory cc where cc.id = :codeCategoryId")
-  Optional<LocalDateTime> getUpdatedById(@Param("codeCategoryId") String codeCategoryId);
-
-  /**
-   * Set the data and the date and time the code category was last updated.
+   * Set the data and the date and time the code category was last modified.
    *
    * @param codeCategoryId the ID for the code category
    * @param data the data
-   * @param updated the date and time the code category was last updated
+   * @param lastModified the date and time the code category was last modified
    * @return the number of code categories that were updated
    */
   @Modifying
   @Query(
-      "update CodeCategory cc set cc.data = :data, cc.updated = :updated "
+      "update CodeCategory cc set cc.data = :data, cc.lastModified = :lastModified "
           + "where cc.id = :codeCategoryId")
-  int setDataAndUpdatedById(
+  int setDataAndLastModifiedById(
       @Param("codeCategoryId") String codeCategoryId,
       @Param("data") String data,
-      @Param("updated") LocalDateTime updated);
+      @Param("lastModified") LocalDateTime lastModified);
 }

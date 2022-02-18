@@ -127,7 +127,7 @@ Complete the following steps to checkout and build the Absa Inception Framework 
    in the *src/demo/target* directory in a Terminal window, after building
    the Java components of the Absa Inception Framework.
    ```
-   java -jar demo-1.2.1-SNAPSHOT.jar
+   java -jar demo-1.3.0-SNAPSHOT.jar
    ```
 4. To launch the *demo* front-end application, execute the following command
    in the *inception/src/inception-angular* directory in a Terminal window, after building
@@ -200,7 +200,7 @@ Complete the following steps to setup a development environment on Windows.
    in the *src/demo/target* directory in a Terminal window, after building
    the Java components of the Absa Inception Framework.
    ```
-   java -jar demo-1.2.1-SNAPSHOT.jar
+   java -jar demo-1.3.0-SNAPSHOT.jar
    ```
 4. To launch the *demo* front-end application, execute the following command
    in the *inception/src/inception-angular* directory in a Terminal window, after building
@@ -258,7 +258,7 @@ Complete the following steps to create a new application based on the Absa Incep
         <parent>
           <groupId>africa.absa</groupId>
           <artifactId>inception</artifactId>
-          <version>1.2.0</version>
+          <version>1.3.0</version>
           <relativePath/>
         </parent>
 
@@ -1330,7 +1330,54 @@ Complete the following steps to create a new application based on the Absa Incep
    mvn package
    ```
 
+## Upgrading the Absa Inception Framework
 
+### Upgrading to version 1.3 of the Absa Inception Framework
+
+In version 1.3 of the Inception Framework the *created* and *updated* timestamps were 
+removed from a number of tables.
+
+Execute the following commands against your existing databases to remove the obsolete columns.
+
+```
+ALTER TABLE codes.code_categories DROP COLUMN IF EXISTS created;
+ALTER TABLE codes.code_categories DROP COLUMN IF EXISTS updated;
+ALTER TABLE codes.code_categories ADD COLUMN IF NOT EXISTS last_modified timestamp;
+ALTER TABLE codes.codes DROP COLUMN IF EXISTS created;
+ALTER TABLE codes.codes DROP COLUMN IF EXISTS updated;
+
+ALTER TABLE config.config DROP COLUMN IF EXISTS created;
+ALTER TABLE config.config DROP COLUMN IF EXISTS updated;
+
+ALTER TABLE mail.mail_templates DROP COLUMN IF EXISTS created;
+ALTER TABLE mail.mail_templates DROP COLUMN IF EXISTS updated;
+ALTER TABLE mail.mail_templates ADD COLUMN IF NOT EXISTS last_modified timestamp;
+
+ALTER TABLE scheduler.jobs DROP COLUMN IF EXISTS created;
+ALTER TABLE scheduler.jobs DROP COLUMN IF EXISTS updated;
+ALTER TABLE scheduler.job_parameters DROP COLUMN IF EXISTS created;
+ALTER TABLE scheduler.job_parameters DROP COLUMN IF EXISTS updated;
+
+ALTER TABLE reporting.report_definitions DROP COLUMN IF EXISTS created;
+ALTER TABLE reporting.report_definitions DROP COLUMN IF EXISTS updated;
+
+ALTER TABLE security.tenants DROP COLUMN IF EXISTS created;
+ALTER TABLE security.tenants DROP COLUMN IF EXISTS updated;
+ALTER TABLE security.user_directories DROP COLUMN IF EXISTS created;
+ALTER TABLE security.user_directories DROP COLUMN IF EXISTS updated;
+ALTER TABLE security.users DROP COLUMN IF EXISTS created;
+ALTER TABLE security.users DROP COLUMN IF EXISTS updated;
+ALTER TABLE security.groups DROP COLUMN IF EXISTS created;
+ALTER TABLE security.groups DROP COLUMN IF EXISTS updated;
+
+ALTER TABLE demo.vehicles DROP COLUMN IF EXISTS created;
+ALTER TABLE demo.vehicles DROP COLUMN IF EXISTS updated;
+ALTER TABLE demo.vehicle_attributes DROP COLUMN IF EXISTS created;
+ALTER TABLE demo.vehicle_attributes DROP COLUMN IF EXISTS updated;
+
+UPDATE codes.code_categories SET last_modified = NOW();
+UPDATE mail.mail_templates SET last_modified = NOW();
+```
 
 
 

@@ -22,7 +22,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -34,8 +33,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -54,11 +51,6 @@ import javax.validation.constraints.Size;
 public class Group implements Serializable {
 
   private static final long serialVersionUID = 1000000;
-
-  /** The date and time the group was created. */
-  @JsonIgnore
-  @Column(name = "created", nullable = false, updatable = false)
-  private LocalDateTime created;
 
   /** The description for the group. */
   @Schema(description = "The description for the group")
@@ -90,11 +82,6 @@ public class Group implements Serializable {
       joinColumns = @JoinColumn(name = "group_id", referencedColumnName = "id"),
       inverseJoinColumns = @JoinColumn(name = "role_code", referencedColumnName = "code"))
   private Set<Role> roles = new HashSet<>();
-
-  /** The date and time the group was last updated. */
-  @JsonIgnore
-  @Column(name = "updated", insertable = false)
-  private LocalDateTime updated;
 
   /** The ID for the user directory the group is associated with. */
   @Schema(
@@ -190,15 +177,6 @@ public class Group implements Serializable {
   }
 
   /**
-   * Returns the date and time the group was created.
-   *
-   * @return the date and time the group was created
-   */
-  public LocalDateTime getCreated() {
-    return created;
-  }
-
-  /**
    * Returns the description for the group.
    *
    * @return the description for the group
@@ -232,15 +210,6 @@ public class Group implements Serializable {
    */
   public Set<Role> getRoles() {
     return roles;
-  }
-
-  /**
-   * Returns the date and time the group was last updated.
-   *
-   * @return the date and time the group was last updated
-   */
-  public LocalDateTime getUpdated() {
-    return updated;
   }
 
   /**
@@ -343,17 +312,5 @@ public class Group implements Serializable {
    */
   public void setUsers(Set<User> users) {
     this.users = users;
-  }
-
-  /** The Java Persistence callback method invoked before the entity is created in the database. */
-  @PrePersist
-  protected void onCreate() {
-    created = LocalDateTime.now();
-  }
-
-  /** The Java Persistence callback method invoked before the entity is updated in the database. */
-  @PreUpdate
-  protected void onUpdate() {
-    updated = LocalDateTime.now();
   }
 }

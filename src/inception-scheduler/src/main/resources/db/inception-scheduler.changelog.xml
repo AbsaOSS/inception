@@ -52,10 +52,6 @@
       <column name="lock_name" type="nvarchar(100)" remarks="The name of the entity that has locked the job for execution"/>
       <column name="last_executed" type="timestamp" remarks="The date and time the job was last executed"/>
       <column name="next_execution" type="timestamp" remarks="The date and time the job will next be executed"/>
-      <column name="created" type="timestamp" remarks="The date and time the job was created">
-        <constraints nullable="false"/>
-      </column>
-      <column name="updated" type="timestamp" remarks="The date and time the job was last updated"/>
     </createTable>
 
     <createTable schemaName="scheduler" tableName="job_parameters" remarks="Job Parameters">
@@ -68,10 +64,6 @@
       <column name="value" type="nvarchar(4000)" remarks="The value of the job parameter">
         <constraints nullable="false"/>
       </column>
-      <column name="created" type="timestamp" remarks="The date and time the job parameter was created">
-        <constraints nullable="false"/>
-      </column>
-      <column name="updated" type="timestamp" remarks="The date and time the job parameter was last updated"/>
     </createTable>
     <addForeignKeyConstraint constraintName="job_parameters_job_fk" baseTableSchemaName="scheduler"
       baseTableName="job_parameters" baseColumnNames="job_id" referencedTableSchemaName="scheduler"

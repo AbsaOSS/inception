@@ -27,25 +27,25 @@ export class CodeCategorySummary {
   id: string;
 
   /**
+   * The date and time the code category was last modified.
+   */
+  lastModified: Date | null = null;
+
+  /**
    * The name of the code category.
    */
   name: string;
 
   /**
-   * The date and time the code category was last updated.
-   */
-  updated: Date | null = null;
-
-  /**
    * Constructs a new CodeCategorySummary.
    *
-   * @param id      The ID for the code category.
-   * @param name    The name of the code category.
-   * @param updated The date and time the code category was last updated.
+   * @param id           The ID for the code category.
+   * @param name         The name of the code category.
+   * @param lastModified The date and time the code category was last modified.
    */
-  constructor(id: string, name: string, updated?: Date) {
+  constructor(id: string, name: string, lastModified?: Date) {
     this.id = id;
     this.name = name;
-    this.updated = !!updated ? updated : null;
+    this.lastModified = !!lastModified ? lastModified : null;
   }
 }

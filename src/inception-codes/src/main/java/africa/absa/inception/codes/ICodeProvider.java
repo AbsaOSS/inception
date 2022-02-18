@@ -108,15 +108,15 @@ public interface ICodeProvider {
       throws CodeCategoryNotFoundException, CodeProviderException;
 
   /**
-   * Returns the date and time the code category was last updated.
+   * Returns the date and time the code category was last modified.
    *
    * @param codeCategoryId the ID for the code category
-   * @return the date and time the code category was last updated
+   * @return the date and time the code category was last modified
    * @throws CodeCategoryNotFoundException if the code category could not be found
-   * @throws CodeProviderException if the date and time the code category was last updated could not
-   *     be retrieved
+   * @throws CodeProviderException if the date and time the code category was last modified could
+   *     not be retrieved
    */
-  LocalDateTime getCodeCategoryLastUpdated(String codeCategoryId)
+  LocalDateTime getCodeCategoryLastModified(String codeCategoryId)
       throws CodeCategoryNotFoundException, CodeProviderException;
 
   /**

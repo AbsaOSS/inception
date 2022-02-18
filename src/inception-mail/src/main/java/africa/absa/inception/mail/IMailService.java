@@ -68,6 +68,19 @@ public interface IMailService {
       throws InvalidArgumentException, MailTemplateNotFoundException, ServiceUnavailableException;
 
   /**
+   * Returns the date and time the mail template was last modified.
+   *
+   * @param mailTemplateId the ID for the mail template
+   * @return the date and time the mail template was last modified
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws MailTemplateNotFoundException if the mail template could not be found
+   * @throws ServiceUnavailableException if the date and time the mail template was last modified
+   *     could not be retrieved
+   */
+  LocalDateTime getMailTemplateLastModified(String mailTemplateId)
+      throws InvalidArgumentException, MailTemplateNotFoundException, ServiceUnavailableException;
+
+  /**
    * Retrieve the name of the mail template.
    *
    * @param mailTemplateId the ID for the mail template
@@ -97,19 +110,6 @@ public interface IMailService {
    * @throws ServiceUnavailableException if the mail template summary could not be retrieved
    */
   MailTemplateSummary getMailTemplateSummary(String mailTemplateId)
-      throws InvalidArgumentException, MailTemplateNotFoundException, ServiceUnavailableException;
-
-  /**
-   * Returns the date and time the mail template was last updated.
-   *
-   * @param mailTemplateId the ID for the mail template
-   * @return the date and time the mail template was last updated
-   * @throws InvalidArgumentException if an argument is invalid
-   * @throws MailTemplateNotFoundException if the mail template could not be found
-   * @throws ServiceUnavailableException if the date and time the mail template was last updated
-   *     could not be retrieved
-   */
-  LocalDateTime getMailTemplateUpdated(String mailTemplateId)
       throws InvalidArgumentException, MailTemplateNotFoundException, ServiceUnavailableException;
 
   /**

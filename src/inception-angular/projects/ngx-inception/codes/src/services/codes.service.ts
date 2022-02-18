@@ -272,7 +272,7 @@ export class CodesService {
    * @return The code category summaries.
    */
   getCodeCategorySummaries(): Observable<CodeCategorySummary[]> {
-    return this.httpClient.get<CodeCategory[]>(this.config.codesApiUrlPrefix + '/code-category-summaries',
+    return this.httpClient.get<CodeCategorySummary[]>(this.config.codesApiUrlPrefix + '/code-category-summaries',
       {reportProgress: true})
     .pipe(map((codeCategorySummaries: CodeCategorySummary[]) => {
       return codeCategorySummaries;

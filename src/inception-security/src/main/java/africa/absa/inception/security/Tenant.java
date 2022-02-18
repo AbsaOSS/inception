@@ -22,7 +22,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -34,8 +33,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -56,11 +53,6 @@ import javax.validation.constraints.Size;
 public class Tenant implements Serializable {
 
   private static final long serialVersionUID = 1000000;
-
-  /** The date and time the tenant was created. */
-  @JsonIgnore
-  @Column(name = "created", nullable = false, updatable = false)
-  private LocalDateTime created;
 
   /** The ID for the tenant. */
   @Schema(description = "The ID for the tenant", required = true)
@@ -84,11 +76,6 @@ public class Tenant implements Serializable {
   @NotNull
   @Column(name = "status", nullable = false)
   private TenantStatus status;
-
-  /** The date and time the tenant was last updated. */
-  @JsonIgnore
-  @Column(name = "updated", insertable = false)
-  private LocalDateTime updated;
 
   /** The user directories associated with the tenant. */
   @JsonIgnore
@@ -153,15 +140,6 @@ public class Tenant implements Serializable {
   }
 
   /**
-   * Returns the date and time the tenant was created.
-   *
-   * @return the date and time the tenant was created
-   */
-  public LocalDateTime getCreated() {
-    return created;
-  }
-
-  /**
    * Returns the ID for the tenant.
    *
    * @return the ID for the tenant
@@ -186,15 +164,6 @@ public class Tenant implements Serializable {
    */
   public TenantStatus getStatus() {
     return status;
-  }
-
-  /**
-   * Returns the date and time the tenant was last updated.
-   *
-   * @return the date and time the tenant was last updated
-   */
-  public LocalDateTime getUpdated() {
-    return updated;
   }
 
   /**
@@ -270,17 +239,5 @@ public class Tenant implements Serializable {
   public void unlinkUserDirectory(UserDirectory userDirectory) {
     userDirectories.remove(userDirectory);
     userDirectory.getTenants().remove(this);
-  }
-
-  /** The Java Persistence callback method invoked before the entity is created in the database. */
-  @PrePersist
-  protected void onCreate() {
-    created = LocalDateTime.now();
-  }
-
-  /** The Java Persistence callback method invoked before the entity is updated in the database. */
-  @PreUpdate
-  protected void onUpdate() {
-    updated = LocalDateTime.now();
   }
 }

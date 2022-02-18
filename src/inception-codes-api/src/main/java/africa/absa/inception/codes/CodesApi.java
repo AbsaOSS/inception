@@ -562,6 +562,71 @@ public class CodesApi extends SecureApi {
   }
 
   /**
+   * Returns the date and time the code category was last modified.
+   *
+   * @param codeCategoryId the ID for the code category
+   * @return the date and time the code category was last modified
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws CodeCategoryNotFoundException if the code category could not be found
+   * @throws ServiceUnavailableException if the date and time the code category was last modified
+   *     could not be retrieved
+   */
+  @Operation(
+      summary = "Retrieve the date and time the code category was last modified",
+      description = "Retrieve the date and time the code category was last modified")
+  @ApiResponses(
+      value = {
+        @ApiResponse(responseCode = "200", description = "OK"),
+        @ApiResponse(
+            responseCode = "400",
+            description = "Invalid argument",
+            content =
+                @Content(
+                    mediaType = "application/problem+json",
+                    schema = @Schema(implementation = ProblemDetails.class))),
+        @ApiResponse(
+            responseCode = "403",
+            description = "Access denied",
+            content =
+                @Content(
+                    mediaType = "application/problem+json",
+                    schema = @Schema(implementation = ProblemDetails.class))),
+        @ApiResponse(
+            responseCode = "404",
+            description = "The code category could not be found",
+            content =
+                @Content(
+                    mediaType = "application/problem+json",
+                    schema = @Schema(implementation = ProblemDetails.class))),
+        @ApiResponse(
+            responseCode = "500",
+            description =
+                "An error has occurred and the request could not be processed at this time",
+            content =
+                @Content(
+                    mediaType = "application/problem+json",
+                    schema = @Schema(implementation = ProblemDetails.class)))
+      })
+  @RequestMapping(
+      value = "/code-categories/{codeCategoryId}/last-modified",
+      method = RequestMethod.GET,
+      produces = "application/json")
+  @ResponseStatus(HttpStatus.OK)
+  @PreAuthorize(
+      "isSecurityDisabled() or hasRole('Administrator') or hasAuthority('FUNCTION_Codes.CodeAdministration')")
+  public String getCodeCategoryLastModified(
+      @Parameter(
+              name = "codeCategoryId",
+              description = "The ID for the code category",
+              required = true)
+          @PathVariable
+          String codeCategoryId)
+      throws InvalidArgumentException, CodeCategoryNotFoundException, ServiceUnavailableException {
+    return ApiUtil.quote(
+        ISO8601Util.fromLocalDateTime(codesService.getCodeCategoryLastModified(codeCategoryId)));
+  }
+
+  /**
    * Retrieve the name of the code category.
    *
    * @param codeCategoryId the ID for the code category
@@ -654,71 +719,6 @@ public class CodesApi extends SecureApi {
       "isSecurityDisabled() or hasRole('Administrator') or hasAuthority('FUNCTION_Codes.CodeAdministration')")
   public List<CodeCategorySummary> getCodeCategorySummaries() throws ServiceUnavailableException {
     return codesService.getCodeCategorySummaries();
-  }
-
-  /**
-   * Returns the date and time the code category was last updated.
-   *
-   * @param codeCategoryId the ID for the code category
-   * @return the date and time the code category was last updated
-   * @throws InvalidArgumentException if an argument is invalid
-   * @throws CodeCategoryNotFoundException if the code category could not be found
-   * @throws ServiceUnavailableException if the date and time the code category was last updated
-   *     could not be retrieved
-   */
-  @Operation(
-      summary = "Retrieve the date and time the code category was last updated",
-      description = "Retrieve the date and time the code category was last updated")
-  @ApiResponses(
-      value = {
-        @ApiResponse(responseCode = "200", description = "OK"),
-        @ApiResponse(
-            responseCode = "400",
-            description = "Invalid argument",
-            content =
-                @Content(
-                    mediaType = "application/problem+json",
-                    schema = @Schema(implementation = ProblemDetails.class))),
-        @ApiResponse(
-            responseCode = "403",
-            description = "Access denied",
-            content =
-                @Content(
-                    mediaType = "application/problem+json",
-                    schema = @Schema(implementation = ProblemDetails.class))),
-        @ApiResponse(
-            responseCode = "404",
-            description = "The code category could not be found",
-            content =
-                @Content(
-                    mediaType = "application/problem+json",
-                    schema = @Schema(implementation = ProblemDetails.class))),
-        @ApiResponse(
-            responseCode = "500",
-            description =
-                "An error has occurred and the request could not be processed at this time",
-            content =
-                @Content(
-                    mediaType = "application/problem+json",
-                    schema = @Schema(implementation = ProblemDetails.class)))
-      })
-  @RequestMapping(
-      value = "/code-categories/{codeCategoryId}/updated",
-      method = RequestMethod.GET,
-      produces = "application/json")
-  @ResponseStatus(HttpStatus.OK)
-  @PreAuthorize(
-      "isSecurityDisabled() or hasRole('Administrator') or hasAuthority('FUNCTION_Codes.CodeAdministration')")
-  public String getCodeCategoryUpdated(
-      @Parameter(
-              name = "codeCategoryId",
-              description = "The ID for the code category",
-              required = true)
-          @PathVariable
-          String codeCategoryId)
-      throws InvalidArgumentException, CodeCategoryNotFoundException, ServiceUnavailableException {
-    return ApiUtil.quote(
-        ISO8601Util.fromLocalDateTime(codesService.getCodeCategoryUpdated(codeCategoryId)));
   }
 
   /**

@@ -31,8 +31,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -64,11 +62,6 @@ import javax.validation.constraints.Size;
 public class User implements Serializable {
 
   private static final long serialVersionUID = 1000000;
-
-  /** The date and time the user was created. */
-  @JsonIgnore
-  @Column(name = "created", nullable = false, updatable = false)
-  private LocalDateTime created;
 
   /** The e-mail address for the user. */
   @Schema(description = "The e-mail address for the user")
@@ -180,11 +173,6 @@ public class User implements Serializable {
   @Column(name = "status", nullable = false)
   private UserStatus status;
 
-  /** The date and time the user was last updated. */
-  @JsonIgnore
-  @Column(name = "updated", insertable = false)
-  private LocalDateTime updated;
-
   /** The ID for the user directory the user is associated with. */
   @Schema(
       description = "The ID for the user directory the " + "user is associated with",
@@ -228,15 +216,6 @@ public class User implements Serializable {
     User other = (User) object;
 
     return Objects.equals(id, other.id);
-  }
-
-  /**
-   * Returns the date and time the user was created.
-   *
-   * @return the date and time the user was created
-   */
-  public LocalDateTime getCreated() {
-    return created;
   }
 
   /**
@@ -338,15 +317,6 @@ public class User implements Serializable {
    */
   public UserStatus getStatus() {
     return status;
-  }
-
-  /**
-   * Returns the date and time the user was last updated.
-   *
-   * @return the date and time the user was last updated
-   */
-  public LocalDateTime getUpdated() {
-    return updated;
   }
 
   /**
@@ -539,17 +509,5 @@ public class User implements Serializable {
    */
   public void setUsername(String username) {
     this.username = username;
-  }
-
-  /** The Java Persistence callback method invoked before the entity is created in the database. */
-  @PrePersist
-  protected void onCreate() {
-    created = LocalDateTime.now();
-  }
-
-  /** The Java Persistence callback method invoked before the entity is updated in the database. */
-  @PreUpdate
-  protected void onUpdate() {
-    updated = LocalDateTime.now();
   }
 }

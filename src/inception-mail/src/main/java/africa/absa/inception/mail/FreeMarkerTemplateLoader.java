@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
 /**
@@ -94,7 +95,13 @@ public class FreeMarkerTemplateLoader implements TemplateLoader {
       if (templateSource instanceof String) {
         MailTemplate mailTemplate = mailService.getMailTemplate((String) templateSource);
 
-        return mailTemplate.getUpdated().toInstant(ZoneOffset.UTC).toEpochMilli();
+        LocalDateTime lastModified = mailTemplate.getLastModified();
+
+        if (lastModified != null) {
+          return lastModified.toInstant(ZoneOffset.UTC).toEpochMilli();
+        } else {
+          return -1;
+        }
       }
     } catch (Throwable ignored) {
     }

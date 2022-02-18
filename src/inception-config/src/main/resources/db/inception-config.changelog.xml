@@ -37,10 +37,6 @@
       <column name="description" type="nvarchar(100)" remarks="The description for the config">
         <constraints nullable="false"/>
       </column>
-      <column name="created" type="timestamp" remarks="The date and time the config was created">
-        <constraints nullable="false"/>
-      </column>
-      <column name="updated" type="timestamp" remarks="The date and time the config was last updated"/>
     </createTable>
   </changeSet>
 

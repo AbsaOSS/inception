@@ -166,6 +166,19 @@ public interface ICodesService {
       throws InvalidArgumentException, CodeCategoryNotFoundException, ServiceUnavailableException;
 
   /**
+   * Returns the date and time the code category was last modified.
+   *
+   * @param codeCategoryId the ID for the code category
+   * @return the date and time the code category was last modified
+   * @throws InvalidArgumentException if an argument is invalid
+   * @throws CodeCategoryNotFoundException if the code category could not be found
+   * @throws ServiceUnavailableException if the date and time the code category was last modified
+   *     could not be retrieved
+   */
+  LocalDateTime getCodeCategoryLastModified(String codeCategoryId)
+      throws InvalidArgumentException, CodeCategoryNotFoundException, ServiceUnavailableException;
+
+  /**
    * Retrieve the name of the code category.
    *
    * @param codeCategoryId the ID for the code category
@@ -184,19 +197,6 @@ public interface ICodesService {
    * @throws ServiceUnavailableException if the code category summaries could not be retrieved
    */
   List<CodeCategorySummary> getCodeCategorySummaries() throws ServiceUnavailableException;
-
-  /**
-   * Returns the date and time the code category was last updated.
-   *
-   * @param codeCategoryId the ID for the code category
-   * @return the date and time the code category was last updated
-   * @throws InvalidArgumentException if an argument is invalid
-   * @throws CodeCategoryNotFoundException if the code category could not be found
-   * @throws ServiceUnavailableException if the date and time the code category was last updated
-   *     could not be retrieved
-   */
-  LocalDateTime getCodeCategoryUpdated(String codeCategoryId)
-      throws InvalidArgumentException, CodeCategoryNotFoundException, ServiceUnavailableException;
 
   /**
    * Retrieve the name of the code.

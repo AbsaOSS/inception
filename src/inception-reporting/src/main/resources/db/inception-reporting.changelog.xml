@@ -37,10 +37,6 @@
       <column name="template" type="${blob_type}" remarks="The JasperReports template for the report definition">
         <constraints nullable="false"/>
       </column>
-      <column name="created" type="timestamp" remarks="The date and time the report definition was created">
-        <constraints nullable="false"/>
-      </column>
-      <column name="updated" type="timestamp" remarks="The date and time the report definition was last updated"/>
     </createTable>
   </changeSet>
 

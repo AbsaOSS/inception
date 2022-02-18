@@ -37,10 +37,6 @@
       <column name="status" type="int" remarks="The status for the tenant">
         <constraints nullable="false"/>
       </column>
-      <column name="created" type="timestamp" remarks="The date and time the tenant was created">
-        <constraints nullable="false"/>
-      </column>
-      <column name="updated" type="timestamp" remarks="The date and time the tenant was last updated"/>
     </createTable>
     <createIndex indexName="tenants_name_ix" schemaName="security" tableName="tenants">
       <column name="name"/>
@@ -71,10 +67,6 @@
       <column name="configuration" type="nvarchar(4000)" remarks="The XML configuration data for the user directory">
         <constraints nullable="false"/>
       </column>
-      <column name="created" type="timestamp" remarks="The date and time the user directory was created">
-        <constraints nullable="false"/>
-      </column>
-      <column name="updated" type="timestamp" remarks="The date and time the user directory was last updated"/>
     </createTable>
     <addForeignKeyConstraint constraintName="user_directories_user_directory_type_fk"
       baseTableSchemaName="security" baseTableName="user_directories" baseColumnNames="type"
@@ -139,10 +131,6 @@
       <column name="password_expiry" type="timestamp" remarks="The date and time that the user''s password expires">
         <constraints nullable="false"/>
       </column>
-      <column name="created" type="timestamp" remarks="The date and time the user was created">
-        <constraints nullable="false"/>
-      </column>
-      <column name="updated" type="timestamp" remarks="The date and time the user was last updated"/>
     </createTable>
     <addForeignKeyConstraint constraintName="users_user_directory_fk" baseTableSchemaName="security"
       baseTableName="users" baseColumnNames="user_directory_id" referencedTableSchemaName="security"
@@ -199,10 +187,6 @@
         <constraints nullable="false"/>
       </column>
       <column name="description" type="nvarchar(100)" remarks="A description for the group"/>
-      <column name="created" type="timestamp" remarks="The date and time the group was created">
-        <constraints nullable="false"/>
-      </column>
-      <column name="updated" type="timestamp" remarks="The date and time the group was last updated"/>
     </createTable>
     <addForeignKeyConstraint constraintName="groups_user_directory_fk"
       baseTableSchemaName="security" baseTableName="groups" baseColumnNames="user_directory_id"
@@ -336,7 +320,6 @@
       <column name="id" value="00000000-0000-0000-0000-000000000000"/>
       <column name="name" value="Default"/>
       <column name="status" value="1"/>
-      <column name="created" value="${now}"/>
     </insert>
 
     <insert schemaName="security" tableName="user_directory_types">
@@ -356,7 +339,6 @@
       <column name="name" value="Default Internal User Directory"/>
       <column name="configuration">
         <![CDATA[<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE userDirectory SYSTEM "UserDirectoryConfiguration.dtd"><userDirectory><parameter><name>MaxPasswordAttempts</name><value>5</value></parameter><parameter><name>PasswordExpiryMonths</name><value>12</value></parameter><parameter><name>PasswordHistoryMonths</name><value>24</value></parameter><parameter><name>MaxFilteredUsers</name><value>100</value></parameter><parameter><name>MaxFilteredGroups</name><value>100</value></parameter></userDirectory>]]></column>
-      <column name="created" value="${now}"/>
     </insert>
 
     <insert schemaName="security" tableName="user_directory_to_tenant_map">
@@ -377,7 +359,6 @@
       <column name="password" value="$2a$10$Dig2ZjUaDC/yUpAEjQR3w.wzcnomyBlS6oRXB.5.n.07XnVlAARL."/>
       <column name="password_attempts" value="0"/>
       <column name="password_expiry" value="2050-12-31 00:00:00 GMT"/>
-      <column name="created" value="${now}"/>
     </insert>
 
     <insert schemaName="security" tableName="groups">
@@ -385,7 +366,6 @@
       <column name="user_directory_id" value="00000000-0000-0000-0000-000000000000"/>
       <column name="name" value="Administrators"/>
       <column name="description" value="Administrators"/>
-      <column name="created" value="${now}"/>
     </insert>
 
     <insert schemaName="security" tableName="user_to_group_map">

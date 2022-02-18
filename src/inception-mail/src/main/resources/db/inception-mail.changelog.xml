@@ -38,10 +38,7 @@
         <constraints nullable="false"/>
       </column>
       <column name="template" type="${blob_type}" remarks="The Apache FreeMarker template for the mail template"/>
-      <column name="created" type="timestamp" remarks="The date and time the mail template was created">
-        <constraints nullable="false"/>
-      </column>
-      <column name="updated" type="timestamp" remarks="The date and time the mail template was last updated"/>
+      <column name="last_modified" type="timestamp" remarks="The date and time the mail template was last modified"/>
     </createTable>
   </changeSet>
 

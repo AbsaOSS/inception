@@ -202,6 +202,33 @@ public class MailService implements IMailService, InitializingBean {
   }
 
   @Override
+  public LocalDateTime getMailTemplateLastModified(String mailTemplateId)
+      throws InvalidArgumentException, MailTemplateNotFoundException, ServiceUnavailableException {
+    if (!StringUtils.hasText(mailTemplateId)) {
+      throw new InvalidArgumentException("mailTemplateId");
+    }
+
+    try {
+      Optional<LocalDateTime> updatedOptional =
+          mailTemplateRepository.getLastModifiedById(mailTemplateId);
+
+      if (updatedOptional.isPresent()) {
+        return updatedOptional.get();
+      }
+
+      throw new MailTemplateNotFoundException(mailTemplateId);
+    } catch (MailTemplateNotFoundException e) {
+      throw e;
+    } catch (Throwable e) {
+      throw new ServiceUnavailableException(
+          "Failed to retrieve the date and time the mail template ("
+              + mailTemplateId
+              + ") was last modified",
+          e);
+    }
+  }
+
+  @Override
   public String getMailTemplateName(String mailTemplateId)
       throws InvalidArgumentException, MailTemplateNotFoundException, ServiceUnavailableException {
     if (!StringUtils.hasText(mailTemplateId)) {
@@ -255,33 +282,6 @@ public class MailService implements IMailService, InitializingBean {
     } catch (Throwable e) {
       throw new ServiceUnavailableException(
           "Failed to retrieve the summary for the mail template (" + mailTemplateId + ")", e);
-    }
-  }
-
-  @Override
-  public LocalDateTime getMailTemplateUpdated(String mailTemplateId)
-      throws InvalidArgumentException, MailTemplateNotFoundException, ServiceUnavailableException {
-    if (!StringUtils.hasText(mailTemplateId)) {
-      throw new InvalidArgumentException("mailTemplateId");
-    }
-
-    try {
-      Optional<LocalDateTime> updatedOptional =
-          mailTemplateRepository.getUpdatedById(mailTemplateId);
-
-      if (updatedOptional.isPresent()) {
-        return updatedOptional.get();
-      }
-
-      throw new MailTemplateNotFoundException(mailTemplateId);
-    } catch (MailTemplateNotFoundException e) {
-      throw e;
-    } catch (Throwable e) {
-      throw new ServiceUnavailableException(
-          "Failed to retrieve the date and time the mail template ("
-              + mailTemplateId
-              + ") was last updated",
-          e);
     }
   }
 

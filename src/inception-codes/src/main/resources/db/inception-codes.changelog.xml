@@ -35,10 +35,7 @@
         <constraints nullable="false"/>
       </column>
       <column name="data" type="clob" remarks="The code data for the code category"/>
-      <column name="created" type="timestamp" remarks="The date and time the code category was created">
-        <constraints nullable="false"/>
-      </column>
-      <column name="updated" type="timestamp" remarks="The date and time the code category was last updated"/>
+      <column name="last_modified" type="timestamp" remarks="The date and time the code category was last modified"/>
     </createTable>
 
     <createTable schemaName="codes" tableName="codes" remarks="Codes">
@@ -54,10 +51,6 @@
       <column name="value" type="nvarchar(4000)" remarks="The value for the code">
         <constraints nullable="false"/>
       </column>
-      <column name="created" type="timestamp" remarks="The date and time the code was created">
-        <constraints nullable="false"/>
-      </column>
-      <column name="updated" type="timestamp" remarks="The date and time the code was last updated"/>
     </createTable>
     <addForeignKeyConstraint constraintName="codes_code_category_fk" baseTableSchemaName="codes"
       baseTableName="codes" baseColumnNames="code_category_id" referencedTableSchemaName="codes"

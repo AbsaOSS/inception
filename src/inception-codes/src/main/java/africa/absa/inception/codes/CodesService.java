@@ -416,6 +416,40 @@ public class CodesService implements ICodesService, InitializingBean {
   }
 
   @Override
+  public LocalDateTime getCodeCategoryLastModified(String codeCategoryId)
+      throws InvalidArgumentException, CodeCategoryNotFoundException, ServiceUnavailableException {
+    if (!StringUtils.hasText(codeCategoryId)) {
+      throw new InvalidArgumentException("codeCategoryId");
+    }
+
+    try {
+      Optional<LocalDateTime> lastModifiedOptional =
+          codeCategoryRepository.getLastModifiedById(codeCategoryId);
+
+      if (lastModifiedOptional.isPresent()) {
+        return lastModifiedOptional.get();
+      }
+
+      // Check if one of the registered code providers supports the code category
+      for (ICodeProvider codeProvider : codeProviders) {
+        if (codeProvider.codeCategoryExists(codeCategoryId)) {
+          return codeProvider.getCodeCategoryLastModified(codeCategoryId);
+        }
+      }
+
+      throw new CodeCategoryNotFoundException(codeCategoryId);
+    } catch (CodeCategoryNotFoundException e) {
+      throw e;
+    } catch (Throwable e) {
+      throw new ServiceUnavailableException(
+          "Failed to retrieve the date and time the code category ("
+              + codeCategoryId
+              + ") was last updated",
+          e);
+    }
+  }
+
+  @Override
   public String getCodeCategoryName(String codeCategoryId)
       throws InvalidArgumentException, CodeCategoryNotFoundException, ServiceUnavailableException {
     if (!StringUtils.hasText(codeCategoryId)) {
@@ -452,40 +486,6 @@ public class CodesService implements ICodesService, InitializingBean {
     } catch (Throwable e) {
       throw new ServiceUnavailableException(
           "Failed to retrieve the summaries for the code categories", e);
-    }
-  }
-
-  @Override
-  public LocalDateTime getCodeCategoryUpdated(String codeCategoryId)
-      throws InvalidArgumentException, CodeCategoryNotFoundException, ServiceUnavailableException {
-    if (!StringUtils.hasText(codeCategoryId)) {
-      throw new InvalidArgumentException("codeCategoryId");
-    }
-
-    try {
-      Optional<LocalDateTime> updatedOptional =
-          codeCategoryRepository.getUpdatedById(codeCategoryId);
-
-      if (updatedOptional.isPresent()) {
-        return updatedOptional.get();
-      }
-
-      // Check if one of the registered code providers supports the code category
-      for (ICodeProvider codeProvider : codeProviders) {
-        if (codeProvider.codeCategoryExists(codeCategoryId)) {
-          return codeProvider.getCodeCategoryLastUpdated(codeCategoryId);
-        }
-      }
-
-      throw new CodeCategoryNotFoundException(codeCategoryId);
-    } catch (CodeCategoryNotFoundException e) {
-      throw e;
-    } catch (Throwable e) {
-      throw new ServiceUnavailableException(
-          "Failed to retrieve the date and time the code category ("
-              + codeCategoryId
-              + ") was last updated",
-          e);
     }
   }
 
@@ -635,7 +635,7 @@ public class CodesService implements ICodesService, InitializingBean {
         throw new CodeCategoryNotFoundException(codeCategoryId);
       }
 
-      codeCategoryRepository.setDataAndUpdatedById(codeCategoryId, data, LocalDateTime.now());
+      codeCategoryRepository.setDataAndLastModifiedById(codeCategoryId, data, LocalDateTime.now());
     } catch (CodeCategoryNotFoundException e) {
       throw e;
     } catch (Throwable e) {
@@ -716,7 +716,7 @@ public class CodesService implements ICodesService, InitializingBean {
         if (logger.isDebugEnabled()) {
           logger.debug(
               "Reading the code provider configuration file ("
-                  + codeProviderConfigurationFile.toURI().toString()
+                  + codeProviderConfigurationFile.toURI()
                   + ")");
         }
 

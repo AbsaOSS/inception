@@ -32,6 +32,7 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  * The <b>MailTemplate</b> class holds the information for a mail template.
@@ -55,11 +56,6 @@ public class MailTemplate implements Serializable {
   @Column(name = "content_type", nullable = false)
   private MailTemplateContentType contentType;
 
-  /** The date and time the mail template was created. */
-  @JsonIgnore
-  @Column(name = "created", nullable = false, updatable = false)
-  private LocalDateTime created;
-
   /** The ID for the mail template. */
   @Schema(description = "The ID for the mail template", required = true)
   @JsonProperty(required = true)
@@ -68,6 +64,12 @@ public class MailTemplate implements Serializable {
   @Id
   @Column(name = "id", length = 100, nullable = false)
   private String id;
+
+  /** The date and time the mail template was last modified. */
+  @JsonIgnore
+  @XmlTransient
+  @Column(name = "last_modified", insertable = false)
+  private LocalDateTime lastModified;
 
   /** The name of the mail template. */
   @Schema(description = "The name of the mail template", required = true)
@@ -84,11 +86,6 @@ public class MailTemplate implements Serializable {
   @Size(min = 1, max = 10485760)
   @Column(name = "template", nullable = false)
   private byte[] template;
-
-  /** The date and time the mail template was last updated. */
-  @JsonIgnore
-  @Column(name = "updated", insertable = false)
-  private LocalDateTime updated;
 
   /** Constructs a new <b>MailTemplate</b>. */
   public MailTemplate() {}
@@ -144,21 +141,21 @@ public class MailTemplate implements Serializable {
   }
 
   /**
-   * Returns the date and time the mail template was created.
-   *
-   * @return the date and time the mail template was created
-   */
-  public LocalDateTime getCreated() {
-    return created;
-  }
-
-  /**
    * Returns the ID for the mail template.
    *
    * @return the ID for the mail template
    */
   public String getId() {
     return id;
+  }
+
+  /**
+   * Returns the date and time the mail template was last modified.
+   *
+   * @return the date and time the mail template was last modified
+   */
+  public LocalDateTime getLastModified() {
+    return lastModified;
   }
 
   /**
@@ -177,15 +174,6 @@ public class MailTemplate implements Serializable {
    */
   public byte[] getTemplate() {
     return template;
-  }
-
-  /**
-   * Returns the date and time the mail template was last updated.
-   *
-   * @return the date and time the mail template was last updated
-   */
-  public LocalDateTime getUpdated() {
-    return updated;
   }
 
   /**
@@ -253,12 +241,12 @@ public class MailTemplate implements Serializable {
   /** The Java Persistence callback method invoked before the entity is created in the database. */
   @PrePersist
   protected void onCreate() {
-    created = LocalDateTime.now();
+    lastModified = LocalDateTime.now();
   }
 
   /** The Java Persistence callback method invoked before the entity is updated in the database. */
   @PreUpdate
   protected void onUpdate() {
-    updated = LocalDateTime.now();
+    lastModified = LocalDateTime.now();
   }
 }

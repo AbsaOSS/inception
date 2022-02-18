@@ -32,27 +32,27 @@ export class CodeCategory {
   id: string;
 
   /**
+   * The date and time the code category was last modified.
+   */
+  lastModified: Date | null = null;
+
+  /**
    * The name of the code category.
    */
   name: string;
 
   /**
-   * The date and time the code category was last updated.
-   */
-  updated: Date | null = null;
-
-  /**
    * Constructs a new CodeCategory.
    *
-   * @param id      The ID for the code category.
-   * @param name    The name of the code category.
-   * @param data    The optional code data for the code category.
-   * @param updated The date and time the code category was last updated.
+   * @param id           The ID for the code category.
+   * @param name         The name of the code category.
+   * @param data         The optional code data for the code category.
+   * @param lastModified The date and time the code category was last modified.
    */
-  constructor(id: string, name: string, data?: string, updated?: Date) {
+  constructor(id: string, name: string, data?: string, lastModified?: Date) {
     this.id = id;
     this.name = name;
     this.data = !!data ? data : null;
-    this.updated = !!updated ? updated : null;
+    this.lastModified = !!lastModified ? lastModified : null;
   }
 }

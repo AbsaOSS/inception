@@ -16,7 +16,6 @@
 
 package africa.absa.inception.scheduler;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -33,8 +32,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -78,11 +75,6 @@ public class Job implements Serializable {
       fetch = FetchType.EAGER,
       orphanRemoval = true)
   private final Set<JobParameter> parameters = new HashSet<>();
-
-  /** The date and time the job was created. */
-  @JsonIgnore
-  @Column(name = "created", nullable = false, updatable = false)
-  private LocalDateTime created;
 
   /** Is the job enabled for execution? */
   @Schema(description = "Is the job enabled for execution", required = true)
@@ -156,11 +148,6 @@ public class Job implements Serializable {
   @NotNull
   @Column(name = "status", nullable = false)
   private JobStatus status;
-
-  /** The date and time the job was last updated. */
-  @JsonIgnore
-  @Column(name = "updated", insertable = false)
-  private LocalDateTime updated;
 
   /** Constructs a new <b>Job</b>. */
   public Job() {}
@@ -240,15 +227,6 @@ public class Job implements Serializable {
     Job other = (Job) object;
 
     return Objects.equals(id, other.id);
-  }
-
-  /**
-   * Returns the date and time the job was created.
-   *
-   * @return the date and time the job was created
-   */
-  public LocalDateTime getCreated() {
-    return created;
   }
 
   /**
@@ -339,15 +317,6 @@ public class Job implements Serializable {
    */
   public JobStatus getStatus() {
     return status;
-  }
-
-  /**
-   * Returns the date and time the job was last updated.
-   *
-   * @return the date and time the job was last updated
-   */
-  public LocalDateTime getUpdated() {
-    return updated;
   }
 
   /**
@@ -492,17 +461,5 @@ public class Job implements Serializable {
    */
   public void setStatus(JobStatus status) {
     this.status = status;
-  }
-
-  /** The Java Persistence callback method invoked before the entity is created in the database. */
-  @PrePersist
-  protected void onCreate() {
-    created = LocalDateTime.now();
-  }
-
-  /** The Java Persistence callback method invoked before the entity is updated in the database. */
-  @PreUpdate
-  protected void onUpdate() {
-    updated = LocalDateTime.now();
   }
 }

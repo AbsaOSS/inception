@@ -16,7 +16,7 @@
 
 package africa.absa.inception.codes;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import africa.absa.inception.core.xml.LocalDateTimeAdapter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -32,6 +32,9 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * The <b>CodeCategory</b> class holds the information for a code category.
@@ -40,17 +43,12 @@ import javax.validation.constraints.Size;
  */
 @Schema(description = "A collection of related codes")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({"id", "name", "data"})
+@JsonPropertyOrder({"id", "name", "data", "lastModified"})
 @Entity
 @Table(schema = "codes", name = "code_categories")
 public class CodeCategory implements Serializable {
 
   private static final long serialVersionUID = 1000000;
-
-  /** The date and time the code category was created. */
-  @JsonIgnore
-  @Column(name = "created", nullable = false, updatable = false)
-  private LocalDateTime created;
 
   /** The optional code data for the code category. */
   @Schema(description = "The optional code data for the code category")
@@ -67,6 +65,15 @@ public class CodeCategory implements Serializable {
   @Column(name = "id", length = 100, nullable = false)
   private String id;
 
+  /** The date and time the code category was last modified. */
+  @Schema(description = "The date and time the code category was last modified")
+  @JsonProperty
+  @XmlElement(name = "LastModified")
+  @XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
+  @XmlSchemaType(name = "dateTime")
+  @Column(name = "last_modified")
+  private LocalDateTime lastModified;
+
   /** The name of the code category. */
   @Schema(description = "The name of the code category", required = true)
   @JsonProperty(required = true)
@@ -74,11 +81,6 @@ public class CodeCategory implements Serializable {
   @Size(min = 1, max = 100)
   @Column(name = "name", length = 100, nullable = false)
   private String name;
-
-  /** The date and time the code category was last updated. */
-  @JsonIgnore
-  @Column(name = "updated", insertable = false)
-  private LocalDateTime updated;
 
   /** Constructs a new <b>CodeCategory</b>. */
   public CodeCategory() {}
@@ -133,15 +135,6 @@ public class CodeCategory implements Serializable {
   }
 
   /**
-   * Returns the date and time the code category was created.
-   *
-   * @return the date and time the code category was created
-   */
-  public LocalDateTime getCreated() {
-    return created;
-  }
-
-  /**
    * Returns the optional code data for the code category.
    *
    * @return the optional code data for the code category
@@ -160,21 +153,21 @@ public class CodeCategory implements Serializable {
   }
 
   /**
+   * Returns the date and time the code category was last modified.
+   *
+   * @return the date and time the code category was last modified
+   */
+  public LocalDateTime getLastModified() {
+    return lastModified;
+  }
+
+  /**
    * Returns the name of the code category.
    *
    * @return the name of the code category
    */
   public String getName() {
     return name;
-  }
-
-  /**
-   * Returns the date and time the code category was last updated.
-   *
-   * @return the date and time the code category was last updated
-   */
-  public LocalDateTime getUpdated() {
-    return updated;
   }
 
   /**
@@ -217,12 +210,12 @@ public class CodeCategory implements Serializable {
   /** The Java Persistence callback method invoked before the entity is created in the database. */
   @PrePersist
   protected void onCreate() {
-    created = LocalDateTime.now();
+    lastModified = LocalDateTime.now();
   }
 
   /** The Java Persistence callback method invoked before the entity is updated in the database. */
   @PreUpdate
   protected void onUpdate() {
-    updated = LocalDateTime.now();
+    lastModified = LocalDateTime.now();
   }
 }
